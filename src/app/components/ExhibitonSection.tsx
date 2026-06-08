@@ -6,6 +6,7 @@ import image2 from "../../assets/AL.jpg";
 import image5 from "../../assets/AL.jpg";
 import image7 from "../../assets/AL.jpg";
 import image6 from "../../assets/Croma.jpg";
+import logo from "../../assets/logo.jpg";
 import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 // import { NextSection } from "../pages/NextSection.jsx";
@@ -320,7 +321,7 @@ export function ExhibitionSection({ onNavigate }) {
             background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
           }}
         >
-          <span style={{ color: "#fff", fontSize: 20 }}>A</span>
+          <img src={logo} alt="" />
         </div>
         <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
           You've seen all exhibitions.

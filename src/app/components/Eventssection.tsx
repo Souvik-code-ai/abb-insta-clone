@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
-
+import logo from "../../assets/logo.jpg";
 // ── Mock data ─────────────────────────────────────────────────────────────────
 const EVENTS = [
   {
@@ -414,7 +414,7 @@ export function EventsSection({ onNavigate }) {
             background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
           }}
         >
-          <span style={{ color: "#fff", fontSize: 20 }}>A</span>
+          <img src={logo} alt="" />
         </div>
         <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
           You've seen all recent events.

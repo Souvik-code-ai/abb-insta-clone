@@ -6,7 +6,7 @@ import toyotaDetail from "../../assets/Croma.jpg";
 import { useEffect } from "react";
 import krishiCover from "../../assets/Croma.jpg";
 import krishiDetail from "../../assets/Croma.jpg";
-
+import logo from "../../assets/logo.jpg";
 import pmsCover from "../../assets/Croma.jpg";
 import pmsDetail from "../../assets/Croma.jpg";
 
@@ -214,7 +214,7 @@ export function DigitalSection({ onNavigate }) {
               background: "linear-gradient(135deg, #65A30D 0%, #A3E635 100%)",
             }}
           >
-            <span style={{ color: "#fff", fontSize: 20 }}>D</span>
+            <img src={logo} alt="" />
           </div>
 
           <p
