@@ -2,8 +2,8 @@
 
 :root {
   --font-size: 16px;
-  --font-family-display: 'DM Serif Display', Georgia, serif;
-  --font-family-body: 'Inter', system-ui, sans-serif;
+  --font-family-display: "DM Serif Display", Georgia, serif;
+  --font-family-body: "Inter", system-ui, sans-serif;
   --background: #ffffff;
   --foreground: #1a1a1a;
   --card: #ffffff;
@@ -16,7 +16,7 @@
   --secondary-foreground: #1a1a1a;
   --muted: #f5f5f5;
   --muted-foreground: #8e8e93;
-  --accent: #d4456a;
+  --accent: #579f63;
   --accent-foreground: #ffffff;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
@@ -131,7 +131,9 @@
     font-family: var(--font-family-body);
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-family: var(--font-family-display);
   }
 

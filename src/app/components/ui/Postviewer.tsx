@@ -32,8 +32,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
   const [captionExpanded, setCaptionExpanded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const isVideo = (src: string) =>
-    /\.(mp4|webm|ogg|mov)(\?|$)/i.test(src);
+  const isVideo = (src: string) => /\.(mp4|webm|ogg|mov)(\?|$)/i.test(src);
 
   const currentSrc = post.images[imageIndex];
   const isCurrentVideo = isVideo(currentSrc);
@@ -42,8 +41,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft" && imageIndex > 0)
-        setImageIndex((i) => i - 1);
+      if (e.key === "ArrowLeft" && imageIndex > 0) setImageIndex((i) => i - 1);
       if (e.key === "ArrowRight" && imageIndex < post.images.length - 1)
         setImageIndex((i) => i + 1);
     };
@@ -108,7 +106,9 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
         style={{
-          position: "fixed",
+          position: "absolute",
+          top: 20,
+          right: 20,
           inset: 0,
           zIndex: 9999,
           background: "#000",
@@ -128,7 +128,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
           style={{
             position: "absolute",
             top: 20,
-            left: 20,
+            right: 20,
             zIndex: 10,
             width: 40,
             height: 40,
@@ -146,7 +146,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
         </motion.button>
 
         {/* ── Category badge — top right ── */}
-        <div
+        {/* <div
           style={{
             position: "absolute",
             top: 20,
@@ -163,7 +163,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
           }}
         >
           {post.category}
-        </div>
+        </div> */}
 
         {/* ── Arrow prev ── */}
         <AnimatePresence>
@@ -329,9 +329,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
                     height: 6,
                     borderRadius: 3,
                     background:
-                      i === imageIndex
-                        ? "#fff"
-                        : "rgba(255,255,255,0.45)",
+                      i === imageIndex ? "#fff" : "rgba(255,255,255,0.45)",
                     border: "none",
                     cursor: "pointer",
                     padding: 0,
@@ -418,10 +416,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
                   gap: 3,
                 }}
               >
-                <MapPin
-                  size={11}
-                  style={{ flexShrink: 0, color: "#f9a8c9" }}
-                />
+                <MapPin size={11} style={{ flexShrink: 0, color: "#f9a8c9" }} />
                 {post.location} · {post.client.category}
               </p>
             </div>
@@ -467,15 +462,13 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
                   strokeWidth={liked ? 0 : 2}
                 />
               </motion.div>
-              <span
-                style={{ fontSize: 11, color: "#fff", lineHeight: 1 }}
-              >
+              <span style={{ fontSize: 11, color: "#fff", lineHeight: 1 }}>
                 {likeCount}
               </span>
             </motion.button>
 
             {/* Comment */}
-            <motion.button
+            {/* <motion.button
               whileTap={{ scale: 0.82 }}
               aria-label="Comments"
               style={{
@@ -493,7 +486,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
               <span style={{ fontSize: 11, color: "#fff", lineHeight: 1 }}>
                 {post.comments.length}
               </span>
-            </motion.button>
+            </motion.button> */}
 
             {/* Copy link */}
             <motion.button
@@ -554,7 +547,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
         </div>
 
         {/* ── Caption strip below media ── */}
-        <div
+        {/* <div
           style={{
             position: "absolute",
             bottom: 0,
@@ -598,7 +591,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
               more
             </button>
           )}
-        </div>
+        </div> */}
       </motion.div>
     </AnimatePresence>
   );

@@ -185,8 +185,18 @@ import { MobileBottomNav } from "./components/MobileBottomNav";
 import { MobileMessagesView } from "./components/MobileMessagesView";
 import { ProfileView } from "./components/ProfileView";
 import { EventsSection } from "./components/Eventssection";
-import { clients, feedPosts, upcomingEvents, caseStudies, awards } from "./data/mockData";
-
+import {
+  clients,
+  feedPosts,
+  upcomingEvents,
+  caseStudies,
+  awards,
+} from "./data/mockData";
+import { DigitalSection } from "./components/DigitalSection";
+import { ExhibitionSection } from "./components/ExhibitonSection";
+import { ActivationSection } from "./components/ActivationSection";
+import PageLoader from "./components/ui/Pageloader";
+import { ArrowRight } from "lucide-react";
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [moreModalOpen, setMoreModalOpen] = useState(false);
@@ -194,6 +204,7 @@ export default function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const checkSize = () => {
@@ -204,7 +215,21 @@ export default function App() {
     window.addEventListener("resize", checkSize);
     return () => window.removeEventListener("resize", checkSize);
   }, []);
+  const handleNavigate = (section) => {
+    if (section === activeSection) return;
 
+    setLoading(true);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+
+    setTimeout(() => {
+      setActiveSection(section);
+      setLoading(false);
+    }, 500);
+  };
   const SIDEBAR_W = 72;
 
   // Sections that should hide the right panel
@@ -212,6 +237,7 @@ export default function App() {
 
   return (
     <div className="bg-background min-h-screen">
+      {loading && <PageLoader />}
       {/* Mobile Header */}
       {isMobile && (
         <MobileHeader
@@ -224,7 +250,13 @@ export default function App() {
       {!isMobile && (
         <Sidebar
           activeSection={activeSection}
-          onNavigate={setActiveSection}
+          onNavigate={(section) => {
+            if (section === "messages") {
+              setChatOpen(true);
+              return;
+            }
+            handleNavigate(section);
+          }}
           onMoreClick={() => setMoreModalOpen(true)}
         />
       )}
@@ -253,28 +285,21 @@ export default function App() {
           <div style={{ padding: "0 0 32px" }}>
             {/* ── Profile ── */}
             {activeSection === "profile" ? (
-              <ProfileView />
-
+              <ProfileView onNavigate={setActiveSection} />
             ) : /* ── Events ── */
             activeSection === "events" ? (
+              <EventsSection onNavigate={setActiveSection} />
+            ) : activeSection === "digital" ? (
+              <DigitalSection onNavigate={setActiveSection} />
+            ) : activeSection === "exhibition" ? (
+              <ExhibitionSection onNavigate={setActiveSection} />
+            ) : activeSection === "activation" ? (
+              <ActivationSection onNavigate={setActiveSection} />
+            ) : activeSection === "presense" ? (
               <EventsSection />
-
-            ) :  activeSection === "digital" ? (
-              <EventsSection />
-
-            ) :   activeSection === "exhibition" ? (
-              <EventsSection />
-
-            ) :  activeSection === "activation" ? (
-              <EventsSection />
-
-            ) :  activeSection === "presense" ? (
-              <EventsSection />
-
-            ) :/* ── Mobile Messages ── */
+            ) : /* ── Mobile Messages ── */
             isMobile && activeSection === "messages" ? (
               <MobileMessagesView onBack={() => setActiveSection("home")} />
-
             ) : (
               /* ── Home feed ── */
               <>
@@ -295,7 +320,8 @@ export default function App() {
                       style={{
                         width: 48,
                         height: 48,
-                        background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
+                        background:
+                          "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
                       }}
                     >
                       <span
@@ -315,7 +341,7 @@ export default function App() {
                         textAlign: "center",
                       }}
                     >
-                      You've seen all recent projects.
+                      You've seen all feeds.
                       <br />
                       {/* <a
                         href="#"
@@ -324,6 +350,14 @@ export default function App() {
                         Explore our full portfolio →
                       </a> */}
                     </p>
+                    <button
+                      onClick={() => setActiveSection("events")}
+                      className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
+                      style={{ color: "#579F63" }}
+                    >
+                      Explore More
+                      <ArrowRight size={16} />
+                    </button>
                   </div>
                 </div>
               </>
@@ -341,6 +375,7 @@ export default function App() {
               events={upcomingEvents}
               caseStudies={caseStudies}
               awards={awards}
+              onNavigate={handleNavigate}
             />
           </div>
         )}
@@ -368,16 +403,13 @@ export default function App() {
       {isMobile && (
         <MobileBottomNav
           activeSection={activeSection}
-          onNavigate={setActiveSection}
+          onNavigate={handleNavigate}
         />
       )}
 
       {/* Chatbot / Contact Widget (desktop only) */}
       {!isMobile && (
-        <ChatbotWidget
-          triggerOpen={activeSection === "messages"}
-          onTriggered={() => setActiveSection("home")}
-        />
+        <ChatbotWidget isOpen={chatOpen} onClose={() => setChatOpen(false)} />
       )}
 
       <Toaster position="bottom-center" richColors />

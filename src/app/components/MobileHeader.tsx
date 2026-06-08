@@ -1,41 +1,79 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { MessageCircle, ChevronDown, Facebook, Instagram, Linkedin } from "lucide-react";
-
+import {
+  MessageCircle,
+  ChevronDown,
+  Facebook,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
+import logo from "../../assets/download.jpg";
 interface MobileHeaderProps {
   onMessageClick: () => void;
   onLogoClick: () => void;
 }
 
-export function MobileHeader({ onMessageClick, onLogoClick }: MobileHeaderProps) {
+export function MobileHeader({
+  onMessageClick,
+  onLogoClick,
+}: MobileHeaderProps) {
   const [socialOpen, setSocialOpen] = useState(false);
 
   const socials = [
-    { icon: Facebook, label: "Facebook", color: "#1877F2", url: "https://facebook.com/abybabyevents" },
-    { icon: Instagram, label: "Instagram", color: "#E1306C", url: "https://instagram.com/abybabyevents" },
-    { icon: Linkedin, label: "LinkedIn", color: "#0A66C2", url: "https://linkedin.com/company/abybabyevents" },
+    {
+      icon: Facebook,
+      label: "Facebook",
+      color: "#1877F2",
+      url: "https://facebook.com/abybabyevents",
+    },
+    {
+      icon: Instagram,
+      label: "Instagram",
+      color: "#E1306C",
+      url: "https://instagram.com/abybabyevents",
+    },
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      color: "#0A66C2",
+      url: "https://linkedin.com/company/abybabyevents",
+    },
   ];
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4"
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 bg-white"
       style={{
         height: 56,
-        background: "rgba(255,255,255,0.95)",
+
         backdropFilter: "blur(12px)",
         borderBottom: "1px solid rgba(0,0,0,0.08)",
       }}
     >
       {/* Logo */}
-      <button onClick={onLogoClick} className="flex items-center gap-2" style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+      <button
+        onClick={onLogoClick}
+        className="flex items-center gap-2"
+        style={{
+          background: "none",
+          border: "none",
+          padding: 0,
+          cursor: "pointer",
+        }}
+      >
         <div
-          className="rounded-xl flex items-center justify-center"
+          className="rounded-sm flex items-center justify-center overflow-hidden"
           style={{
-            width: 34, height: 34,
+            width: 40,
+            height: 40,
             background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
           }}
         >
-          <span style={{ color: "#fff", fontFamily: "var(--font-family-display)", fontSize: 14 }}>A</span>
+          <img
+            src={logo}
+            alt=""
+            className="overflow-hidden rounded-lg h-12 w-12 "
+          />
         </div>
       </button>
 
@@ -46,17 +84,28 @@ export function MobileHeader({ onMessageClick, onLogoClick }: MobileHeaderProps)
           className="rounded-full flex items-center justify-center"
           style={{ width: 36, height: 36, background: "rgba(212,69,106,0.08)" }}
         >
-          <MessageCircle size={18} style={{ color: "#d4456a" }} />
+          <MessageCircle size={18} style={{ color: "#2C7048" }} />
         </button>
 
         <div className="relative">
           <button
             onClick={() => setSocialOpen((o) => !o)}
             className="rounded-full flex items-center gap-1 px-3"
-            style={{ height: 36, background: "rgba(0,0,0,0.05)", fontSize: 13, fontWeight: 500 }}
+            style={{
+              height: 36,
+              background: "rgba(0,0,0,0.05)",
+              fontSize: 13,
+              fontWeight: 500,
+            }}
           >
             Social
-            <ChevronDown size={14} style={{ transform: socialOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
+            <ChevronDown
+              size={14}
+              style={{
+                transform: socialOpen ? "rotate(180deg)" : "none",
+                transition: "transform 0.2s",
+              }}
+            />
           </button>
 
           <AnimatePresence>
@@ -77,8 +126,14 @@ export function MobileHeader({ onMessageClick, onLogoClick }: MobileHeaderProps)
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 px-4 py-3 transition-colors"
                     style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "#fafafa")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "transparent")}
+                    onMouseEnter={(e) =>
+                      ((e.currentTarget as HTMLAnchorElement).style.background =
+                        "#fafafa")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.currentTarget as HTMLAnchorElement).style.background =
+                        "transparent")
+                    }
                   >
                     <div
                       className="rounded-lg flex items-center justify-center"
@@ -86,7 +141,15 @@ export function MobileHeader({ onMessageClick, onLogoClick }: MobileHeaderProps)
                     >
                       <Icon size={14} style={{ color: "#fff" }} />
                     </div>
-                    <span style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a" }}>{label}</span>
+                    <span
+                      style={{
+                        fontSize: 14,
+                        fontWeight: 500,
+                        color: "#1a1a1a",
+                      }}
+                    >
+                      {label}
+                    </span>
                   </a>
                 ))}
               </motion.div>

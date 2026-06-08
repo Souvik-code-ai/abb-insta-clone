@@ -15,7 +15,10 @@ const navItems = [
   { id: "profile", icon: User, label: "Profile" },
 ];
 
-export function MobileBottomNav({ activeSection, onNavigate }: MobileBottomNavProps) {
+export function MobileBottomNav({
+  activeSection,
+  onNavigate,
+}: MobileBottomNavProps) {
   return (
     <nav
       className="fixed bottom-0 left-0 right-0 z-50 flex items-center"
@@ -35,7 +38,7 @@ export function MobileBottomNav({ activeSection, onNavigate }: MobileBottomNavPr
             key={item.id}
             onClick={() => onNavigate(item.id)}
             className="flex-1 flex flex-col items-center justify-center gap-0.5 relative"
-            style={{ height: "100%", color: isActive ? "#d4456a" : "#8e8e93" }}
+            style={{ height: "100%", color: isActive ? "#2C7048" : "#8e8e93" }}
           >
             {isActive && (
               <motion.div
@@ -45,7 +48,9 @@ export function MobileBottomNav({ activeSection, onNavigate }: MobileBottomNavPr
               />
             )}
             <Icon size={22} strokeWidth={isActive ? 2.2 : 1.8} />
-            <span style={{ fontSize: 10, fontWeight: isActive ? 600 : 400 }}>{item.label}</span>
+            <span style={{ fontSize: 10, fontWeight: isActive ? 600 : 400 }}>
+              {item.label}
+            </span>
           </button>
         );
       })}

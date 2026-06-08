@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Calendar, MapPin, Users, TrendingUp } from "lucide-react";
+import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 
 // ── Mock data ─────────────────────────────────────────────────────────────────
 const EVENTS = [
@@ -97,8 +97,8 @@ function EventCard({
         />
         {showType && (
           <span
-            className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold"
-            style={{ background: "#d4456a", color: "#fff", fontSize: 11 }}
+            className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-[#2C7048]"
+            style={{ color: "#fff", fontSize: 11 }}
           >
             {event.type}
           </span>
@@ -111,7 +111,11 @@ function EventCard({
           >
             <span
               className="px-2 py-0.5 rounded-full text-xs font-medium"
-              style={{ background: "rgba(0,0,0,0.55)", color: "#fff", fontSize: 11 }}
+              style={{
+                background: "rgba(0,0,0,0.55)",
+                color: "#fff",
+                fontSize: 11,
+              }}
             >
               Past event
             </span>
@@ -122,23 +126,44 @@ function EventCard({
       {/* Info */}
       <div className="p-4">
         <h3
-          className="font-semibold text-gray-900 leading-snug line-clamp-1"
+          className="font-semibold text-gray-900 leading-snug line-clamp-1 font-sans"
           style={{ fontSize: 15 }}
         >
           {event.name}
         </h3>
 
         <div className="mt-3 flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 13 }}>
-            <Calendar size={13} style={{ color: "#d4456a", flexShrink: 0 }} />
+          <div
+            className="flex items-center gap-2 text-gray-500"
+            style={{ fontSize: 13 }}
+          >
+            <Calendar
+              size={13}
+              style={{ flexShrink: 0 }}
+              className="text-lime-600"
+            />
             {event.date}
           </div>
-          <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 13 }}>
-            <MapPin size={13} style={{ color: "#d4456a", flexShrink: 0 }} />
+          <div
+            className="flex items-center gap-2 text-gray-500"
+            style={{ fontSize: 13 }}
+          >
+            <MapPin
+              size={13}
+              style={{ flexShrink: 0 }}
+              className="text-lime-600"
+            />
             {event.location}
           </div>
-          <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 13 }}>
-            <Users size={13} style={{ color: "#d4456a", flexShrink: 0 }} />
+          <div
+            className="flex items-center gap-2 text-gray-500"
+            style={{ fontSize: 13 }}
+          >
+            <Users
+              size={13}
+              style={{ flexShrink: 0 }}
+              className="text-lime-600"
+            />
             {event.attendees.toLocaleString()} Attendees
           </div>
         </div>
@@ -180,10 +205,7 @@ function EventHighlights() {
       {/* Metrics */}
       <div className="space-y-6">
         <div>
-          <h2
-            className="font-semibold text-gray-900"
-            style={{ fontSize: 18 }}
-          >
+          <h2 className="font-semibold text-gray-900" style={{ fontSize: 18 }}>
             Event performance
           </h2>
           <p className="text-gray-500 mt-1" style={{ fontSize: 13 }}>
@@ -229,10 +251,7 @@ function EventHighlights() {
       {/* Gallery */}
       <div>
         <div className="mb-4">
-          <h2
-            className="font-semibold text-gray-900"
-            style={{ fontSize: 18 }}
-          >
+          <h2 className="font-semibold text-gray-900" style={{ fontSize: 18 }}>
             Gallery
           </h2>
           <p className="text-gray-500 mt-1" style={{ fontSize: 13 }}>
@@ -290,15 +309,22 @@ function EmptyState({ label }: { label: string }) {
 }
 
 // ── Root export ───────────────────────────────────────────────────────────────
-export function EventsSection() {
+export function EventsSection({ onNavigate }) {
   const TABS = [
     { key: "upcoming", label: "Upcoming" },
     { key: "expired", label: "Past events" },
     { key: "highlights", label: "Highlights" },
   ] as const;
 
-  const [activeTab, setActiveTab] = useState<"upcoming" | "expired" | "highlights">("upcoming");
-
+  const [activeTab, setActiveTab] = useState<
+    "upcoming" | "expired" | "highlights"
+  >("upcoming");
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // use "auto" for instant jump
+    });
+  }, []);
   const upcoming = EVENTS.filter((e) => e.status === "upcoming");
   const expired = EVENTS.filter((e) => e.status === "expired");
 
@@ -311,7 +337,7 @@ export function EventsSection() {
       >
         <h1
           className="font-semibold text-gray-900 font-sans lg:text-3xl md:text-2xl text-xl var(--font-family-body) "
-          style={{  letterSpacing: "-0.01em" }}
+          style={{ letterSpacing: "-0.01em" }}
         >
           Events
         </h1>
@@ -325,10 +351,10 @@ export function EventsSection() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className="px-4 py-1.5 rounded-full transition-all text-sm md:font-medium font-sm"
+              className="px-4 py-1.5 rounded-full transition-all text-sm md:font-medium font-sm bg-[#2C7048]"
               style={
                 activeTab === tab.key
-                  ? { background: "#d4456a", color: "#fff", border: "none" }
+                  ? { color: "#fff", border: "none" }
                   : {
                       background: "transparent",
                       color: "#8e8e93",
@@ -352,8 +378,8 @@ export function EventsSection() {
           transition={{ duration: 0.18 }}
           className="px-2 py-5"
         >
-          {activeTab === "upcoming" && (
-            upcoming.length > 0 ? (
+          {activeTab === "upcoming" &&
+            (upcoming.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:grid-cols-2 ">
                 {upcoming.map((event) => (
                   <EventCard key={event.id} event={event} showType />
@@ -361,11 +387,10 @@ export function EventsSection() {
               </div>
             ) : (
               <EmptyState label="upcoming" />
-            )
-          )}
+            ))}
 
-          {activeTab === "expired" && (
-            expired.length > 0 ? (
+          {activeTab === "expired" &&
+            (expired.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {expired.map((event) => (
                   <EventCard key={event.id} event={event} showType={false} />
@@ -373,8 +398,7 @@ export function EventsSection() {
               </div>
             ) : (
               <EmptyState label="past" />
-            )
-          )}
+            ))}
 
           {activeTab === "highlights" && <EventHighlights />}
         </motion.div>
@@ -399,6 +423,14 @@ export function EventsSection() {
             View full event calendar →
           </a> */}
         </p>
+        <button
+          onClick={() => onNavigate("digital")}
+          className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
+          style={{ color: "#579F63" }}
+        >
+          Explore More
+          <ArrowRight size={16} />
+        </button>
       </div>
     </div>
   );

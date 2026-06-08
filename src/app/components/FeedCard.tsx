@@ -224,7 +224,6 @@
 //             </motion.div>
 //           </motion.button>
 
-
 //           <motion.button
 //             whileTap={{ scale: 0.85 }}
 //             onClick={handleCopy}
@@ -272,10 +271,17 @@
 // }
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Heart, MessageCircle, Link2, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import {
+  Heart,
+  MessageCircle,
+  Link2,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+} from "lucide-react";
 import { toast } from "sonner";
 import { CommentModal } from "./CommentModal";
-import { PostViewer } from "./PostViewer";
+import { PostViewer } from "../components/ui/Postviewer";
 import type { FeedPost } from "../data/mockData";
 
 interface FeedCardProps {
@@ -336,13 +342,24 @@ export function FeedCard({ post }: FeedCardProps) {
               className="rounded-full flex items-center justify-center shrink-0"
               style={{ width: 42, height: 42, background: post.client.bgColor }}
             >
-              <span style={{ color: post.client.color, fontSize: 14, fontWeight: 700 }}>
+              <span
+                style={{
+                  color: post.client.color,
+                  fontSize: 14,
+                  fontWeight: 700,
+                }}
+              >
                 {post.client.initials}
               </span>
             </div>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a" }}>{post.client.name}</div>
-              <div className="flex items-center gap-1" style={{ color: "#8e8e93", fontSize: 12 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a" }}>
+                {post.client.name}
+              </div>
+              <div
+                className="flex items-center gap-1"
+                style={{ color: "#8e8e93", fontSize: 12 }}
+              >
                 <MapPin size={11} />
                 <span>{post.location}</span>
               </div>
@@ -358,24 +375,50 @@ export function FeedCard({ post }: FeedCardProps) {
                 exit={{ opacity: 0, y: 8 }}
                 transition={{ duration: 0.18 }}
                 className="absolute top-full left-4 z-20 bg-white rounded-2xl p-4 shadow-xl"
-                style={{ width: 280, border: "1px solid rgba(0,0,0,0.08)", marginTop: 4 }}
+                style={{
+                  width: 280,
+                  border: "1px solid rgba(0,0,0,0.08)",
+                  marginTop: 4,
+                }}
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div
                     className="rounded-full flex items-center justify-center shrink-0"
-                    style={{ width: 52, height: 52, background: post.client.bgColor }}
+                    style={{
+                      width: 52,
+                      height: 52,
+                      background: post.client.bgColor,
+                    }}
                   >
-                    <span style={{ color: post.client.color, fontSize: 18, fontWeight: 700 }}>{post.client.initials}</span>
+                    <span
+                      style={{
+                        color: post.client.color,
+                        fontSize: 18,
+                        fontWeight: 700,
+                      }}
+                    >
+                      {post.client.initials}
+                    </span>
                   </div>
                   <div>
-                    <div style={{ fontSize: 15, fontWeight: 600 }}>{post.client.name}</div>
-                    <div style={{ fontSize: 12, color: "#8e8e93" }}>{post.client.category}</div>
+                    <div style={{ fontSize: 15, fontWeight: 600 }}>
+                      {post.client.name}
+                    </div>
+                    <div style={{ fontSize: 12, color: "#8e8e93" }}>
+                      {post.client.category}
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-1 mb-1" style={{ fontSize: 12, color: "#8e8e93" }}>
-                  <MapPin size={11} /><span>{post.location}</span>
+                <div
+                  className="flex items-center gap-1 mb-1"
+                  style={{ fontSize: 12, color: "#8e8e93" }}
+                >
+                  <MapPin size={11} />
+                  <span>{post.location}</span>
                 </div>
-                <div style={{ fontSize: 12, color: "#8e8e93" }}>{post.date}</div>
+                <div style={{ fontSize: 12, color: "#8e8e93" }}>
+                  {post.date}
+                </div>
                 <div className="grid grid-cols-3 gap-1 mt-3 rounded-xl overflow-hidden">
                   {post.images.slice(0, 3).map((img, i) => (
                     <img
@@ -394,7 +437,11 @@ export function FeedCard({ post }: FeedCardProps) {
         {/* Media — click opens fullscreen viewer */}
         <div
           className="relative overflow-hidden rounded-md"
-          style={{ aspectRatio: "1/1", background: "#f5f5f7", cursor: "pointer" }}
+          style={{
+            aspectRatio: "1/1",
+            background: "#f5f5f7",
+            cursor: "pointer",
+          }}
           onDoubleClick={handleDoubleClick}
           onClick={() => setViewerOpen(true)}
         >
@@ -447,7 +494,12 @@ export function FeedCard({ post }: FeedCardProps) {
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className="absolute inset-0 flex items-center justify-center pointer-events-none"
               >
-                <Heart size={80} fill="#fff" stroke="none" style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.3))" }} />
+                <Heart
+                  size={80}
+                  fill="#fff"
+                  stroke="none"
+                  style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.3))" }}
+                />
               </motion.div>
             )}
           </AnimatePresence>
@@ -458,8 +510,15 @@ export function FeedCard({ post }: FeedCardProps) {
               {imageIndex > 0 && (
                 <button
                   className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center"
-                  style={{ width: 28, height: 28, background: "rgba(255,255,255,0.85)" }}
-                  onClick={(e) => { e.stopPropagation(); setImageIndex((i) => i - 1); }}
+                  style={{
+                    width: 28,
+                    height: 28,
+                    background: "rgba(255,255,255,0.85)",
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImageIndex((i) => i - 1);
+                  }}
                 >
                   <ChevronLeft size={14} />
                 </button>
@@ -467,8 +526,15 @@ export function FeedCard({ post }: FeedCardProps) {
               {imageIndex < post.images.length - 1 && (
                 <button
                   className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center"
-                  style={{ width: 28, height: 28, background: "rgba(255,255,255,0.85)" }}
-                  onClick={(e) => { e.stopPropagation(); setImageIndex((i) => i + 1); }}
+                  style={{
+                    width: 28,
+                    height: 28,
+                    background: "rgba(255,255,255,0.85)",
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImageIndex((i) => i + 1);
+                  }}
                 >
                   <ChevronRight size={14} />
                 </button>
@@ -482,7 +548,8 @@ export function FeedCard({ post }: FeedCardProps) {
                     style={{
                       width: i === imageIndex ? 18 : 6,
                       height: 6,
-                      background: i === imageIndex ? "#fff" : "rgba(255,255,255,0.5)",
+                      background:
+                        i === imageIndex ? "#fff" : "rgba(255,255,255,0.5)",
                     }}
                   />
                 ))}
@@ -499,7 +566,10 @@ export function FeedCard({ post }: FeedCardProps) {
             className="flex items-center gap-1.5"
             style={{ color: liked ? "#d4456a" : "#1a1a1a" }}
           >
-            <motion.div animate={{ scale: liked ? [1, 1.4, 1] : 1 }} transition={{ duration: 0.3 }}>
+            <motion.div
+              animate={{ scale: liked ? [1, 1.4, 1] : 1 }}
+              transition={{ duration: 0.3 }}
+            >
               <Heart
                 size={24}
                 fill={liked ? "#d4456a" : "none"}
@@ -519,7 +589,9 @@ export function FeedCard({ post }: FeedCardProps) {
 
         {/* Caption */}
         <div className="px-0 pb-4">
-          <span style={{ fontSize: 14, fontWeight: 600, marginRight: 6 }}>{post.client.name}</span>
+          <span style={{ fontSize: 14, fontWeight: 600, marginRight: 6 }}>
+            {post.client.name}
+          </span>
           <span
             style={{
               fontSize: 14,
@@ -535,12 +607,23 @@ export function FeedCard({ post }: FeedCardProps) {
           {!captionExpanded && (
             <button
               onClick={() => setCaptionExpanded(true)}
-              style={{ fontSize: 13, color: "var(--muted-foreground)", fontFamily: "var(--font-family-body)", background: "none", border: "none", padding: 0, cursor: "pointer", marginTop: 2 }}
+              style={{
+                fontSize: 13,
+                color: "var(--muted-foreground)",
+                fontFamily: "var(--font-family-body)",
+                background: "none",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+                marginTop: 2,
+              }}
             >
               read more
             </button>
           )}
-          <div style={{ fontSize: 11, color: "#b0b0b8", marginTop: 4 }}>{post.date}</div>
+          <div style={{ fontSize: 11, color: "#b0b0b8", marginTop: 4 }}>
+            {post.date}
+          </div>
         </div>
       </article>
 
