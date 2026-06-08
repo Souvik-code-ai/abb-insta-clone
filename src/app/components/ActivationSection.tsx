@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 // import { NextSection } from "./NextSection";
 // Cover Images
 // import droneCover from "../../../assets/activation/drone/cover.jpg";
+import logo from "../../assets/logo.jpg";
 import miaCover from "../../assets/AL.jpg";
 import mallCover from "../../assets/AL.jpg";
 import rallyCover from "../../assets/AL.jpg";
@@ -258,7 +259,7 @@ export function ActivationSection({ onNavigate }) {
               background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
             }}
           >
-            <span style={{ color: "#fff", fontSize: 20 }}>A</span>
+            <img src={logo} alt="" />
           </div>
           <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
             You've seen all activations.

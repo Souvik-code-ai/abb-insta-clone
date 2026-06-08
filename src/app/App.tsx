@@ -185,6 +185,7 @@ import { MobileBottomNav } from "./components/MobileBottomNav";
 import { MobileMessagesView } from "./components/MobileMessagesView";
 import { ProfileView } from "./components/ProfileView";
 import { EventsSection } from "./components/Eventssection";
+import logo from "../assets/logo.jpg";
 import {
   clients,
   feedPosts,
@@ -324,15 +325,7 @@ export default function App() {
                           "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
                       }}
                     >
-                      <span
-                        style={{
-                          color: "#fff",
-                          fontFamily: "var(--font-family-display)",
-                          fontSize: 20,
-                        }}
-                      >
-                        A
-                      </span>
+                      <img src={logo} alt="" />
                     </div>
                     <p
                       style={{
