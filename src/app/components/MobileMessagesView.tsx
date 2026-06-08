@@ -7,7 +7,12 @@ interface MobileMessagesViewProps {
 }
 
 export function MobileMessagesView({ onBack }: MobileMessagesViewProps) {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,14 +29,32 @@ export function MobileMessagesView({ onBack }: MobileMessagesViewProps) {
       {/* Gradient header */}
       <div
         className="flex items-center justify-between px-5 py-4"
-        style={{ background: "linear-gradient(135deg, #d4456a 0%, #f07398 100%)" }}
+        style={{
+          background: "linear-gradient(135deg, #579F63 0%, #7CFC58 100%)",
+        }}
       >
         <button onClick={onBack} style={{ color: "rgba(255,255,255,0.85)" }}>
           <ChevronLeft size={22} />
         </button>
         <div className="flex-1 ml-2">
-          <div style={{ color: "#fff", fontFamily: "var(--font-family-display)", fontSize: 18 }}>Let's Connect</div>
-          <div style={{ color: "rgba(255,255,255,0.8)", fontSize: 12, fontFamily: "var(--font-family-body)" }}>We'll respond within 2 hours</div>
+          <div
+            style={{
+              color: "#fff",
+              fontFamily: "var(--font-family-display)",
+              fontSize: 18,
+            }}
+          >
+            Let's Connect
+          </div>
+          <div
+            style={{
+              color: "rgba(255,255,255,0.8)",
+              fontSize: 12,
+              fontFamily: "var(--font-family-body)",
+            }}
+          >
+            We'll respond within 2 hours
+          </div>
         </div>
       </div>
 
@@ -48,12 +71,32 @@ export function MobileMessagesView({ onBack }: MobileMessagesViewProps) {
             >
               <div
                 className="rounded-full flex items-center justify-center"
-                style={{ width: 64, height: 64, background: "rgba(212,69,106,0.1)" }}
+                style={{
+                  width: 64,
+                  height: 64,
+                  background: "rgba(212,69,106,0.1)",
+                }}
               >
                 <Send size={26} style={{ color: "#d4456a" }} />
               </div>
-              <div style={{ fontSize: 18, fontWeight: 600, color: "var(--foreground)", fontFamily: "var(--font-family-body)" }}>Message Sent!</div>
-              <div style={{ fontSize: 13, color: "var(--muted-foreground)", textAlign: "center", fontFamily: "var(--font-family-body)" }}>
+              <div
+                style={{
+                  fontSize: 18,
+                  fontWeight: 600,
+                  color: "var(--foreground)",
+                  fontFamily: "var(--font-family-body)",
+                }}
+              >
+                Message Sent!
+              </div>
+              <div
+                style={{
+                  fontSize: 13,
+                  color: "var(--muted-foreground)",
+                  textAlign: "center",
+                  fontFamily: "var(--font-family-body)",
+                }}
+              >
                 Our team will get back to you soon.
               </div>
             </motion.div>
@@ -69,10 +112,18 @@ export function MobileMessagesView({ onBack }: MobileMessagesViewProps) {
               {(["name", "email", "phone"] as const).map((field) => (
                 <input
                   key={field}
-                  type={field === "email" ? "email" : field === "phone" ? "tel" : "text"}
+                  type={
+                    field === "email"
+                      ? "email"
+                      : field === "phone"
+                        ? "tel"
+                        : "text"
+                  }
                   placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
                   value={form[field]}
-                  onChange={(e) => setForm((f) => ({ ...f, [field]: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, [field]: e.target.value }))
+                  }
                   required={field !== "phone"}
                   className="w-full rounded-xl px-4 outline-none"
                   style={{
@@ -88,7 +139,9 @@ export function MobileMessagesView({ onBack }: MobileMessagesViewProps) {
               <textarea
                 placeholder="Your message..."
                 value={form.message}
-                onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, message: e.target.value }))
+                }
                 required
                 className="w-full rounded-xl px-4 py-3 outline-none resize-none"
                 style={{
@@ -104,7 +157,8 @@ export function MobileMessagesView({ onBack }: MobileMessagesViewProps) {
                 type="submit"
                 className="w-full rounded-xl py-3 flex items-center justify-center gap-2 transition-opacity"
                 style={{
-                  background: "linear-gradient(135deg, #d4456a 0%, #f07398 100%)",
+                  background:
+                    "linear-gradient(135deg, #579F63 0%, #7CFC58 100%)",
                   color: "#fff",
                   fontWeight: 600,
                   fontSize: 15,

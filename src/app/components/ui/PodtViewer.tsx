@@ -15,10 +15,10 @@ import {
   Maximize2,
 } from "lucide-react";
 import { toast } from "sonner";
-import type { feedPosts } from "../../App/data/mockData";
+import type { FeedPost } from "../data/mockData";
 
 interface PostViewerProps {
-  post: feedPosts;
+  post: FeedPost;
   onClose: () => void;
 }
 
@@ -106,9 +106,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
         style={{
-          position: "absolute",
-          top: 20,
-          right: 20,
+          position: "fixed",
           inset: 0,
           zIndex: 9999,
           background: "#000",
@@ -128,7 +126,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
           style={{
             position: "absolute",
             top: 20,
-            right: 20,
+            left: 20,
             zIndex: 10,
             width: 40,
             height: 40,
@@ -146,7 +144,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
         </motion.button>
 
         {/* ── Category badge — top right ── */}
-        {/* <div
+        <div
           style={{
             position: "absolute",
             top: 20,
@@ -163,7 +161,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
           }}
         >
           {post.category}
-        </div> */}
+        </div>
 
         {/* ── Arrow prev ── */}
         <AnimatePresence>
@@ -468,7 +466,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
             </motion.button>
 
             {/* Comment */}
-            {/* <motion.button
+            <motion.button
               whileTap={{ scale: 0.82 }}
               aria-label="Comments"
               style={{
@@ -486,7 +484,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
               <span style={{ fontSize: 11, color: "#fff", lineHeight: 1 }}>
                 {post.comments.length}
               </span>
-            </motion.button> */}
+            </motion.button>
 
             {/* Copy link */}
             <motion.button
@@ -547,7 +545,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
         </div>
 
         {/* ── Caption strip below media ── */}
-        {/* <div
+        <div
           style={{
             position: "absolute",
             bottom: 0,
@@ -591,7 +589,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
               more
             </button>
           )}
-        </div> */}
+        </div>
       </motion.div>
     </AnimatePresence>
   );

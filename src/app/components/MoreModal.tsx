@@ -39,26 +39,50 @@ export function MoreModal({ isOpen, onClose }: MoreModalProps) {
               border: "1px solid rgba(0,0,0,0.08)",
             }}
           >
-            <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
-              <span style={{ fontSize: 14, fontWeight: 600, fontFamily: "var(--font-family-display)" }}>More Options</span>
-              <button onClick={onClose}><X size={16} /></button>
+            <div className="flex items-center justify-between px-4 py-3">
+              <span
+                style={{
+                  fontSize: 14,
+                  fontWeight: 600,
+                  fontFamily: "var(--font-family-body)",
+                }}
+              >
+                More Options
+              </span>
+              <button onClick={onClose}>
+                <X size={16} />
+              </button>
             </div>
             {items.map(({ icon: Icon, label, desc }) => (
               <button
                 key={label}
                 className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors"
                 style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "#fafafa")}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "transparent")}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.background =
+                    "#fafafa")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.background =
+                    "transparent")
+                }
               >
                 <div
                   className="rounded-xl flex items-center justify-center shrink-0"
-                  style={{ width: 36, height: 36, background: "rgba(212,69,106,0.08)" }}
+                  style={{
+                    width: 36,
+                    height: 36,
+                    background: "rgba(212,69,106,0.08)",
+                  }}
                 >
                   <Icon size={16} style={{ color: "#d4456a" }} />
                 </div>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a" }}>{label}</div>
+                  <div
+                    style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a" }}
+                  >
+                    {label}
+                  </div>
                   <div style={{ fontSize: 12, color: "#8e8e93" }}>{desc}</div>
                 </div>
               </button>

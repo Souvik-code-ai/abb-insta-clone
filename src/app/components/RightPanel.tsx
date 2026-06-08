@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { MapPin, Calendar, Users, ExternalLink, Trophy, BookOpen } from "lucide-react";
+import {
+  MapPin,
+  Calendar,
+  Users,
+  ExternalLink,
+  Trophy,
+  BookOpen,
+} from "lucide-react";
 import type { UpcomingEvent, CaseStudy, Award } from "../data/mockData";
 
 interface RightPanelProps {
@@ -9,7 +16,12 @@ interface RightPanelProps {
   awards: Award[];
 }
 
-export function RightPanel({ events, caseStudies, awards }: RightPanelProps) {
+export function RightPanel({
+  events,
+  caseStudies,
+  awards,
+  onNavigate,
+}: RightPanelProps) {
   return (
     <aside
       className="overflow-y-auto"
@@ -29,13 +41,19 @@ export function RightPanel({ events, caseStudies, awards }: RightPanelProps) {
             href="#"
             style={{
               fontSize: 12,
-              color: "var(--accent)",
+
               fontWeight: 600,
               fontFamily: "var(--font-family-body)",
               textDecoration: "none",
             }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.75")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
+            className="text-[#579F63]"
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.75")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
+            }
+            onClick={() => onNavigate("events")}
           >
             See all
           </a>
@@ -62,8 +80,12 @@ export function RightPanel({ events, caseStudies, awards }: RightPanelProps) {
               fontFamily: "var(--font-family-body)",
               textDecoration: "none",
             }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.75")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.75")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
+            }
           >
             See all
           </a>
@@ -92,7 +114,14 @@ export function RightPanel({ events, caseStudies, awards }: RightPanelProps) {
       {/* Footer */}
       <footer className="pt-2 pb-6">
         <div className="flex flex-wrap gap-x-4 gap-y-2">
-          {["Home", "About", "Presence", "Privacy Policy", "Data Privacy", "Terms & Conditions"].map((link) => (
+          {[
+            "Home",
+            "About",
+            "Presence",
+            "Privacy Policy",
+            "Data Privacy",
+            "Terms & Conditions",
+          ].map((link) => (
             <a
               key={link}
               href="#"
@@ -103,8 +132,14 @@ export function RightPanel({ events, caseStudies, awards }: RightPanelProps) {
                 fontFamily: "var(--font-family-body)",
                 transition: "color 0.15s",
               }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--muted-foreground)")}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--foreground)")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--muted-foreground)")
+              }
             >
               {link}
             </a>
@@ -126,7 +161,13 @@ export function RightPanel({ events, caseStudies, awards }: RightPanelProps) {
   );
 }
 
-function SectionHeader({ icon: Icon, label }: { icon: React.ElementType; label: string }) {
+function SectionHeader({
+  icon: Icon,
+  label,
+}: {
+  icon: React.ElementType;
+  label: string;
+}) {
   return (
     <div className="flex items-center gap-2">
       <Icon size={14} style={{ color: "var(--accent)" }} />
@@ -174,11 +215,24 @@ function EventCard({ event }: { event: UpcomingEvent }) {
             transition={{ duration: 0.25 }}
             className="overflow-hidden"
           >
-            <div style={{ position: "relative", aspectRatio: "16/9", background: "var(--muted)" }}>
-              <img src={event.eventImage} alt={event.eventName} className="w-full h-full object-cover" />
+            <div
+              style={{
+                position: "relative",
+                aspectRatio: "16/9",
+                background: "var(--muted)",
+              }}
+            >
+              <img
+                src={event.eventImage}
+                alt={event.eventName}
+                className="w-full h-full object-cover"
+              />
               <div
                 className="absolute inset-0 flex items-end p-3"
-                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%)" }}
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%)",
+                }}
               >
                 <span
                   className="px-2 py-0.5 rounded-full"
@@ -230,7 +284,11 @@ function EventCard({ event }: { event: UpcomingEvent }) {
             </div>
             <div
               className="flex items-center gap-1 mt-0.5"
-              style={{ fontSize: 11, color: "var(--muted-foreground)", fontFamily: "var(--font-family-body)" }}
+              style={{
+                fontSize: 11,
+                color: "var(--muted-foreground)",
+                fontFamily: "var(--font-family-body)",
+              }}
             >
               <MapPin size={10} />
               <span className="truncate">{event.location}</span>
@@ -251,14 +309,23 @@ function EventCard({ event }: { event: UpcomingEvent }) {
               <div className="flex items-center gap-4 mb-2">
                 <div
                   className="flex items-center gap-1"
-                  style={{ fontSize: 11, color: "var(--accent)", fontWeight: 600, fontFamily: "var(--font-family-body)" }}
+                  style={{
+                    fontSize: 11,
+                    color: "var(--accent)",
+                    fontWeight: 600,
+                    fontFamily: "var(--font-family-body)",
+                  }}
                 >
                   <Calendar size={11} />
                   <span>{event.daysRemaining} days left</span>
                 </div>
                 <div
                   className="flex items-center gap-1"
-                  style={{ fontSize: 11, color: "var(--muted-foreground)", fontFamily: "var(--font-family-body)" }}
+                  style={{
+                    fontSize: 11,
+                    color: "var(--muted-foreground)",
+                    fontFamily: "var(--font-family-body)",
+                  }}
                 >
                   <Users size={11} />
                   <span>{event.attendance.toLocaleString()} attending</span>
@@ -279,7 +346,7 @@ function EventCard({ event }: { event: UpcomingEvent }) {
         </AnimatePresence>
 
         <button
-          className="w-full rounded-xl py-2 transition-all"
+          className="w-full rounded-xl py-2 transition-all  "
           style={{
             background: expanded
               ? "var(--accent)"
@@ -305,11 +372,24 @@ function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
         borderRadius: "var(--radius)",
       }}
     >
-      <div style={{ aspectRatio: "16/9", position: "relative", background: "var(--muted)" }}>
-        <img src={caseStudy.thumbnail} alt={caseStudy.title} className="w-full h-full object-cover" />
+      <div
+        style={{
+          aspectRatio: "16/9",
+          position: "relative",
+          background: "var(--muted)",
+        }}
+      >
+        <img
+          src={caseStudy.thumbnail}
+          alt={caseStudy.title}
+          className="w-full h-full object-cover"
+        />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%)" }}
+          style={{
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%)",
+          }}
         />
       </div>
       <div className="pt-3 pb-4 px-0">
@@ -329,7 +409,11 @@ function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
             {caseStudy.clientInitials}
           </div>
           <span
-            style={{ fontSize: 11, color: "var(--muted-foreground)", fontFamily: "var(--font-family-body)" }}
+            style={{
+              fontSize: 11,
+              color: "var(--muted-foreground)",
+              fontFamily: "var(--font-family-body)",
+            }}
           >
             {caseStudy.clientName}
           </span>
@@ -387,11 +471,23 @@ function AwardCard({ award }: { award: Award }) {
         borderRadius: "var(--radius)",
       }}
     >
-      <div style={{ aspectRatio: "2/1", position: "relative", background: "var(--muted)" }}>
-        <img src={award.image} alt={award.title} className="w-full h-full object-cover" />
+      <div
+        style={{
+          aspectRatio: "2/1",
+          position: "relative",
+          background: "var(--muted)",
+        }}
+      >
+        <img
+          src={award.image}
+          alt={award.title}
+          className="w-full h-full object-cover"
+        />
         <div
           className="absolute inset-0 flex items-center justify-center"
-          style={{ background: "color-mix(in srgb, var(--accent) 68%, transparent)" }}
+          style={{
+            background: "color-mix(in srgb, var(--accent) 68%, transparent)",
+          }}
         >
           <Trophy size={32} style={{ color: "#fff" }} />
         </div>
