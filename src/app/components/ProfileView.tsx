@@ -92,7 +92,7 @@ export function ProfileView() {
 
   return (
     <div
-      className="flex flex-col pb-12 px-4 pt-4  w-[100%] min-[1160px]:mx-50 min-[770px]:mx-16 mx-0"
+      className="flex flex-col pb-12 px-4 pt-4  w-[100%] min-[1160px]:mx-50 min-[770px]:mx-16 mx-0 "
       // style={{ fontFamily: "var(--font-family-body)" }}
     >
       {/* Hero */}
@@ -101,10 +101,9 @@ export function ProfileView() {
         <div className="flex flex-row items-center py-10 px-4 gap-5 justify-center">
           {/* Logo */}
           <div
-            className="rounded-full flex items-center justify-center mb-4"
+            className="rounded-full flex items-center justify-center mb-4 md:h-24 md:w-24 h-16 w-16"
             style={{
-              width: 85,
-              height: 85,
+         
               background:
                 "linear-gradient(135deg, var(--accent) 0%, #f9a8c9 100%)",
             }}
@@ -113,8 +112,9 @@ export function ProfileView() {
               style={{
                 color: "#fff",
                 fontFamily: "var(--font-family-display)",
-                fontSize: 32,
+              
               }}
+              className="lg:text-3xl md:text-xl text-base"
             >
               A
             </span>
@@ -124,11 +124,12 @@ export function ProfileView() {
             <h1
               style={{
                 fontFamily: "var(--font-family-body)",
-                fontSize: 24,
+           
                 color: "var(--foreground)",
               }}
+              className="lg:text-3xl md:text-2xl text-xl"
             >
-              ABY Baby Events
+              Abybaby Events
             </h1>
             <p
               style={{

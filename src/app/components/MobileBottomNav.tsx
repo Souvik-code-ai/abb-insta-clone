@@ -10,7 +10,7 @@ const navItems = [
   { id: "home", icon: Home, label: "Home" },
   { id: "events", icon: Calendar, label: "Events" },
   { id: "digital", icon: Monitor, label: "Digital" },
-  { id: "exhibition", icon: LayoutGrid, label: "Exhibit" },
+  { id: "exhibition", icon: LayoutGrid, label: "Exhibition" },
   { id: "activation", icon: Zap, label: "Activate" },
   { id: "profile", icon: User, label: "Profile" },
 ];

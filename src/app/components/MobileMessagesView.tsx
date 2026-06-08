@@ -36,7 +36,7 @@ export function MobileMessagesView({ onBack }: MobileMessagesViewProps) {
       </div>
 
       {/* Body */}
-      <div className="flex-1 flex flex-col justify-center px-5 py-6">
+      <div className="flex-1 flex flex-col justify-center px-5 py-0">
         <AnimatePresence mode="wait">
           {submitted ? (
             <motion.div
