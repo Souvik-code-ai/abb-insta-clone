@@ -1,5 +1,13 @@
 import { motion } from "motion/react";
-import { Home, Calendar, Monitor, LayoutGrid, Zap, User } from "lucide-react";
+import {
+  Home,
+  Calendar,
+  Monitor,
+  LayoutGrid,
+  Zap,
+  User,
+  Globe,
+} from "lucide-react";
 
 interface MobileBottomNavProps {
   activeSection: string;
@@ -12,6 +20,7 @@ const navItems = [
   { id: "digital", icon: Monitor, label: "Digital" },
   { id: "exhibition", icon: LayoutGrid, label: "Exhibition" },
   { id: "activation", icon: Zap, label: "Activate" },
+  { id: "presence", icon: Globe, label: "Presence" },
   { id: "profile", icon: User, label: "Profile" },
 ];
 
@@ -44,7 +53,7 @@ export function MobileBottomNav({
               <motion.div
                 layoutId="mobile-nav-indicator"
                 className="absolute top-0 left-1/2 -translate-x-1/2 rounded-full"
-                style={{ width: 20, height: 2, background: "#d4456a" }}
+                style={{ width: 20, height: 2 }}
               />
             )}
             <Icon size={22} strokeWidth={isActive ? 2.2 : 1.8} />
