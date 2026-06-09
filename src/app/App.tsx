@@ -198,6 +198,7 @@ import { ExhibitionSection } from "./components/ExhibitonSection";
 import { ActivationSection } from "./components/ActivationSection";
 import PageLoader from "./components/ui/Pageloader";
 import { ArrowRight } from "lucide-react";
+import { PresenceSection } from "./components/PresenseSection";
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [moreModalOpen, setMoreModalOpen] = useState(false);
@@ -206,7 +207,7 @@ export default function App() {
   const [isTablet, setIsTablet] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [open, setOpen] = useState<boolean>(false);
   useEffect(() => {
     const checkSize = () => {
       setIsMobile(window.innerWidth < 770);
@@ -235,7 +236,11 @@ export default function App() {
 
   // Sections that should hide the right panel
   const hideRightPanel = activeSection !== "home";
-
+  useEffect(() => {
+    if (activeSection === "presence") {
+      setOpen(true);
+    }
+  }, [activeSection]);
   return (
     <div className="bg-background min-h-screen">
       {loading && <PageLoader />}
@@ -296,8 +301,14 @@ export default function App() {
               <ExhibitionSection onNavigate={setActiveSection} />
             ) : activeSection === "activation" ? (
               <ActivationSection onNavigate={setActiveSection} />
-            ) : activeSection === "presense" ? (
-              <EventsSection />
+            ) : activeSection === "presence" ? (
+              <>
+                <PresenceSection
+                  onNavigate={setActiveSection}
+                  open={open}
+                  setOpen={setOpen}
+                />
+              </>
             ) : /* ── Mobile Messages ── */
             isMobile && activeSection === "messages" ? (
               <MobileMessagesView onBack={() => setActiveSection("home")} />
