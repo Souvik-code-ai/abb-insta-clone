@@ -75,7 +75,7 @@ export function MoreModal({ isOpen, onClose }: MoreModalProps) {
                     background: "rgba(212,69,106,0.08)",
                   }}
                 >
-                  <Icon size={16} style={{ color: "#d4456a" }} />
+                  <Icon size={16} style={{ color: "#2C7048" }} />
                 </div>
                 <div>
                   <div
