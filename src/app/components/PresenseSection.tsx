@@ -263,13 +263,13 @@ function SidePanel({
               <img
                 src={logo}
                 alt=""
-                className="h-25 w-30 rounded-full absolute top-11"
+                className="h-25 w-30 rounded-full absolute top-11 "
               />
-              <div className="rounded-lg shadow-xl flex flex-col justify-around gap-4 py-4 px-12 pt-12 border mt-20 pb-7">
+              <div className="rounded-lg shadow-xl flex flex-col justify-around gap-6 py-4 px-12 pt-10 border mt-20 pb-7">
                 {/* <p className="text-2xl mt-1.5 text-black leading-tight font-semibold">
                   Abybaby Events
                 </p> */}
-                <div className="flex flex-row justify-between items-center gap-5">
+                <div className="flex flex-row justify-between items-center gap-7">
                   <button
                     className="h-8 w-8 cursor-pointer"
                     onClick={() => toggle("address")}

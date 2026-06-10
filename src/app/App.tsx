@@ -217,30 +217,38 @@ export default function App() {
     window.addEventListener("resize", checkSize);
     return () => window.removeEventListener("resize", checkSize);
   }, []);
-  const handleNavigate = (section) => {
-    if (section === activeSection) return;
+  // const handleNavigate = (section) => {
+  //   if (section === activeSection) return;
 
-    setLoading(true);
+  //   setLoading(true);
 
-    window.scrollTo({
-      top: 0,
-      behavior: "auto",
-    });
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "auto",
+  //   });
 
-    setTimeout(() => {
+  //   setTimeout(() => {
+  //     setActiveSection(section);
+  //     setLoading(false);
+  //   }, 500);
+  // };
+  const handleNavigate = (section: string) => {
+    if (section === "presence") {
+      setOpen(true); // ← was setPresenceOpen
+    } else {
+      setOpen(false); // ← was setPresenceOpen
       setActiveSection(section);
-      setLoading(false);
-    }, 500);
+    }
   };
   const SIDEBAR_W = 72;
 
   // Sections that should hide the right panel
   const hideRightPanel = activeSection !== "home";
-  useEffect(() => {
-    if (activeSection === "presence") {
-      setOpen(true);
-    }
-  }, [activeSection]);
+  // useEffect(() => {
+  //   if (activeSection === "presence") {
+  //     setOpen(true);
+  //   }
+  // }, [activeSection]);
   return (
     <div className="bg-background min-h-screen">
       {loading && <PageLoader />}
@@ -301,15 +309,15 @@ export default function App() {
               <ExhibitionSection onNavigate={setActiveSection} />
             ) : activeSection === "activation" ? (
               <ActivationSection onNavigate={setActiveSection} />
-            ) : activeSection === "presence" ? (
-              <>
-                <PresenceSection
-                  onNavigate={setActiveSection}
-                  open={open}
-                  setOpen={setOpen}
-                />
-              </>
-            ) : /* ── Mobile Messages ── */
+            ) : // ) : activeSection === "presence" ? (
+            //   <>
+            //     <PresenceSection
+            //       onNavigate={setActiveSection}
+            //       open={open}
+            //       setOpen={setOpen}
+            //     />
+            //   </>
+            // ) : /* ── Mobile Messages ── */
             isMobile && activeSection === "messages" ? (
               <MobileMessagesView onBack={() => setActiveSection("home")} />
             ) : (
@@ -368,7 +376,11 @@ export default function App() {
             )}
           </div>
         </main>
-
+        <PresenceSection
+          onNavigate={setActiveSection}
+          open={open}
+          setOpen={setOpen}
+        />
         {/* Middle gap spacer */}
         {!isMobile && !isTablet && <div style={{ flex: 0.5, minWidth: 0 }} />}
 
