@@ -1453,7 +1453,7 @@ export function ProfileView({ onNavigate }) {
           ))}
         </div>
 
-        <div className="flex flex-col gap-3" style={{ flex: 1, minWidth: 0 }}>
+        {/* <div className="flex flex-col gap-3" style={{ flex: 1, minWidth: 0 }}>
           <h2
             style={{
               fontSize: 15,
@@ -1525,7 +1525,7 @@ export function ProfileView({ onNavigate }) {
               brief to post-event reporting.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* ── Media grid (Posts / Reels / Images) ── */}
