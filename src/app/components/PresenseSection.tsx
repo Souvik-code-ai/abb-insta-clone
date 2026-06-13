@@ -252,7 +252,7 @@ function SidePanel({
           <button
             onClick={() => {
               setOpen(false);
-              onNavigate("Home");
+            
             }}
             className="mt-1 w-8 h-8 rounded-full flex items-center justify-center border border-border hover:bg-secondary transition-colors flex-shrink-0 cursor-pointer"
           >
