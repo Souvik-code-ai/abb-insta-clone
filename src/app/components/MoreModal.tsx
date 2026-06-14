@@ -4,17 +4,18 @@ import { Info, BookOpen, Shield, FileText, Lock, X } from "lucide-react";
 interface MoreModalProps {
   isOpen: boolean;
   onClose: () => void;
+    onNavigate: (view: string) => void;
 }
 
-const items = [
-  { icon: Info, label: "About Us", desc: "Our story and mission" },
-  { icon: BookOpen, label: "Case Studies", desc: "Premium event portfolios" },
-  { icon: Shield, label: "Privacy Policy", desc: "How we protect your data" },
-  { icon: FileText, label: "Terms & Conditions", desc: "Usage guidelines" },
-  { icon: Lock, label: "Data Privacy", desc: "GDPR & data rights" },
+const items: { icon: React.ElementType; label: string; desc: string; view: string | null }[] = [
+  { icon: Info,      label: "About Us",           desc: "Our story and mission",     view: "about" },
+  { icon: BookOpen,  label: "Case Studies",        desc: "Premium event portfolios",  view:"casestudies"  },
+  { icon: Shield,    label: "Privacy Policy",      desc: "How we protect your data",  view: "privacypolicy" },
+  { icon: FileText,  label: "Terms & Conditions",  desc: "Usage guidelines",          view: "terms" },
+  { icon: Lock,      label: "Data Privacy",        desc: "GDPR & data rights",        view: "dataprivacy" },
 ];
 
-export function MoreModal({ isOpen, onClose }: MoreModalProps) {
+export function MoreModal({ isOpen, onClose ,onNavigate}: MoreModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -53,11 +54,17 @@ export function MoreModal({ isOpen, onClose }: MoreModalProps) {
                 <X size={16} />
               </button>
             </div>
-            {items.map(({ icon: Icon, label, desc }) => (
+            {items.map(({ icon: Icon, label, desc,view }) => (
               <button
                 key={label}
                 className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors"
                 style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
+                 onClick={() => {
+                  if (view) {          // ← navigate if this item has a route
+                    onClose();
+                    onNavigate(view);
+                  }
+                }}
                 onMouseEnter={(e) =>
                   ((e.currentTarget as HTMLButtonElement).style.background =
                     "#fafafa")
