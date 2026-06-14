@@ -186,6 +186,8 @@ import { MobileMessagesView } from "./components/MobileMessagesView";
 import { ProfileView } from "./components/ProfileView";
 import { EventsSection } from "./components/Eventssection";
 import logo from "../assets/logo.jpg";
+import { DataPrivacyView } from "./components/DataPrivacyView";
+import { CaseStudiesView } from "./components/CaseStudiesView";
 import {
   clients,
   feedPosts,
@@ -193,12 +195,15 @@ import {
   caseStudies,
   awards,
 } from "./data/mockData";
+import { PrivacyPolicyView } from "./components/PrivacyPolicyView";
+import { TermsView } from "./components/TermsPAGE";
 import { DigitalSection } from "./components/DigitalSection";
 import { ExhibitionSection } from "./components/ExhibitonSection";
 import { ActivationSection } from "./components/ActivationSection";
 import PageLoader from "./components/ui/Pageloader";
 import { ArrowRight } from "lucide-react";
 import { PresenceSection } from "./components/PresenseSection";
+import { AboutView } from "./components/AboutView";
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [moreModalOpen, setMoreModalOpen] = useState(false);
@@ -309,7 +314,17 @@ export default function App() {
               <ExhibitionSection onNavigate={setActiveSection} />
             ) : activeSection === "activation" ? (
               <ActivationSection onNavigate={setActiveSection} />
-            ) : // ) : activeSection === "presence" ? (
+            ) : activeSection === "terms" ? (           // ← add this block
+  <TermsView onNavigate={setActiveSection} />
+):  activeSection === "dataprivacy" ? (       // ← add this
+  <DataPrivacyView onNavigate={setActiveSection} />
+) : activeSection === "privacypolicy" ? (        // ← add this
+  <PrivacyPolicyView onNavigate={setActiveSection} />
+):activeSection === "about" ? (          // ← add this
+  <AboutView onNavigate={setActiveSection} />
+): activeSection === "casestudies" ? (        // ← add this
+  <CaseStudiesView onNavigate={setActiveSection} />
+):
             //   <>
             //     <PresenceSection
             //       onNavigate={setActiveSection}
@@ -413,6 +428,7 @@ export default function App() {
       <MoreModal
         isOpen={moreModalOpen}
         onClose={() => setMoreModalOpen(false)}
+          onNavigate={handleNavigate}  
       />
 
       {/* Mobile Bottom Nav */}
