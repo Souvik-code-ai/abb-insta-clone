@@ -1,11 +1,26 @@
 import { useEffect } from "react";
-import { ArrowLeft, Headphones, CheckCircle, ArrowRight, MessageSquare, BarChart2, Zap } from "lucide-react";
+import {
+  ArrowLeft,
+  Headphones,
+  CheckCircle,
+  ArrowRight,
+  MessageSquare,
+  BarChart2,
+  Zap,
+} from "lucide-react";
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
 function BodyText({ children }: { children: React.ReactNode }) {
   return (
-    <p style={{ fontSize: 13, color: "var(--muted-foreground)", lineHeight: 1.75, margin: "0 0 8px" }}>
+    <p
+      style={{
+        fontSize: 13,
+        color: "var(--muted-foreground)",
+        lineHeight: 1.75,
+        margin: "0 0 8px",
+      }}
+    >
       {children}
     </p>
   );
@@ -55,23 +70,38 @@ function StepCard({
         </div>
       </div>
       {/* Title */}
-      <div style={{ fontSize: 14, fontWeight: 600, color: "var(--foreground)" }}>{title}</div>
+      <div
+        style={{ fontSize: 14, fontWeight: 600, color: "var(--foreground)" }}
+      >
+        {title}
+      </div>
       {/* Description */}
-      <div style={{ fontSize: 12, color: "var(--muted-foreground)", lineHeight: 1.65 }}>{desc}</div>
+      <div
+        style={{
+          fontSize: 12,
+          color: "var(--muted-foreground)",
+          lineHeight: 1.65,
+        }}
+      >
+        {desc}
+      </div>
     </div>
   );
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export function AboutView({ onNavigate }: { onNavigate: (view: string) => void }) {
+export function AboutView({
+  onNavigate,
+}: {
+  onNavigate: (view: string) => void;
+}) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
     <div className="flex flex-col pb-12 px-4 pt-4 w-[100%] min-[1160px]:mx-50 min-[770px]:mx-16 mx-0">
-
       {/* Back button */}
       <button
         onClick={() => onNavigate("home")}
@@ -107,8 +137,8 @@ export function AboutView({ onNavigate }: { onNavigate: (view: string) => void }
           }}
         >
           We turn Ideas into{" "}
-          <span style={{ color: "#579F63" }}>Business Brilliance</span>,
-          where ideas meet impact!
+          <span style={{ color: "#579F63" }}>Business Brilliance</span>, where
+          ideas meet impact!
         </h1>
 
         {/* Main description */}
@@ -120,15 +150,17 @@ export function AboutView({ onNavigate }: { onNavigate: (view: string) => void }
           }}
         >
           <BodyText>
-            We blend business potential with human insight to craft transformative experiences that
-            inspire your audience. Through strategic branding and innovative marketing, we unlock the
-            power of your brand, creating breakthrough connections that resonate deeply.
+            We blend business potential with human insight to craft
+            transformative experiences that inspire your audience. Through
+            strategic branding and innovative marketing, we unlock the power of
+            your brand, creating breakthrough connections that resonate deeply.
           </BodyText>
           <BodyText>
-            Our dedicated team ensures flawless execution, exceeding expectations in every detail.
-            From concept to logistics, BTL activation to product launches — we bring creativity and
-            precision to every aspect, ensuring your vision is not just realized but elevated for
-            memorable experiences.
+            Our dedicated team ensures flawless execution, exceeding
+            expectations in every detail. From concept to logistics, BTL
+            activation to product launches — we bring creativity and precision
+            to every aspect, ensuring your vision is not just realized but
+            elevated for memorable experiences.
           </BodyText>
         </div>
 
@@ -162,7 +194,13 @@ export function AboutView({ onNavigate }: { onNavigate: (view: string) => void }
       </div>
 
       {/* Divider */}
-      <div style={{ height: "0.5px", background: "var(--border)", margin: "0 16px 24px" }} />
+      <div
+        style={{
+          height: "0.5px",
+          background: "var(--border)",
+          margin: "0 16px 24px",
+        }}
+      />
 
       {/* How it works */}
       <div className="flex flex-col gap-4 px-4">
@@ -209,7 +247,10 @@ export function AboutView({ onNavigate }: { onNavigate: (view: string) => void }
               background: "rgba(87,159,99,0.12)",
             }}
           >
-            <ArrowRight size={14} style={{ color: "#579F63", transform: "rotate(90deg)" }} />
+            <ArrowRight
+              size={14}
+              style={{ color: "#579F63", transform: "rotate(90deg)" }}
+            />
           </div>
         </div>
 
@@ -230,7 +271,10 @@ export function AboutView({ onNavigate }: { onNavigate: (view: string) => void }
               background: "rgba(87,159,99,0.12)",
             }}
           >
-            <ArrowRight size={14} style={{ color: "#579F63", transform: "rotate(90deg)" }} />
+            <ArrowRight
+              size={14}
+              style={{ color: "#579F63", transform: "rotate(90deg)" }}
+            />
           </div>
         </div>
 
@@ -269,16 +313,16 @@ export function AboutView({ onNavigate }: { onNavigate: (view: string) => void }
       <footer className="pt-6 pb-2 flex flex-col justify-center items-center">
         <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center">
           {[
-            "Home",
-            "About",
-            "Presence",
-            "Privacy Policy",
-            "Data Privacy",
-            "Terms & Conditions",
-          ].map((link) => (
+            { title: "Home", link: "home" },
+            { title: "About", link: "about" },
+            { title: "Profile", link: "profile" },
+            { title: "Privacy Policy", link: "privacypolicy" },
+            { title: "Data Privacy ", link: "dataprivacy" },
+            { title: "Terms & Conditions ", link: "terms" },
+          ].map((item) => (
             <a
-              key={link}
-              href="#"
+              key={item.title}
+              onClick={() => onNavigate(item.link)}
               style={{
                 fontSize: 11,
                 color: "var(--muted-foreground)",
@@ -287,13 +331,16 @@ export function AboutView({ onNavigate }: { onNavigate: (view: string) => void }
                 transition: "color 0.15s",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)")
+                ((e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--foreground)")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "var(--muted-foreground)")
+                ((e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--muted-foreground)")
               }
+              className="cursor-pointer"
             >
-              {link}
+              {item.title}
             </a>
           ))}
         </div>

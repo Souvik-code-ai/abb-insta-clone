@@ -34,18 +34,28 @@ function SectionHeader({ num, title }: { num: number; title: string }) {
       >
         {num}
       </div>
-      <span style={{ fontSize: 14, fontWeight: 600, color: "var(--foreground)" }}>
+      <span
+        style={{ fontSize: 14, fontWeight: 600, color: "var(--foreground)" }}
+      >
         {title}
       </span>
     </div>
   );
 }
 
-function ClauseCard({ label, children }: { label?: string; children: React.ReactNode }) {
+function ClauseCard({
+  label,
+  children,
+}: {
+  label?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div
       className="rounded-xl p-3 mb-2 last:mb-0"
-      style={{ background: "color-mix(in srgb, var(--accent) 4%, var(--background))" }}
+      style={{
+        background: "color-mix(in srgb, var(--accent) 4%, var(--background))",
+      }}
     >
       {label && (
         <div
@@ -61,7 +71,13 @@ function ClauseCard({ label, children }: { label?: string; children: React.React
           {label}
         </div>
       )}
-      <div style={{ fontSize: 12, color: "var(--muted-foreground)", lineHeight: 1.65 }}>
+      <div
+        style={{
+          fontSize: 12,
+          color: "var(--muted-foreground)",
+          lineHeight: 1.65,
+        }}
+      >
         {children}
       </div>
     </div>
@@ -92,7 +108,13 @@ function InfoCard({
         <span style={{ color: "#579F63" }}>{icon}</span>
         {label}
       </div>
-      <div style={{ fontSize: 12, color: "var(--muted-foreground)", lineHeight: 1.65 }}>
+      <div
+        style={{
+          fontSize: 12,
+          color: "var(--muted-foreground)",
+          lineHeight: 1.65,
+        }}
+      >
         {children}
       </div>
     </div>
@@ -128,7 +150,14 @@ function BulletList({ items }: { items: string[] }) {
 
 function BodyText({ children }: { children: React.ReactNode }) {
   return (
-    <p style={{ fontSize: 12, color: "var(--muted-foreground)", lineHeight: 1.7, margin: "0 0 8px" }}>
+    <p
+      style={{
+        fontSize: 12,
+        color: "var(--muted-foreground)",
+        lineHeight: 1.7,
+        margin: "0 0 8px",
+      }}
+    >
       {children}
     </p>
   );
@@ -136,14 +165,17 @@ function BodyText({ children }: { children: React.ReactNode }) {
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export function DataPrivacyView({ onNavigate }: { onNavigate: (view: string) => void }) {
+export function DataPrivacyView({
+  onNavigate,
+}: {
+  onNavigate: (view: string) => void;
+}) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
     <div className="flex flex-col pb-12 px-4 pt-4 w-[100%] min-[1160px]:mx-50 min-[770px]:mx-16 mx-0">
-
       {/* Back button */}
       <button
         onClick={() => onNavigate("home")}
@@ -157,7 +189,10 @@ export function DataPrivacyView({ onNavigate }: { onNavigate: (view: string) => 
       {/* Hero */}
       <div
         className="py-6 px-4"
-        style={{ borderBottom: "1px solid var(--border)", marginBottom: "1.5rem" }}
+        style={{
+          borderBottom: "1px solid var(--border)",
+          marginBottom: "1.5rem",
+        }}
       >
         <div
           className="inline-block rounded-full mb-2"
@@ -182,28 +217,44 @@ export function DataPrivacyView({ onNavigate }: { onNavigate: (view: string) => 
         >
           Data Privacy
         </h1>
-        <p style={{ fontSize: 12, color: "var(--muted-foreground)", margin: 0 }}>
+        <p
+          style={{ fontSize: 12, color: "var(--muted-foreground)", margin: 0 }}
+        >
           How we collect, use, store, and protect your personal data
         </p>
       </div>
 
       <div className="flex flex-col gap-6 px-4">
-
         {/* 1. Information We Collect */}
         <section>
           <SectionHeader num={1} title="Information We Collect" />
           <InfoCard icon={<User size={14} />} label="Personal Information">
             <div className="flex flex-wrap gap-2 mt-1">
-              {["Name", "Phone Number", "Email Address", "Date of Birth", "Gender", "City", "Geo-location", "Photograph"].map(
-                (f) => <RegPill key={f} label={f} />
-              )}
+              {[
+                "Name",
+                "Phone Number",
+                "Email Address",
+                "Date of Birth",
+                "Gender",
+                "City",
+                "Geo-location",
+                "Photograph",
+              ].map((f) => (
+                <RegPill key={f} label={f} />
+              ))}
             </div>
           </InfoCard>
           <InfoCard icon={<Monitor size={14} />} label="Technical Information">
             <div className="flex flex-wrap gap-2 mt-1">
-              {["IP Address", "Device ID", "Browser Information", "Referring & Exit URLs", "Website Interaction Data"].map(
-                (f) => <RegPill key={f} label={f} />
-              )}
+              {[
+                "IP Address",
+                "Device ID",
+                "Browser Information",
+                "Referring & Exit URLs",
+                "Website Interaction Data",
+              ].map((f) => (
+                <RegPill key={f} label={f} />
+              ))}
             </div>
           </InfoCard>
         </section>
@@ -293,11 +344,12 @@ export function DataPrivacyView({ onNavigate }: { onNavigate: (view: string) => 
         <section>
           <SectionHeader num={6} title="Data Retention" />
           <ClauseCard label="Retention Period">
-            Personal information is retained only as long as necessary for the stated purposes.
+            Personal information is retained only as long as necessary for the
+            stated purposes.
           </ClauseCard>
           <ClauseCard label="Deletion">
-            Information may be deleted upon withdrawal of consent, subject to applicable legal
-            requirements.
+            Information may be deleted upon withdrawal of consent, subject to
+            applicable legal requirements.
           </ClauseCard>
         </section>
 
@@ -323,7 +375,8 @@ export function DataPrivacyView({ onNavigate }: { onNavigate: (view: string) => 
         <section>
           <SectionHeader num={8} title="Data Security" />
           <BodyText>
-            We implement industry-standard security measures to protect personal information against:
+            We implement industry-standard security measures to protect personal
+            information against:
           </BodyText>
           <ClauseCard>
             <BulletList
@@ -342,10 +395,15 @@ export function DataPrivacyView({ onNavigate }: { onNavigate: (view: string) => 
 
         {/* 9. Consent Withdrawal, Data Download & Removal */}
         <section>
-          <SectionHeader num={9} title="Consent Withdrawal, Data Download & Removal" />
+          <SectionHeader
+            num={9}
+            title="Consent Withdrawal, Data Download & Removal"
+          />
           <BodyText>Users may request:</BodyText>
           <ClauseCard>
-            <BulletList items={["Consent withdrawal", "Data download", "Data deletion"]} />
+            <BulletList
+              items={["Consent withdrawal", "Data download", "Data deletion"]}
+            />
           </ClauseCard>
 
           {/* Contact card */}
@@ -358,7 +416,11 @@ export function DataPrivacyView({ onNavigate }: { onNavigate: (view: string) => 
           >
             <div
               className="flex items-center gap-2 mb-3"
-              style={{ fontSize: 13, fontWeight: 600, color: "var(--foreground)" }}
+              style={{
+                fontSize: 13,
+                fontWeight: 600,
+                color: "var(--foreground)",
+              }}
             >
               <Mail size={14} style={{ color: "#579F63" }} />
               Contact Us to Exercise Your Rights
@@ -396,35 +458,43 @@ export function DataPrivacyView({ onNavigate }: { onNavigate: (view: string) => 
       {/* Footer */}
       <footer className="pt-6 pb-2 flex flex-col justify-center items-center">
         <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center">
-          {["Home", "About", "Presence", "Privacy Policy", "Data Privacy", "Terms & Conditions"].map(
-            (link) => (
-              <a
-                key={link}
-                href="#"
-                style={{
-                  fontSize: 11,
-                  color: "var(--muted-foreground)",
-                  textDecoration: "none",
-                  fontFamily: "var(--font-family-body)",
-                  transition: "color 0.15s",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color = "var(--muted-foreground)")
-                }
-              >
-                {link}
-              </a>
-            )
-          )}
+          {[
+            { title: "Home", link: "home" },
+            { title: "About", link: "about" },
+            { title: "Profile", link: "profile" },
+            { title: "Privacy Policy", link: "privacypolicy" },
+            { title: "Data Privacy ", link: "dataprivacy" },
+            { title: "Terms & Conditions ", link: "terms" },
+          ].map((item) => (
+            <a
+              key={item.link}
+              onClick={() => onNavigate(item.link)}
+              style={{
+                fontSize: 11,
+                color: "var(--muted-foreground)",
+                textDecoration: "none",
+                fontFamily: "var(--font-family-body)",
+                transition: "color 0.15s",
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--foreground)")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--muted-foreground)")
+              }
+              className="cursor-pointer"
+            >
+              {item.title}
+            </a>
+          ))}
         </div>
         <p
           style={{
             fontSize: 11,
             color: "var(--muted-foreground)",
-            opacity: 0.6,
+
             marginTop: 12,
             fontFamily: "var(--font-family-body)",
           }}

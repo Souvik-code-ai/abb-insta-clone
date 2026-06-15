@@ -30,19 +30,10 @@ const TOC_ITEMS = [
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function SectionHeader({
-  num,
-  title,
-}: {
-  num: number;
-  title: string;
-}) {
+function SectionHeader({ title }: { num: number; title: string }) {
   return (
-    <div
-      className="flex items-center gap-2 mb-3 pb-2"
-      style={{ borderBottom: "1px solid var(--border)" }}
-    >
-      <div
+    <div className="flex items-center gap-2 mb-3 pb-2">
+      {/* <div
         className="flex items-center justify-center rounded-full shrink-0"
         style={{
           width: 22,
@@ -54,12 +45,12 @@ function SectionHeader({
         }}
       >
         {num}
-      </div>
+      </div> */}
       <span
         style={{
           fontSize: 14,
           fontWeight: 600,
-          color: "var(--foreground)",
+          // color: "var(--foreground)",
         }}
       >
         {title}
@@ -76,12 +67,7 @@ function ClauseCard({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className="rounded-xl p-3 mb-2 last:mb-0"
-      style={{
-        background: "color-mix(in srgb, var(--accent) 4%, var(--background))",
-      }}
-    >
+    <div className="rounded-xl p-3 mb-2 last:mb-0">
       {label && (
         <div
           style={{
@@ -121,10 +107,10 @@ function InfoCard({
   return (
     <div
       className="rounded-xl p-3 mb-2 last:mb-0"
-      style={{
-        background: "rgba(87,159,99,0.05)",
-        border: "0.5px solid rgba(87,159,99,0.25)",
-      }}
+      // style={{
+      //   background: "rgba(87,159,99,0.05)",
+      //   border: "0.5px solid rgba(87,159,99,0.25)",
+      // }}
     >
       <div
         className="flex items-center gap-2 mb-1"
@@ -149,14 +135,13 @@ function InfoCard({
 function RegPill({ label }: { label: string }) {
   return (
     <span
-      className="rounded-full"
       style={{
-        background: "rgba(87,159,99,0.1)",
-        color: "#3d7a4a",
         fontSize: 11,
         fontWeight: 600,
         padding: "3px 10px",
+        color: "var(--muted-foreground)",
       }}
+      className="text-"
     >
       {label}
     </span>
@@ -190,14 +175,17 @@ function BodyText({ children }: { children: React.ReactNode }) {
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }) {
+export function TermsView({
+  onNavigate,
+}: {
+  onNavigate: (view: string) => void;
+}) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
     <div className="flex flex-col pb-12 px-4 pt-4 w-[100%] min-[1160px]:mx-50 min-[770px]:mx-16 mx-0">
-
       {/* Back button */}
       <button
         onClick={() => onNavigate("home")}
@@ -209,7 +197,13 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
       </button>
 
       {/* Hero */}
-      <div className="py-6 px-4" style={{ borderBottom: "1px solid var(--border)", marginBottom: "1.5rem" }}>
+      <div
+        className="py-6 px-4"
+        style={{
+          borderBottom: "1px solid var(--border)",
+          marginBottom: "1.5rem",
+        }}
+      >
         <div
           className="inline-block rounded-full mb-2"
           style={{
@@ -233,43 +227,58 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         >
           Terms of Use
         </h1>
-        <p style={{ fontSize: 12, color: "var(--muted-foreground)", margin: 0 }}>
+        <p
+          style={{ fontSize: 12, color: "var(--muted-foreground)", margin: 0 }}
+        >
           Abybaby E-Com Private Limited · Kolkata, West Bengal – 700026
         </p>
       </div>
 
       {/* Preamble */}
-      <div
-        className="rounded-xl p-4 mb-6 mx-4"
-        style={{
-          background: "rgba(87,159,99,0.04)",
-          border: "0.5px solid rgba(87,159,99,0.2)",
-        }}
-      >
-        <p style={{ fontSize: 12, color: "var(--muted-foreground)", lineHeight: 1.7, margin: "0 0 8px" }}>
-          This legal agreement is an electronic record under the Information Technology Act, 2000. This
-          website is created and operated by{" "}
-          <strong style={{ color: "var(--foreground)" }}>M/s Abybaby E-Com Private Limited</strong>, a
-          private limited company incorporated under the Companies Act, 2013, having its registered address
-          at Ground Floor, 4B, Rani Bhabani Road, Kolkata, West Bengal – 700026, operating under the brand
-          name "Abybaby".
+      <div className="rounded-xl p-4 mb-6 mx-4">
+        <p
+          style={{
+            fontSize: 12,
+            color: "var(--muted-foreground)",
+            lineHeight: 1.7,
+            margin: "0 0 8px",
+          }}
+        >
+          This legal agreement is an electronic record under the Information
+          Technology Act, 2000. This website is created and operated by{" "}
+          <strong style={{ color: "var(--foreground)" }}>
+            M/s Abybaby E-Com Private Limited
+          </strong>
+          , a private limited company incorporated under the Companies Act,
+          2013, having its registered address at Ground Floor, 4B, Rani Bhabani
+          Road, Kolkata, West Bengal – 700026, operating under the brand name
+          "Abybaby".
         </p>
-        <p style={{ fontSize: 12, color: "var(--muted-foreground)", lineHeight: 1.7, margin: 0 }}>
-          <strong style={{ color: "var(--foreground)" }}>"We", "Our", "Us"</strong> = the website.{" "}
-          <strong style={{ color: "var(--foreground)" }}>"You", "User", "Customer"</strong> = persons using
-          this website. <strong style={{ color: "var(--foreground)" }}>"Third Parties"</strong> = any
-          website or individual apart from Users and the website creator.
+        <p
+          style={{
+            fontSize: 12,
+            color: "var(--muted-foreground)",
+            lineHeight: 1.7,
+            margin: 0,
+          }}
+        >
+          <strong style={{ color: "var(--foreground)" }}>
+            "We", "Our", "Us"
+          </strong>{" "}
+          = the website.{" "}
+          <strong style={{ color: "var(--foreground)" }}>
+            "You", "User", "Customer"
+          </strong>{" "}
+          = persons using this website.{" "}
+          <strong style={{ color: "var(--foreground)" }}>
+            "Third Parties"
+          </strong>{" "}
+          = any website or individual apart from Users and the website creator.
         </p>
       </div>
 
       {/* Table of Contents */}
-      <div
-        className="rounded-xl p-4 mb-8 mx-4"
-        style={{
-          background: "rgba(87,159,99,0.05)",
-          border: "0.5px solid rgba(87,159,99,0.25)",
-        }}
-      >
+      {/* <div className="rounded-xl p-4 mb-8 mx-4">
         <div
           className="flex items-center gap-2 mb-3"
           style={{ fontSize: 13, fontWeight: 600, color: "var(--foreground)" }}
@@ -291,35 +300,38 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
                 gap: 5,
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.textDecoration = "underline")
+                ((e.currentTarget as HTMLAnchorElement).style.textDecoration =
+                  "underline")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.textDecoration = "none")
+                ((e.currentTarget as HTMLAnchorElement).style.textDecoration =
+                  "none")
               }
             >
               → {label}
             </a>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div className="flex flex-col gap-6 px-4">
-
         {/* 1. General Terms */}
         <section id="general">
-          <SectionHeader num={1} title="General Terms" />
+          <SectionHeader title="General Terms" />
           <ClauseCard label="Governing Rules">
-            Use of this website is solely governed by these Terms of Use, Privacy Policy, and any
-            modifications made thereto at our sole discretion. Continued access constitutes agreement to be
-            bound by these terms.
+            Use of this website is solely governed by these Terms of Use,
+            Privacy Policy, and any modifications made thereto at our sole
+            discretion. Continued access constitutes agreement to be bound by
+            these terms.
           </ClauseCard>
           <ClauseCard label="Co-terminus">
-            These Terms of Use and Privacy Policy are co-terminus in nature — expiry or termination of one
-            will lead to termination of the other.
+            These Terms of Use and Privacy Policy are co-terminus in nature —
+            expiry or termination of one will lead to termination of the other.
           </ClauseCard>
           <ClauseCard label="Amendments">
-            We reserve the sole and exclusive right to amend or modify these Terms without prior notice.
-            Amendments come into effect immediately. Continued use signifies acceptance of the changed terms.
+            We reserve the sole and exclusive right to amend or modify these
+            Terms without prior notice. Amendments come into effect immediately.
+            Continued use signifies acceptance of the changed terms.
           </ClauseCard>
         </section>
 
@@ -327,15 +339,24 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="registration">
           <SectionHeader num={2} title="Registration" />
           <BodyText>
-            Registration on the website is mandatory. The following information must be provided:
+            Registration on the website is mandatory. The following information
+            must be provided:
           </BodyText>
           <div className="flex flex-wrap gap-2 mb-3">
-            {["Name", "Phone Number", "Email ID", "Geo-location", "Date of Birth", "Photo"].map((f) => (
+            {[
+              "Name",
+              "Phone Number",
+              "Email ID",
+              "Geo-location",
+              "Date of Birth",
+              "Photo",
+            ].map((f) => (
               <RegPill key={f} label={f} />
             ))}
           </div>
           <BodyText>
-            Users may also link social media accounts such as Google and Facebook at the time of signing up.
+            Users may also link social media accounts such as Google and
+            Facebook at the time of signing up.
           </BodyText>
         </section>
 
@@ -343,17 +364,25 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="payment">
           <SectionHeader num={3} title="Payment Gateway" />
           <BodyText>
-            All payments are processed through a third-party payment gateway. You will be redirected to this
-            gateway, which may seek additional information and charge applicable gateway fees.
+            All payments are processed through a third-party payment gateway.
+            You will be redirected to this gateway, which may seek additional
+            information and charge applicable gateway fees.
           </BodyText>
           <div className="flex flex-wrap gap-2 mb-3">
-            {["Razorpay", "Debit Card", "Credit Card", "Net Banking", "UPI", "Wallets"].map((f) => (
+            {[
+              "Razorpay",
+              "Debit Card",
+              "Credit Card",
+              "Net Banking",
+              "UPI",
+              "Wallets",
+            ].map((f) => (
               <RegPill key={f} label={f} />
             ))}
           </div>
           <BodyText>
-            You shall be governed by the payment gateway's own Terms, Conditions, and Policies for all
-            payment-related aspects.
+            You shall be governed by the payment gateway's own Terms,
+            Conditions, and Policies for all payment-related aspects.
           </BodyText>
         </section>
 
@@ -361,13 +390,14 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="eligibility">
           <SectionHeader num={4} title="Eligibility" />
           <ClauseCard label="Competency">
-            You represent that you are competent and of age to enter into legally binding agreements under
-            Indian law. Minors may use this website only under the supervision and consent of a legal
-            guardian.
+            You represent that you are competent and of age to enter into
+            legally binding agreements under Indian law. Minors may use this
+            website only under the supervision and consent of a legal guardian.
           </ClauseCard>
           <ClauseCard label="Compliance">
-            You represent that you will comply with these Terms and all applicable local, state, national,
-            and international laws, rules, and regulations currently in force.
+            You represent that you will comply with these Terms and all
+            applicable local, state, national, and international laws, rules,
+            and regulations currently in force.
           </ClauseCard>
         </section>
 
@@ -375,23 +405,27 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="content">
           <SectionHeader num={5} title="Content" />
           <BodyText>
-            All text, advertisements, graphics, photographs, trademarks, logos, sounds, music, and artwork
-            (collectively 'Content') is generated by users or third parties. We make no guarantees regarding
-            quality, accuracy, integrity, or genuineness of such content.
+            All text, advertisements, graphics, photographs, trademarks, logos,
+            sounds, music, and artwork (collectively 'Content') is generated by
+            users or third parties. We make no guarantees regarding quality,
+            accuracy, integrity, or genuineness of such content.
           </BodyText>
           <ClauseCard label="Copyright">
-            All content on the website is subject to copyright and shall not be reused without prior written
-            consent from us and the copyright owner.
+            All content on the website is subject to copyright and shall not be
+            reused without prior written consent from us and the copyright
+            owner.
           </ClauseCard>
           <ClauseCard label="User Responsibility">
-            You are solely responsible for the integrity, authenticity, quality, and genuineness of content
-            you provide. We may suspend or terminate accounts that share untrue, inaccurate, misleading, or
-            offensive content.
+            You are solely responsible for the integrity, authenticity, quality,
+            and genuineness of content you provide. We may suspend or terminate
+            accounts that share untrue, inaccurate, misleading, or offensive
+            content.
           </ClauseCard>
           <ClauseCard label="Limited Privilege">
-            You have a personal, non-exclusive, non-transferable, revocable, limited privilege to access the
-            content on the website. You shall not copy, adapt, or modify any content without written
-            permission from us.
+            You have a personal, non-exclusive, non-transferable, revocable,
+            limited privilege to access the content on the website. You shall
+            not copy, adapt, or modify any content without written permission
+            from us.
           </ClauseCard>
         </section>
 
@@ -399,8 +433,9 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="indemnity">
           <SectionHeader num={6} title="Indemnity" />
           <BodyText>
-            You agree to indemnify and hold us and our directors, officers, employees, and agents harmless
-            from any losses, liabilities, claims, damages, demands, costs, and expenses arising out of:
+            You agree to indemnify and hold us and our directors, officers,
+            employees, and agents harmless from any losses, liabilities, claims,
+            damages, demands, costs, and expenses arising out of:
           </BodyText>
           <ClauseCard>
             <BulletList
@@ -414,16 +449,19 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
             />
           </ClauseCard>
           <BodyText>
-            You agree to fully cooperate in indemnifying us at your expense and not to settle with any party
-            without our consent. In no event shall we be liable to compensate you or any third party for any
-            special, incidental, indirect, consequential, or punitive damages.
+            You agree to fully cooperate in indemnifying us at your expense and
+            not to settle with any party without our consent. In no event shall
+            we be liable to compensate you or any third party for any special,
+            incidental, indirect, consequential, or punitive damages.
           </BodyText>
         </section>
 
         {/* 7. Limitation of Liability */}
         <section id="liability">
           <SectionHeader num={7} title="Limitation of Liability" />
-          <BodyText>We are not responsible for consequences arising from:</BodyText>
+          <BodyText>
+            We are not responsible for consequences arising from:
+          </BodyText>
           <ClauseCard>
             <BulletList
               items={[
@@ -436,9 +474,10 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
             />
           </ClauseCard>
           <BodyText>
-            The website accepts no liability for any errors, omissions, or damage resulting from use or
-            misuse. To the fullest extent permitted by law, your sole and exclusive remedy for any dispute
-            is to terminate your use of the website.
+            The website accepts no liability for any errors, omissions, or
+            damage resulting from use or misuse. To the fullest extent permitted
+            by law, your sole and exclusive remedy for any dispute is to
+            terminate your use of the website.
           </BodyText>
         </section>
 
@@ -446,23 +485,28 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="term">
           <SectionHeader num={8} title="Term & Termination" />
           <ClauseCard label="Duration">
-            These Terms remain in full force and effect for as long as you continue to access and use the
-            website. You may terminate your use at any time.
+            These Terms remain in full force and effect for as long as you
+            continue to access and use the website. You may terminate your use
+            at any time.
           </ClauseCard>
           <ClauseCard label="Our Rights">
-            We may terminate these Terms and close your account at any time without notice if any discrepancy
-            or legal issue arises. We reserve the right to deny access to any user to protect the interests
-            of the website or other users.
+            We may terminate these Terms and close your account at any time
+            without notice if any discrepancy or legal issue arises. We reserve
+            the right to deny access to any user to protect the interests of the
+            website or other users.
           </ClauseCard>
           <ClauseCard label="Service Discontinuation">
-            We may discontinue the website and services without any prior notice.
+            We may discontinue the website and services without any prior
+            notice.
           </ClauseCard>
         </section>
 
         {/* 9. User Obligations */}
         <section id="obligations">
           <SectionHeader num={9} title="User Obligations" />
-          <BodyText>By using this website, you agree and undertake to:</BodyText>
+          <BodyText>
+            By using this website, you agree and undertake to:
+          </BodyText>
           <ClauseCard label="You must">
             <BulletList
               items={[
@@ -494,15 +538,17 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="ip">
           <SectionHeader num={10} title="Intellectual Property Rights" />
           <BodyText>
-            All trade names, trademarks, service marks, logos, domain names, designs, and graphics created
-            by or developed for the website are the property of the website or the respective copyright or
-            trademark owner.
+            All trade names, trademarks, service marks, logos, domain names,
+            designs, and graphics created by or developed for the website are
+            the property of the website or the respective copyright or trademark
+            owner.
           </BodyText>
           <BodyText>
-            You shall not use any intellectual property displayed on the website in any manner that is likely
-            to cause confusion among users or that disparages or discredits the website. Any reproduction or
-            infringement of intellectual property will result in legal action. This section survives
-            termination of these Terms.
+            You shall not use any intellectual property displayed on the website
+            in any manner that is likely to cause confusion among users or that
+            disparages or discredits the website. Any reproduction or
+            infringement of intellectual property will result in legal action.
+            This section survives termination of these Terms.
           </BodyText>
         </section>
 
@@ -510,13 +556,15 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="disclaimer">
           <SectionHeader num={11} title="Disclaimer of Warranties" />
           <ClauseCard>
-            You access the website at your sole risk. Any information, resources, activities, or
-            recommendations obtained from the website will not create any warranty. We disclaim all
-            liabilities resulting therefrom.
+            You access the website at your sole risk. Any information,
+            resources, activities, or recommendations obtained from the website
+            will not create any warranty. We disclaim all liabilities resulting
+            therefrom.
           </ClauseCard>
           <ClauseCard>
-            We do not guarantee that features and content will be uninterrupted or error-free, or that the
-            website or its server will be free of viruses or other harmful components.
+            We do not guarantee that features and content will be uninterrupted
+            or error-free, or that the website or its server will be free of
+            viruses or other harmful components.
           </ClauseCard>
         </section>
 
@@ -524,10 +572,12 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="force">
           <SectionHeader num={12} title="Force Majeure" />
           <BodyText>
-            We will not be liable for damages for any delay or failure to perform our obligations if such
-            delay or failure is due to causes beyond our control, including but not limited to acts of war,
-            acts of God, earthquake, riot, fire, sabotage, labour disputes, internet interruption, technical
-            failure, hacking, piracy, or other force majeure events.
+            We will not be liable for damages for any delay or failure to
+            perform our obligations if such delay or failure is due to causes
+            beyond our control, including but not limited to acts of war, acts
+            of God, earthquake, riot, fire, sabotage, labour disputes, internet
+            interruption, technical failure, hacking, piracy, or other force
+            majeure events.
           </BodyText>
         </section>
 
@@ -535,19 +585,26 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="dispute">
           <SectionHeader num={13} title="Dispute Resolution & Jurisdiction" />
           <InfoCard icon={<Scale size={14} />} label="Mediation First">
-            Disputes shall first be resolved by mediation administered by the Centre for Online Resolution
-            of Disputes (CORD) at{" "}
-            <a href="http://www.resolveoncord.com" style={{ color: "#579F63" }} target="_blank" rel="noopener noreferrer">
+            Disputes shall first be resolved by mediation administered by the
+            Centre for Online Resolution of Disputes (CORD) at{" "}
+            <a
+              href="http://www.resolveoncord.com"
+              style={{ color: "#579F63" }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               www.resolveoncord.com
             </a>{" "}
             within 45 days of initiation.
           </InfoCard>
           <InfoCard icon={<Gavel size={14} />} label="Arbitration">
-            If mediation fails within 45 days, the dispute shall be resolved by arbitration administered by
-            CORD. Language: English. Seat: Kolkata, India.
+            If mediation fails within 45 days, the dispute shall be resolved by
+            arbitration administered by CORD. Language: English. Seat: Kolkata,
+            India.
           </InfoCard>
           <InfoCard icon={<MapPin size={14} />} label="Governing Law">
-            These Terms are governed by the laws, rules, and regulations of India.
+            These Terms are governed by the laws, rules, and regulations of
+            India.
           </InfoCard>
         </section>
 
@@ -555,30 +612,37 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
         <section id="misc">
           <SectionHeader num={14} title="Miscellaneous" />
           <ClauseCard label="Entire Agreement">
-            These Terms of Use, read with the Privacy Policy, form the complete and final contract between
-            the parties and supersede all other communications and agreements relating thereto.
+            These Terms of Use, read with the Privacy Policy, form the complete
+            and final contract between the parties and supersede all other
+            communications and agreements relating thereto.
           </ClauseCard>
           <ClauseCard label="Waiver">
-            Failure to require performance of any provision shall not affect our right to enforce it later.
-            No waiver of any breach shall be deemed a continuing waiver of the same or any other breach.
+            Failure to require performance of any provision shall not affect our
+            right to enforce it later. No waiver of any breach shall be deemed a
+            continuing waiver of the same or any other breach.
           </ClauseCard>
           <ClauseCard label="Severability">
-            If any provision is held invalid by a court of competent jurisdiction, the remaining provisions
-            shall continue in full force and effect.
+            If any provision is held invalid by a court of competent
+            jurisdiction, the remaining provisions shall continue in full force
+            and effect.
           </ClauseCard>
         </section>
 
         {/* Contact */}
         <div
           className="rounded-xl p-4"
-          style={{
-            background: "rgba(87,159,99,0.06)",
-            border: "0.5px solid rgba(87,159,99,0.3)",
-          }}
+          // style={{
+          //   background: "rgba(87,159,99,0.06)",
+          //   border: "0.5px solid rgba(87,159,99,0.3)",
+          // }}
         >
           <div
             className="flex items-center gap-2 mb-3"
-            style={{ fontSize: 13, fontWeight: 600, color: "var(--foreground)" }}
+            style={{
+              fontSize: 13,
+              fontWeight: 600,
+              color: "var(--foreground)",
+            }}
           >
             <Mail size={14} style={{ color: "#579F63" }} />
             Contact Us
@@ -588,10 +652,13 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
               className="flex items-start gap-2"
               style={{ fontSize: 12, color: "var(--muted-foreground)" }}
             >
-              <Building2 size={13} style={{ color: "#579F63", flexShrink: 0, marginTop: 1 }} />
+              <Building2
+                size={13}
+                style={{ color: "#579F63", flexShrink: 0, marginTop: 1 }}
+              />
               <span>
-                M/s Abybaby E-Com Private Limited, Ground Floor, 4B, Rani Bhabani Road, Kolkata, West
-                Bengal – 700026
+                M/s Abybaby E-Com Private Limited, Ground Floor, 4B, Rani
+                Bhabani Road, Kolkata, West Bengal – 700026
               </span>
             </div>
             <div
@@ -600,7 +667,10 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
             >
               <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} />
               <span>
-                <a href="mailto:sucheta@abybaby.co.in" style={{ color: "#579F63", textDecoration: "none" }}>
+                <a
+                  href="mailto:sucheta@abybaby.co.in"
+                  style={{ color: "#579F63", textDecoration: "none" }}
+                >
                   sucheta@abybaby.co.in
                 </a>{" "}
                 ·{" "}
@@ -619,35 +689,44 @@ export function TermsView({ onNavigate }: { onNavigate: (view: string) => void }
       {/* Footer */}
       <footer className="pt-6 pb-2 flex flex-col justify-center items-center">
         <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center">
-          {["Home", "About", "Presence", "Privacy Policy", "Data Privacy", "Terms & Conditions"].map(
-            (link) => (
-              <a
-                key={link}
-                href="#"
-                style={{
-                  fontSize: 11,
-                  color: "var(--muted-foreground)",
-                  textDecoration: "none",
-                  fontFamily: "var(--font-family-body)",
-                  transition: "color 0.15s",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color = "var(--muted-foreground)")
-                }
-              >
-                {link}
-              </a>
-            )
-          )}
+          {[
+            { title: "Home", link: "home" },
+            { title: "About", link: "about" },
+            { title: "Profile", link: "profile" },
+            { title: "Privacy Policy", link: "privacypolicy" },
+            { title: "Data Privacy ", link: "dataprivacy" },
+            { title: "Terms & Conditions ", link: "terms" },
+          ].map((item) => (
+            <a
+              onClick={() => onNavigate(item.link)}
+              key={item.link}
+              // href="#"
+              style={{
+                fontSize: 11,
+                color: "var(--muted-foreground)",
+                textDecoration: "none",
+                fontFamily: "var(--font-family-body)",
+                transition: "color 0.15s",
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--foreground)")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--muted-foreground)")
+              }
+              className="cursor-pointer"
+            >
+              {item.title}
+            </a>
+          ))}
         </div>
         <p
           style={{
             fontSize: 11,
             color: "var(--muted-foreground)",
-            opacity: 0.6,
+
             marginTop: 12,
             fontFamily: "var(--font-family-body)",
           }}
