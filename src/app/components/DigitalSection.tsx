@@ -12,6 +12,7 @@ import pmsDetail from "../../assets/Croma.jpg";
 
 export function DigitalSection({ onNavigate }) {
   const [selectedProject, setSelectedProject] = useState(null);
+   const [hoveredProject, setHoveredProject] = useState(null);
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -104,10 +105,10 @@ export function DigitalSection({ onNavigate }) {
             solutions.
           </p>
         </div>
-
+   {/* <div className="px-2 py-5 flex gap-6 items-start"> */}
         {/* Cards */}
         <div className="px-2 py-5">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-5">
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-5">
             {DIGITAL_PROJECTS.map((project) => (
               <motion.div
                 key={project.id}
@@ -118,6 +119,8 @@ export function DigitalSection({ onNavigate }) {
                   damping: 24,
                 }}
                 onClick={() => setSelectedProject(project)}
+                   onMouseEnter={() => setHoveredProject(project)} // NEW
+                onMouseLeave={() => setHoveredProject(null)}  
                 className="overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm cursor-pointer"
                 style={{ border: "1px solid #f0f0f5" }}
               >
@@ -202,7 +205,72 @@ export function DigitalSection({ onNavigate }) {
               </motion.div>
             ))}
           </div>
+                 <div className="hidden xl:block w-64 sticky right-4 flex-shrink-0 ">
+            <AnimatePresence mode="wait">
+              {hoveredProject ? (
+                <motion.div
+                  key={hoveredProject.id}
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 10 }}
+                  transition={{ duration: 0.2 }}
+                  className="rounded-2xl bg-white border border-gray-100 p-5 "
+                  style={{ border: "1px solid #f0f0f5" }}
+                >
+                  {/* Preview Image */}
+                  <img
+                    src={hoveredProject.modalImage}
+                    alt={hoveredProject.name}
+                    className="w-full rounded-xl object-cover mb-4"
+                    style={{ height: 120 }}
+                  />
+
+                  {/* Name */}
+                  <h3 className="font-semibold text-gray-900 font-sans text-sm mb-3">
+                    {hoveredProject.name}
+                  </h3>
+
+                  {/* Stats */}
+                  <div className="flex gap-2 mb-4">
+                    <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
+                      <p className="text-xs text-gray-400 mb-1">Reach</p>
+                      <p className="text-sm font-semibold text-gray-800">{hoveredProject.reach}</p>
+                    </div>
+                    <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
+                      <p className="text-xs text-gray-400 mb-1">Engagement</p>
+                      <p className="text-sm font-semibold text-gray-800">{hoveredProject.engagement}</p>
+                    </div>
+                  </div>
+
+                  {/* Services */}
+                  <p className="text-xs text-gray-400 uppercase tracking-wider mb-2 font-medium">
+                    Services
+                  </p>
+                  <div className="space-y-2">
+                    {hoveredProject.services.map((service) => (
+                      <div key={service} className="flex items-center gap-2 text-sm text-gray-700">
+                        <span className="w-1.5 h-1.5 rounded-full bg-lime-400 flex-shrink-0" />
+                        {service}
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ) : 
+                // <motion.div
+                //   key="empty"
+                //   initial={{ opacity: 0 }}
+                //   animate={{ opacity: 1 }}
+                //   exit={{ opacity: 0 }}
+                //   className="rounded-2xl border border-dashed border-gray-200 flex flex-col items-center justify-center py-16 gap-2"
+                // >
+                //   <p className="text-xs text-gray-400">Hover a card to preview</p>
+                // </motion.div>
+              null}
+            </AnimatePresence>
+          </div>
+
         </div>
+        
 
         {/* Footer */}
         <div className="flex flex-col items-center py-8 gap-2">
