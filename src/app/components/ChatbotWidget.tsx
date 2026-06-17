@@ -64,7 +64,13 @@ export function ChatbotWidget({
       url: "https://linkedin.com/company/abybabyevents",
     },
   ];
-
+  const handleToggle = () => {
+    setOpen((o) => {
+      const next = !o;
+      if (!next) onClose?.(); // closing via this button now syncs the parent too
+      return next;
+    });
+  };
   return (
     <div className="fixed bottom-6 right-6 z-[70] flex flex-col items-end gap-2">
       {/* Contact modal */}
@@ -90,9 +96,10 @@ export function ChatbotWidget({
                 <div
                   style={{
                     color: "#fff",
-                    fontFamily: "var(--font-family-display)",
+
                     fontSize: 18,
                   }}
+                  className="font-sans"
                 >
                   Let's Connect
                 </div>
@@ -284,7 +291,7 @@ export function ChatbotWidget({
         <motion.button
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.94 }}
-          onClick={() => setOpen((o) => !o)}
+          onClick={handleToggle}
           className="rounded-full flex items-center justify-center shadow-xl"
           style={{
             width: 56,

@@ -115,16 +115,17 @@ export function RightPanel({
       <footer className="pt-2 pb-6">
         <div className="flex flex-wrap gap-x-4 gap-y-2">
           {[
-            "Home",
-            "About",
-            "Presence",
-            "Privacy Policy",
-            "Data Privacy",
-            "Terms & Conditions",
-          ].map((link) => (
+            { title: "Home", link: "home" },
+            { title: "About", link: "about" },
+            { title: "Presence", link: "presence" },
+            { title: "Profile", link: "profile" },
+            { title: "Privacy Policy", link: "privacypolicy" },
+            { title: "Data Privacy", link: "dataprivacy" },
+            { title: "Terms & Conditions", link: "terms" },
+          ].map((item) => (
             <a
-              key={link}
-              href="#"
+              key={item.title}
+              onClick={() => onNavigate(item.link)}
               style={{
                 fontSize: 11,
                 color: "var(--muted-foreground)",
@@ -140,8 +141,9 @@ export function RightPanel({
                 ((e.currentTarget as HTMLAnchorElement).style.color =
                   "var(--muted-foreground)")
               }
+              className="cursor-pointer"
             >
-              {link}
+              {item.title}
             </a>
           ))}
         </div>

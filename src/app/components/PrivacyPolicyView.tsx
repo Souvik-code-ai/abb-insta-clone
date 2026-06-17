@@ -15,13 +15,10 @@ import {
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function SectionHeader({ num, title }: { num: number; title: string }) {
+function SectionHeader({ title }: { title: string }) {
   return (
-    <div
-      className="flex items-center gap-2 mb-3 pb-2"
-      style={{ borderBottom: "1px solid var(--border)" }}
-    >
-      <div
+    <div className="flex items-center gap-2 mb-3 pb-2">
+      {/* <div
         className="flex items-center justify-center rounded-full shrink-0"
         style={{
           width: 22,
@@ -33,7 +30,7 @@ function SectionHeader({ num, title }: { num: number; title: string }) {
         }}
       >
         {num}
-      </div>
+      </div> */}
       <span
         style={{ fontSize: 14, fontWeight: 600, color: "var(--foreground)" }}
       >
@@ -51,12 +48,7 @@ function ClauseCard({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className="rounded-xl p-3 mb-2 last:mb-0"
-      style={{
-        background: "color-mix(in srgb, var(--accent) 4%, var(--background))",
-      }}
-    >
+    <div className="rounded-xl p-3 mb-2 last:mb-0">
       {label && (
         <div
           style={{
@@ -94,13 +86,7 @@ function InfoCard({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className="rounded-xl p-3 mb-2 last:mb-0"
-      style={{
-        background: "rgba(87,159,99,0.05)",
-        border: "0.5px solid rgba(87,159,99,0.25)",
-      }}
-    >
+    <div className="rounded-xl p-3 mb-2 last:mb-0">
       <div
         className="flex items-center gap-2 mb-1"
         style={{ fontSize: 12, fontWeight: 600, color: "var(--foreground)" }}
@@ -126,8 +112,6 @@ function RegPill({ label }: { label: string }) {
     <span
       className="rounded-full"
       style={{
-        background: "rgba(87,159,99,0.1)",
-        color: "#3d7a4a",
         fontSize: 11,
         fontWeight: 600,
         padding: "3px 10px",
@@ -153,7 +137,7 @@ function BodyText({ children }: { children: React.ReactNode }) {
     <p
       style={{
         fontSize: 12,
-        color: "var(--muted-foreground)",
+
         lineHeight: 1.7,
         margin: "0 0 8px",
       }}
@@ -190,7 +174,6 @@ export function PrivacyPolicyView({
       <div
         className="py-6 px-4"
         style={{
-          borderBottom: "1px solid var(--border)",
           marginBottom: "1.5rem",
         }}
       >
@@ -228,13 +211,13 @@ export function PrivacyPolicyView({
       <div className="flex flex-col gap-6 px-4">
         {/* 1. Introduction */}
         <section>
-          <SectionHeader num={1} title="Introduction" />
+          <SectionHeader title="Introduction" />
           <div
             className="rounded-xl p-4"
-            style={{
-              background: "rgba(87,159,99,0.04)",
-              border: "0.5px solid rgba(87,159,99,0.2)",
-            }}
+            // style={{
+            //   background: "rgba(87,159,99,0.04)",
+            //   border: "0.5px solid rgba(87,159,99,0.2)",
+            // }}
           >
             <BodyText>
               This Privacy Policy explains how Abybaby Events collects, uses,
@@ -246,7 +229,7 @@ export function PrivacyPolicyView({
 
         {/* 2. Cookies Policy */}
         <section>
-          <SectionHeader num={2} title="Cookies Policy" />
+          <SectionHeader title="Cookies Policy" />
           <BodyText>The website uses the following types of cookies:</BodyText>
           <div className="flex flex-wrap gap-2 mb-3">
             {[
@@ -267,10 +250,7 @@ export function PrivacyPolicyView({
         {/* 3. Google Analytics */}
         <section>
           <SectionHeader num={3} title="Google Analytics" />
-          <InfoCard
-            icon={<BarChart2 size={14} />}
-            label="How we use Google Analytics"
-          >
+          <InfoCard label="How we use Google Analytics">
             <BulletList
               items={[
                 "Measure website traffic",
@@ -383,13 +363,7 @@ export function PrivacyPolicyView({
           <BodyText>
             For any privacy-related queries, please reach out to us:
           </BodyText>
-          <div
-            className="rounded-xl p-4"
-            style={{
-              background: "rgba(87,159,99,0.06)",
-              border: "0.5px solid rgba(87,159,99,0.3)",
-            }}
-          >
+          <div className="rounded-xl p-4">
             <div
               className="flex items-center gap-2 mb-3"
               style={{
@@ -398,7 +372,7 @@ export function PrivacyPolicyView({
                 color: "var(--foreground)",
               }}
             >
-              <Mail size={14} style={{ color: "#579F63" }} />
+              {/* <Mail size={14} style={{ color: "#579F63" }} /> */}
               Get in Touch
             </div>
             <div className="flex flex-col gap-2">
@@ -406,7 +380,7 @@ export function PrivacyPolicyView({
                 className="flex items-center gap-2"
                 style={{ fontSize: 12, color: "var(--muted-foreground)" }}
               >
-                <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} />
+                {/* <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} /> */}
                 <a
                   href="mailto:sucheta@abybaby.co.in"
                   style={{ color: "#579F63", textDecoration: "none" }}
@@ -414,11 +388,8 @@ export function PrivacyPolicyView({
                   sucheta@abybaby.co.in
                 </a>
               </div>
-              <div
-                className="flex items-center gap-2"
-                style={{ fontSize: 12, color: "var(--muted-foreground)" }}
-              >
-                <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} />
+              <div className="flex items-center gap-2" style={{ fontSize: 12 }}>
+                {/* <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} /> */}
                 <a
                   href="mailto:shaw.vijay@abybaby.co.in"
                   style={{ color: "#579F63", textDecoration: "none" }}

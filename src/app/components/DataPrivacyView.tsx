@@ -15,13 +15,10 @@ import {
 
 // ── Sub-components (same as TermsView) ───────────────────────────────────────
 
-function SectionHeader({ num, title }: { num: number; title: string }) {
+function SectionHeader({ title }: { title: string }) {
   return (
-    <div
-      className="flex items-center gap-2 mb-3 pb-2"
-      style={{ borderBottom: "1px solid var(--border)" }}
-    >
-      <div
+    <div className="flex items-center gap-2 mb-3 pb-2">
+      {/* <div
         className="flex items-center justify-center rounded-full shrink-0"
         style={{
           width: 22,
@@ -33,7 +30,7 @@ function SectionHeader({ num, title }: { num: number; title: string }) {
         }}
       >
         {num}
-      </div>
+      </div> */}
       <span
         style={{ fontSize: 14, fontWeight: 600, color: "var(--foreground)" }}
       >
@@ -51,12 +48,7 @@ function ClauseCard({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className="rounded-xl p-3 mb-2 last:mb-0"
-      style={{
-        background: "color-mix(in srgb, var(--accent) 4%, var(--background))",
-      }}
-    >
+    <div className="rounded-xl p-3 mb-2 last:mb-0">
       {label && (
         <div
           style={{
@@ -85,7 +77,6 @@ function ClauseCard({
 }
 
 function InfoCard({
-  icon,
   label,
   children,
 }: {
@@ -94,18 +85,12 @@ function InfoCard({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className="rounded-xl p-3 mb-2 last:mb-0"
-      style={{
-        background: "rgba(87,159,99,0.05)",
-        border: "0.5px solid rgba(87,159,99,0.25)",
-      }}
-    >
+    <div className="rounded-xl p-3 mb-2 last:mb-0">
       <div
         className="flex items-center gap-2 mb-1"
         style={{ fontSize: 12, fontWeight: 600, color: "var(--foreground)" }}
       >
-        <span style={{ color: "#579F63" }}>{icon}</span>
+        {/* <span style={{ color: "#579F63" }}>{icon}</span> */}
         {label}
       </div>
       <div
@@ -126,8 +111,6 @@ function RegPill({ label }: { label: string }) {
     <span
       className="rounded-full"
       style={{
-        background: "rgba(87,159,99,0.1)",
-        color: "#3d7a4a",
         fontSize: 11,
         fontWeight: 600,
         padding: "3px 10px",
@@ -190,7 +173,6 @@ export function DataPrivacyView({
       <div
         className="py-6 px-4"
         style={{
-          borderBottom: "1px solid var(--border)",
           marginBottom: "1.5rem",
         }}
       >
@@ -227,8 +209,8 @@ export function DataPrivacyView({
       <div className="flex flex-col gap-6 px-4">
         {/* 1. Information We Collect */}
         <section>
-          <SectionHeader num={1} title="Information We Collect" />
-          <InfoCard icon={<User size={14} />} label="Personal Information">
+          <SectionHeader title="Information We Collect" />
+          <InfoCard label="Personal Information">
             <div className="flex flex-wrap gap-2 mt-1">
               {[
                 "Name",
@@ -261,7 +243,7 @@ export function DataPrivacyView({
 
         {/* 2. Purpose of Data Collection */}
         <section>
-          <SectionHeader num={2} title="Purpose of Data Collection" />
+          <SectionHeader title="Purpose of Data Collection" />
           <BodyText>We collect data to:</BodyText>
           <ClauseCard>
             <BulletList
@@ -280,7 +262,7 @@ export function DataPrivacyView({
 
         {/* 3. How Information is Collected */}
         <section>
-          <SectionHeader num={3} title="How Information is Collected" />
+          <SectionHeader title="How Information is Collected" />
           <ClauseCard>
             <BulletList
               items={[
@@ -296,7 +278,7 @@ export function DataPrivacyView({
 
         {/* 4. Use of Personal Information */}
         <section>
-          <SectionHeader num={4} title="Use of Personal Information" />
+          <SectionHeader title="Use of Personal Information" />
           <BodyText>User data may be used for:</BodyText>
           <ClauseCard>
             <BulletList
@@ -314,7 +296,7 @@ export function DataPrivacyView({
 
         {/* 5. Data Sharing and Disclosure */}
         <section>
-          <SectionHeader num={5} title="Data Sharing and Disclosure" />
+          <SectionHeader title="Data Sharing and Disclosure" />
           <BodyText>Information may be shared with:</BodyText>
           <ClauseCard>
             <BulletList
@@ -329,8 +311,6 @@ export function DataPrivacyView({
           <div
             className="rounded-xl p-3 mt-2"
             style={{
-              background: "rgba(87,159,99,0.07)",
-              border: "0.5px solid rgba(87,159,99,0.3)",
               fontSize: 12,
               fontWeight: 600,
               color: "#3d7a4a",
@@ -342,7 +322,7 @@ export function DataPrivacyView({
 
         {/* 6. Data Retention */}
         <section>
-          <SectionHeader num={6} title="Data Retention" />
+          <SectionHeader title="Data Retention" />
           <ClauseCard label="Retention Period">
             Personal information is retained only as long as necessary for the
             stated purposes.
@@ -355,7 +335,7 @@ export function DataPrivacyView({
 
         {/* 7. User Rights */}
         <section>
-          <SectionHeader num={7} title="User Rights" />
+          <SectionHeader title="User Rights" />
           <BodyText>Users have the right to:</BodyText>
           <ClauseCard>
             <BulletList
@@ -373,7 +353,7 @@ export function DataPrivacyView({
 
         {/* 8. Data Security */}
         <section>
-          <SectionHeader num={8} title="Data Security" />
+          <SectionHeader title="Data Security" />
           <BodyText>
             We implement industry-standard security measures to protect personal
             information against:
@@ -395,10 +375,7 @@ export function DataPrivacyView({
 
         {/* 9. Consent Withdrawal, Data Download & Removal */}
         <section>
-          <SectionHeader
-            num={9}
-            title="Consent Withdrawal, Data Download & Removal"
-          />
+          <SectionHeader title="Consent Withdrawal, Data Download & Removal" />
           <BodyText>Users may request:</BodyText>
           <ClauseCard>
             <BulletList
@@ -409,20 +386,19 @@ export function DataPrivacyView({
           {/* Contact card */}
           <div
             className="rounded-xl p-4 mt-2"
-            style={{
-              background: "rgba(87,159,99,0.06)",
-              border: "0.5px solid rgba(87,159,99,0.3)",
-            }}
+            // style={{
+            //   background: "rgba(87,159,99,0.06)",
+            //   border: "0.5px solid rgba(87,159,99,0.3)",
+            // }}
           >
             <div
               className="flex items-center gap-2 mb-3"
               style={{
                 fontSize: 13,
                 fontWeight: 600,
-                color: "var(--foreground)",
               }}
             >
-              <Mail size={14} style={{ color: "#579F63" }} />
+              {/* <Mail size={14} style={{ color: "#579F63" }} /> */}
               Contact Us to Exercise Your Rights
             </div>
             <div className="flex flex-col gap-2">
@@ -430,7 +406,7 @@ export function DataPrivacyView({
                 className="flex items-center gap-2"
                 style={{ fontSize: 12, color: "var(--muted-foreground)" }}
               >
-                <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} />
+                {/* <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} /> */}
                 <a
                   href="mailto:sucheta@abybaby.co.in"
                   style={{ color: "#579F63", textDecoration: "none" }}
@@ -442,7 +418,7 @@ export function DataPrivacyView({
                 className="flex items-center gap-2"
                 style={{ fontSize: 12, color: "var(--muted-foreground)" }}
               >
-                <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} />
+                {/* <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} /> */}
                 <a
                   href="mailto:shaw.vijay@abybaby.co.in"
                   style={{ color: "#579F63", textDecoration: "none" }}

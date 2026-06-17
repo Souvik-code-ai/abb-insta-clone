@@ -106,7 +106,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
         style={{
-          position: "absolute",
+          position: "fixed",
           top: 20,
           right: 20,
           inset: 0,
