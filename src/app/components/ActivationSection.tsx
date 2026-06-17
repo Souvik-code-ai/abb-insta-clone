@@ -29,7 +29,7 @@ import tata2 from "../../assets/AL.jpg";
 import tata3 from "../../assets/AL.jpg";
 export function ActivationSection({ onNavigate }) {
   const [selectedActivation, setSelectedActivation] = useState(null);
-  //   const bottomRef = useRef(null);
+  const [hoveredProject, setHoveredProject] = useState(null);
   const ACTIVATIONS = [
     {
       id: 1,
@@ -172,8 +172,11 @@ export function ActivationSection({ onNavigate }) {
                 }}
                 onClick={() => {
                   setSelectedActivation(item);
+
                   setCurrentImage(0);
                 }}
+                onMouseEnter={() => setHoveredProject(item)} // NEW
+                onMouseLeave={() => setHoveredProject(null)}
                 className="overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm cursor-pointer"
                 style={{ border: "1px solid #f0f0f5" }}
               >
@@ -248,6 +251,77 @@ export function ActivationSection({ onNavigate }) {
                 </div>
               </motion.div>
             ))}
+          </div>
+          <div className="hidden xl:block w-64 fixed  flex-shrink-0  right-[10vw] top-[15vh]">
+            <AnimatePresence mode="wait">
+              {hoveredProject ? (
+                <motion.div
+                  key={hoveredProject.id}
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 10 }}
+                  transition={{ duration: 0.2 }}
+                  className="rounded-2xl bg-white border border-gray-100 p-5 "
+                  style={{ border: "1px solid #f0f0f5" }}
+                >
+                  {/* Preview Image */}
+                  <img
+                    src={hoveredProject.image}
+                    alt={hoveredProject.name}
+                    className="w-full rounded-xl object-cover mb-4"
+                    style={{ height: 120 }}
+                  />
+
+                  {/* Name */}
+                  <h3 className="font-semibold text-gray-900 font-sans text-sm mb-3">
+                    {hoveredProject.name}
+                  </h3>
+
+                  {/* Stats */}
+                  <div className="flex gap-2 mb-4">
+                    <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
+                      <p className="text-xs text-gray-400 mb-1">
+                        Audiance Reach
+                      </p>
+                      <p className="text-xs font-semibold text-gray-800">
+                        {hoveredProject.audience}
+                      </p>
+                    </div>
+                    {/* <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
+                      <p className="text-xs text-gray-400 mb-1">Engagement</p>
+                      <p className="text-sm font-semibold text-gray-800">
+                        {hoveredProject.engagement}
+                      </p>
+                    </div> */}
+                  </div>
+
+                  {/* Services */}
+                  <p className="text-xs text-gray-400 uppercase tracking-wider mb-2 font-medium">
+                    Services
+                  </p>
+                  <div className="space-y-2">
+                    {hoveredProject.highlights.map((service) => (
+                      <div
+                        key={service}
+                        className="flex items-center gap-2 text-sm text-gray-700"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-lime-400 flex-shrink-0" />
+                        {service}
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ) : // <motion.div
+              //   key="empty"
+              //   initial={{ opacity: 0 }}
+              //   animate={{ opacity: 1 }}
+              //   exit={{ opacity: 0 }}
+              //   className="rounded-2xl border border-dashed border-gray-200 flex flex-col items-center justify-center py-16 gap-2"
+              // >
+              //   <p className="text-xs text-gray-400">Hover a card to preview</p>
+              // </motion.div>
+              null}
+            </AnimatePresence>
           </div>
         </div>
         <div className="flex flex-col items-center py-8 gap-2">
