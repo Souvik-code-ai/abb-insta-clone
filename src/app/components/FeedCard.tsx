@@ -320,7 +320,7 @@ export function FeedCard({ post }: FeedCardProps) {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(post.projectUrl).catch(() => {});
-    toast.success("Project link copied!", { duration: 2000 });
+    toast.success("Thanks to show interest!", { duration: 2000 });
   };
 
   const multipleImages = post.images.length > 1;

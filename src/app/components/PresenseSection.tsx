@@ -248,239 +248,138 @@ function SidePanel({
           width: window.innerWidth < 640 ? "100vw" : "400px",
         }}
       >
-        {/* Header */}
-        {/* <div className=" flex items-start justify-start min-h-[250px] border-b mt-3  ">
-          <button
+        <div className="flex flex-row justify-center items-center ">
+          <div className="group perspective-[1000px] w-[370px] h-[290px] m-6">
+            <div
+              className="
+      relative
+      h-full
+      w-full
+      duration-700
+      [transform-style:preserve-3d]
+      group-hover:[transform:rotateY(180deg)]
+    "
+            >
+              {/* Front */}
+              <div
+                className="
+        absolute
+        inset-0
+        bg-white
+        rounded-2xl
+        shadow-lg
+        [backface-visibility:hidden]
+        overflow-hidden
+      "
+              >
+                <button
+                  onClick={() => setOpen(false)}
+                  className="absolute top-4 left-4 w-8 h-8 rounded-full bg-white shadow-md border border-lime-200 flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer z-50"
+                >
+                  <X size={20} className="text-gray-700" />
+                </button>
+                {/* Top-left Accent */}
+                <div className="absolute top-0 left-0">
+                  <div className="w-16 h-16 bg-lime-600 clip-triangle"></div>
+                  <div className="absolute top-0 left-6 w-16 h-16 bg-lime-400 clip-triangle"></div>
+                </div>
+                {/* <button
             onClick={() => setOpen(false)}
             className="mt-0.5 w-8 h-8 rounded-full flex items-center justify-center border border-border hover:bg-secondary transition-colors flex-shrink-0 cursor-pointer "
           >
             <X size={15} />
-          </button>
+          </button> */}
 
-          <div className="flex flex-col items-center mx-auto">
-         
-            <img
-              src={logo}
-              alt=""
-              className="h-20 w-20 rounded-full object-cover border-[3px] border-[#FDFBF7] shadow-md relative z-10 -mb-10"
-            />
-
-     
-            <div className="relative rounded-2xl  bg-[#ffffff] shadow-xl  pt-12 pb-7 flex flex-col items-center">
-
-              <div className="absolute inset-[6px] rounded-[14px]  pointer-events-none" />
-
-              <p className="text-[10px] tracking-[0.2em] uppercase text-[#48752C]/70 font-semibold mb-6">
-                Get in touch
-              </p>
-
-              <div className="flex items-center">
-        
-                <div className="flex flex-col items-center gap-2 px-5">
-                  <button
-                    onClick={() => toggle("address")}
-                    className="h-11 w-11 rounded-full border border-[#48752C]/30 flex items-center justify-center hover:bg-[#48752C]/8 hover:scale-105 transition-all cursor-pointer"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="20px"
-                      viewBox="0 -960 960 960"
-                      width="20px"
-                      fill="#48752C"
-                    >
-                      <path d="M200-200v-200h240v200-200H200v200Zm480-360ZM40-120v-400l280-200 280 200-28.5 28.5L543-463 320-622 120-480v280h80v-200h240v280h-80v-200h-80v200H40Zm880-720v405q-17-18-37-32.5T840-493v-267H480v56l-80-58v-78h520ZM680-600h80v-80h-80v80Zm40 560q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm-20-80h40v-100h100v-40H740v-100h-40v100H600v40h100v100Z" />
-                    </svg>
-                  </button>
-                  <span className="text-[9px] tracking-[0.12em] uppercase text-[#48752C]/60 font-medium">
-                    Address
-                  </span>
+                {/* Logo */}
+                <div className="absolute top-5 right-5 text-right">
+                  <img src={logo} alt="logo" className="h-12 ml-auto w-12" />
                 </div>
 
-                <div className="h-12 w-px bg-[#48752C]/15" />
+                {/* Name Section */}
+                <div className="pt-16 px-4">
+                  <h2 className="text-xl font-bold text-gray-900 font-sans">
+                    GET IN TOUCH
+                  </h2>
 
-           
-                <div className="flex flex-col items-center gap-2 px-5">
-                  <button
-                    onClick={() => toggle("email")}
-                    className="h-11 w-11 rounded-full border border-[#48752C]/30 flex items-center justify-center hover:bg-[#48752C]/8 hover:scale-105 transition-all cursor-pointer"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="20px"
-                      viewBox="0 -960 960 960"
-                      width="20px"
-                      fill="#48752C"
-                    >
-                      <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
-                    </svg>
-                  </button>
-                  <span className="text-[9px] tracking-[0.12em] uppercase text-[#48752C]/60 font-medium">
-                    Email
-                  </span>
+                  <div className="mt-2 w-56 h-[2px] bg-lime-600"></div>
                 </div>
 
-                <div className="h-12 w-px bg-[#48752C]/15" />
+                {/* Contact Section */}
+                <div className="grid grid-cols-1 gap-y-4 px-4 mt-6 text-sm">
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-green-700" />
+                    <div className="flex flex-col text-xs">
+                      <span>+91 9830974955 </span>
+                      <span>+91 9830832000</span>
+                    </div>
+                  </div>
 
-                Phone
-                <div className="flex flex-col items-center gap-2 px-5">
-                  <button
-                    onClick={() => toggle("phone")}
-                    className="h-11 w-11 rounded-full border border-[#48752C]/30 flex items-center justify-center hover:bg-[#48752C]/8 hover:scale-105 transition-all cursor-pointer"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="20px"
-                      viewBox="0 -960 960 960"
-                      width="20px"
-                      fill="#48752C"
-                    >
-                      <path d="m720-560-58-56 64-64H520v-80h206l-62-62 56-58 160 162-160 158Zm78 440q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z" />
-                    </svg>
-                  </button>
-                  <span className="text-[9px] tracking-[0.12em] uppercase text-[#48752C]/60 font-medium">
-                    Phone
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4 text-green-700 " />
+                    <div className="flex flex-col text-xs">
+                      <span>sucheta@abybaby.co.in</span>
+                      <span> shaw.vijay@abybaby.co.in</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2 ">
+                    <MapPin className="w-4 h-4 text-green-700 mt-0.5" />
+                    <span className="text-xs">
+                      4B,Rani Bhabani Road,Kalighat,Kolkata 700026
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
 
-        {/* Contact Info */}
-        {/* <div className="flex flex-col divide-y divide-border border-b border-border flex-shrink-0">
-      
-          <div className="flex items-start gap-3 px-4 py-3">
-            <div className="w-8 h-8 rounded-xl  flex items-center justify-center flex-shrink-0 mt-0.5">
-              <MapPin size={14} className="text-[#7CFC58]" />
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-widest text-primary font-semibold mb-0.5">
-                Address
-              </p>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                6B, Janak Rd, Lake Market, Kalighat Kolkata-700029, West Bengal
-              </p>
-            </div>
-          </div>
-
-  
-          <div className="flex items-start gap-3 px-4 py-3">
-            <div className="w-8 h-8 rounded-xl  flex items-center justify-center flex-shrink-0 mt-0.5">
-              <Mail size={14} className="text-[#7CFC58]" />
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-widest text-primary font-semibold mb-0.5">
-                Email
-              </p>
-              <div className="flex flex-row gap-2">
-                {" "}
-                <a
-                  href="mailto:sucheta@abybaby.co.in"
-                  className="block text-xs text-muted-foreground hover:text-primary transition-colors"
-                >
-                  sucheta@abybaby.co.in
-                </a>
-                <a
-                  href="mailto:shaw.vijay@abybaby.co.in"
-                  className="block text-xs text-muted-foreground hover:text-primary transition-colors"
-                >
-                  shaw.vijay@abybaby.co.in
-                </a>
-              </div>
-            </div>
-          </div>
-
-
-          <div className="flex items-start gap-3 px-4 py-3">
-            <div className="w-8 h-8 rounded-xl  flex items-center justify-center flex-shrink-0 mt-0.5 ">
-              <Phone size={14} className="text-[#7CFC58]" />
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-widest text-primary font-semibold mb-0.5">
-                Phone
-              </p>
-              <div className="flex flex-row gap-3">
-                <a
-                  href="tel:+919830832000"
-                  className="block text-xs text-muted-foreground hover:text-primary transition-colors"
-                >
-                  +91 9830832000
-                </a>
-                <a
-                  href="tel:+919830974955"
-                  className="block text-xs text-muted-foreground hover:text-primary transition-colors"
-                >
-                  +91 9830974955
-                </a>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        <div className="relative w-[400px] h-[250px] bg-white rounded-md shadow-lg overflow-hidden border ">
-          {/* Top-left Accent */}
-          <div className="absolute top-0 left-0">
-            <div className="w-16 h-16 bg-orange-500 clip-triangle"></div>
-            <div className="absolute top-0 left-6 w-16 h-16 bg-green-500 clip-triangle"></div>
-          </div>
-
-          {/* Logo */}
-          <div className="absolute top-5 right-5 text-right">
-            <img src={logo} alt="logo" className="h-10 ml-auto" />
-          </div>
-
-          {/* Name Section */}
-          <div className="pt-16 px-4">
-            <h2 className="text-xl font-bold text-gray-900 font-sans">
-              GET IN TOUCH
-            </h2>
-
-            <div className="mt-2 w-56 h-[2px] bg-green-500"></div>
-          </div>
-
-          {/* Contact Section */}
-          <div className="grid grid-cols-2 gap-y-4 px-4 mt-6 text-sm">
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-green-700" />
-              <div className="flex flex-col text-xs">
-                <span>+91 9830974955 </span>
-                <span>+91 9830832000</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-green-700 " />
-              <div className="flex flex-col text-xs">
-                <span>sucheta@abybaby.co.in</span>
-                <span> shaw.vijay@abybaby.co.in</span>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-2 text-xs">
-              <MapPin className="w-4 h-4 text-green-700 mt-0.5" />
-              <span>4B, Rani Bhabani Road,Kalighat,Kolkata 700026</span>
-            </div>
-          </div>
-
-          {/* Bottom Logos */}
-          {/* <div className="absolute bottom-7 left-0 right-0 flex justify-center gap-4 px-6">
+                {/* Bottom Logos */}
+                {/* <div className="absolute bottom-7 left-0 right-0 flex justify-center gap-4 px-6">
             <img src={partner1} className="h-6" />
             <img src={partner2} className="h-6" />
             <img src={partner3} className="h-6" />
             <img src={partner4} className="h-6" />
           </div> */}
 
-          {/* Bottom Tricolor Stripes */}
-          <div className="absolute bottom-0 left-0 w-full">
-            <div className="h-[3px] bg-orange-500"></div>
-            <div className="h-[3px] bg-white"></div>
-            <div className="h-[3px] bg-green-500"></div>
-          </div>
+                {/* Bottom Tricolor Stripes */}
+                <div className="absolute bottom-0 left-0 w-full">
+                  <div className="h-[3px] bg-lime-400"></div>
+                  <div className="h-[3px] bg-white"></div>
+                  <div className="h-[3px] bg-lime-600"></div>
+                </div>
 
-          {/* Bottom-right Accent */}
-          <div className="absolute bottom-0 right-0">
-            <div className="w-20 h-20 border-b-[20px] border-r-[20px] border-green-500 border-l-transparent border-t-transparent"></div>
+                {/* Bottom-right Accent */}
+                <div className="absolute bottom-0 right-0">
+                  <div className="w-20 h-20 border-b-[20px] border-r-[20px] border-lime-600 border-l-transparent border-t-transparent"></div>
+                </div>
+              </div>
+
+              {/* Back */}
+              <div
+                className="
+        absolute
+        inset-0
+        rounded-md
+        bg-lime-600
+        text-white
+        flex flex-col items-center justify-center
+        [transform:rotateY(180deg)]
+        [backface-visibility:hidden]
+      "
+              >
+                <button
+                  onClick={() => setOpen(false)}
+                  className="absolute top-4 left-4 w-8 h-8 rounded-full bg-white shadow-md border border-lime-200 flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer z-50"
+                >
+                  <X size={20} className="text-gray-700" />
+                </button>
+                <img src={logo} className="h-16 mb-4 rounded-full" />
+
+                <h3 className="text-xl font-bold font-sans">
+                  ABYBABY EVENTS PVT LTD
+                </h3>
+              </div>
+            </div>
           </div>
         </div>
+
         <AnimatePresence>
           {active && (
             <motion.div

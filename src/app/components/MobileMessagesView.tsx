@@ -40,9 +40,10 @@ export function MobileMessagesView({ onBack }: MobileMessagesViewProps) {
           <div
             style={{
               color: "#fff",
-              fontFamily: "var(--font-family-display)",
+
               fontSize: 18,
             }}
+            className="fort-sans"
           >
             Let's Connect
           </div>
