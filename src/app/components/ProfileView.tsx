@@ -1531,39 +1531,7 @@ export function ProfileView({ onNavigate }) {
       {/* ── Media grid (Posts / Reels / Images) ── */}
       <MediaGrid />
       <footer className="pt-2 pb-6 flex flex-col justify-center items-center ">
-        <div className="flex flex-wrap gap-x-4 gap-y-2">
-          {[
-            { title: "Home", link: "home" },
-            { title: "About", link: "about" },
-            { title: "Profile", link: "profile" },
-            { title: "Privacy Policy", link: "privacypolicy" },
-            { title: "Data Privacy ", link: "dataprivacy" },
-            { title: "Terms & Conditions ", link: "terms" },
-          ].map((item) => (
-            <a
-              key={item.link}
-              onClick={() => onNavigate(item.link)}
-              style={{
-                fontSize: 11,
-                color: "var(--muted-foreground)",
-                textDecoration: "none",
-                fontFamily: "var(--font-family-body)",
-                transition: "color 0.15s",
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--foreground)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--muted-foreground)")
-              }
-              className="cursor-pointer"
-            >
-              {item.title}
-            </a>
-          ))}
-        </div>
+        {/* 
         <p
           style={{
             fontSize: 11,
@@ -1574,7 +1542,37 @@ export function ProfileView({ onNavigate }) {
           }}
         >
           © 2026 ABY Baby Events. All rights reserved.
-        </p>
+        </p> */}
+        <div className="flex flex-col items-center py-8 gap-2">
+          <div
+            className="rounded-full flex items-center justify-center"
+            style={{
+              width: 48,
+              height: 48,
+              background: "linear-gradient(135deg, #65A30D 0%, #A3E635 100%)",
+            }}
+          >
+            <img src={logo} alt="" />
+          </div>
+
+          <p
+            style={{
+              fontSize: 13,
+              color: "#8e8e93",
+              textAlign: "center",
+            }}
+          >
+            You've explored all profile contents.
+          </p>
+          <button
+            onClick={() => onNavigate("casestudies")}
+            className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
+            style={{ color: "#579F63" }}
+          >
+            Explore More
+            <ArrowRight size={16} />
+          </button>
+        </div>
       </footer>
     </div>
   );

@@ -437,7 +437,7 @@ function SidebarCarousel({
     <div
       style={{
         position: "fixed",
-        top: 80,
+        top: 20,
         width: 280,
         alignSelf: "flex-start",
       }}
@@ -462,7 +462,7 @@ function SidebarCarousel({
       <div
         style={{
           overflow: "hidden",
-          height: CARD_HEIGHT * 3,
+          height: " 100vh",
           position: "relative",
         }}
       >
@@ -581,7 +581,11 @@ function SidebarCarousel({
 }
 // ── Main component ────────────────────────────────────────────────────────────
 
-export function CaseStudiesView({ onNavigate }: { onNavigate: (view: string) => void }) {
+export function CaseStudiesView({
+  onNavigate,
+}: {
+  onNavigate: (view: string) => void;
+}) {
   const [activeId, setActiveId] = useState(1);
   const study = CASE_STUDIES.find((s) => s.id === activeId)!;
 
@@ -591,7 +595,6 @@ export function CaseStudiesView({ onNavigate }: { onNavigate: (view: string) => 
 
   return (
     <div className="flex flex-col pb-12 px-4 pt-4 w-[100%] min-[1160px]:mx-50 min-[770px]:mx-16 mx-0">
-
       {/* Back button */}
       <button
         onClick={() => onNavigate("home")}
@@ -620,10 +623,8 @@ export function CaseStudiesView({ onNavigate }: { onNavigate: (view: string) => 
 
       {/* Two-column layout */}
       <div className="flex gap-5 ">
-
         {/* ── LEFT: Main content ── */}
         <div className="flex flex-col px-4" style={{ flex: 1, minWidth: 0 }}>
-
           <AnimatePresence mode="wait">
             <motion.div
               key={activeId}
@@ -687,7 +688,12 @@ export function CaseStudiesView({ onNavigate }: { onNavigate: (view: string) => 
                 <img
                   src={study.heroImage}
                   alt={study.title}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
                 />
               </div>
 
@@ -803,51 +809,53 @@ export function CaseStudiesView({ onNavigate }: { onNavigate: (view: string) => 
                   ))}
                 </div>
               </div>
-
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* ── RIGHT: Sidebar carousel ── */}
-        <div
-          className="shrink-0"
-          style={{ width: 180 }}
-        >
+        <div className="shrink-0" style={{ width: 180 }}>
           <SidebarCarousel
             studies={CASE_STUDIES}
             activeId={activeId}
             onSelect={setActiveId}
           />
         </div>
-
       </div>
 
       {/* Footer */}
-      {/* <footer className="pt-8 pb-2 flex flex-col justify-center items-center px-4">
-        <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center">
-          {["Home", "About", "Presence", "Privacy Policy", "Data Privacy", "Terms & Conditions"].map(
-            (link) => (
-              <a
-                key={link}
-                href="#"
-                style={{
-                  fontSize: 11,
-                  color: "var(--muted-foreground)",
-                  textDecoration: "none",
-                  fontFamily: "var(--font-family-body)",
-                  transition: "color 0.15s",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color = "var(--muted-foreground)")
-                }
-              >
-                {link}
-              </a>
-            )
-          )}
+      <footer className="pt-8 pb-2 flex flex-col justify-center items-start px-4 flex-wrap">
+        <div className="flex  gap-x-2 gap-y-2 justify-start items-start flex-row">
+          {[
+            "Home",
+            "About",
+            "Presence",
+            "Privacy Policy",
+            "Data Privacy",
+            "Terms & Conditions",
+          ].map((link) => (
+            <a
+              key={link}
+              href="#"
+              style={{
+                fontSize: 11,
+                color: "var(--muted-foreground)",
+                textDecoration: "none",
+                fontFamily: "var(--font-family-body)",
+                transition: "color 0.15s",
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--foreground)")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--muted-foreground)")
+              }
+            >
+              {link}
+            </a>
+          ))}
         </div>
         <p
           style={{
@@ -860,7 +868,7 @@ export function CaseStudiesView({ onNavigate }: { onNavigate: (view: string) => 
         >
           © 2026 ABY Baby Events. All rights reserved.
         </p>
-      </footer> */}
+      </footer>
     </div>
   );
 }
