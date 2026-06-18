@@ -86,7 +86,6 @@ export function RightPanel({
             onMouseLeave={(e) =>
               ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
             }
-            onClick={() => onNavigate("casestudies")}
           >
             See all
           </a>
