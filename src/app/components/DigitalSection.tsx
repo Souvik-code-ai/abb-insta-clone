@@ -338,34 +338,34 @@ export function DigitalSection({ onNavigate }) {
               {/* Title */}
               <div className="absolute top-8 left-8">
                 <div className="backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl px-6 py-4">
-                  <h2 className="text-white text-3xl font-bold font-sans">
+                  <h2 className="text-white text-xl md:text-3xl md:font-bold font-sans font-medium">
                     {selectedProject.name}
                   </h2>
                 </div>
               </div>
 
               {/* Reach */}
-              <div className="absolute top-8 right-8">
+              <div className="absolute md:top-8 right-8 top-40">
                 <div className="backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl p-5">
                   <h4 className="text-white/70 text-sm">Reach</h4>
-                  <p className="text-white text-3xl font-bold">
+                  <p className="text-white md:text-3xl font-bold text-sm">
                     {selectedProject.reach}
                   </p>
                 </div>
               </div>
 
               {/* Engagement */}
-              <div className="absolute bottom-8 left-8">
-                <div className="backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl p-5">
+              <div className="absolute md:bottom-8 left-8  bottom-84">
+                <div className="backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl p-5 flex flex-col justify-center items-center">
                   <h4 className="text-white/70 text-sm">Engagement</h4>
-                  <p className="text-white text-3xl font-bold">
+                  <p className="text-white md:text-3xl font-bold text-sm">
                     {selectedProject.engagement}
                   </p>
                 </div>
               </div>
 
               {/* Services */}
-              <div className="absolute bottom-8 right-8 w-[320px]">
+              <div className="absolute bottom-8 md:right-8 w-[320px] right-1 ">
                 <div className="backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl p-6">
                   <h4 className="text-white font-semibold mb-4">
                     Services Delivered

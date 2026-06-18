@@ -329,7 +329,7 @@ export function ExhibitionSection({ onNavigate }) {
               </div>
 
               {/* Floating Stats */}
-              <div className="absolute top-8 right-8 flex gap-4">
+              <div className="absolute md:top-8 right-8 flex gap-4 top-40">
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-5 py-3">
                   <p className="text-white/70 text-xs">Booth Size</p>
                   <p className="text-white font-semibold ">
@@ -343,16 +343,10 @@ export function ExhibitionSection({ onNavigate }) {
                     {selectedExhibition.attendance}
                   </p>
                 </div>
-                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-5 py-3">
-                  <p className="text-white/70 text-xs">Attendance</p>
-                  <p className="text-white font-semibold ">
-                    {selectedExhibition.attendance}
-                  </p>
-                </div>
               </div>
 
               {/* Floating Features */}
-              <div className="absolute bottom-8 left-8 max-w-md">
+              <div className="absolute bottom-8 md:left-8 max-w-md left-3.5">
                 <div className="bg-black/40 backdrop-blur-lg border border-white/20 rounded-2xl p-6">
                   <h3 className="text-white font-semibold mb-4">
                     Exhibition Highlights

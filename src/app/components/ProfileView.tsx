@@ -947,17 +947,13 @@ export function ProfileView({ onNavigate }) {
                     className="w-full h-full object-cover"
                   />
                   <div
-                    className="absolute inset-0 flex flex-col justify-end p-3"
+                    className="absolute inset-0 flex flex-col justify-end p-3 items-center"
                     style={{
                       background:
                         "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%)",
                     }}
                   >
-                    <span
-                      style={{ color: "#fff", fontSize: 12, fontWeight: 600 }}
-                    >
-                      {item.title}
-                    </span>
+                  
                     <span
                       style={{ color: "rgba(255,255,255,0.7)", fontSize: 10 }}
                     >

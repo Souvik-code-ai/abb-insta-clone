@@ -192,7 +192,7 @@ export function ActivationSection({ onNavigate }) {
                     className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-[#2C7048] "
                     style={{
                       color: "#fff",
-                      fontSize: 11,
+                    
                     }}
                   >
                     {item.type}
@@ -201,23 +201,23 @@ export function ActivationSection({ onNavigate }) {
 
                 <div className="p-4">
                   <h3
-                    className="font-semibold text-gray-900 leading-snug font-sans"
-                    style={{ fontSize: 15 }}
+                    className="font-semibold text-gray-900 leading-snug font-sans md:text-xl text-sm"
+                    
                   >
                     {item.title}
                   </h3>
 
                   <div className="mt-3 flex items-center justify-between">
                     <span className="text-gray-500" style={{ fontSize: 13 }}>
-                      Audience Reach
+                      Audiance Reach
                     </span>
 
                     <span
                       style={{
                         fontWeight: 600,
-                        fontSize: 13,
+                        
                       }}
-                      className="text-lime-500"
+                      className="text-lime-500 text-sm md:text-xl"
                     >
                       {item.audience}
                     </span>
@@ -447,22 +447,22 @@ export function ActivationSection({ onNavigate }) {
                   {selectedActivation.type}
                 </span>
 
-                <h2 className="text-white text-3xl font-bold mt-3 font-sans">
+                <h2 className="text-white md:text-3xl font-bold mt-3 font-sans text-xl">
                   {selectedActivation.title}
                 </h2>
               </div>
 
               {/* Audience */}
-              <div className="absolute top-8 right-8 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl px-6 py-4">
-                <p className="text-white/70 text-sm">Audience Reach</p>
+              <div className="absolute md:top-8 md:right-8 top-45 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl px-6 py-4 flex justify-center items-center flex-col right-20">
+                <p className="text-white/70 text-sm">Audiance Reach</p>
 
-                <h3 className="text-white text-3xl font-bold font-sans">
+                <h3 className="text-white md:text-3xl font-bold font-sans text-xl">
                   {selectedActivation.audience}
                 </h3>
               </div>
 
               {/* Highlights */}
-              <div className="absolute bottom-8 right-8 w-[320px] backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6">
+              <div className="absolute bottom-8 md:right-8 w-[320px] backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 right-1">
                 <h4 className="text-white font-semibold mb-4 font-sans">
                   Activation Highlights
                 </h4>
@@ -496,7 +496,7 @@ export function ActivationSection({ onNavigate }) {
               </div>
 
               {/* Thumbnail Strip */}
-              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-3">
+              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 md:flex gap-3 hidden ">
                 {selectedActivation.gallery.map((image, index) => (
                   <button
                     key={index}
