@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import logo from "../../assets/logo.jpg";
+import { useRef } from "react";
 // ── Mock data ─────────────────────────────────────────────────────────────────
 const EVENTS = [
   {
@@ -389,12 +390,14 @@ function EmptyState({ label }: { label: string }) {
     </div>
   );
 }
-
+const ITEMS_PER_PAGE = 2;
 // ── Root export ───────────────────────────────────────────────────────────────
 export function EventsSection({ onNavigate }) {
   const [hoveredEvent, setHoveredEvent] = useState<(typeof EVENTS)[0] | null>(
     null,
   );
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE); // ✅ tracks how many to show
+  const loaderRef = useRef<HTMLDivElement>(null);
   const TABS = [
     { key: "upcoming", label: "Upcoming" },
     { key: "expired", label: "Past events" },
@@ -405,6 +408,9 @@ export function EventsSection({ onNavigate }) {
     "upcoming" | "expired" | "highlights"
   >("upcoming");
   useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+  }, [activeTab]);
+  useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth", // use "auto" for instant jump
@@ -412,7 +418,22 @@ export function EventsSection({ onNavigate }) {
   }, []);
   const upcoming = EVENTS.filter((e) => e.status === "upcoming");
   const expired = EVENTS.filter((e) => e.status === "expired");
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount((prev) => prev + ITEMS_PER_PAGE);
+        }
+      },
+      { threshold: 1.0 },
+    );
+    if (loaderRef.current) observer.observe(loaderRef.current);
+    return () => observer.disconnect();
+  }, [activeTab]);
 
+  const currentList = activeTab === "upcoming" ? upcoming : expired;
+  const visibleEvents = currentList.slice(0, visibleCount); // ✅ sliced list
+  const hasMore = visibleCount < currentList.length;
   return (
     <div className="w-full min-h-screen bg-background min-[1160px]:mx-20 min-[770px]:mx-16 mx-0">
       {/* Page header — matches ProfileView / other section headings */}
@@ -463,27 +484,42 @@ export function EventsSection({ onNavigate }) {
           transition={{ duration: 0.18 }}
           className="px-2 py-5"
         >
-          {activeTab === "upcoming" &&
-            (upcoming.length > 0 ? (
+          {(activeTab === "upcoming" || activeTab === "expired") &&
+            (visibleEvents.length > 0 ? (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:grid-cols-2 ">
-                  {upcoming.map((event) => (
-                    <EventCard
-                      key={event.id}
-                      event={event}
-                      showType
-                      onHover={setHoveredEvent}
-                      onLeave={() => setHoveredEvent(null)}
-                    />
-                  ))}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:grid-cols-2">
+                  {visibleEvents.map(
+                    (
+                      event, // ✅ visibleEvents instead of full list
+                    ) => (
+                      <EventCard
+                        key={event.id}
+                        event={event}
+                        showType={activeTab === "upcoming"}
+                        onHover={setHoveredEvent}
+                        onLeave={() => setHoveredEvent(null)}
+                      />
+                    ),
+                  )}
                 </div>
+                {hasMore ? (
+                  <div ref={loaderRef} className="flex justify-center py-6">
+                    <div className="w-6 h-6 rounded-full border-2 border-lime-600 border-t-transparent animate-spin" />
+                  </div>
+                ) : (
+                  <p className="text-center text-gray-400 text-sm py-6">
+                    All events loaded ✓
+                  </p>
+                )}
                 <EventHoverPanel hoveredEvent={hoveredEvent} />
               </>
             ) : (
-              <EmptyState label="upcoming" />
+              <EmptyState
+                label={activeTab === "upcoming" ? "upcoming" : "past"}
+              />
             ))}
 
-          {activeTab === "expired" &&
+          {/* {activeTab === "expired" &&
             (expired.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -501,7 +537,7 @@ export function EventsSection({ onNavigate }) {
               </>
             ) : (
               <EmptyState label="past" />
-            ))}
+            ))} */}
 
           {activeTab === "highlights" && <EventHighlights />}
         </motion.div>

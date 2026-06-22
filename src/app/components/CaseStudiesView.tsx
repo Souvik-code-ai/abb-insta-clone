@@ -827,16 +827,16 @@ export function CaseStudiesView({
       <footer className="pt-8 pb-2 flex flex-col justify-center items-start px-4 flex-wrap">
         <div className="flex  gap-x-2 gap-y-2 justify-start items-start flex-row">
           {[
-            "Home",
-            "About",
-            "Presence",
-            "Privacy Policy",
-            "Data Privacy",
-            "Terms & Conditions",
+            { title: "Home", link: "home" },
+            { title: "About", link: "about" },
+            { title: "Profile", link: "profile" },
+            { title: "Privacy Policy", link: "privacypolicy" },
+            { title: "Data Privacy ", link: "dataprivacy" },
+            { title: "Terms & Conditions ", link: "terms" },
           ].map((link) => (
             <a
-              key={link}
-              href="#"
+              key={link.link}
+              onClick={() => onNavigate(link.link)}
               style={{
                 fontSize: 11,
                 color: "var(--muted-foreground)",
@@ -853,7 +853,7 @@ export function CaseStudiesView({
                   "var(--muted-foreground)")
               }
             >
-              {link}
+              {link.title}
             </a>
           ))}
         </div>

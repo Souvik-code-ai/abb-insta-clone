@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   ChevronLeft,
@@ -25,7 +25,6 @@ const STATS = [
   { label: "Clients", value: "340+" },
   { label: "Projects", value: "820+" },
 ];
-import { useEffect } from "react";
 const CAROUSEL_ITEMS = [
   {
     id: 1,
@@ -659,23 +658,164 @@ function GridCell({ item, onClick }: { item: MediaItem; onClick: () => void }) {
 
 type GridTab = "posts" | "reels" | "images";
 
+// function MediaGrid() {
+//   const [activeTab, setActiveTab] = useState<GridTab>("posts");
+//   const [lightboxItems, setLightboxItems] = useState<MediaItem[] | null>(null);
+//   const [lightboxStart, setLightboxStart] = useState(0);
+
+//   // Posts = all images + all reels; Reels = reels only; Images = images only
+//   const tabData: Record<GridTab, MediaItem[]> = {
+//     posts: POSTS_DATA,
+//     reels: REELS_DATA,
+//     images: IMAGES_DATA,
+//   };
+
+//   const items = tabData[activeTab];
+
+//   const openLightbox = (index: number) => {
+//     setLightboxStart(index);
+//     setLightboxItems(items);
+//   };
+
+//   const TABS: { key: GridTab; icon: React.ReactNode; label: string }[] = [
+//     { key: "posts", icon: <Grid size={16} />, label: "Posts" },
+//     { key: "reels", icon: <Film size={16} />, label: "Reels" },
+//     { key: "images", icon: <Image size={16} />, label: "Images" },
+//   ];
+
+//   return (
+//     <>
+//       {/* Tab row */}
+//       <div
+//         style={{
+//           display: "flex",
+//           marginBottom: 4,
+//         }}
+//       >
+//         {TABS.map((tab) => (
+//           <button
+//             key={tab.key}
+//             onClick={() => setActiveTab(tab.key)}
+//             style={{
+//               flex: 1,
+//               display: "flex",
+//               alignItems: "center",
+//               justifyContent: "center",
+//               gap: 6,
+//               padding: "11px 0",
+//               background: "none",
+//               border: "none",
+//               borderBottom:
+//                 activeTab === tab.key
+//                   ? "2px solid #579F63"
+//                   : "2px solid transparent",
+//               cursor: "pointer",
+//               color: activeTab === tab.key ? "#579F63" : "#8e8e93",
+//               fontSize: 13,
+//               fontWeight: activeTab === tab.key ? 700 : 400,
+//               transition: "all 0.15s",
+//             }}
+//           >
+//             {tab.icon}
+//           </button>
+//         ))}
+//       </div>
+
+//       {/* Grid */}
+//       <AnimatePresence mode="wait">
+//         <motion.div
+//           key={activeTab}
+//           initial={{ opacity: 0, y: 6 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           exit={{ opacity: 0, y: -6 }}
+//           transition={{ duration: 0.18 }}
+//           style={{
+//             display: "grid",
+//             gridTemplateColumns: "repeat(3, 1fr)",
+//             gap: 3,
+//             padding: "0 0 8px",
+//           }}
+//         >
+//           {items.map((item, i) => (
+//             <GridCell
+//               key={item.id}
+//               item={item}
+//               onClick={() => openLightbox(i)}
+//             />
+//           ))}
+//         </motion.div>
+//       </AnimatePresence>
+
+//       {/* Lightbox */}
+//       <AnimatePresence>
+//         {lightboxItems && (
+//           <MediaLightbox
+//             items={lightboxItems}
+//             startIndex={lightboxStart}
+//             onClose={() => setLightboxItems(null)}
+//           />
+//         )}
+//       </AnimatePresence>
+//     </>
+//   );
+// }
+
+// ── ProfileView (root) ────────────────────────────────────────────────────────
 function MediaGrid() {
   const [activeTab, setActiveTab] = useState<GridTab>("posts");
   const [lightboxItems, setLightboxItems] = useState<MediaItem[] | null>(null);
   const [lightboxStart, setLightboxStart] = useState(0);
 
-  // Posts = all images + all reels; Reels = reels only; Images = images only
+  // Infinite scroll state — only used for "images" tab
+  const [visibleImageCount, setVisibleImageCount] = useState(6);
+  const [isLoadingImages, setIsLoadingImages] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  const hasMoreImages = visibleImageCount < IMAGES_DATA.length;
+
+  const loadMoreImages = useCallback(() => {
+    if (isLoadingImages || !hasMoreImages) return;
+    setIsLoadingImages(true);
+    setTimeout(() => {
+      setVisibleImageCount((prev) => Math.min(prev + 6, IMAGES_DATA.length));
+      setIsLoadingImages(false);
+    }, 500);
+  }, [isLoadingImages, hasMoreImages]);
+
+  // Re-attach observer whenever tab switches to "images" or more items load
+  useEffect(() => {
+    if (activeTab !== "images") return;
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) loadMoreImages();
+      },
+      { rootMargin: "200px" },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [activeTab, loadMoreImages]);
+
+  // Reset image count when switching away from images tab and back
+  useEffect(() => {
+    if (activeTab === "images") setVisibleImageCount(6);
+  }, [activeTab]);
+
   const tabData: Record<GridTab, MediaItem[]> = {
     posts: POSTS_DATA,
     reels: REELS_DATA,
-    images: IMAGES_DATA,
+    images: IMAGES_DATA.slice(0, visibleImageCount), // sliced for images tab
   };
 
   const items = tabData[activeTab];
+  // For lightbox on images tab, always pass the full dataset so you can swipe through all
+  const lightboxPool =
+    activeTab === "images" ? IMAGES_DATA : tabData[activeTab];
 
   const openLightbox = (index: number) => {
     setLightboxStart(index);
-    setLightboxItems(items);
+    setLightboxItems(lightboxPool);
   };
 
   const TABS: { key: GridTab; icon: React.ReactNode; label: string }[] = [
@@ -687,12 +827,7 @@ function MediaGrid() {
   return (
     <>
       {/* Tab row */}
-      <div
-        style={{
-          display: "flex",
-          marginBottom: 4,
-        }}
-      >
+      <div style={{ display: "flex", marginBottom: 4 }}>
         {TABS.map((tab) => (
           <button
             key={tab.key}
@@ -738,14 +873,54 @@ function MediaGrid() {
           }}
         >
           {items.map((item, i) => (
-            <GridCell
+            <motion.div
               key={item.id}
-              item={item}
-              onClick={() => openLightbox(i)}
-            />
+              // Only animate newly loaded images, not the initial batch or other tabs
+              initial={
+                activeTab === "images" && i >= visibleImageCount - 6
+                  ? { opacity: 0, scale: 0.95 }
+                  : false
+              }
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.25, delay: (i % 6) * 0.04 }}
+            >
+              <GridCell item={item} onClick={() => openLightbox(i)} />
+            </motion.div>
           ))}
         </motion.div>
       </AnimatePresence>
+
+      {/* ── Infinite scroll sentinel & spinner (images tab only) ── */}
+      {activeTab === "images" && (
+        <div
+          ref={sentinelRef}
+          className="flex justify-center items-center py-4"
+        >
+          {isLoadingImages && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex flex-col items-center gap-2"
+            >
+              <div
+                style={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: "50%",
+                  border: "2px solid #e5e7eb",
+                  borderTopColor: "#579F63",
+                  animation: "spin 0.7s linear infinite",
+                }}
+              />
+              <p style={{ fontSize: 11, color: "#aaa" }}>Loading more…</p>
+              <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            </motion.div>
+          )}
+          {!hasMoreImages && !isLoadingImages && (
+            <p style={{ fontSize: 11, color: "#c0c0c0" }}>All images loaded</p>
+          )}
+        </div>
+      )}
 
       {/* Lightbox */}
       <AnimatePresence>
@@ -760,9 +935,6 @@ function MediaGrid() {
     </>
   );
 }
-
-// ── ProfileView (root) ────────────────────────────────────────────────────────
-
 export function ProfileView({ onNavigate }) {
   const [offset, setOffset] = useState(0);
   const canPrev = offset > 0;
@@ -953,7 +1125,6 @@ export function ProfileView({ onNavigate }) {
                         "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%)",
                     }}
                   >
-                  
                     <span
                       style={{ color: "rgba(255,255,255,0.7)", fontSize: 10 }}
                     >

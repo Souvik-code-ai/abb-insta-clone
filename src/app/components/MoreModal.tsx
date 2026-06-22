@@ -1,21 +1,57 @@
 import { motion, AnimatePresence } from "motion/react";
-import { Info, BookOpen, Shield, FileText, Lock, X } from "lucide-react";
+import { Info, BookOpen, Shield, FileText, Lock, X, Award } from "lucide-react";
 
 interface MoreModalProps {
   isOpen: boolean;
   onClose: () => void;
-    onNavigate: (view: string) => void;
+  onNavigate: (view: string) => void;
 }
 
-const items: { icon: React.ElementType; label: string; desc: string; view: string | null }[] = [
-  { icon: Info,      label: "About Us",           desc: "Our story and mission",     view: "about" },
-  { icon: BookOpen,  label: "Case Studies",        desc: "Premium event portfolios",  view:"casestudies"  },
-  { icon: Shield,    label: "Privacy Policy",      desc: "How we protect your data",  view: "privacypolicy" },
-  { icon: FileText,  label: "Terms & Conditions",  desc: "Usage guidelines",          view: "terms" },
-  { icon: Lock,      label: "Data Privacy",        desc: "GDPR & data rights",        view: "dataprivacy" },
+const items: {
+  icon: React.ElementType;
+  label: string;
+  desc: string;
+  view: string | null;
+}[] = [
+  {
+    icon: Info,
+    label: "About Us",
+    desc: "Our story and mission",
+    view: "about",
+  },
+  {
+    icon: BookOpen,
+    label: "Case Studies",
+    desc: "Premium event portfolios",
+    view: "casestudies",
+  },
+  {
+    icon: Award,
+    label: "Awards and Recognitions",
+    desc: "Our achievements",
+    view: "awards",
+  },
+  {
+    icon: Shield,
+    label: "Privacy Policy",
+    desc: "How we protect your data",
+    view: "privacypolicy",
+  },
+  {
+    icon: FileText,
+    label: "Terms & Conditions",
+    desc: "Usage guidelines",
+    view: "terms",
+  },
+  {
+    icon: Lock,
+    label: "Data Privacy",
+    desc: "GDPR & data rights",
+    view: "dataprivacy",
+  },
 ];
 
-export function MoreModal({ isOpen, onClose ,onNavigate}: MoreModalProps) {
+export function MoreModal({ isOpen, onClose, onNavigate }: MoreModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -54,13 +90,14 @@ export function MoreModal({ isOpen, onClose ,onNavigate}: MoreModalProps) {
                 <X size={16} />
               </button>
             </div>
-            {items.map(({ icon: Icon, label, desc,view }) => (
+            {items.map(({ icon: Icon, label, desc, view }) => (
               <button
                 key={label}
                 className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors"
                 style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
-                 onClick={() => {
-                  if (view) {          // ← navigate if this item has a route
+                onClick={() => {
+                  if (view) {
+                    // ← navigate if this item has a route
                     onClose();
                     onNavigate(view);
                   }

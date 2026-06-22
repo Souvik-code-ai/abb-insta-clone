@@ -5,7 +5,7 @@ import logo from "../../assets/download.jpg";
 import email from "../../assets/email.webp";
 import addressLogo from "../../assets/address_logo.jpg";
 import phone from "../../assets/phone.webp";
-import { Globe } from "lucide-react";
+import { Globe, Recycle } from "lucide-react";
 type Panel = "address" | "email" | "phone" | null;
 import {
   MapPin,
@@ -153,6 +153,8 @@ function SidePanel({
   onNavigate: (page: string) => void;
 }) {
   const [selectedId, setSelectedId] = useState<number>(1);
+  // inside SidePanel, add this state
+  const [flipped, setFlipped] = useState<boolean>(false);
   const [fullscreenLoc, setFullscreenLoc] = useState<Location | null>(null);
   const [carouselOffset, setCarouselOffset] = useState<number>(0);
   const [mapKey, setMapKey] = useState<number>(1);
@@ -249,16 +251,11 @@ function SidePanel({
         }}
       >
         <div className="flex flex-row justify-center items-center ">
-          <div className="group perspective-[1000px] w-[370px] h-[290px] m-6">
+          <div className=" perspective-[1000px] w-[370px] h-[290px] m-6">
             <div
-              className="
-      relative
-      h-full
-      w-full
-      duration-700
-      [transform-style:preserve-3d]
-      group-hover:[transform:rotateY(180deg)]
-    "
+              className={`relative h-full w-full duration-700 [transform-style:preserve-3d] transition-transform ${
+                flipped ? "[transform:rotateY(180deg)]" : "" // ✅ flipped state controls rotation
+              }`}
             >
               {/* Front */}
               <div
@@ -349,6 +346,12 @@ function SidePanel({
                 <div className="absolute bottom-0 right-0">
                   <div className="w-20 h-20 border-b-[20px] border-r-[20px] border-lime-600 border-l-transparent border-t-transparent"></div>
                 </div>
+                <button
+                  onClick={() => setFlipped(true)}
+                  className="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-white shadow-md border border-lime-200 flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer z-50"
+                >
+                  <Recycle size={20} className="text-gray-700" />
+                </button>
               </div>
 
               {/* Back */}
@@ -375,6 +378,12 @@ function SidePanel({
                 <h3 className="text-xl font-bold font-sans">
                   ABYBABY EVENTS PVT LTD
                 </h3>
+                <button
+                  onClick={() => setFlipped(false)}
+                  className="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-white shadow-md border border-lime-200 flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer z-50"
+                >
+                  <Recycle size={20} className="text-gray-700" />
+                </button>
               </div>
             </div>
           </div>

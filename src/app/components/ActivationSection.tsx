@@ -1,36 +1,574 @@
-import { useState, useEffect, useRef } from "react";
+// import { useState, useEffect, useRef } from "react";
+// import { motion, AnimatePresence } from "motion/react";
+// import { ArrowRight } from "lucide-react";
+// // import { NextSection } from "./NextSection";
+// // Cover Images
+// // import droneCover from "../../../assets/activation/drone/cover.jpg";
+// import logo from "../../assets/logo.jpg";
+// import miaCover from "../../assets/AL.jpg";
+// import mallCover from "../../assets/AL.jpg";
+// import rallyCover from "../../assets/AL.jpg";
+// import tataCover from "../../assets/AL.jpg";
+// import miaDetail from "../../assets/AL.jpg";
+// import mallDetail from "../../assets/AL.jpg";
+// import rallyDetail from "../../assets/AL.jpg";
+// import tataDetail from "../../assets/AL.jpg";
+// import mia1 from "../../assets/AL.jpg";
+// import mia2 from "../../assets/AL.jpg";
+// import mia3 from "../../assets/AL.jpg";
+
+// import mall1 from "../../assets/AL.jpg";
+// import mall2 from "../../assets/AL.jpg";
+// import mall3 from "../../assets/AL.jpg";
+
+// import rally1 from "../../assets/AL.jpg";
+// import rally2 from "../../assets/AL.jpg";
+// import rally3 from "../../assets/AL.jpg";
+// import tata1 from "../../assets/AL.jpg";
+// import tata2 from "../../assets/AL.jpg";
+// import tata3 from "../../assets/AL.jpg";
+// export function ActivationSection({ onNavigate }) {
+//   const [selectedActivation, setSelectedActivation] = useState(null);
+//   const [hoveredProject, setHoveredProject] = useState(null);
+//   const ACTIVATIONS = [
+//     {
+//       id: 1,
+//       title: "MIA Store Launch",
+//       type: "Retail Activation",
+//       image: miaCover,
+//       gallery: [mia1, mia2, mia3],
+//       audience: "25K+",
+//       highlights: [
+//         "Store Inauguration Ceremony",
+//         "Customer Experience Zone",
+//         "Product Showcase",
+//         "Brand Engagement Activities",
+//         "Media Coverage",
+//       ],
+//     },
+
+//     {
+//       id: 2,
+//       title: "Mall Promotion",
+//       type: "Mall Activation",
+//       image: mallCover,
+//       gallery: [mall1, mall2, mall3],
+//       audience: "50K+",
+//       highlights: [
+//         "Interactive Consumer Engagement",
+//         "Product Demonstration Booths",
+//         "Lead Generation Campaign",
+//         "On-ground Branding",
+//         "Footfall Conversion Activities",
+//       ],
+//     },
+
+//     {
+//       id: 3,
+//       title: "Bike Rally",
+//       type: "Roadshow Activation",
+//       image: rallyCover,
+//       gallery: [rally1, rally2, rally3],
+//       audience: "15K+",
+//       highlights: [
+//         "Brand Visibility Across City",
+//         "Rider Community Engagement",
+//         "Flag-off Ceremony",
+//         "Roadshow Promotions",
+//         "Media & Social Coverage",
+//       ],
+//     },
+
+//     {
+//       id: 4,
+//       title: "Tata Culture Connect",
+//       type: "Corporate Engagement",
+//       image: tataCover,
+//       gallery: [tata1, tata2, tata3],
+//       audience: "8K+",
+//       highlights: [
+//         "Employee Engagement Programs",
+//         "Cultural Activities",
+//         "Recognition & Awards",
+//         "Team Building Sessions",
+//         "Corporate Networking",
+//       ],
+//     },
+//   ];
+//   useEffect(() => {
+//     window.scrollTo({
+//       top: 0,
+//       behavior: "smooth", // use "auto" for instant jump
+//     });
+//   }, []);
+//   const ACTIVATION_STATS = [
+//     {
+//       title: "Activations Delivered",
+//       value: "500+",
+//       icon: "🚀",
+//     },
+//     {
+//       title: "Audience Reached",
+//       value: "5M+",
+//       icon: "👥",
+//     },
+//     {
+//       title: "Cities Covered",
+//       value: "120+",
+//       icon: "📍",
+//     },
+//   ];
+
+//   const [currentImage, setCurrentImage] = useState(0);
+//   //   useEffect(() => {
+//   //     const el = bottomRef.current;
+//   //     if (!el) return;
+
+//   //     const observer = new IntersectionObserver(
+//   //       ([entry]) => {
+//   //         if (entry.isIntersecting) {
+//   //           observer.disconnect();
+//   //           navigate("profile");
+//   //         }
+//   //       },
+//   //       { threshold: 0.9 }, // fire when 90% of the sentinel is visible
+//   //     );
+
+//   //     observer.observe(el);
+//   //     return () => observer.disconnect();
+//   //   }, [navigate]);
+//   return (
+//     <>
+//       <div className="w-full min-h-screen bg-background min-[1160px]:mx-20 min-[770px]:mx-16 mx-0">
+//         {/* Heading */}
+//         <div
+//           className="sticky top-0 z-10 px-4 pt-4 pb-3"
+//           style={{ background: "var(--color-background, #fff)" }}
+//         >
+//           <h1
+//             className="font-semibold text-gray-900 font-sans lg:text-3xl md:text-2xl text-xl"
+//             style={{ letterSpacing: "-0.01em" }}
+//           >
+//             Activations
+//           </h1>
+
+//           <p className="text-gray-500 mt-0.5" style={{ fontSize: 13 }}>
+//             Creating immersive brand experiences and audience engagement
+//             campaigns
+//           </p>
+//         </div>
+
+//         {/* Cards */}
+//         <div className="px-2 py-5">
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//             {ACTIVATIONS.map((item) => (
+//               <motion.div
+//                 key={item.id}
+//                 whileHover={{ y: -3 }}
+//                 transition={{
+//                   type: "spring",
+//                   stiffness: 300,
+//                   damping: 24,
+//                 }}
+//                 onClick={() => {
+//                   setSelectedActivation(item);
+
+//                   setCurrentImage(0);
+//                 }}
+//                 onMouseEnter={() => setHoveredProject(item)} // NEW
+//                 onMouseLeave={() => setHoveredProject(null)}
+//                 className="overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm cursor-pointer"
+//                 style={{ border: "1px solid #f0f0f5" }}
+//               >
+//                 <div className="relative">
+//                   <img
+//                     src={item.image}
+//                     alt={item.title}
+//                     className="w-full object-cover transition-transform duration-500 hover:scale-105"
+//                     style={{ height: 240 }}
+//                   />
+
+//                   <span
+//                     className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-[#2C7048] "
+//                     style={{
+//                       color: "#fff",
+
+//                     }}
+//                   >
+//                     {item.type}
+//                   </span>
+//                 </div>
+
+//                 <div className="p-4">
+//                   <h3
+//                     className="font-semibold text-gray-900 leading-snug font-sans md:text-xl text-sm"
+
+//                   >
+//                     {item.title}
+//                   </h3>
+
+//                   <div className="mt-3 flex items-center justify-between">
+//                     <span className="text-gray-500" style={{ fontSize: 13 }}>
+//                       Audiance Reach
+//                     </span>
+
+//                     <span
+//                       style={{
+//                         fontWeight: 600,
+
+//                       }}
+//                       className="text-lime-500 text-sm md:text-xl"
+//                     >
+//                       {item.audience}
+//                     </span>
+//                   </div>
+//                   {/*
+//                   <div className="mt-4 flex flex-wrap gap-2">
+//                     {item.highlights.slice(0, 2).map((highlight) => (
+//                       <span
+//                         key={highlight}
+//                         className="px-2 py-1 rounded-full text-xs"
+//                         style={{
+//                           background: "#fdf2f5",
+//                           color: "#d4456a",
+//                           border: "1px solid #f5e0e7",
+//                         }}
+//                       >
+//                         {highlight}
+//                       </span>
+//                     ))}
+//                   </div> */}
+
+//                   {/* <button
+//                     className="mt-4 w-full py-2 rounded-xl font-medium"
+//                     style={{
+//                       background: "#d4456a",
+//                       color: "#fff",
+//                     }}
+//                   >
+//                     View Activation
+//                   </button> */}
+//                 </div>
+//               </motion.div>
+//             ))}
+//           </div>
+//           <div className="hidden xl:block w-64 fixed  flex-shrink-0  right-[10vw] top-[15vh]">
+//             <AnimatePresence mode="wait">
+//               {hoveredProject ? (
+//                 <motion.div
+//                   key={hoveredProject.id}
+//                   initial={{ opacity: 0, x: 10 }}
+//                   animate={{ opacity: 1, x: 0 }}
+//                   exit={{ opacity: 0, x: 10 }}
+//                   transition={{ duration: 0.2 }}
+//                   className="rounded-2xl bg-white border border-gray-100 p-5 "
+//                   style={{ border: "1px solid #f0f0f5" }}
+//                 >
+//                   {/* Preview Image */}
+//                   <img
+//                     src={hoveredProject.image}
+//                     alt={hoveredProject.name}
+//                     className="w-full rounded-xl object-cover mb-4"
+//                     style={{ height: 120 }}
+//                   />
+
+//                   {/* Name */}
+//                   <h3 className="font-semibold text-gray-900 font-sans text-sm mb-3">
+//                     {hoveredProject.name}
+//                   </h3>
+
+//                   {/* Stats */}
+//                   <div className="flex gap-2 mb-4">
+//                     <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
+//                       <p className="text-xs text-gray-400 mb-1">
+//                         Audiance Reach
+//                       </p>
+//                       <p className="text-xs font-semibold text-gray-800">
+//                         {hoveredProject.audience}
+//                       </p>
+//                     </div>
+//                     {/* <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
+//                       <p className="text-xs text-gray-400 mb-1">Engagement</p>
+//                       <p className="text-sm font-semibold text-gray-800">
+//                         {hoveredProject.engagement}
+//                       </p>
+//                     </div> */}
+//                   </div>
+
+//                   {/* Services */}
+//                   <p className="text-xs text-gray-400 uppercase tracking-wider mb-2 font-medium">
+//                     Services
+//                   </p>
+//                   <div className="space-y-2">
+//                     {hoveredProject.highlights.map((service) => (
+//                       <div
+//                         key={service}
+//                         className="flex items-center gap-2 text-sm text-gray-700"
+//                       >
+//                         <span className="w-1.5 h-1.5 rounded-full bg-lime-400 flex-shrink-0" />
+//                         {service}
+//                       </div>
+//                     ))}
+//                   </div>
+//                 </motion.div>
+//               ) : // <motion.div
+//               //   key="empty"
+//               //   initial={{ opacity: 0 }}
+//               //   animate={{ opacity: 1 }}
+//               //   exit={{ opacity: 0 }}
+//               //   className="rounded-2xl border border-dashed border-gray-200 flex flex-col items-center justify-center py-16 gap-2"
+//               // >
+//               //   <p className="text-xs text-gray-400">Hover a card to preview</p>
+//               // </motion.div>
+//               null}
+//             </AnimatePresence>
+//           </div>
+//         </div>
+//         <div className="flex flex-col items-center py-8 gap-2">
+//           <div
+//             className="rounded-full flex items-center justify-center"
+//             style={{
+//               width: 48,
+//               height: 48,
+//               background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
+//             }}
+//           >
+//             <img src={logo} alt="" />
+//           </div>
+//           <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
+//             You've seen all activations.
+//             <br />
+//             {/* <a href="#" style={{ color: "#d4456a", fontWeight: 600 }}>
+//             View full event calendar →
+//           </a> */}
+//           </p>
+//           <button
+//             onClick={() => onNavigate("profile")}
+//             className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
+//             style={{ color: "#579F63" }}
+//           >
+//             Explore More
+//             <ArrowRight size={16} />
+//           </button>
+//         </div>
+//         {/* Stats */}
+//         {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+//           {ACTIVATION_STATS.map((stat) => (
+//             <div
+//               key={stat.title}
+//               className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center"
+//             >
+//               <div className="text-3xl mb-3">{stat.icon}</div>
+
+//               <h3 className="text-2xl font-bold text-lime-500">{stat.value}</h3>
+
+//               <p className="mt-2 text-muted-foreground">{stat.title}</p>
+//             </div>
+//           ))}
+//         </div> */}
+//       </div>
+
+//       {/* Modal */}
+//       <AnimatePresence>
+//         {selectedActivation && (
+//           <motion.div
+//             className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: 1 }}
+//             exit={{ opacity: 0 }}
+//             onClick={() => setSelectedActivation(null)}
+//           >
+//             <motion.div
+//               initial={{ scale: 0.95, opacity: 0 }}
+//               animate={{ scale: 1, opacity: 1 }}
+//               exit={{ scale: 0.95, opacity: 0 }}
+//               transition={{ duration: 0.3 }}
+//               onClick={(e) => e.stopPropagation()}
+//               className="relative w-full max-w-7xl h-[85vh] overflow-hidden rounded-3xl"
+//             >
+//               {/* Main Image */}
+//               <AnimatePresence mode="wait">
+//                 <motion.img
+//                   key={currentImage}
+//                   src={selectedActivation.gallery[currentImage]}
+//                   alt={selectedActivation.title}
+//                   initial={{ opacity: 0, scale: 1.05 }}
+//                   animate={{ opacity: 1, scale: 1 }}
+//                   exit={{ opacity: 0 }}
+//                   transition={{ duration: 0.4 }}
+//                   className="absolute inset-0 w-full h-full object-cover"
+//                 />
+//               </AnimatePresence>
+
+//               {/* Overlay */}
+//               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/30" />
+
+//               {/* Previous */}
+//               <button
+//                 onClick={() =>
+//                   setCurrentImage((prev) =>
+//                     prev === 0
+//                       ? selectedActivation.gallery.length - 1
+//                       : prev - 1,
+//                   )
+//                 }
+//                 className="absolute left-6 top-1/2 -translate-y-1/2
+//                      w-14 h-14 rounded-full z-50
+//                      bg-black/40 backdrop-blur-md
+//                      text-white text-3xl
+//                      flex items-center justify-center
+//                      hover:bg-black/60 transition"
+//               >
+//                 ❮
+//               </button>
+
+//               {/* Next */}
+//               <button
+//                 onClick={() =>
+//                   setCurrentImage((prev) =>
+//                     prev === selectedActivation.gallery.length - 1
+//                       ? 0
+//                       : prev + 1,
+//                   )
+//                 }
+//                 className="absolute right-6 top-1/2 -translate-y-1/2 z-50
+//                      w-14 h-14 rounded-full
+//                      bg-black/40 backdrop-blur-md
+//                      text-white text-3xl
+//                      flex items-center justify-center
+//                      hover:bg-black/60 transition"
+//               >
+//                 ❯
+//               </button>
+
+//               {/* Title Card */}
+//               <div className="absolute top-8 left-8 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl px-6 py-4">
+//                 <span className="text-xs bg-lime-600 px-3 py-1 rounded-full text-white">
+//                   {selectedActivation.type}
+//                 </span>
+
+//                 <h2 className="text-white md:text-3xl font-bold mt-3 font-sans text-xl">
+//                   {selectedActivation.title}
+//                 </h2>
+//               </div>
+
+//               {/* Audience */}
+//               <div className="absolute md:top-8 md:right-8 top-45 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl px-6 py-4 flex justify-center items-center flex-col right-20">
+//                 <p className="text-white/70 text-sm">Audiance Reach</p>
+
+//                 <h3 className="text-white md:text-3xl font-bold font-sans text-xl">
+//                   {selectedActivation.audience}
+//                 </h3>
+//               </div>
+
+//               {/* Highlights */}
+//               <div className="absolute bottom-8 md:right-8 w-[320px] backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 right-1">
+//                 <h4 className="text-white font-semibold mb-4 font-sans">
+//                   Activation Highlights
+//                 </h4>
+
+//                 <div className="space-y-3">
+//                   {selectedActivation.highlights.map((highlight) => (
+//                     <div
+//                       key={highlight}
+//                       className="flex items-center gap-3 text-white"
+//                     >
+//                       <span className="w-2 h-2 rounded-full bg-lime-400" />
+//                       {highlight}
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+
+//               {/* Indicators */}
+//               <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
+//                 {selectedActivation.gallery.map((_, index) => (
+//                   <button
+//                     key={index}
+//                     onClick={() => setCurrentImage(index)}
+//                     className={`transition-all rounded-full ${
+//                       currentImage === index
+//                         ? "w-8 h-3 bg-white"
+//                         : "w-3 h-3 bg-white/40"
+//                     }`}
+//                   />
+//                 ))}
+//               </div>
+
+//               {/* Thumbnail Strip */}
+//               <div className="absolute bottom-20 left-1/2 -translate-x-1/2 md:flex gap-3 hidden ">
+//                 {selectedActivation.gallery.map((image, index) => (
+//                   <button
+//                     key={index}
+//                     onClick={() => setCurrentImage(index)}
+//                     className={`overflow-hidden rounded-lg border-2 ${
+//                       currentImage === index
+//                         ? "border-white"
+//                         : "border-white/30"
+//                     }`}
+//                   >
+//                     <img
+//                       src={image}
+//                       alt=""
+//                       className="w-20 h-14 object-cover"
+//                     />
+//                   </button>
+//                 ))}
+//               </div>
+
+//               {/* Close */}
+//               <button
+//                 onClick={() => setSelectedActivation(null)}
+//                 className="absolute top-3 right-3 w-10 h-10 rounded-full
+//                      bg-black/50 backdrop-blur-md
+//                      text-white text-xl
+//                      flex items-center justify-center"
+//               >
+//                 ✕
+//               </button>
+//             </motion.div>
+//           </motion.div>
+//         )}
+//       </AnimatePresence>
+//       {/* <NextSection
+//         title="Activations"
+//         description="Explore brand activations, mall promotions, roadshows and experiential marketing campaigns."
+//         onClick={() => navigate("profile")}
+//       /> */}
+//     </>
+//   );
+// }
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight } from "lucide-react";
-// import { NextSection } from "./NextSection";
-// Cover Images
-// import droneCover from "../../../assets/activation/drone/cover.jpg";
 import logo from "../../assets/logo.jpg";
 import miaCover from "../../assets/AL.jpg";
 import mallCover from "../../assets/AL.jpg";
 import rallyCover from "../../assets/AL.jpg";
 import tataCover from "../../assets/AL.jpg";
-import miaDetail from "../../assets/AL.jpg";
-import mallDetail from "../../assets/AL.jpg";
-import rallyDetail from "../../assets/AL.jpg";
-import tataDetail from "../../assets/AL.jpg";
 import mia1 from "../../assets/AL.jpg";
 import mia2 from "../../assets/AL.jpg";
 import mia3 from "../../assets/AL.jpg";
-
 import mall1 from "../../assets/AL.jpg";
 import mall2 from "../../assets/AL.jpg";
 import mall3 from "../../assets/AL.jpg";
-
 import rally1 from "../../assets/AL.jpg";
 import rally2 from "../../assets/AL.jpg";
 import rally3 from "../../assets/AL.jpg";
 import tata1 from "../../assets/AL.jpg";
 import tata2 from "../../assets/AL.jpg";
 import tata3 from "../../assets/AL.jpg";
+
 export function ActivationSection({ onNavigate }) {
   const [selectedActivation, setSelectedActivation] = useState(null);
   const [hoveredProject, setHoveredProject] = useState(null);
-  const ACTIVATIONS = [
+  const [currentImage, setCurrentImage] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(4);
+  const [isLoading, setIsLoading] = useState(false);
+  const sentinelRef = useRef(null);
+
+  // ── Full data pool — add more entries here to extend the list
+  const ACTIVATIONS_ALL = [
     {
       id: 1,
       title: "MIA Store Launch",
@@ -46,7 +584,6 @@ export function ActivationSection({ onNavigate }) {
         "Media Coverage",
       ],
     },
-
     {
       id: 2,
       title: "Mall Promotion",
@@ -62,7 +599,6 @@ export function ActivationSection({ onNavigate }) {
         "Footfall Conversion Activities",
       ],
     },
-
     {
       id: 3,
       title: "Bike Rally",
@@ -78,7 +614,6 @@ export function ActivationSection({ onNavigate }) {
         "Media & Social Coverage",
       ],
     },
-
     {
       id: 4,
       title: "Tata Culture Connect",
@@ -94,49 +629,98 @@ export function ActivationSection({ onNavigate }) {
         "Corporate Networking",
       ],
     },
+    {
+      id: 5,
+      title: "Urban Brand Drive",
+      type: "Roadshow Activation",
+      image: rallyCover,
+      gallery: [rally1, rally2, rally3],
+      audience: "30K+",
+      highlights: [
+        "City-wide Route Coverage",
+        "Live DJ & Entertainment",
+        "Sampling & Giveaways",
+        "Social Media Integration",
+        "Influencer Presence",
+      ],
+    },
+    {
+      id: 6,
+      title: "Festive Mall Blitz",
+      type: "Mall Activation",
+      image: mallCover,
+      gallery: [mall1, mall2, mall3],
+      audience: "70K+",
+      highlights: [
+        "Festive Zone Setup",
+        "Lucky Draw Activations",
+        "Brand Photo Booths",
+        "Live Performances",
+        "On-spot Promotions",
+      ],
+    },
+    {
+      id: 7,
+      title: "Tech Product Launch",
+      type: "Retail Activation",
+      image: miaCover,
+      gallery: [mia1, mia2, mia3],
+      audience: "12K+",
+      highlights: [
+        "Product Reveal Ceremony",
+        "Hands-on Demo Zone",
+        "Media Briefing",
+        "Influencer Invites",
+        "Live Streaming",
+      ],
+    },
+    {
+      id: 8,
+      title: "Annual Leadership Meet",
+      type: "Corporate Engagement",
+      image: tataCover,
+      gallery: [tata1, tata2, tata3],
+      audience: "5K+",
+      highlights: [
+        "Keynote Sessions",
+        "Awards Night",
+        "Breakout Workshops",
+        "Networking Dinners",
+        "Cultural Program",
+      ],
+    },
   ];
+
+  const visibleActivations = ACTIVATIONS_ALL.slice(0, visibleCount);
+  const hasMore = visibleCount < ACTIVATIONS_ALL.length;
+
+  const loadMore = useCallback(() => {
+    if (isLoading || !hasMore) return;
+    setIsLoading(true);
+    setTimeout(() => {
+      setVisibleCount((prev) => Math.min(prev + 4, ACTIVATIONS_ALL.length));
+      setIsLoading(false);
+    }, 600);
+  }, [isLoading, hasMore]);
+
+  // Watch sentinel div — fires loadMore when it enters the viewport
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // use "auto" for instant jump
-    });
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) loadMore();
+      },
+      { rootMargin: "200px" },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [loadMore]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-  const ACTIVATION_STATS = [
-    {
-      title: "Activations Delivered",
-      value: "500+",
-      icon: "🚀",
-    },
-    {
-      title: "Audience Reached",
-      value: "5M+",
-      icon: "👥",
-    },
-    {
-      title: "Cities Covered",
-      value: "120+",
-      icon: "📍",
-    },
-  ];
 
-  const [currentImage, setCurrentImage] = useState(0);
-  //   useEffect(() => {
-  //     const el = bottomRef.current;
-  //     if (!el) return;
-
-  //     const observer = new IntersectionObserver(
-  //       ([entry]) => {
-  //         if (entry.isIntersecting) {
-  //           observer.disconnect();
-  //           navigate("profile");
-  //         }
-  //       },
-  //       { threshold: 0.9 }, // fire when 90% of the sentinel is visible
-  //     );
-
-  //     observer.observe(el);
-  //     return () => observer.disconnect();
-  //   }, [navigate]);
   return (
     <>
       <div className="w-full min-h-screen bg-background min-[1160px]:mx-20 min-[770px]:mx-16 mx-0">
@@ -151,7 +735,6 @@ export function ActivationSection({ onNavigate }) {
           >
             Activations
           </h1>
-
           <p className="text-gray-500 mt-0.5" style={{ fontSize: 13 }}>
             Creating immersive brand experiences and audience engagement
             campaigns
@@ -161,21 +744,21 @@ export function ActivationSection({ onNavigate }) {
         {/* Cards */}
         <div className="px-2 py-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {ACTIVATIONS.map((item) => (
+            {visibleActivations.map((item, index) => (
               <motion.div
                 key={item.id}
+                // Newly loaded cards fade + slide up; existing cards skip re-animation
+                initial={
+                  index >= visibleCount - 4 ? { opacity: 0, y: 20 } : false
+                }
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: (index % 4) * 0.07 }}
                 whileHover={{ y: -3 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 24,
-                }}
                 onClick={() => {
                   setSelectedActivation(item);
-
                   setCurrentImage(0);
                 }}
-                onMouseEnter={() => setHoveredProject(item)} // NEW
+                onMouseEnter={() => setHoveredProject(item)}
                 onMouseLeave={() => setHoveredProject(null)}
                 className="overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm cursor-pointer"
                 style={{ border: "1px solid #f0f0f5" }}
@@ -187,185 +770,140 @@ export function ActivationSection({ onNavigate }) {
                     className="w-full object-cover transition-transform duration-500 hover:scale-105"
                     style={{ height: 240 }}
                   />
-
                   <span
-                    className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-[#2C7048] "
-                    style={{
-                      color: "#fff",
-                    
-                    }}
+                    className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-[#2C7048]"
+                    style={{ color: "#fff" }}
                   >
                     {item.type}
                   </span>
                 </div>
-
                 <div className="p-4">
-                  <h3
-                    className="font-semibold text-gray-900 leading-snug font-sans md:text-xl text-sm"
-                    
-                  >
+                  <h3 className="font-semibold text-gray-900 leading-snug font-sans md:text-xl text-sm">
                     {item.title}
                   </h3>
-
                   <div className="mt-3 flex items-center justify-between">
                     <span className="text-gray-500" style={{ fontSize: 13 }}>
-                      Audiance Reach
+                      Audience Reach
                     </span>
-
                     <span
-                      style={{
-                        fontWeight: 600,
-                        
-                      }}
                       className="text-lime-500 text-sm md:text-xl"
+                      style={{ fontWeight: 600 }}
                     >
                       {item.audience}
                     </span>
                   </div>
-                  {/* 
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {item.highlights.slice(0, 2).map((highlight) => (
-                      <span
-                        key={highlight}
-                        className="px-2 py-1 rounded-full text-xs"
-                        style={{
-                          background: "#fdf2f5",
-                          color: "#d4456a",
-                          border: "1px solid #f5e0e7",
-                        }}
-                      >
-                        {highlight}
-                      </span>
-                    ))}
-                  </div> */}
-
-                  {/* <button
-                    className="mt-4 w-full py-2 rounded-xl font-medium"
-                    style={{
-                      background: "#d4456a",
-                      color: "#fff",
-                    }}
-                  >
-                    View Activation
-                  </button> */}
                 </div>
               </motion.div>
             ))}
           </div>
-          <div className="hidden xl:block w-64 fixed  flex-shrink-0  right-[10vw] top-[15vh]">
+
+          {/* Desktop hover preview panel */}
+          <div className="hidden xl:block w-64 fixed flex-shrink-0 right-[10vw] top-[15vh]">
             <AnimatePresence mode="wait">
-              {hoveredProject ? (
+              {hoveredProject && (
                 <motion.div
                   key={hoveredProject.id}
                   initial={{ opacity: 0, x: 10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="rounded-2xl bg-white border border-gray-100 p-5 "
+                  className="rounded-2xl bg-white border border-gray-100 p-5"
                   style={{ border: "1px solid #f0f0f5" }}
                 >
-                  {/* Preview Image */}
                   <img
                     src={hoveredProject.image}
-                    alt={hoveredProject.name}
+                    alt={hoveredProject.title}
                     className="w-full rounded-xl object-cover mb-4"
                     style={{ height: 120 }}
                   />
-
-                  {/* Name */}
                   <h3 className="font-semibold text-gray-900 font-sans text-sm mb-3">
-                    {hoveredProject.name}
+                    {hoveredProject.title}
                   </h3>
-
-                  {/* Stats */}
                   <div className="flex gap-2 mb-4">
                     <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
                       <p className="text-xs text-gray-400 mb-1">
-                        Audiance Reach
+                        Audience Reach
                       </p>
                       <p className="text-xs font-semibold text-gray-800">
                         {hoveredProject.audience}
                       </p>
                     </div>
-                    {/* <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
-                      <p className="text-xs text-gray-400 mb-1">Engagement</p>
-                      <p className="text-sm font-semibold text-gray-800">
-                        {hoveredProject.engagement}
-                      </p>
-                    </div> */}
                   </div>
-
-                  {/* Services */}
                   <p className="text-xs text-gray-400 uppercase tracking-wider mb-2 font-medium">
-                    Services
+                    Highlights
                   </p>
                   <div className="space-y-2">
-                    {hoveredProject.highlights.map((service) => (
+                    {hoveredProject.highlights.map((h) => (
                       <div
-                        key={service}
+                        key={h}
                         className="flex items-center gap-2 text-sm text-gray-700"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-lime-400 flex-shrink-0" />
-                        {service}
+                        {h}
                       </div>
                     ))}
                   </div>
                 </motion.div>
-              ) : // <motion.div
-              //   key="empty"
-              //   initial={{ opacity: 0 }}
-              //   animate={{ opacity: 1 }}
-              //   exit={{ opacity: 0 }}
-              //   className="rounded-2xl border border-dashed border-gray-200 flex flex-col items-center justify-center py-16 gap-2"
-              // >
-              //   <p className="text-xs text-gray-400">Hover a card to preview</p>
-              // </motion.div>
-              null}
+              )}
             </AnimatePresence>
           </div>
         </div>
-        <div className="flex flex-col items-center py-8 gap-2">
+
+        {/* ── Infinite scroll sentinel & spinner ── */}
+        {hasMore && (
           <div
-            className="rounded-full flex items-center justify-center"
-            style={{
-              width: 48,
-              height: 48,
-              background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
-            }}
+            ref={sentinelRef}
+            className="flex justify-center items-center py-8"
           >
-            <img src={logo} alt="" />
+            {isLoading && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex flex-col items-center gap-2"
+              >
+                <div
+                  style={{
+                    width: 28,
+                    height: 28,
+                    borderRadius: "50%",
+                    border: "2px solid #e5e7eb",
+                    borderTopColor: "#84cc16",
+                    animation: "spin 0.7s linear infinite",
+                  }}
+                />
+                <p style={{ fontSize: 12, color: "#aaa" }}>Loading more…</p>
+                <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+              </motion.div>
+            )}
           </div>
-          <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
-            You've seen all activations.
-            <br />
-            {/* <a href="#" style={{ color: "#d4456a", fontWeight: 600 }}>
-            View full event calendar →
-          </a> */}
-          </p>
-          <button
-            onClick={() => onNavigate("profile")}
-            className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
-            style={{ color: "#579F63" }}
-          >
-            Explore More
-            <ArrowRight size={16} />
-          </button>
-        </div>
-        {/* Stats */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          {ACTIVATION_STATS.map((stat) => (
+        )}
+
+        {/* Footer — only shown once all cards are loaded */}
+        {!hasMore && (
+          <div className="flex flex-col items-center py-8 gap-2">
             <div
-              key={stat.title}
-              className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center"
+              className="rounded-full flex items-center justify-center"
+              style={{
+                width: 48,
+                height: 48,
+                background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
+              }}
             >
-              <div className="text-3xl mb-3">{stat.icon}</div>
-
-              <h3 className="text-2xl font-bold text-lime-500">{stat.value}</h3>
-
-              <p className="mt-2 text-muted-foreground">{stat.title}</p>
+              <img src={logo} alt="" />
             </div>
-          ))}
-        </div> */}
+            <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
+              You've seen all activations.
+            </p>
+            <button
+              onClick={() => onNavigate("profile")}
+              className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
+              style={{ color: "#579F63" }}
+            >
+              Explore More
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Modal */}
@@ -386,7 +924,6 @@ export function ActivationSection({ onNavigate }) {
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-7xl h-[85vh] overflow-hidden rounded-3xl"
             >
-              {/* Main Image */}
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentImage}
@@ -399,11 +936,7 @@ export function ActivationSection({ onNavigate }) {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </AnimatePresence>
-
-              {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/30" />
-
-              {/* Previous */}
               <button
                 onClick={() =>
                   setCurrentImage((prev) =>
@@ -412,17 +945,10 @@ export function ActivationSection({ onNavigate }) {
                       : prev - 1,
                   )
                 }
-                className="absolute left-6 top-1/2 -translate-y-1/2
-                     w-14 h-14 rounded-full z-50
-                     bg-black/40 backdrop-blur-md
-                     text-white text-3xl
-                     flex items-center justify-center
-                     hover:bg-black/60 transition"
+                className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full z-50 bg-black/40 backdrop-blur-md text-white text-3xl flex items-center justify-center hover:bg-black/60 transition"
               >
                 ❮
               </button>
-
-              {/* Next */}
               <button
                 onClick={() =>
                   setCurrentImage((prev) =>
@@ -431,42 +957,28 @@ export function ActivationSection({ onNavigate }) {
                       : prev + 1,
                   )
                 }
-                className="absolute right-6 top-1/2 -translate-y-1/2 z-50
-                     w-14 h-14 rounded-full
-                     bg-black/40 backdrop-blur-md
-                     text-white text-3xl
-                     flex items-center justify-center
-                     hover:bg-black/60 transition"
+                className="absolute right-6 top-1/2 -translate-y-1/2 z-50 w-14 h-14 rounded-full bg-black/40 backdrop-blur-md text-white text-3xl flex items-center justify-center hover:bg-black/60 transition"
               >
                 ❯
               </button>
-
-              {/* Title Card */}
               <div className="absolute top-8 left-8 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl px-6 py-4">
                 <span className="text-xs bg-lime-600 px-3 py-1 rounded-full text-white">
                   {selectedActivation.type}
                 </span>
-
                 <h2 className="text-white md:text-3xl font-bold mt-3 font-sans text-xl">
                   {selectedActivation.title}
                 </h2>
               </div>
-
-              {/* Audience */}
               <div className="absolute md:top-8 md:right-8 top-45 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl px-6 py-4 flex justify-center items-center flex-col right-20">
-                <p className="text-white/70 text-sm">Audiance Reach</p>
-
+                <p className="text-white/70 text-sm">Audience Reach</p>
                 <h3 className="text-white md:text-3xl font-bold font-sans text-xl">
                   {selectedActivation.audience}
                 </h3>
               </div>
-
-              {/* Highlights */}
               <div className="absolute bottom-8 md:right-8 w-[320px] backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 right-1">
                 <h4 className="text-white font-semibold mb-4 font-sans">
                   Activation Highlights
                 </h4>
-
                 <div className="space-y-3">
                   {selectedActivation.highlights.map((highlight) => (
                     <div
@@ -479,33 +991,21 @@ export function ActivationSection({ onNavigate }) {
                   ))}
                 </div>
               </div>
-
-              {/* Indicators */}
               <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
                 {selectedActivation.gallery.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImage(index)}
-                    className={`transition-all rounded-full ${
-                      currentImage === index
-                        ? "w-8 h-3 bg-white"
-                        : "w-3 h-3 bg-white/40"
-                    }`}
+                    className={`transition-all rounded-full ${currentImage === index ? "w-8 h-3 bg-white" : "w-3 h-3 bg-white/40"}`}
                   />
                 ))}
               </div>
-
-              {/* Thumbnail Strip */}
-              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 md:flex gap-3 hidden ">
+              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 md:flex gap-3 hidden">
                 {selectedActivation.gallery.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImage(index)}
-                    className={`overflow-hidden rounded-lg border-2 ${
-                      currentImage === index
-                        ? "border-white"
-                        : "border-white/30"
-                    }`}
+                    className={`overflow-hidden rounded-lg border-2 ${currentImage === index ? "border-white" : "border-white/30"}`}
                   >
                     <img
                       src={image}
@@ -515,14 +1015,9 @@ export function ActivationSection({ onNavigate }) {
                   </button>
                 ))}
               </div>
-
-              {/* Close */}
               <button
                 onClick={() => setSelectedActivation(null)}
-                className="absolute top-3 right-3 w-10 h-10 rounded-full
-                     bg-black/50 backdrop-blur-md
-                     text-white text-xl
-                     flex items-center justify-center"
+                className="absolute top-3 right-3 w-10 h-10 rounded-full bg-black/50 backdrop-blur-md text-white text-xl flex items-center justify-center"
               >
                 ✕
               </button>
@@ -530,11 +1025,6 @@ export function ActivationSection({ onNavigate }) {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* <NextSection
-        title="Activations"
-        description="Explore brand activations, mall promotions, roadshows and experiential marketing campaigns."
-        onClick={() => navigate("profile")}
-      /> */}
     </>
   );
 }
