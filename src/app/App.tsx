@@ -203,6 +203,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [moreModalOpen, setMoreModalOpen] = useState(false);
   const [activeStory, setActiveStory] = useState<number | null>(null);
+  const [currentView, setCurrentView] = useState("home");
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
@@ -268,6 +269,7 @@ export default function App() {
         <MobileHeader
           onMessageClick={() => setActiveSection("messages")}
           onLogoClick={() => setActiveSection("home")}
+          onNavigate={handleNavigate}
         />
       )}
 

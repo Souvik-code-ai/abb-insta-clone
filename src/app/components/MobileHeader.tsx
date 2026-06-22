@@ -1,24 +1,28 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { MoreModal } from "./MoreModal";
 import {
   MessageCircle,
   ChevronDown,
   Facebook,
   Instagram,
   Linkedin,
+  MoreHorizontal,
 } from "lucide-react";
 import logo from "../../assets/download.jpg";
 interface MobileHeaderProps {
   onMessageClick: () => void;
   onLogoClick: () => void;
+  onNavigate: (view: string) => void;
 }
 
 export function MobileHeader({
   onMessageClick,
   onLogoClick,
+  onNavigate,
 }: MobileHeaderProps) {
   const [socialOpen, setSocialOpen] = useState(false);
-
+  const [moreOpen, setMoreOpen] = useState(false); //
   const socials = [
     {
       icon: Facebook,
@@ -41,122 +45,146 @@ export function MobileHeader({
   ];
 
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 bg-white"
-      style={{
-        height: 56,
-
-        backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(0,0,0,0.08)",
-      }}
-    >
-      {/* Logo */}
-      <button
-        onClick={onLogoClick}
-        className="flex items-center gap-2"
+    <>
+      <header
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 bg-white"
         style={{
-          background: "none",
-          border: "none",
-          padding: 0,
-          cursor: "pointer",
+          height: 56,
+
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
-        <div
-          className="rounded-sm flex items-center justify-center overflow-hidden"
+        {/* Logo */}
+        <button
+          onClick={onLogoClick}
+          className="flex items-center gap-2"
           style={{
-            width: 40,
-            height: 40,
-            background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
+            background: "none",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
           }}
         >
-          <img
-            src={logo}
-            alt=""
-            className="overflow-hidden rounded-lg h-12 w-12 "
-          />
-        </div>
-      </button>
-
-      {/* Right actions */}
-      <div className="flex items-center gap-2 relative">
-        <button
-          onClick={onMessageClick}
-          className="rounded-full flex items-center justify-center"
-          style={{ width: 36, height: 36, background: "rgba(212,69,106,0.08)" }}
-        >
-          <MessageCircle size={18} style={{ color: "#2C7048" }} />
-        </button>
-
-        <div className="relative">
-          <button
-            onClick={() => setSocialOpen((o) => !o)}
-            className="rounded-full flex items-center gap-1 px-3"
+          <div
+            className="rounded-sm flex items-center justify-center overflow-hidden"
             style={{
-              height: 36,
-              background: "rgba(0,0,0,0.05)",
-              fontSize: 13,
-              fontWeight: 500,
+              width: 40,
+              height: 40,
+              background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
             }}
           >
-            Social
-            <ChevronDown
-              size={14}
-              style={{
-                transform: socialOpen ? "rotate(180deg)" : "none",
-                transition: "transform 0.2s",
-              }}
+            <img
+              src={logo}
+              alt=""
+              className="overflow-hidden rounded-lg h-12 w-12 "
             />
+          </div>
+        </button>
+
+        {/* Right actions */}
+        <div className="flex items-center gap-2 relative">
+          <button
+            onClick={onMessageClick}
+            className="rounded-full flex items-center justify-center"
+            style={{
+              width: 36,
+              height: 36,
+              background: "rgba(212,69,106,0.08)",
+            }}
+          >
+            <MessageCircle size={18} style={{ color: "#2C7048" }} />
           </button>
 
-          <AnimatePresence>
-            {socialOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                transition={{ duration: 0.15 }}
-                className="absolute right-0 top-full mt-2 bg-white rounded-2xl shadow-xl overflow-hidden"
-                style={{ width: 180, border: "1px solid rgba(0,0,0,0.08)" }}
-              >
-                {socials.map(({ icon: Icon, label, color, url }) => (
-                  <a
-                    key={label}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-4 py-3 transition-colors"
-                    style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
-                    onMouseEnter={(e) =>
-                      ((e.currentTarget as HTMLAnchorElement).style.background =
-                        "#fafafa")
-                    }
-                    onMouseLeave={(e) =>
-                      ((e.currentTarget as HTMLAnchorElement).style.background =
-                        "transparent")
-                    }
-                  >
-                    <div
-                      className="rounded-lg flex items-center justify-center"
-                      style={{ width: 28, height: 28, background: color }}
+          <div className="relative">
+            <button
+              onClick={() => setSocialOpen((o) => !o)}
+              className="rounded-full flex items-center gap-1 px-3"
+              style={{
+                height: 36,
+                background: "rgba(0,0,0,0.05)",
+                fontSize: 13,
+                fontWeight: 500,
+              }}
+            >
+              Social
+              <ChevronDown
+                size={14}
+                style={{
+                  transform: socialOpen ? "rotate(180deg)" : "none",
+                  transition: "transform 0.2s",
+                }}
+              />
+            </button>
+
+            <AnimatePresence>
+              {socialOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-full mt-2 bg-white rounded-2xl shadow-xl overflow-hidden"
+                  style={{ width: 180, border: "1px solid rgba(0,0,0,0.08)" }}
+                >
+                  {socials.map(({ icon: Icon, label, color, url }) => (
+                    <a
+                      key={label}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-4 py-3 transition-colors"
+                      style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
+                      onMouseEnter={(e) =>
+                        ((
+                          e.currentTarget as HTMLAnchorElement
+                        ).style.background = "#fafafa")
+                      }
+                      onMouseLeave={(e) =>
+                        ((
+                          e.currentTarget as HTMLAnchorElement
+                        ).style.background = "transparent")
+                      }
                     >
-                      <Icon size={14} style={{ color: "#fff" }} />
-                    </div>
-                    <span
-                      style={{
-                        fontSize: 14,
-                        fontWeight: 500,
-                        color: "#1a1a1a",
-                      }}
-                    >
-                      {label}
-                    </span>
-                  </a>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+                      <div
+                        className="rounded-lg flex items-center justify-center"
+                        style={{ width: 28, height: 28, background: color }}
+                      >
+                        <Icon size={14} style={{ color: "#fff" }} />
+                      </div>
+                      <span
+                        style={{
+                          fontSize: 14,
+                          fontWeight: 500,
+                          color: "#1a1a1a",
+                        }}
+                      >
+                        {label}
+                      </span>
+                    </a>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <button
+            onClick={() => setMoreOpen((o) => !o)}
+            className="rounded-full flex items-center justify-center"
+            style={{
+              width: 36,
+              height: 36,
+              background: "rgba(212,69,106,0.08)",
+            }}
+          >
+            <MoreHorizontal size={18} style={{ color: "#2C7048" }} />
+          </button>
         </div>
-      </div>
-    </header>
+      </header>
+      <MoreModal
+        isOpen={moreOpen}
+        onClose={() => setMoreOpen(false)}
+        onNavigate={onNavigate}
+      />
+    </>
   );
 }

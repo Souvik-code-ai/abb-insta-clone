@@ -101,27 +101,30 @@ export function RightPanel({
       <Divider />
 
       {/* Awards */}
+      {/* Awards */}
       <section className="mb-8">
-        <SectionHeader icon={Trophy} label="Awards & Recognition" />
-        <a
-          href="#"
-          style={{
-            fontSize: 12,
-            color: "var(--accent)",
-            fontWeight: 600,
-            fontFamily: "var(--font-family-body)",
-            textDecoration: "none",
-          }}
-          onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.75")
-          }
-          onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
-          }
-          onClick={() => onNavigate("awards")}
-        >
-          See all
-        </a>
+        <div className="flex items-center justify-between">
+          <SectionHeader icon={Trophy} label="Awards & Recognition" />
+          <a
+            href="#"
+            style={{
+              fontSize: 12,
+              color: "var(--accent)",
+              fontWeight: 600,
+              fontFamily: "var(--font-family-body)",
+              textDecoration: "none",
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.75")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
+            }
+            onClick={() => onNavigate("awards")}
+          >
+            See all
+          </a>
+        </div>
         <div className="flex flex-col gap-4 mt-4">
           {awards.map((award) => (
             <AwardCard key={award.id} award={award} />
