@@ -404,7 +404,10 @@ export default function App() {
         <PresenceSection
           onNavigate={setActiveSection}
           open={open}
-          setOpen={setOpen}
+          setOpen={(val: boolean) => {
+            setOpen(val);
+            if (!val) setActiveSection("home"); // ← reset to home when closing
+          }}
         />
         {/* Middle gap spacer */}
         {!isMobile && !isTablet && <div style={{ flex: 0.5, minWidth: 0 }} />}
