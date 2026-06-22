@@ -239,11 +239,22 @@ export default function App() {
   // };
   const handleNavigate = (section: string) => {
     if (section === "presence") {
-      setOpen(true); // ← was setPresenceOpen
-    } else {
-      setOpen(false); // ← was setPresenceOpen
-      setActiveSection(section);
+      setOpen(true);
+      setActiveSection("presence");
+      return;
     }
+
+    setOpen(false);
+
+    if (section === activeSection) return;
+
+    setLoading(true);
+    window.scrollTo({ top: 0, behavior: "auto" });
+
+    setTimeout(() => {
+      setActiveSection(section);
+      setLoading(false);
+    }, 500);
   };
   const SIDEBAR_W = 72;
 
@@ -314,18 +325,17 @@ export default function App() {
               <ExhibitionSection onNavigate={setActiveSection} />
             ) : activeSection === "activation" ? (
               <ActivationSection onNavigate={setActiveSection} />
-            ) : activeSection === "terms" ? (           // ← add this block
-  <TermsView onNavigate={setActiveSection} />
-):  activeSection === "dataprivacy" ? (       // ← add this
-  <DataPrivacyView onNavigate={setActiveSection} />
-) : activeSection === "privacypolicy" ? (        // ← add this
-  <PrivacyPolicyView onNavigate={setActiveSection} />
-):activeSection === "about" ? (          // ← add this
-  <AboutView onNavigate={setActiveSection} />
-): activeSection === "casestudies" ? (        // ← add this
-  <CaseStudiesView onNavigate={setActiveSection} />
-):
-            //   <>
+            ) : activeSection === "terms" ? ( // ← add this block
+              <TermsView onNavigate={setActiveSection} />
+            ) : activeSection === "dataprivacy" ? ( // ← add this
+              <DataPrivacyView onNavigate={setActiveSection} />
+            ) : activeSection === "privacypolicy" ? ( // ← add this
+              <PrivacyPolicyView onNavigate={setActiveSection} />
+            ) : activeSection === "about" ? ( // ← add this
+              <AboutView onNavigate={setActiveSection} />
+            ) : activeSection === "casestudies" ? ( // ← add this
+              <CaseStudiesView onNavigate={setActiveSection} />
+            ) : //   <>
             //     <PresenceSection
             //       onNavigate={setActiveSection}
             //       open={open}
@@ -428,7 +438,7 @@ export default function App() {
       <MoreModal
         isOpen={moreModalOpen}
         onClose={() => setMoreModalOpen(false)}
-          onNavigate={handleNavigate}  
+        onNavigate={handleNavigate}
       />
 
       {/* Mobile Bottom Nav */}
