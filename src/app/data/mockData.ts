@@ -66,7 +66,7 @@ export const clients: Client[] = [
     color: "#FF6B6B",
     bgColor: "#FFE8E8",
     seen: false,
-    category: "Japanese entertainment troupe",
+    category: "Japanese Entertainment Troupe",
     location: "Dubai, UAE",
     stories: [
       {
@@ -456,7 +456,7 @@ export const feedPosts: FeedPost[] = [
     id: 1,
     client: clients[0],
     location: "Kolkata",
-    category: "Japanese entertainment troupe",
+    category: "Japanese Entertainment Troupe",
     images: [dt2, dt3, dt4, dt5],
     likes: 847,
     caption:
