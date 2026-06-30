@@ -507,7 +507,7 @@ export function StoryViewer({
               <div className="absolute top-8 left-3 right-3 flex items-center justify-between z-10">
                 <div className="flex items-center gap-2">
                   <div
-                    className="rounded-full flex items-center justify-center"
+                    className="rounded-full flex items-center justify-center overflow-hidden"
                     style={{
                       width: 34,
                       height: 34,
@@ -515,15 +515,7 @@ export function StoryViewer({
                       border: "2px solid #fff",
                     }}
                   >
-                    <span
-                      style={{
-                        color: currentClient.color,
-                        fontSize: 11,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {currentClient.initials}
-                    </span>
+                    <img src={currentClient.initials} alt="" />
                   </div>
                   <div>
                     <div
@@ -569,8 +561,11 @@ export function StoryViewer({
                   </p>
                 </div>
               )}
-              <div className="absolute bottom-4 left-4 z-10">
-                <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>
+              <div className="absolute bottom-4 left-4 z-10 ">
+                <span
+                  style={{ fontSize: 12 }}
+                  className="bg-gradient-to-r from-lime-800 to-lime-600 text-white rounded-2xl px-2 py-1"
+                >
                   {currentClient.location}
                 </span>
               </div>

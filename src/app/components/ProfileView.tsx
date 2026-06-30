@@ -20,6 +20,39 @@ import logo from "../../assets/logo.jpg";
 import Portfolio from "../../assets/ABYBABY BROCHURE.pdf";
 // ── Static data ───────────────────────────────────────────────────────────────
 import { ArrowRight } from "lucide-react";
+import toyotaCover from "../../assets/drumtao/DrumTao/dt7.webp";
+import toyotaDetail from "../../assets/drumtao/DrumTao/dt4.webp";
+import krishiCover from "../../assets/arun/arun_webp/arun.webp";
+import krishiDetail from "../../assets/arun/arun_webp/arun3.webp";
+
+import pmsCover from "../../assets/mia/mia2.webp";
+import pmsDetail from "../../assets/mia/mia3.webp";
+import zira1 from "../../assets/zira/zira1.webp";
+import zira3 from "../../assets/zira/zira3.webp";
+import miaCover from "../../assets/mia/mia3.webp";
+import mallCover from "../../assets/zira/zira1.webp";
+import rallyCover from "../../assets/drumtao/DrumTao/dt6.webp";
+import tataCover from "../../assets/arun/arun_webp/aarun1.webp";
+import mia1 from "../../assets/mia/mia 1.webp";
+import mia2 from "../../assets/mia/mia2.webp";
+import mia3 from "../../assets/mia/mia3.webp";
+import mia4 from "../../assets/mia/mia 2.webp";
+import mall1 from "../../assets/zira/zira2.webp";
+import mall2 from "../../assets/zira/zira3.webp";
+import mall3 from "../../assets/zira/zira4.webp";
+import mall4 from "../../assets/zira/zira1.webp";
+import rally1 from "../../assets/drumtao/DrumTao/dt2.webp";
+import rally2 from "../../assets/drumtao/DrumTao/dt3.webp";
+import rally3 from "../../assets/drumtao/DrumTao/dt4.webp";
+import rally4 from "../../assets/drumtao/DrumTao/dt5.webp";
+import rally5 from "../../assets/drumtao/DrumTao/dt6.webp";
+import rally6 from "../../assets/drumtao/DrumTao/dt7.webp";
+import tata1 from "../../assets/arun/arun_webp/arun2.webp";
+import tata2 from "../../assets/arun/arun_webp/arun3.webp";
+import tata3 from "../../assets/arun/arun_webp/arun4.webp";
+import tata4 from "../../assets/arun/arun_webp/arun5.webp";
+import tata5 from "../../assets/arun/arun_webp/arun6.webp";
+import tata6 from "../../assets/arun/arun_webp/arun7.webp";
 const STATS = [
   { label: "Years", value: "12+" },
   { label: "Clients", value: "340+" },
@@ -30,36 +63,31 @@ const CAROUSEL_ITEMS = [
     id: 1,
     title: "Annual Gala 2024",
     category: "Events",
-    image:
-      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&h=360&fit=crop&auto=format",
+    image: toyotaCover,
   },
   {
     id: 2,
     title: "Brand Activation",
     category: "Activation",
-    image:
-      "https://images.unsplash.com/photo-1653821355736-0c2598d0a63e?w=600&h=360&fit=crop&auto=format",
+    image: krishiCover,
   },
   {
     id: 3,
     title: "Digital Campaign",
     category: "Digital",
-    image:
-      "https://images.unsplash.com/photo-1709423166198-cc44576fbe72?w=600&h=360&fit=crop&auto=format",
+    image: pmsCover,
   },
   {
     id: 4,
     title: "Exhibition Stand",
     category: "Exhibition",
-    image:
-      "https://images.unsplash.com/photo-1764380746818-18c01e96df12?w=600&h=360&fit=crop&auto=format",
+    image: pmsDetail,
   },
   {
     id: 5,
     title: "Product Launch",
     category: "Events",
-    image:
-      "https://images.unsplash.com/photo-1674570979140-9adb58d4c194?w=600&h=360&fit=crop&auto=format",
+    image: zira3,
   },
 ];
 
@@ -164,7 +192,7 @@ const IMAGES_DATA: MediaItem[] = [
   {
     id: 1,
     type: "image",
-    src: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=400&fit=crop",
+    src: mia1,
     caption: "Annual Gala 2024 — a night to remember with 600+ guests.",
     likes: 312,
     comments: 28,
@@ -173,7 +201,7 @@ const IMAGES_DATA: MediaItem[] = [
   {
     id: 2,
     type: "image",
-    src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=400&fit=crop",
+    src: mia2,
     caption: "Zero Festival Opening Gala — lights, music and energy.",
     likes: 540,
     comments: 41,
@@ -182,7 +210,7 @@ const IMAGES_DATA: MediaItem[] = [
   {
     id: 3,
     type: "image",
-    src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400&h=400&fit=crop",
+    src: mia3,
     caption: "Innovation Tech Conference — 720 leaders, one stage.",
     likes: 278,
     comments: 19,
@@ -191,7 +219,7 @@ const IMAGES_DATA: MediaItem[] = [
   {
     id: 4,
     type: "image",
-    src: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=400&fit=crop",
+    src: mia4,
     caption: "EV SUV Grand Reveal — electric dreams become reality.",
     likes: 690,
     comments: 57,
@@ -200,7 +228,7 @@ const IMAGES_DATA: MediaItem[] = [
   {
     id: 5,
     type: "image",
-    src: "https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=400&h=400&fit=crop",
+    src: tata1,
     caption: "Tata Bandhan Family Day — celebrating togetherness.",
     likes: 445,
     comments: 33,
@@ -209,7 +237,7 @@ const IMAGES_DATA: MediaItem[] = [
   {
     id: 6,
     type: "image",
-    src: "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=400&h=400&fit=crop",
+    src: mall4,
     caption: "Durga Puja Celebration — colour, culture and community.",
     likes: 812,
     comments: 74,
@@ -218,7 +246,7 @@ const IMAGES_DATA: MediaItem[] = [
   {
     id: 7,
     type: "image",
-    src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=400&fit=crop",
+    src: mall3,
     caption: "Heritage Dance Night — 320 guests moved by tradition.",
     likes: 234,
     comments: 16,
@@ -227,7 +255,7 @@ const IMAGES_DATA: MediaItem[] = [
   {
     id: 8,
     type: "image",
-    src: "https://images.unsplash.com/photo-1653821355736-0c2598d0a63e?w=400&h=400&fit=crop",
+    src: mall1,
     caption: "Brand Activation in Bengaluru — live, loud and unforgettable.",
     likes: 367,
     comments: 24,
@@ -236,7 +264,7 @@ const IMAGES_DATA: MediaItem[] = [
   {
     id: 9,
     type: "image",
-    src: "https://images.unsplash.com/photo-1764380746818-18c01e96df12?w=400&h=400&fit=crop",
+    src: mall2,
     caption: "Exhibition stand for TechWorld 2024 — 3,200 sqft of wow.",
     likes: 198,
     comments: 11,

@@ -180,7 +180,7 @@ function StoryCircle({
           />
           {/* Avatar */}
           <div
-            className="absolute rounded-full flex items-center justify-center"
+            className="absolute rounded-full flex items-center justify-center overflow-hidden"
             style={{
               inset: 7,
               background: client.bgColor,
@@ -188,11 +188,7 @@ function StoryCircle({
               transition: "filter 0.2s",
             }}
           >
-            <span
-              style={{ color: client.color, fontSize: 13, fontWeight: 500 }}
-            >
-              {client.initials}
-            </span>
+            <img src={client.initials} alt="" />
           </div>
 
           {/* X dismiss button — top-right of avatar */}

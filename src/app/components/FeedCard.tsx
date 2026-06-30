@@ -340,17 +340,9 @@ export function FeedCard({ post }: FeedCardProps) {
           <div className="flex items-center gap-3 cursor-pointer">
             <div
               className="rounded-full flex items-center justify-center shrink-0"
-              style={{ width: 42, height: 42, background: post.client.bgColor }}
+              style={{ width: 42, height: 42 }}
             >
-              <span
-                style={{
-                  color: post.client.color,
-                  fontSize: 14,
-                  fontWeight: 700,
-                }}
-              >
-                {post.client.initials}
-              </span>
+              <img src={post.client.initials} alt="" className="rounded-full" />
             </div>
             <div>
               <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a" }}>
@@ -397,7 +389,11 @@ export function FeedCard({ post }: FeedCardProps) {
                         fontWeight: 700,
                       }}
                     >
-                      {post.client.initials}
+                      <img
+                        src={post.client.initials}
+                        alt=""
+                        className="rounded-full"
+                      />
                     </span>
                   </div>
                   <div>
@@ -460,9 +456,8 @@ export function FeedCard({ post }: FeedCardProps) {
 
           {/* Category tag overlay */}
           <div
-            className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full"
+            className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-linear-to-r from-lime-800 to-lime-600 text-transparent"
             style={{
-              background: "rgba(0,0,0,0.45)",
               backdropFilter: "blur(6px)",
               fontSize: 11,
               fontWeight: 600,

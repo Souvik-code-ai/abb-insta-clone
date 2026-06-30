@@ -380,16 +380,13 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
                 flexShrink: 0,
                 border: "2px solid rgba(255,255,255,0.3)",
               }}
+              className="overflow-hidden"
             >
-              <span
-                style={{
-                  color: post.client.color,
-                  fontSize: 14,
-                  fontWeight: 700,
-                }}
-              >
-                {post.client.initials}
-              </span>
+              <img
+                src={post.client.initials}
+                alt=""
+                className="w-full h-full"
+              />
             </div>
 
             {/* Name + type */}

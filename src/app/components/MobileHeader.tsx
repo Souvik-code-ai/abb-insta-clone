@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MoreModal } from "./MoreModal";
+import { Info, BookOpen, Shield, FileText, Lock, Award } from "lucide-react";
 import {
   MessageCircle,
   ChevronDown,
@@ -15,14 +16,57 @@ interface MobileHeaderProps {
   onLogoClick: () => void;
   onNavigate: (view: string) => void;
 }
-
+const sidebarItems: {
+  icon: React.ElementType;
+  label: string;
+  desc: string;
+  view: string;
+}[] = [
+  {
+    icon: Info,
+    label: "About Us",
+    desc: "Our story and mission",
+    view: "about",
+  },
+  {
+    icon: BookOpen,
+    label: "Case Studies",
+    desc: "Premium event portfolios",
+    view: "casestudies",
+  },
+  {
+    icon: Award,
+    label: "Awards and Recognitions",
+    desc: "Our achievements",
+    view: "awards",
+  },
+  {
+    icon: Shield,
+    label: "Privacy Policy",
+    desc: "How we protect your data",
+    view: "privacypolicy",
+  },
+  {
+    icon: FileText,
+    label: "Terms & Conditions",
+    desc: "Usage guidelines",
+    view: "terms",
+  },
+  {
+    icon: Lock,
+    label: "Data Privacy",
+    desc: "GDPR & data rights",
+    view: "dataprivacy",
+  },
+];
+import { X } from "lucide-react";
 export function MobileHeader({
   onMessageClick,
   onLogoClick,
   onNavigate,
 }: MobileHeaderProps) {
   const [socialOpen, setSocialOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false); //
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const socials = [
     {
       icon: Facebook,
@@ -57,14 +101,14 @@ export function MobileHeader({
       >
         {/* Logo */}
         <button
-          onClick={onLogoClick}
-          className="flex items-center gap-2"
+          onClick={() => setDrawerOpen(true)}
           style={{
             background: "none",
             border: "none",
             padding: 0,
             cursor: "pointer",
           }}
+          className="flex items-center gap-2"
         >
           <div
             className="rounded-sm flex items-center justify-center overflow-hidden"
@@ -76,26 +120,14 @@ export function MobileHeader({
           >
             <img
               src={logo}
-              alt=""
-              className="overflow-hidden rounded-lg h-12 w-12 "
+              alt="Logo"
+              className="overflow-hidden rounded-lg h-12 w-12"
             />
           </div>
         </button>
 
         {/* Right actions */}
         <div className="flex items-center gap-2 relative">
-          <button
-            onClick={onMessageClick}
-            className="rounded-full flex items-center justify-center"
-            style={{
-              width: 36,
-              height: 36,
-              background: "rgba(212,69,106,0.08)",
-            }}
-          >
-            <MessageCircle size={18} style={{ color: "#2C7048" }} />
-          </button>
-
           <div className="relative">
             <button
               onClick={() => setSocialOpen((o) => !o)}
@@ -167,7 +199,7 @@ export function MobileHeader({
               )}
             </AnimatePresence>
           </div>
-          <button
+          {/* <button
             onClick={() => setMoreOpen((o) => !o)}
             className="rounded-full flex items-center justify-center"
             style={{
@@ -175,16 +207,141 @@ export function MobileHeader({
               height: 36,
               background: "rgba(212,69,106,0.08)",
             }}
-          >
-            <MoreHorizontal size={18} style={{ color: "#2C7048" }} />
-          </button>
+          ></button> */}
         </div>
       </header>
-      <MoreModal
-        isOpen={moreOpen}
-        onClose={() => setMoreOpen(false)}
-        onNavigate={onNavigate}
-      />
+      <button
+        onClick={onMessageClick}
+        className="fixed flex items-center justify-center rounded-xl bottom-18 right-3"
+        style={{
+          width: 36,
+          height: 36,
+          background: "linear-gradient(135deg, #579F63 0%, #7CFC58 100%)",
+          boxShadow: "0 4px 16px rgba(44,112,72,0.35)",
+          zIndex: 60,
+          border: "none",
+          cursor: "pointer",
+        }}
+      >
+        <MessageCircle size={18} style={{ color: "#fff" }} />
+      </button>
+      <AnimatePresence>
+        {drawerOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-[70]"
+              style={{ background: "rgba(0,0,0,0.35)" }}
+              onClick={() => setDrawerOpen(false)}
+            />
+
+            {/* Sidebar panel sliding in from left */}
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", damping: 32, stiffness: 380 }}
+              className="fixed top-0 left-0 bottom-0 z-[71] bg-white flex flex-col"
+              style={{ width: 280, boxShadow: "4px 0 24px rgba(0,0,0,0.12)" }}
+            >
+              {/* Drawer header */}
+              <div
+                className="flex items-center justify-between px-4"
+                style={{
+                  height: 64,
+                  borderBottom: "1px solid rgba(0,0,0,0.07)",
+                }}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className="rounded-sm flex items-center justify-center overflow-hidden"
+                    style={{
+                      width: 36,
+                      height: 36,
+                      background:
+                        "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
+                    }}
+                  >
+                    <img
+                      src={logo}
+                      alt=""
+                      className="rounded-lg h-10 w-10 overflow-hidden"
+                    />
+                  </div>
+                  <span
+                    style={{ fontSize: 15, fontWeight: 600, color: "#1a1a1a" }}
+                  >
+                    Menu
+                  </span>
+                </div>
+                <button
+                  onClick={() => setDrawerOpen(false)}
+                  className="rounded-full flex items-center justify-center"
+                  style={{
+                    width: 32,
+                    height: 32,
+                    background: "rgba(0,0,0,0.05)",
+                  }}
+                >
+                  <X size={16} style={{ color: "#444" }} />
+                </button>
+              </div>
+
+              {/* Drawer items */}
+              <nav className="flex-1 overflow-y-auto py-2">
+                {sidebarItems.map(({ icon: Icon, label, desc, view }) => (
+                  <button
+                    key={view}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors"
+                    style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
+                    onClick={() => {
+                      setDrawerOpen(false);
+                      onNavigate(view);
+                    }}
+                    onMouseEnter={(e) =>
+                      ((e.currentTarget as HTMLButtonElement).style.background =
+                        "#fafafa")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.currentTarget as HTMLButtonElement).style.background =
+                        "transparent")
+                    }
+                  >
+                    <div
+                      className="rounded-xl flex items-center justify-center shrink-0"
+                      style={{
+                        width: 40,
+                        height: 40,
+                        background: "rgba(212,69,106,0.08)",
+                      }}
+                    >
+                      <Icon size={18} style={{ color: "#2C7048" }} />
+                    </div>
+                    <div>
+                      <div
+                        style={{
+                          fontSize: 14,
+                          fontWeight: 500,
+                          color: "#1a1a1a",
+                        }}
+                      >
+                        {label}
+                      </div>
+                      <div style={{ fontSize: 12, color: "#8e8e93" }}>
+                        {desc}
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

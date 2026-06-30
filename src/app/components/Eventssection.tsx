@@ -2,44 +2,45 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import logo from "../../assets/logo.jpg";
+import dt2 from "../../assets/drumtao/DrumTao/dt2.webp";
 import { useRef } from "react";
+import mia1 from "../../assets/mia/mia 1.webp";
+import zira1 from "../../assets/zira/zira1.webp";
+import arun from "../../assets/arun/arun_webp/arun.webp";
 // ── Mock data ─────────────────────────────────────────────────────────────────
 const EVENTS = [
   {
     id: 1,
-    type: "Cultural",
+    type: "Japanese entertainment troupe",
     status: "upcoming",
-    name: "Durga Puja Celebration",
+    name: "Drum Tao",
     date: "12 Oct 2026",
     location: "Kolkata",
     attendees: 450,
-    image:
-      "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&h=400&fit=crop",
+    image: dt2,
   },
   {
     id: 2,
-    type: "Cultural",
+    type: "Brand Promotion",
     status: "expired",
-    name: "Heritage Dance Night",
+    name: "Mia by Tanishq",
     date: "18 Nov 2023",
-    location: "Mumbai",
+    location: "Kolkata",
     attendees: 320,
-    image:
-      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=400&fit=crop",
+    image: mia1,
   },
   {
-    id: 5,
-    type: "Product Launch",
+    id: 3,
+    type: "Festival",
     status: "upcoming",
-    name: "EV SUV Grand Reveal",
+    name: "Toyota Zero",
     date: "8 Feb 2027",
-    location: "Pune",
+    location: "Assam",
     attendees: 580,
-    image:
-      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&h=400&fit=crop",
+    image: zira1,
   },
   {
-    id: 12,
+    id: 4,
     type: "Conference",
     status: "expired",
     name: "Innovation Tech Conference",
@@ -51,14 +52,13 @@ const EVENTS = [
   },
   {
     id: 15,
-    type: "Tata Bandhan",
+    type: "Brand Promotion",
     status: "upcoming",
-    name: "Tata Bandhan Family Day",
+    name: "Arun Icecream Promotion",
     date: "26 Jan 2027",
-    location: "Jamshedpur",
+    location: "Kolkata",
     attendees: 610,
-    image:
-      "https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&h=400&fit=crop",
+    image: arun,
   },
   {
     id: 18,

@@ -1,7 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Clock, MapPin, Users } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-
+import arun2 from "../../assets/arun/arun_webp/arun2.webp";
+import arun3 from "../../assets/arun/arun_webp/arun3.webp";
+import arun4 from "../../assets/arun/arun_webp/arun4.webp";
+import arun5 from "../../assets/arun/arun_webp/arun5.webp";
+import dt2 from "../../assets/drumtao/DrumTao/dt2.webp";
+import dt3 from "../../assets/drumtao/DrumTao/dt3.webp";
+import dt4 from "../../assets/drumtao/DrumTao/dt4.webp";
+import dt5 from "../../assets/drumtao/DrumTao/dt5.webp";
+import zira1 from "../../assets/zira/zira1.webp";
+import zira2 from "../../assets/zira/zira2.webp";
+import zira3 from "../../assets/zira/zira3.webp";
+import zira4 from "../../assets/zira/zira4.webp";
+import mia1 from "../../assets/mia/mia 1.webp";
+import mia2 from "../../assets/mia/mia 2.webp";
+import mia3 from "../../assets/mia/mia2.webp";
+import mia4 from "../../assets/mia/mia3.webp";
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 type CaseStudy = {
@@ -24,13 +39,12 @@ type CaseStudy = {
 const CASE_STUDIES: CaseStudy[] = [
   {
     id: 1,
-    title: "Annual Gala 2024 — A Night of Vision & Celebration",
-    category: "Corporate Event",
+    title: "Drum Tao",
+    category: "Japanese entertainment troupe",
     location: "Kolkata, India",
     year: "2024",
     guests: "600+",
-    heroImage:
-      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&h=600&fit=crop&auto=format",
+    heroImage: dt2,
     summary:
       "A landmark evening that redefined corporate celebrations — blending award ceremonies, live performances, and curated brand experiences into one unforgettable night.",
     body: [
@@ -39,8 +53,7 @@ const CASE_STUDIES: CaseStudy[] = [
       },
       {
         text: "Lighting was our primary storytelling medium. Working with a team of theatrical designers, we built a dynamic rig that transformed the same space three times across the evening — from an intimate cocktail reception bathed in warm amber, to a high-energy awards stage lit in the brand's signature green, to a closing gala dinner under a canopy of suspended Edison bulbs.",
-        image:
-          "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=380&fit=crop&auto=format",
+        image: dt4,
         imageCaption: "The awards stage set during final rehearsals",
       },
       {
@@ -48,8 +61,7 @@ const CASE_STUDIES: CaseStudy[] = [
       },
       {
         text: "Logistics across a 600-person seated dinner required precision across every department — catering, security, AV, décor, and guest management running in perfect synchrony. Our on-the-ground team of 45 ensured zero incidents and a schedule that ran within four minutes of plan across a six-hour event.",
-        image:
-          "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=380&fit=crop&auto=format",
+        image: dt5,
         imageCaption: "The main hall dressed for the gala dinner",
       },
       {
@@ -58,28 +70,27 @@ const CASE_STUDIES: CaseStudy[] = [
     ],
     inlineImages: [
       {
-        src: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=300&fit=crop",
+        src: dt3,
         caption: "Grand entrance",
       },
       {
-        src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop",
+        src: dt4,
         caption: "Stage setup",
       },
       {
-        src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400&h=300&fit=crop",
+        src: dt5,
         caption: "Awards moment",
       },
     ],
   },
   {
     id: 2,
-    title: "EV SUV Grand Reveal — Electric Dreams, Real Impact",
-    category: "Product Launch",
-    location: "Mumbai, India",
+    title: "Toyota Zero",
+    category: "Product Launch Festival",
+    location: "Assam",
     year: "2024",
     guests: "250+",
-    heroImage:
-      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&h=600&fit=crop&auto=format",
+    heroImage: zira1,
     summary:
       "A high-voltage product reveal that introduced India's most anticipated electric SUV to press, influencers, and trade partners — generating 200M+ media impressions.",
     body: [
@@ -88,8 +99,7 @@ const CASE_STUDIES: CaseStudy[] = [
       },
       {
         text: "We chose a warehouse in Mumbai's port district — raw, industrial, with sight lines that allowed a 40-metre reveal track. The space was dressed with nothing but the car's silhouette under tension fabric, backlit in deep blue. No signage, no brand marks — just the shape of something new.",
-        image:
-          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&h=380&fit=crop&auto=format",
+        image: zira4,
         imageCaption: "The reveal moment captured live",
       },
       {
@@ -98,68 +108,65 @@ const CASE_STUDIES: CaseStudy[] = [
     ],
     inlineImages: [
       {
-        src: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=300&fit=crop",
+        src: zira3,
         caption: "Pre-reveal tension",
       },
       {
-        src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop",
+        src: zira4,
         caption: "The unveil",
       },
       {
-        src: "https://images.unsplash.com/photo-1674570979140-9adb58d4c194?w=400&h=300&fit=crop",
+        src: zira2,
         caption: "Media walkthrough",
       },
     ],
   },
   {
     id: 3,
-    title: "Zero Festival — Culture at Scale",
-    category: "Festival",
-    location: "Bengaluru, India",
-    year: "2023",
-    guests: "12,000+",
-    heroImage:
-      "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=1200&h=600&fit=crop&auto=format",
+    title: "Toyota Zero",
+    category: "Product Launch Festival",
+    location: "Assam",
+    year: "2024",
+    guests: "250+",
+    heroImage: zira1,
     summary:
-      "A three-day cultural festival spanning music, food, art, and wellness — delivered across a 40,000 sqft outdoor venue with zero major incidents.",
+      "A high-voltage product reveal that introduced India's most anticipated electric SUV to press, influencers, and trade partners — generating 200M+ media impressions.",
     body: [
       {
-        text: "Zero Festival was the most operationally complex project in our portfolio to date. Three days, six stages, 80 acts, 40 food vendors, and a peak footfall of 12,000 guests on Day 2. The brief was simple in its ambition and demanding in its detail: create a festival that feels effortless to attend.",
+        text: "When our client briefed us on the EV SUV reveal, the ambition was clear: this was not just a car launch, it was a cultural moment. The reveal needed to feel cinematic, feel inevitable, and feel unlike any automotive event India had seen before.",
       },
       {
-        text: "We built a dedicated operations centre on-site staffed around the clock, with real-time crowd monitoring feeding into a dynamic resource deployment model. When queues built at entry on Day 1, we redeployed 30 stewards within eight minutes — a response that would have taken hours without the system we designed.",
-        image:
-          "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=380&fit=crop&auto=format",
-        imageCaption: "Main stage on Day 2 at peak capacity",
+        text: "We chose a warehouse in Mumbai's port district — raw, industrial, with sight lines that allowed a 40-metre reveal track. The space was dressed with nothing but the car's silhouette under tension fabric, backlit in deep blue. No signage, no brand marks — just the shape of something new.",
+        image: zira4,
+        imageCaption: "The reveal moment captured live",
       },
       {
-        text: "The art installations were commissioned specifically for the festival, with five international artists creating site-specific works that became the most photographed moments of the weekend. Social reach across the three days exceeded 45 million impressions organically.",
+        text: "The reveal sequence was choreographed over three minutes of original score, culminating in the tension fabric dropping to expose the full vehicle under a precisely timed light burst. The room's reaction was immediate and genuine — something we rarely engineer but always hope for.",
       },
     ],
     inlineImages: [
       {
-        src: "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=400&h=300&fit=crop",
-        caption: "Opening ceremony",
+        src: zira3,
+        caption: "Pre-reveal tension",
       },
       {
-        src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop",
-        caption: "Main stage",
+        src: zira4,
+        caption: "The unveil",
       },
       {
-        src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
-        caption: "Art installations",
+        src: zira2,
+        caption: "Media walkthrough",
       },
     ],
   },
   {
     id: 4,
-    title: "TechWorld Exhibition 2024 — Stand of the Year",
-    category: "Exhibition",
-    location: "Delhi, India",
+    title: "Mia by Tanishq",
+    category: "Brand Promotion",
+    location: "Kolkata",
     year: "2024",
     guests: "3,200 visitors",
-    heroImage:
-      "https://images.unsplash.com/photo-1764380746818-18c01e96df12?w=1200&h=600&fit=crop&auto=format",
+    heroImage: mia1,
     summary:
       "A 3,200 sqft exhibition stand that won Best Stand Design at TechWorld 2024, generating 840 qualified leads across four days.",
     body: [
@@ -168,8 +175,7 @@ const CASE_STUDIES: CaseStudy[] = [
       },
       {
         text: "The stand's material language was deliberately contrary to the tech industry's usual glass-and-chrome palette. We used raw timber, woven textiles, and living moss walls to position the client as a human-first technology company — a message that resonated strongly with visitors and press alike.",
-        image:
-          "https://images.unsplash.com/photo-1653821355736-0c2598d0a63e?w=600&h=380&fit=crop&auto=format",
+        image: mia2,
         imageCaption: "The central product demo tower",
       },
       {
@@ -178,56 +184,54 @@ const CASE_STUDIES: CaseStudy[] = [
     ],
     inlineImages: [
       {
-        src: "https://images.unsplash.com/photo-1764380746818-18c01e96df12?w=400&h=300&fit=crop",
+        src: mia3,
         caption: "Stand overview",
       },
       {
-        src: "https://images.unsplash.com/photo-1653821355736-0c2598d0a63e?w=400&h=300&fit=crop",
+        src: mia4,
         caption: "Demo zone",
       },
       {
-        src: "https://images.unsplash.com/photo-1709423166198-cc44576fbe72?w=400&h=300&fit=crop",
+        src: mia1,
         caption: "Visitor engagement",
       },
     ],
   },
   {
     id: 5,
-    title: "Durga Puja Celebration — Heritage Reimagined",
-    category: "Cultural",
-    location: "Kolkata, India",
-    year: "2023",
-    guests: "5,000+",
-    heroImage:
-      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&h=600&fit=crop&auto=format",
+    title: "Toyota Zero",
+    category: "Product Launch Festival",
+    location: "Assam",
+    year: "2024",
+    guests: "250+",
+    heroImage: zira1,
     summary:
-      "A reimagining of Kolkata's most beloved festival for a corporate audience — merging devotion, artisanship, and contemporary event design.",
+      "A high-voltage product reveal that introduced India's most anticipated electric SUV to press, influencers, and trade partners — generating 200M+ media impressions.",
     body: [
       {
-        text: "The Durga Puja corporate celebration is one of our most personally meaningful projects. The brief asked us to honour a centuries-old festival tradition while making it accessible and resonant for a multicultural corporate audience of 5,000 guests across five evenings.",
+        text: "When our client briefed us on the EV SUV reveal, the ambition was clear: this was not just a car launch, it was a cultural moment. The reveal needed to feel cinematic, feel inevitable, and feel unlike any automotive event India had seen before.",
       },
       {
-        text: "We worked with master craftspeople from Kumartuli — Kolkata's idol-making district — to commission a contemporary pandal that paid homage to traditional forms while incorporating sustainable materials and modern lighting. The result was widely covered in the city's press as one of the most beautiful corporate pandals of the season.",
-        image:
-          "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&h=380&fit=crop&auto=format",
-        imageCaption: "The pandal on opening night",
+        text: "We chose a warehouse in Mumbai's port district — raw, industrial, with sight lines that allowed a 40-metre reveal track. The space was dressed with nothing but the car's silhouette under tension fabric, backlit in deep blue. No signage, no brand marks — just the shape of something new.",
+        image: zira4,
+        imageCaption: "The reveal moment captured live",
       },
       {
-        text: "Cultural programming across the five evenings included classical dance, folk music, and a curated food trail featuring regional specialties. Guest satisfaction averaged 97% across all evenings — the highest score we have recorded on any cultural event.",
+        text: "The reveal sequence was choreographed over three minutes of original score, culminating in the tension fabric dropping to expose the full vehicle under a precisely timed light burst. The room's reaction was immediate and genuine — something we rarely engineer but always hope for.",
       },
     ],
     inlineImages: [
       {
-        src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
-        caption: "Pandal design",
+        src: zira3,
+        caption: "Pre-reveal tension",
       },
       {
-        src: "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=400&h=300&fit=crop",
-        caption: "Cultural performance",
+        src: zira4,
+        caption: "The unveil",
       },
       {
-        src: "https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=400&h=300&fit=crop",
-        caption: "Guest experience",
+        src: zira2,
+        caption: "Media walkthrough",
       },
     ],
   },
