@@ -277,7 +277,7 @@ const POSTS_DATA: MediaItem[] = [...IMAGES_DATA, ...REELS_DATA];
 
 const VISIBLE = 3;
 
-// ── Lightbox ──────────────────────────────────────────────────────────────────
+//?/ ── Lightbox ──────────────────────────────────────────────────────────────────
 
 function MediaLightbox({
   items,
