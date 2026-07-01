@@ -339,7 +339,7 @@ export function FeedCard({ post }: FeedCardProps) {
         >
           <div className="flex items-center gap-3 cursor-pointer">
             <div
-              className="rounded-full flex items-center justify-center shrink-0"
+              className="rounded-full flex items-center justify-center shrink-0 overflow-hidden"
               style={{ width: 42, height: 42 }}
             >
               <img src={post.client.initials} alt="" className="rounded-full" />
@@ -375,7 +375,7 @@ export function FeedCard({ post }: FeedCardProps) {
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div
-                    className="rounded-full flex items-center justify-center shrink-0"
+                    className="rounded-full flex items-center justify-center shrink-0 overflow-hidden"
                     style={{
                       width: 52,
                       height: 52,
@@ -385,7 +385,7 @@ export function FeedCard({ post }: FeedCardProps) {
                     <span
                       style={{
                         color: post.client.color,
-                        fontSize: 18,
+
                         fontWeight: 700,
                       }}
                     >

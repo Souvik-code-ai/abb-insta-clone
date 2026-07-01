@@ -239,7 +239,7 @@ export function ActivationSection({ onNavigate }) {
                     style={{ height: 240 }}
                   />
                   <span
-                    className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-[#2C7048]"
+                    className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-r from-lime-800 via-lime-600 to-lime-500 text-transparent"
                     style={{ color: "#fff" }}
                   >
                     {item.type}

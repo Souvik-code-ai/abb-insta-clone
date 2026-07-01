@@ -28,6 +28,7 @@ export interface UpcomingEvent {
   clientName: string;
   clientInitials: string;
   clientColor: string;
+  clientlogo: string;
   eventName: string;
   location: string;
   eventImage: string;
@@ -42,6 +43,7 @@ export interface CaseStudy {
   thumbnail: string;
   clientInitials: string;
   clientColor: string;
+  clientlogo: string;
   clientName: string;
   title: string;
   summary: string;
@@ -576,6 +578,7 @@ export const upcomingEvents: UpcomingEvent[] = [
     clientName: "Toyota",
     clientInitials: "DT",
     clientColor: "#4ECDC4",
+    clientlogo: dtlogo,
     eventName: "Drum Tao",
     location: "Kolkata",
     eventImage: dt2,
@@ -590,6 +593,7 @@ export const upcomingEvents: UpcomingEvent[] = [
     clientName: "Arun Icecream ",
     clientInitials: "AI",
     clientColor: "#F97316",
+    clientlogo: arunlogo,
     eventName: "Arun Icecream Promotion",
     location: "Kolkata",
     eventImage: arun2,
@@ -607,6 +611,7 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: arun4,
     clientInitials: "AI",
     clientColor: "#FF6B6B",
+    clientlogo: arunlogo,
     clientName: "Arun Icecream",
     title: "Arun Icecream Promotion",
     summary:
@@ -617,6 +622,7 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: mia1,
     clientInitials: "MT",
     clientColor: "#EC4899",
+    clientlogo: mialogo,
     clientName: "Tanishq",
     title: "Mia by Tanishq",
     summary:

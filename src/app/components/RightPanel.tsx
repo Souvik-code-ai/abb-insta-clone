@@ -282,18 +282,18 @@ function EventCard({ event }: { event: UpcomingEvent }) {
       <div className="pt-3 pb-4 px-0">
         <div className="flex items-center gap-3 mb-3">
           <div
-            className="rounded-xl flex items-center justify-center shrink-0"
+            className="rounded-full flex items-center justify-center shrink-0 overflow-hidden"
             style={{
               width: 32,
               height: 32,
-              background: `color-mix(in srgb, ${event.clientColor} 14%, transparent)`,
+
               fontSize: 10,
               fontWeight: 700,
-              color: event.clientColor,
+
               fontFamily: "var(--font-family-body)",
             }}
           >
-            {event.clientInitials}
+            <img src={event.clientlogo} alt="" />
           </div>
           <div className="flex-1 min-w-0">
             <div
@@ -420,18 +420,18 @@ function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
       <div className="pt-3 pb-4 px-0">
         <div className="flex items-center gap-2 mb-3">
           <div
-            className="rounded-full flex items-center justify-center shrink-0"
+            className="rounded-full flex items-center justify-center shrink-0 overflow-hidden"
             style={{
               width: 24,
               height: 24,
-              background: `color-mix(in srgb, ${caseStudy.clientColor} 14%, transparent)`,
+
               fontSize: 9,
               fontWeight: 700,
-              color: caseStudy.clientColor,
+
               fontFamily: "var(--font-family-body)",
             }}
           >
-            {caseStudy.clientInitials}
+            <img src={caseStudy.clientlogo} alt="" />
           </div>
           <span
             style={{
