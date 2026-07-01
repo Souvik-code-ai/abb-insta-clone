@@ -223,7 +223,7 @@ export function DigitalSection({ onNavigate }) {
           </div>
 
           {/* Desktop hover preview panel */}
-          <div className="hidden xl:block w-64 2xl:w-90 fixed flex-shrink-0 right-[10vw] top-[15vh]">
+          <div className="hidden xl:block w-64 2xl:w-100 fixed flex-shrink-0 right-[10vw] top-[15vh]">
             <AnimatePresence mode="wait">
               {hoveredProject && (
                 <motion.div
