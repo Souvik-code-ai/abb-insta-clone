@@ -945,7 +945,7 @@ function MediaGrid() {
             </motion.div>
           )}
           {!hasMoreImages && !isLoadingImages && (
-            <p style={{ fontSize: 11, color: "#c0c0c0" }}>All images loaded</p>
+            <p style={{ fontSize: 11, color: "#c0c0c0" }}></p>
           )}
         </div>
       )}
