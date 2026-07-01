@@ -239,7 +239,7 @@ export function DigitalSection({ onNavigate }) {
                     src={hoveredProject.modalImage}
                     alt={hoveredProject.name}
                     className="w-full rounded-xl object-cover mb-4"
-                    style={{ height: 120 }}
+                    style={{ height: 150 }}
                   />
                   <h3 className="font-semibold text-gray-900 font-sans text-sm mb-3">
                     {hoveredProject.name}
