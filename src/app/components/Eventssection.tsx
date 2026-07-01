@@ -172,7 +172,7 @@ function EventCard({
               style={{ flexShrink: 0 }}
               className="text-lime-600"
             />
-            {event.attendees.toLocaleString()} Attendees
+            {event.attendees.toLocaleString()} Attendance
           </div>
         </div>
       </div>
