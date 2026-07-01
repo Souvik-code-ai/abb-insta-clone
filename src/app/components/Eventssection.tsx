@@ -219,7 +219,7 @@ function EventHoverPanel({
                 </p>
               </div>
               <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
-                <p className="text-xs text-gray-400 mb-1">Attendees</p>
+                <p className="text-xs text-gray-400 mb-1">Attendance</p>
                 <p className="text-xs font-semibold text-gray-800">
                   {hoveredEvent.attendees.toLocaleString()}
                 </p>
