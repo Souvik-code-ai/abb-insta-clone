@@ -984,11 +984,14 @@ export function ProfileView({ onNavigate }) {
     <div className="flex flex-col pb-12 px-4 pt-4 w-[100%] min-[1160px]:mx-50 min-[770px]:mx-16 mx-0">
       {/* ── Hero ── */}
       <button
-        onClick={() => onNavigate("home")}
+        onClick={() => {
+          console.log("Return back clicked");
+          console.log("onNavigate is:", onNavigate);
+          onNavigate("home");
+        }}
         className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2"
         style={{ color: "#579F63" }}
       >
-        {" "}
         <ArrowLeft size={16} />
         Return back
       </button>

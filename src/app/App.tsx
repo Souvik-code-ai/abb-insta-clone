@@ -245,11 +245,13 @@ export default function App() {
     if (section === activeSection) return;
 
     setLoading(true);
+    console.log("loading started");
     window.scrollTo({ top: 0, behavior: "auto" });
 
     setTimeout(() => {
       setActiveSection(section);
       setLoading(false);
+      console.log("loading ended");
     }, 500);
   };
   const SIDEBAR_W = 72;
@@ -312,7 +314,7 @@ export default function App() {
           <div style={{ padding: "0 0 32px" }}>
             {/* ── Profile ── */}
             {activeSection === "profile" ? (
-              <ProfileView onNavigate={setActiveSection} />
+              <ProfileView onNavigate={handleNavigate} />
             ) : /* ── Events ── */
             activeSection === "events" ? (
               <EventsSection onNavigate={setActiveSection} />
