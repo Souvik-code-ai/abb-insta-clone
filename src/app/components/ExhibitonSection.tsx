@@ -211,7 +211,7 @@ export function ExhibitionSection({ onNavigate }) {
         </div>
 
         {/* Desktop hover preview panel */}
-        <div className="hidden xl:block w-64 fixed flex-shrink-0 right-[10vw] top-[15vh]">
+        <div className="hidden xl:block w-64 2xl:w-100 fixed flex-shrink-0 right-[10vw] top-[15vh]">
           <AnimatePresence mode="wait">
             {hoveredProject && (
               <motion.div
@@ -227,7 +227,7 @@ export function ExhibitionSection({ onNavigate }) {
                   src={hoveredProject.modalImage}
                   alt={hoveredProject.name}
                   className="w-full rounded-xl object-cover mb-4"
-                  style={{ height: 120 }}
+                  style={{ height: 150 }}
                 />
                 <h3 className="font-semibold text-gray-900 font-sans text-sm mb-3">
                   {hoveredProject.name}

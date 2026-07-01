@@ -185,7 +185,7 @@ function EventHoverPanel({
   hoveredEvent: (typeof EVENTS)[0] | null;
 }) {
   return (
-    <div className="hidden xl:block w-64 fixed flex-shrink-0 right-[10vw] top-[15vh]">
+    <div className="hidden xl:block w-64 2xl:w-100 fixed flex-shrink-0 right-[10vw] top-[15vh]">
       <AnimatePresence mode="wait">
         {hoveredEvent ? (
           <motion.div
@@ -202,7 +202,7 @@ function EventHoverPanel({
               src={hoveredEvent.image}
               alt={hoveredEvent.name}
               className="w-full rounded-xl object-cover mb-4"
-              style={{ height: 120 }}
+              style={{ height: 150 }}
             />
 
             {/* Name */}
