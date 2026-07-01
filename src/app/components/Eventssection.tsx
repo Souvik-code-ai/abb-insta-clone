@@ -507,9 +507,7 @@ export function EventsSection({ onNavigate }) {
                     <div className="w-6 h-6 rounded-full border-2 border-lime-600 border-t-transparent animate-spin" />
                   </div>
                 ) : (
-                  <p className="text-center text-gray-400 text-sm py-6">
-                    All events loaded ✓
-                  </p>
+                  <p className="text-center text-gray-400 text-sm py-6"></p>
                 )}
                 <EventHoverPanel hoveredEvent={hoveredEvent} />
               </>
