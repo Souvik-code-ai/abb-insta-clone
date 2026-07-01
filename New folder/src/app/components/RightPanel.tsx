@@ -55,7 +55,7 @@ export function RightPanel({
             }
             onClick={() => onNavigate("events")}
           >
-            See all
+            See
           </a>
         </div>
         <div className="flex flex-col gap-4 mt-4">
@@ -87,7 +87,7 @@ export function RightPanel({
               ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
             }
           >
-            See all
+            See
           </a>
         </div>
         <div className="flex flex-col gap-4 mt-4">

@@ -315,14 +315,15 @@ function MediaLightbox({
           top: 18,
           right: 18,
           zIndex: 10,
-          background: "#579F63",
+
           borderRadius: 20,
           padding: "4px 14px",
           fontSize: 11,
           fontWeight: 700,
-          color: "#fff",
+
           letterSpacing: "0.03em",
         }}
+        className="bg-linear-to-r from-lime-800 to-lime-600 text-transparent bg-clip-text"
       >
         {item.category}
       </div>
@@ -958,11 +959,7 @@ export function ProfileView({ onNavigate }) {
                     >
                       {item.title}
                     </span>
-                    <span
-                      style={{ color: "rgba(255,255,255,0.7)", fontSize: 10 }}
-                    >
-                      {item.category}
-                    </span>
+                    <span style={{ fontSize: 10 }}>{item.category}</span>
                   </div>
                 </div>
               </motion.div>

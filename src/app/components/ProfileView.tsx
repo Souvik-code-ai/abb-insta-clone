@@ -342,14 +342,15 @@ function MediaLightbox({
           top: 18,
           right: 18,
           zIndex: 10,
-          background: "#579F63",
+
           borderRadius: 20,
           padding: "4px 14px",
           fontSize: 11,
           fontWeight: 700,
-          color: "#fff",
+
           letterSpacing: "0.03em",
         }}
+        className="bg-linear-to-r from-lime-800 via-lime-600 to-lime-400  text-white"
       >
         {item.category}
       </div>
