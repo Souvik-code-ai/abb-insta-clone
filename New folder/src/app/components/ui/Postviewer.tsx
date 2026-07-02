@@ -34,9 +34,10 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
 
   const isVideo = (src: string) => /\.(mp4|webm|ogg|mov)(\?|$)/i.test(src);
 
-  const currentSrc = post.images[imageIndex];
-  const isCurrentVideo = isVideo(currentSrc);
-  const multipleMedia = post.images.length > 1;
+  const currentMedia = post.media[imageIndex];
+  const isCurrentVideo = currentMedia.type === "video";
+  const currentSrc = currentMedia.url;
+  const multipleMedia = post.media.length > 1;
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
