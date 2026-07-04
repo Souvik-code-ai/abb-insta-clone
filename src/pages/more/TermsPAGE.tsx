@@ -33,19 +33,6 @@ const TOC_ITEMS = [
 function SectionHeader({ title }: { num: number; title: string }) {
   return (
     <div className="flex items-center gap-2 mb-3 pb-2">
-      {/* <div
-        className="flex items-center justify-center rounded-full shrink-0"
-        style={{
-          width: 22,
-          height: 22,
-          background: "rgba(87,159,99,0.15)",
-          color: "#3d7a4a",
-          fontSize: 11,
-          fontWeight: 700,
-        }}
-      >
-        {num}
-      </div> */}
       <span
         style={{
           fontSize: 14,
@@ -105,13 +92,7 @@ function InfoCard({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className="rounded-xl p-3 mb-2 last:mb-0"
-      // style={{
-      //   background: "rgba(87,159,99,0.05)",
-      //   border: "0.5px solid rgba(87,159,99,0.25)",
-      // }}
-    >
+    <div className="rounded-xl p-3 mb-2 last:mb-0">
       <div
         className="flex items-center gap-2 mb-1"
         style={{ fontSize: 12, fontWeight: 600, color: "var(--foreground)" }}
@@ -276,43 +257,6 @@ export function TermsView({
           = any website or individual apart from Users and the website creator.
         </p>
       </div>
-
-      {/* Table of Contents */}
-      {/* <div className="rounded-xl p-4 mb-8 mx-4">
-        <div
-          className="flex items-center gap-2 mb-3"
-          style={{ fontSize: 13, fontWeight: 600, color: "var(--foreground)" }}
-        >
-          <List size={14} style={{ color: "#579F63" }} />
-          Contents
-        </div>
-        <div className="flex flex-col gap-1">
-          {TOC_ITEMS.map(({ id, label }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              style={{
-                fontSize: 12,
-                color: "#579F63",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.textDecoration =
-                  "underline")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.textDecoration =
-                  "none")
-              }
-            >
-              → {label}
-            </a>
-          ))}
-        </div>
-      </div> */}
 
       <div className="flex flex-col gap-6 px-4">
         {/* 1. General Terms */}
@@ -629,13 +573,7 @@ export function TermsView({
         </section>
 
         {/* Contact */}
-        <div
-          className="rounded-xl p-4"
-          // style={{
-          //   background: "rgba(87,159,99,0.06)",
-          //   border: "0.5px solid rgba(87,159,99,0.3)",
-          // }}
-        >
+        <div className="rounded-xl p-4">
           <div
             className="flex items-center gap-2 mb-3"
             style={{

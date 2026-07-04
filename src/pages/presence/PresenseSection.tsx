@@ -338,24 +338,12 @@ function SidePanel({
                   >
                     <X size={14} />
                   </button>
-                  {/* <div className="absolute left-5 bottom-4 text-white">
-                    <p className="text-[10px] uppercase tracking-[0.25em]">
-                      Contact Information
-                    </p>
-
-                    <h3 className="text-xl font-bold capitalize">{active}</h3>
-                  </div> */}
                 </div>
 
                 {/* Content */}
                 <div className="p-5">
                   {active === "address" && (
                     <>
-                      {/* <img
-                        src={addressLogo}
-                        className="w-12 h-12 rounded-xl mb-3"
-                      /> */}
-
                       <p className="text-xs uppercase tracking-widest text-[#48752C] font-semibold">
                         Head Office
                       </p>
@@ -456,10 +444,6 @@ function SidePanel({
                     }`}
                   >
                     <img src={locationImage} alt="" className="h-full w-full" />
-
-                    {/* <span className="text-[10px] text-muted-foreground whitespace-nowrap">
-                      {loc.state}
-                    </span> */}
                   </button>
                 ))}
               </div>

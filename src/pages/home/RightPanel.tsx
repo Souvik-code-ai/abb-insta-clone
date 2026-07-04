@@ -8,7 +8,11 @@ import {
   Trophy,
   BookOpen,
 } from "lucide-react";
-import type { UpcomingEvent, CaseStudy, Award } from "../data/mockData";
+import type {
+  UpcomingEvent,
+  CaseStudy,
+  Award,
+} from "../../../public/home/home";
 
 interface RightPanelProps {
   events: UpcomingEvent[];

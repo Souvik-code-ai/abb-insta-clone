@@ -2,8 +2,6 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence, useMotionValue, animate } from "motion/react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
-// ─── Types ───────────────────────────────────────────────────────────────────
-
 export interface Story {
   text: string;
 }
@@ -30,8 +28,6 @@ const VISIBLE_DESKTOP = 6;
 const ITEM_W = 72;
 const ITEM_GAP = 18;
 const STORY_DURATION_MS = 4000;
-
-// ─── Hooks ────────────────────────────────────────────────────────────────────
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -243,8 +239,6 @@ function StoryCircle({
     </div>
   );
 }
-
-// ─── Story Viewer ─────────────────────────────────────────────────────────────
 
 function StoryViewer({
   client,

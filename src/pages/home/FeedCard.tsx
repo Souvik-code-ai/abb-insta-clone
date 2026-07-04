@@ -10,8 +10,8 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { CommentModal } from "../common/CommentModal";
-import { PostViewer } from "../../app/components/ui/Postviewer";
-import type { FeedPost } from "../../app/data/mockData";
+import { PostViewer } from "../../components/ui/Postviewer";
+import type { FeedPost } from "../../../public/home/home";
 
 interface FeedCardProps {
   post: FeedPost;

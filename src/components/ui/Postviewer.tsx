@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, isZeroValueString } from "motion/react";
 import {
   X,
   Heart,
@@ -15,7 +15,7 @@ import {
   Maximize2,
 } from "lucide-react";
 import { toast } from "sonner";
-import type { feedPosts } from "../../App/data/mockData";
+import type { feedPosts } from "../../../public/home/home";
 
 interface PostViewerProps {
   post: feedPosts;
@@ -33,21 +33,24 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const isVideo = (src: string) => /\.(mp4|webm|ogg|mov)(\?|$)/i.test(src);
+  console.log(post.media);
+  console.log(post.media[0]);
 
-  const currentSrc = post.images[imageIndex];
-  const isCurrentVideo = isVideo(currentSrc);
-  const multipleMedia = post.images.length > 1;
+  const currentMedia = post.media[imageIndex];
+  const currentSrc = currentMedia.url;
+  const isCurrentVideo = currentMedia.type === "video";
+  const multipleMedia = post.media.length > 1;
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowLeft" && imageIndex > 0) setImageIndex((i) => i - 1);
-      if (e.key === "ArrowRight" && imageIndex < post.images.length - 1)
+      if (e.key === "ArrowRight" && imageIndex < post.media.length - 1)
         setImageIndex((i) => i + 1);
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [imageIndex, onClose, post.images.length]);
+  }, [imageIndex, onClose, post.media.length]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -145,26 +148,6 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
           <X size={20} strokeWidth={2} />
         </motion.button>
 
-        {/* ── Category badge — top right ── */}
-        {/* <div
-          style={{
-            position: "absolute",
-            top: 20,
-            right: 20,
-            zIndex: 10,
-            background: "rgba(255,255,255,0.12)",
-            border: "1px solid rgba(255,255,255,0.2)",
-            borderRadius: 20,
-            padding: "5px 14px",
-            fontSize: 12,
-            fontWeight: 600,
-            color: "#fff",
-            letterSpacing: "0.03em",
-          }}
-        >
-          {post.category}
-        </div> */}
-
         {/* ── Arrow prev ── */}
         <AnimatePresence>
           {multipleMedia && imageIndex > 0 && (
@@ -200,7 +183,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
 
         {/* ── Arrow next ── */}
         <AnimatePresence>
-          {multipleMedia && imageIndex < post.images.length - 1 && (
+          {multipleMedia && imageIndex < post.media.length - 1 && (
             <motion.button
               initial={{ opacity: 0, x: 8 }}
               animate={{ opacity: 1, x: 0 }}
@@ -320,7 +303,7 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
                 zIndex: 4,
               }}
             >
-              {post.images.map((_, i) => (
+              {post.media.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setImageIndex(i)}
@@ -464,27 +447,6 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
               </span>
             </motion.button>
 
-            {/* Comment */}
-            {/* <motion.button
-              whileTap={{ scale: 0.82 }}
-              aria-label="Comments"
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: 0,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 3,
-              }}
-            >
-              <MessageCircle size={28} stroke="#fff" strokeWidth={2} />
-              <span style={{ fontSize: 11, color: "#fff", lineHeight: 1 }}>
-                {post.comments.length}
-              </span>
-            </motion.button> */}
-
             {/* Copy link */}
             <motion.button
               whileTap={{ scale: 0.82 }}
@@ -542,53 +504,6 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
             )}
           </div>
         </div>
-
-        {/* ── Caption strip below media ── */}
-        {/* <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            padding: "12px 24px 20px",
-            background: "rgba(0,0,0,0.6)",
-            zIndex: 6,
-          }}
-        >
-          <p
-            style={{
-              margin: 0,
-              fontSize: 13,
-              color: "rgba(255,255,255,0.82)",
-              lineHeight: 1.55,
-              display: "-webkit-box",
-              WebkitBoxOrient: "vertical" as const,
-              WebkitLineClamp: captionExpanded ? undefined : 2,
-              overflow: captionExpanded ? "visible" : "hidden",
-            }}
-          >
-            <span style={{ fontWeight: 700, color: "#fff", marginRight: 6 }}>
-              {post.client.name}
-            </span>
-            {post.caption}
-          </p>
-          {!captionExpanded && post.caption.length > 120 && (
-            <button
-              onClick={() => setCaptionExpanded(true)}
-              style={{
-                background: "none",
-                border: "none",
-                padding: 0,
-                cursor: "pointer",
-                fontSize: 12,
-                color: "rgba(255,255,255,0.5)",
-                marginTop: 2,
-              }}
-            >
-              more
-            </button>
-          )}
-        </div> */}
       </motion.div>
     </AnimatePresence>
   );

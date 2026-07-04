@@ -18,19 +18,6 @@ import {
 function SectionHeader({ title }: { title: string }) {
   return (
     <div className="flex items-center gap-2 mb-3 pb-2">
-      {/* <div
-        className="flex items-center justify-center rounded-full shrink-0"
-        style={{
-          width: 22,
-          height: 22,
-          background: "rgba(87,159,99,0.15)",
-          color: "#3d7a4a",
-          fontSize: 11,
-          fontWeight: 700,
-        }}
-      >
-        {num}
-      </div> */}
       <span
         style={{ fontSize: 14, fontWeight: 600, color: "var(--foreground)" }}
       >

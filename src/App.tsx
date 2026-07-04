@@ -1,7 +1,7 @@
 // Add these imports at the top alongside existing ones
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Toaster } from "sonner";
-import { Sidebar } from "./pages/common/Sidebar";
+
 import { StoriesCarousel } from "./pages/home/StoriesCarousel";
 import { StoryViewer } from "./pages/home/StoryViewer";
 import { FeedCard } from "./pages/home/FeedCard";
@@ -13,7 +13,7 @@ import { MobileBottomNav } from "./pages/common/mobile/MobileBottomNav";
 import { MobileMessagesView } from "./pages/common/mobile/MobileMessagesView";
 import { ProfileView } from "./pages/profile/ProfileView";
 import { EventsSection } from "./pages/events/Eventssection";
-
+import { Sidebar } from "./app/dashboard/Sidebar";
 import logo from "./assets/images/logo.jpg";
 import { DataPrivacyView } from "./pages/more/DataPrivacyView";
 import { CaseStudiesView } from "./pages/more/CaseStudiesView";
@@ -30,176 +30,14 @@ import { TermsView } from "./pages/more/TermsPAGE";
 import { DigitalSection } from "./pages/digital/DigitalSection";
 import { ExhibitionSection } from "./pages/exhibitions/ExhibitonSection";
 import { ActivationSection } from "./pages/activations/ActivationSection";
-import PageLoader from "./app/components/ui/Pageloader";
+import PageLoader from "./components/ui/Pageloader";
 import { ArrowRight } from "lucide-react";
 import { PresenceSection } from "./pages/presence/PresenseSection";
 import { AboutView } from "./pages/more/AboutView";
 // ── Feed with infinite scroll ─────────────────────────────────────────────────
+// how many posts to load per batch
 
-const FEED_PAGE_SIZE = 3; // how many posts to load per batch
-
-function FeedWithInfiniteScroll({
-  onNavigate,
-  logo,
-}: {
-  onNavigate: (s: string) => void;
-  logo: string;
-}) {
-  const [visibleCount, setVisibleCount] = useState(FEED_PAGE_SIZE);
-  const [isLoading, setIsLoading] = useState(false);
-  const sentinelRef = useRef<HTMLDivElement>(null);
-
-  const visiblePosts = feedPosts.slice(0, visibleCount);
-  const hasMore = visibleCount < feedPosts.length;
-
-  const loadMore = useCallback(() => {
-    if (isLoading || !hasMore) return;
-    setIsLoading(true);
-    setTimeout(() => {
-      setVisibleCount((prev) =>
-        Math.min(prev + FEED_PAGE_SIZE, feedPosts.length),
-      );
-      setIsLoading(false);
-    }, 600);
-  }, [isLoading, hasMore]);
-
-  useEffect(() => {
-    const sentinel = sentinelRef.current;
-    if (!sentinel) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) loadMore();
-      },
-      { rootMargin: "300px" },
-    );
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, [loadMore]);
-
-  return (
-    <div className="flex flex-col gap-4 px-4 pt-4">
-      {visiblePosts.map((post) => (
-        <FeedCard key={post.id} post={post} />
-      ))}
-
-      {/* ── Sentinel + spinner ── */}
-      {hasMore && (
-        <div
-          ref={sentinelRef}
-          className="flex flex-col items-center py-6 gap-2"
-        >
-          {isLoading && (
-            <>
-              {/* Skeleton cards while loading */}
-              {Array.from({ length: FEED_PAGE_SIZE }).map((_, i) => (
-                <div
-                  key={i}
-                  className="w-full rounded-2xl overflow-hidden bg-white"
-                  style={{ border: "1px solid #f0f0f5" }}
-                >
-                  {/* Header skeleton */}
-                  <div className="flex items-center gap-3 p-3">
-                    <div
-                      className="rounded-full shrink-0"
-                      style={{
-                        width: 42,
-                        height: 42,
-                        background: "#f0f0f5",
-                        animation: "pulse 1.4s ease-in-out infinite",
-                      }}
-                    />
-                    <div className="flex flex-col gap-2 flex-1">
-                      <div
-                        style={{
-                          height: 12,
-                          width: "40%",
-                          borderRadius: 6,
-                          background: "#f0f0f5",
-                          animation: "pulse 1.4s ease-in-out infinite",
-                        }}
-                      />
-                      <div
-                        style={{
-                          height: 10,
-                          width: "25%",
-                          borderRadius: 6,
-                          background: "#f5f5f7",
-                          animation: "pulse 1.4s ease-in-out infinite 0.2s",
-                        }}
-                      />
-                    </div>
-                  </div>
-                  {/* Image skeleton */}
-                  <div
-                    style={{
-                      aspectRatio: "1/1",
-                      background: "#f5f5f7",
-                      animation: "pulse 1.4s ease-in-out infinite 0.1s",
-                    }}
-                  />
-                  {/* Caption skeleton */}
-                  <div className="p-3 flex flex-col gap-2">
-                    <div
-                      style={{
-                        height: 11,
-                        width: "80%",
-                        borderRadius: 6,
-                        background: "#f0f0f5",
-                        animation: "pulse 1.4s ease-in-out infinite",
-                      }}
-                    />
-                    <div
-                      style={{
-                        height: 11,
-                        width: "55%",
-                        borderRadius: 6,
-                        background: "#f5f5f7",
-                        animation: "pulse 1.4s ease-in-out infinite 0.15s",
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-              <style>{`
-                @keyframes pulse {
-                  0%, 100% { opacity: 1; }
-                  50% { opacity: 0.45; }
-                }
-              `}</style>
-            </>
-          )}
-        </div>
-      )}
-
-      {/* ── End-of-feed footer ── */}
-      {!hasMore && (
-        <div className="flex flex-col items-center py-8 gap-2">
-          <div
-            className="rounded-full flex items-center justify-center"
-            style={{
-              width: 48,
-              height: 48,
-              background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
-            }}
-          >
-            <img src={logo} alt="" />
-          </div>
-          <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
-            You've seen all feeds.
-          </p>
-          <button
-            onClick={() => onNavigate("events")}
-            className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
-            style={{ color: "#579F63" }}
-          >
-            Explore More
-            <ArrowRight size={16} />
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
+import FeedWithInfiniteScroll from "./pages/home/FeedWithInfiniteScroll";
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [moreModalOpen, setMoreModalOpen] = useState(false);

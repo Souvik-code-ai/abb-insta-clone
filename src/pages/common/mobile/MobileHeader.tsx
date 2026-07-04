@@ -16,49 +16,8 @@ interface MobileHeaderProps {
   onLogoClick: () => void;
   onNavigate: (view: string) => void;
 }
-const sidebarItems: {
-  icon: React.ElementType;
-  label: string;
-  desc: string;
-  view: string;
-}[] = [
-  {
-    icon: Info,
-    label: "About Us",
-    desc: "Our story and mission",
-    view: "about",
-  },
-  {
-    icon: BookOpen,
-    label: "Case Studies",
-    desc: "Premium event portfolios",
-    view: "casestudies",
-  },
-  {
-    icon: Award,
-    label: "Awards and Recognitions",
-    desc: "Our achievements",
-    view: "awards",
-  },
-  {
-    icon: Shield,
-    label: "Privacy Policy",
-    desc: "How we protect your data",
-    view: "privacypolicy",
-  },
-  {
-    icon: FileText,
-    label: "Terms & Conditions",
-    desc: "Usage guidelines",
-    view: "terms",
-  },
-  {
-    icon: Lock,
-    label: "Data Privacy",
-    desc: "GDPR & data rights",
-    view: "dataprivacy",
-  },
-];
+import { sidebarItems } from "../../../../public/common/mobile/mobileheader";
+import { socials } from "../../../../public/common/mobile/mobilesocial";
 import { X } from "lucide-react";
 export function MobileHeader({
   onMessageClick,
@@ -67,26 +26,6 @@ export function MobileHeader({
 }: MobileHeaderProps) {
   const [socialOpen, setSocialOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const socials = [
-    {
-      icon: Facebook,
-      label: "Facebook",
-      color: "#1877F2",
-      url: "https://facebook.com/abybabyevents",
-    },
-    {
-      icon: Instagram,
-      label: "Instagram",
-      color: "#E1306C",
-      url: "https://instagram.com/abybabyevents",
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      color: "#0A66C2",
-      url: "https://linkedin.com/company/abybabyevents",
-    },
-  ];
 
   return (
     <>

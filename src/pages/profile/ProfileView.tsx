@@ -364,9 +364,6 @@ function GridCell({ item, onClick }: { item: MediaItem; onClick: () => void }) {
           }}
         >
           <Play size={10} fill="#fff" stroke="none" />
-          {/* <span style={{ fontSize: 10, color: "#fff", fontWeight: 700 }}>
-            REEL
-          </span> */}
         </div>
       )}
 
@@ -440,113 +437,8 @@ function GridCell({ item, onClick }: { item: MediaItem; onClick: () => void }) {
   );
 }
 
-// ── Media grid section ────────────────────────────────────────────────────────
-
 type GridTab = "posts" | "reels" | "images";
 
-// function MediaGrid() {
-//   const [activeTab, setActiveTab] = useState<GridTab>("posts");
-//   const [lightboxItems, setLightboxItems] = useState<MediaItem[] | null>(null);
-//   const [lightboxStart, setLightboxStart] = useState(0);
-
-//   // Posts = all images + all reels; Reels = reels only; Images = images only
-//   const tabData: Record<GridTab, MediaItem[]> = {
-//     posts: POSTS_DATA,
-//     reels: REELS_DATA,
-//     images: IMAGES_DATA,
-//   };
-
-//   const items = tabData[activeTab];
-
-//   const openLightbox = (index: number) => {
-//     setLightboxStart(index);
-//     setLightboxItems(items);
-//   };
-
-//   const TABS: { key: GridTab; icon: React.ReactNode; label: string }[] = [
-//     { key: "posts", icon: <Grid size={16} />, label: "Posts" },
-//     { key: "reels", icon: <Film size={16} />, label: "Reels" },
-//     { key: "images", icon: <Image size={16} />, label: "Images" },
-//   ];
-
-//   return (
-//     <>
-//       {/* Tab row */}
-//       <div
-//         style={{
-//           display: "flex",
-//           marginBottom: 4,
-//         }}
-//       >
-//         {TABS.map((tab) => (
-//           <button
-//             key={tab.key}
-//             onClick={() => setActiveTab(tab.key)}
-//             style={{
-//               flex: 1,
-//               display: "flex",
-//               alignItems: "center",
-//               justifyContent: "center",
-//               gap: 6,
-//               padding: "11px 0",
-//               background: "none",
-//               border: "none",
-//               borderBottom:
-//                 activeTab === tab.key
-//                   ? "2px solid #579F63"
-//                   : "2px solid transparent",
-//               cursor: "pointer",
-//               color: activeTab === tab.key ? "#579F63" : "#8e8e93",
-//               fontSize: 13,
-//               fontWeight: activeTab === tab.key ? 700 : 400,
-//               transition: "all 0.15s",
-//             }}
-//           >
-//             {tab.icon}
-//           </button>
-//         ))}
-//       </div>
-
-//       {/* Grid */}
-//       <AnimatePresence mode="wait">
-//         <motion.div
-//           key={activeTab}
-//           initial={{ opacity: 0, y: 6 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           exit={{ opacity: 0, y: -6 }}
-//           transition={{ duration: 0.18 }}
-//           style={{
-//             display: "grid",
-//             gridTemplateColumns: "repeat(3, 1fr)",
-//             gap: 3,
-//             padding: "0 0 8px",
-//           }}
-//         >
-//           {items.map((item, i) => (
-//             <GridCell
-//               key={item.id}
-//               item={item}
-//               onClick={() => openLightbox(i)}
-//             />
-//           ))}
-//         </motion.div>
-//       </AnimatePresence>
-
-//       {/* Lightbox */}
-//       <AnimatePresence>
-//         {lightboxItems && (
-//           <MediaLightbox
-//             items={lightboxItems}
-//             startIndex={lightboxStart}
-//             onClose={() => setLightboxItems(null)}
-//           />
-//         )}
-//       </AnimatePresence>
-//     </>
-//   );
-// }
-
-// ── ProfileView (root) ────────────────────────────────────────────────────────
 function MediaGrid() {
   const [activeTab, setActiveTab] = useState<GridTab>("posts");
   const [lightboxItems, setLightboxItems] = useState<MediaItem[] | null>(null);
@@ -595,7 +487,7 @@ function MediaGrid() {
   };
 
   const items = tabData[activeTab];
-  // For lightbox on images tab, always pass the full dataset so you can swipe through all
+
   const lightboxPool =
     activeTab === "images" ? IMAGES_DATA : tabData[activeTab];
 
@@ -977,97 +869,11 @@ export function ProfileView({ onNavigate }) {
             </div>
           ))}
         </div>
-
-        {/* <div className="flex flex-col gap-3" style={{ flex: 1, minWidth: 0 }}>
-          <h2
-            style={{
-              fontSize: 15,
-              fontWeight: 700,
-              color: "var(--foreground)",
-              marginBottom: 4,
-            }}
-            className="font-sans"
-          >
-            About Us
-          </h2>
-          <div
-            className="rounded-xl p-4"
-            style={{
-              background:
-                "color-mix(in srgb, var(--accent) 6%, var(--background))",
-            }}
-          >
-            <div className="flex items-center gap-2 mb-2">
-              <HelpCircle size={14} style={{ color: "var(--accent)" }} />
-              <span
-                style={{
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: "var(--foreground)",
-                }}
-              >
-                Why Us
-              </span>
-            </div>
-            <p
-              style={{
-                fontSize: 12,
-                color: "var(--muted-foreground)",
-                lineHeight: 1.6,
-              }}
-            >
-              Over 12 years of award-winning experience delivering world-class
-              brand experiences across events, digital and exhibitions.
-            </p>
-          </div>
-          <div
-            className="rounded-xl p-4"
-            style={{
-              background:
-                "color-mix(in srgb, var(--accent) 6%, var(--background))",
-            }}
-          >
-            <div className="flex items-center gap-2 mb-2">
-              <BarChart2 size={14} style={{ color: "var(--accent)" }} />
-              <span
-                style={{
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: "var(--foreground)",
-                }}
-              >
-                Analysis & Implementation
-              </span>
-            </div>
-            <p
-              style={{
-                fontSize: 12,
-                color: "var(--muted-foreground)",
-                lineHeight: 1.6,
-              }}
-            >
-              Data-driven strategy paired with flawless execution — from initial
-              brief to post-event reporting.
-            </p>
-          </div>
-        </div> */}
       </div>
 
       {/* ── Media grid (Posts / Reels / Images) ── */}
       <MediaGrid />
       <footer className="pt-2 pb-6 flex flex-col justify-center items-center ">
-        {/* 
-        <p
-          style={{
-            fontSize: 11,
-            color: "var(--muted-foreground)",
-
-            marginTop: 12,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
-          © 2026 ABY Baby Events. All rights reserved.
-        </p> */}
         <div className="flex flex-col items-center py-8 gap-2">
           <div
             className="rounded-full flex items-center justify-center"

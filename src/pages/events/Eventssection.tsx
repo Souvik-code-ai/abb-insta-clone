@@ -3,9 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import logo from "../../assets/images/logo.jpg";
 import { EVENTS } from "../../../public/events/events";
-// ── Mock data ─────────────────────────────────────────────────────────────────
 
-// ── Event Card ────────────────────────────────────────────────────────────────
 function EventCard({
   event,
   showType,

@@ -65,21 +65,6 @@ function SidebarCarousel({
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Label */}
-      {/* <div
-        style={{
-          fontSize: 11,
-          fontWeight: 600,
-          color: "#579F63",
-          textTransform: "uppercase",
-          letterSpacing: "0.06em",
-          marginBottom: 10,
-        }}
-      >
-        More Case Studies
-      </div> */}
-
-      {/* Viewport window — clips the scrolling strip */}
       <div
         style={{
           overflow: "hidden",
@@ -200,7 +185,6 @@ function SidebarCarousel({
     </div>
   );
 }
-// ── Main component ────────────────────────────────────────────────────────────
 
 export function CaseStudiesView({
   onNavigate,
