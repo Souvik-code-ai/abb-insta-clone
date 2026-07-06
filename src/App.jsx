@@ -41,13 +41,13 @@ import FeedWithInfiniteScroll from "./pages/home/FeedWithInfiniteScroll";
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [moreModalOpen, setMoreModalOpen] = useState(false);
-  const [activeStory, setActiveStory] = (useState < number) | (null > null);
+  const [activeStory, setActiveStory] = useState(null > null);
   const [currentView, setCurrentView] = useState("home");
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState < boolean > false;
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const checkSize = () => {
       setIsMobile(window.innerWidth < 770);
@@ -113,26 +113,19 @@ export default function App() {
 
       {/* Main scrollable content */}
       <div
-        style={{
-          marginLeft: isMobile ? 0 : SIDEBAR_W,
-          display: "flex",
-          alignItems: "flex-start",
-          minHeight: "100vh",
-        }}
+        className={`flex items-start min-h-screen ${
+          isMobile ? "ml-0" : "ml-[72px]"
+        }`}
       >
         {/* Left gap spacer */}
-        {!isMobile && !isTablet && <div style={{ flex: 4, minWidth: 0 }} />}
+        {!isMobile && !isTablet && <div className="flex-[4] min-w-0" />}
 
         <main
-          style={{
-            flex: isMobile || isTablet ? 1 : "0 0 630px",
-            width: isMobile || isTablet ? undefined : 630,
-            paddingTop: isMobile ? 56 : 0,
-            paddingBottom: isMobile ? 80 : 0,
-            minWidth: 0,
-          }}
+          className={`min-w-0 ${
+            isMobile || isTablet ? "flex-1" : "flex-[0_0_630px] w-[630px]"
+          } ${isMobile ? "pt-14 pb-20" : "pt-0 pb-0"}`}
         >
-          <div style={{ padding: "0 0 32px" }}>
+          <div className="pb-8">
             {/* ── Profile ── */}
             {activeSection === "profile" ? (
               <ProfileView onNavigate={handleNavigate} />
@@ -184,11 +177,11 @@ export default function App() {
           }}
         />
         {/* Middle gap spacer */}
-        {!isMobile && !isTablet && <div style={{ flex: 0.5, minWidth: 0 }} />}
+        {!isMobile && !isTablet && <div className="flex-[0.5] min-w-0" />}
 
         {/* Right Panel — desktop only, home only */}
         {!isTablet && (
-          <div style={{ visibility: hideRightPanel ? "hidden" : "visible" }}>
+          <div className={hideRightPanel ? "invisible" : "visible"}>
             <RightPanel
               events={upcomingEvents}
               caseStudies={caseStudies}
@@ -199,7 +192,7 @@ export default function App() {
         )}
 
         {/* Right gap spacer */}
-        {!isMobile && !isTablet && <div style={{ flex: 5, minWidth: 0 }} />}
+        {!isMobile && !isTablet && <div className="flex-[5] min-w-0" />}
       </div>
 
       {/* Story Viewer Modal */}

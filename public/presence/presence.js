@@ -1,14 +1,4 @@
-export type Panel = "address" | "email" | "phone" | null;
-export interface Location {
-  id: number;
-  state: string;
-  city: string;
-  address: string;
-  lat: number;
-  lng: number;
-}
-
-export const LOCATIONS: Location[] = [
+export const LOCATIONS = [
   {
     id: 1,
     state: "West Bengal",

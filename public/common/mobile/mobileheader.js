@@ -1,10 +1,5 @@
 import { Info, BookOpen, Award, Shield, FileText, Lock } from "lucide-react";
-export const sidebarItems: {
-  icon: React.ElementType;
-  label: string;
-  desc: string;
-  view: string;
-}[] = [
+export const sidebarItems = [
   {
     icon: Info,
     label: "About Us",

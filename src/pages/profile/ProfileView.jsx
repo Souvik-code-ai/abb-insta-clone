@@ -24,7 +24,6 @@ import {
   STATS,
   CAROUSEL_ITEMS,
   SERVICES,
-  MediaItem,
   REELS_DATA,
   IMAGES_DATA,
 } from "../../../public/profile/profile";
@@ -430,7 +429,7 @@ function GridCell({ item, onClick }) {
 }
 
 function MediaGrid() {
-  const [activeTab, setActiveTab] = useState < GridTab > "posts";
+  const [activeTab, setActiveTab] = useState("posts");
   const [lightboxItems, setLightboxItems] = useState(null);
   const [lightboxStart, setLightboxStart] = useState(0);
 

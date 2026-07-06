@@ -73,29 +73,15 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 28, stiffness: 380 }}
-            className="bg-white rounded-3xl shadow-2xl overflow-hidden"
-            style={{ width: 320, border: "1px solid rgba(0,0,0,0.08)" }}
+            className="bg-white rounded-3xl shadow-2xl overflow-hidden w-[320px] border border-black/8"
           >
             {/* Header */}
-            <div
-              className="flex items-center justify-between px-5 py-4"
-              style={{
-                background:
-                  "linear-gradient( 135deg, #579F63 0%, #7CFC58 100%)",
-              }}
-            >
+            <div className="flex items-center justify-between px-5 py-4 bg-gradient-to-br from-[#579F63] to-[#7CFC58]">
               <div>
-                <div
-                  style={{
-                    color: "#fff",
-
-                    fontSize: 18,
-                  }}
-                  className="font-sans"
-                >
+                <div className="font-sans text-white text-lg">
                   Let's Connect
                 </div>
-                <div style={{ color: "rgba(255,255,255,0.8)", fontSize: 12 }}>
+                <div className="text-white/80 text-xs">
                   We'll respond within 2 hours
                 </div>
               </div>
@@ -111,33 +97,13 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
 
             {submitted ? (
               <div className="flex flex-col items-center justify-center py-10 px-6">
-                <div
-                  className="rounded-full flex items-center justify-center mb-3"
-                  style={{
-                    width: 56,
-                    height: 56,
-                    background: "rgba(212,69,106,0.1)",
-                  }}
-                >
-                  <Send size={22} style={{ color: "#579F63" }} />
+                <div className="rounded-full flex items-center justify-center mb-3 w-14 h-14 bg-[#d4456a]/10">
+                  <Send size={22} className="text-[#579F63]" />
                 </div>
-                <div
-                  style={{
-                    fontSize: 16,
-                    fontWeight: 600,
-                    color: "#1a1a1a",
-                    marginBottom: 6,
-                  }}
-                >
+                <div className="text-base font-semibold text-[#1a1a1a] mb-1.5">
                   Message Sent!
                 </div>
-                <div
-                  style={{
-                    fontSize: 13,
-                    color: "#8e8e93",
-                    textAlign: "center",
-                  }}
-                >
+                <div className="text-[13px] text-[#8e8e93] text-center">
                   Our team will get back to you soon.
                 </div>
               </div>
@@ -162,13 +128,7 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
                       setForm((f) => ({ ...f, [field]: e.target.value }))
                     }
                     required={field !== "phone"}
-                    className="w-full rounded-xl px-4 outline-none"
-                    style={{
-                      height: 42,
-                      background: "#f5f5f7",
-                      fontSize: 14,
-                      border: "none",
-                    }}
+                    className="w-full rounded-xl px-4 outline-none h-[42px] bg-[#f5f5f7] text-sm border-none"
                   />
                 ))}
                 <textarea
@@ -178,24 +138,11 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
                     setForm((f) => ({ ...f, message: e.target.value }))
                   }
                   required
-                  className="w-full rounded-xl px-4 py-3 outline-none resize-none"
-                  style={{
-                    background: "#f5f5f7",
-                    fontSize: 14,
-                    border: "none",
-                    height: 90,
-                  }}
+                  className="w-full rounded-xl px-4 py-3 outline-none resize-none bg-[#f5f5f7] text-sm border-none h-[90px]"
                 />
                 <button
                   type="submit"
-                  className="w-full rounded-xl py-3 flex items-center justify-center gap-2 transition-opacity"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #579F63 0%, #7CFC58 100%)",
-                    color: "#fff",
-                    fontWeight: 600,
-                    fontSize: 15,
-                  }}
+                  className="w-full rounded-xl py-3 flex items-center justify-center gap-2 transition-opacity bg-gradient-to-br from-[#579F63] to-[#7CFC58] text-white font-semibold text-[15px]"
                 >
                   <Send size={16} />
                   Send Message
@@ -226,27 +173,14 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center justify-end gap-2"
               >
-                <span
-                  className="px-3 py-1 rounded-full"
-                  style={{
-                    background: "#fff",
-                    fontSize: 12,
-                    fontWeight: 500,
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
-                  }}
-                >
+                <span className="px-3 py-1 rounded-full  bg-white text-xs font-medium shadow-[0_2px_8px_rgba(0,0,0,0.12)]">
                   {label}
                 </span>
                 <div
-                  className="rounded-full flex items-center justify-center shrink-0"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    background: color,
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-                  }}
+                  className="rounded-full flex items-center justify-center shrink-0 w-10 h-10 shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+                  style={{ background: color }}
                 >
-                  <Icon size={18} style={{ color: "#fff" }} />
+                  <Icon size={18} className="text-white" />
                 </div>
               </motion.a>
             ))}
@@ -261,21 +195,11 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.94 }}
           onClick={() => setSocialOpen((o) => !o)}
-          className="rounded-full flex items-center justify-center shadow-lg"
-          style={{
-            width: 48,
-            height: 48,
-            background: socialOpen ? "#1a1a1a" : "#fff",
-            color: socialOpen ? "#fff" : "#1a1a1a",
-            border: "1px solid rgba(0,0,0,0.1)",
-          }}
+          className={`rounded-full flex items-center justify-center shadow-lg w-12 h-12 border border-black/10 ${socialOpen ? "bg-[#1a1a1a] text-white" : "bg-white text-[#1a1a1a]"}`}
         >
           <ChevronUp
             size={18}
-            style={{
-              transform: socialOpen ? "rotate(180deg)" : "none",
-              transition: "transform 0.2s",
-            }}
+            className={`transition-transform duration-200 ${socialOpen ? "rotate-180" : "rotate-0"}`}
           />
         </motion.button>
 
@@ -284,14 +208,7 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.94 }}
           onClick={handleToggle}
-          className="rounded-full flex items-center justify-center shadow-xl"
-          style={{
-            width: 56,
-            height: 56,
-            background: open
-              ? "#1a1a1a"
-              : "linear-gradient(135deg, #579F63 0%, #7CFC58 100%)",
-          }}
+          className={`rounded-full flex items-center justify-center shadow-xl w-14 h-14 ${open ? "bg-[#1a1a1a]" : "bg-gradient-to-br from-[#579F63] to-[#7CFC58]"}`}
         >
           <AnimatePresence mode="wait">
             {open ? (
@@ -312,7 +229,7 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
                 exit={{ rotate: -90 }}
                 transition={{ duration: 0.15 }}
               >
-                <MessageCircle size={22} style={{ color: "#fff" }} />
+                <MessageCircle size={22} className="text-white" />
               </motion.div>
             )}
           </AnimatePresence>

@@ -1,16 +1,16 @@
 import toyotaCover from "../../src/assets/images/drumtao/DrumTao/dt7.webp";
-import toyotaDetail from "../../assets/images/drumtao/DrumTao/dt4.webp";
+import toyotaDetail from "../../src/assets/images/drumtao/DrumTao/dt4.webp";
 import krishiCover from "../../src/assets/images/arun/arun_webp/arun.webp";
-import krishiDetail from "../../assets/images/arun/arun_webp/arun3.webp";
+import krishiDetail from "../../src/assets/images/arun/arun_webp/arun3.webp";
 
 import pmsCover from "../../src/assets/images/mia/mia2.webp";
 import pmsDetail from "../../src/assets/images/mia/mia3.webp";
-import zira1 from "../../assets/images/zira/zira1.webp";
+import zira1 from "../../src/assets/images/zira/zira1.webp";
 import zira3 from "../../src/assets/images/zira/zira3.webp";
-import miaCover from "../../assets/images/mia/mia3.webp";
-import mallCover from "../../assets/images/zira/zira1.webp";
-import rallyCover from "../../assets/images/drumtao/DrumTao/dt6.webp";
-import tataCover from "../../assets/arun/arun_webp/aarun1.webp";
+import miaCover from "../../src/assets/images/mia/mia3.webp";
+import mallCover from "../../src/assets/images/zira/zira1.webp";
+import rallyCover from "../../src/assets/images/drumtao/DrumTao/dt6.webp";
+import tataCover from "../../src/assets/images/arun/arun_webp/aarun1.webp";
 import mia1 from "../../src/assets/images/mia/mia 1.webp";
 import mia2 from "../../src/assets/images/mia/mia2.webp";
 import mia3 from "../../src/assets/images/mia/mia3.webp";
@@ -19,18 +19,18 @@ import mall1 from "../../src/assets/images/zira/zira2.webp";
 import mall2 from "../../src/assets/images/zira/zira3.webp";
 import mall3 from "../../src/assets/images/zira/zira4.webp";
 import mall4 from "../../src/assets/images/zira/zira1.webp";
-import rally1 from "../../assets/images/drumtao/DrumTao/dt2.webp";
-import rally2 from "../../assets/images/drumtao/DrumTao/dt3.webp";
-import rally3 from "../../assets/images/drumtao/DrumTao/dt4.webp";
-import rally4 from "../../assets/images/drumtao/DrumTao/dt5.webp";
-import rally5 from "../../assets/images/drumtao/DrumTao/dt6.webp";
-import rally6 from "../../assets/images/drumtao/DrumTao/dt7.webp";
+import rally1 from "../../src/assets/images/drumtao/DrumTao/dt2.webp";
+import rally2 from "../../src/assets/images/drumtao/DrumTao/dt3.webp";
+import rally3 from "../../src/assets/images/drumtao/DrumTao/dt4.webp";
+import rally4 from "../../src/assets/images/drumtao/DrumTao/dt5.webp";
+import rally5 from "../../src/assets/images/drumtao/DrumTao/dt6.webp";
+import rally6 from "../../src/assets/images/drumtao/DrumTao/dt7.webp";
 import tata1 from "../../src/assets/images/arun/arun_webp/arun2.webp";
-import tata2 from "../../assets/images/arun/arun_webp/arun3.webp";
-import tata3 from "../../assets/arun/arun_webp/arun4.webp";
-import tata4 from "../../assets/arun/arun_webp/arun5.webp";
-import tata5 from "../../assets/arun/arun_webp/arun6.webp";
-import tata6 from "../../assets/arun/arun_webp/arun7.webp";
+import tata2 from "../../src/assets/images/arun/arun_webp/arun3.webp";
+import tata3 from "../../src/assets/images/arun/arun_webp/arun4.webp";
+import tata4 from "../../src/assets/images/arun/arun_webp/arun5.webp";
+import tata5 from "../../src/assets/images/arun/arun_webp/arun6.webp";
+import tata6 from "../../src/assets/images/arun/arun_webp/arun7.webp";
 export const STATS = [
   { label: "Years", value: "12+" },
   { label: "Clients", value: "340+" },
@@ -99,17 +99,7 @@ export const SERVICES = [
 
 // ── Media data ────────────────────────────────────────────────────────────────
 
-export type MediaItem = {
-  id: number;
-  type: "image" | "reel";
-  src: string;
-  caption: string;
-  likes: number;
-  comments: number;
-  category: string;
-};
-
-export const REELS_DATA: MediaItem[] = [
+export const REELS_DATA = [
   {
     id: 101,
     type: "reel",
@@ -166,7 +156,7 @@ export const REELS_DATA: MediaItem[] = [
   },
 ];
 
-export const IMAGES_DATA: MediaItem[] = [
+export const IMAGES_DATA = [
   {
     id: 1,
     type: "image",

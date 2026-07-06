@@ -39,34 +39,13 @@ export function CommentModal({ isOpen, onClose }) {
           exit={{ opacity: 0 }}
           className="flex flex-col items-center justify-center gap-3 py-10"
         >
-          <div
-            className="rounded-full flex items-center justify-center"
-            style={{
-              width: 56,
-              height: 56,
-              background: "rgba(212,69,106,0.1)",
-            }}
-          >
-            <Send size={22} style={{ color: "#d4456a" }} />
+          <div className="rounded-full flex items-center justify-center h-14 w-14 bg-[#d4456a]/10 ">
+            <Send size={22} className="text-[#d4456a]" />
           </div>
-          <div
-            style={{
-              fontSize: 16,
-              fontWeight: 600,
-              color: "var(--foreground)",
-              fontFamily: "var(--font-family-body)",
-            }}
-          >
+          <div className="text-base font-semibold text-[var(--foreground)] font-[var(--font-family-body)]">
             Message Sent!
           </div>
-          <div
-            style={{
-              fontSize: 13,
-              color: "var(--muted-foreground)",
-              textAlign: "center",
-              fontFamily: "var(--font-family-body)",
-            }}
-          >
+          <div className="text-[13px] text-[var(--muted-foreground)] text-center font-[var(--font-family-body)]">
             Our team will get back to you soon.
           </div>
         </motion.div>
@@ -91,15 +70,7 @@ export function CommentModal({ isOpen, onClose }) {
                 setForm((f) => ({ ...f, [field]: e.target.value }))
               }
               required={field !== "phone"}
-              className="w-full rounded-xl px-4 outline-none"
-              style={{
-                height: 42,
-                background: "var(--muted)",
-                fontSize: 14,
-                border: "none",
-                fontFamily: "var(--font-family-body)",
-                color: "var(--foreground)",
-              }}
+              className="w-full rounded-xl px-4 outline-none h-[42px] bg-[var(--muted)] text-sm border-none font-[var(--font-family-body)] text-[var(--foreground)]"
             />
           ))}
           <textarea
@@ -109,26 +80,11 @@ export function CommentModal({ isOpen, onClose }) {
               setForm((f) => ({ ...f, message: e.target.value }))
             }
             required
-            className="w-full rounded-xl px-4 py-3 outline-none resize-none"
-            style={{
-              background: "var(--muted)",
-              fontSize: 14,
-              border: "none",
-              height: 90,
-              fontFamily: "var(--font-family-body)",
-              color: "var(--foreground)",
-            }}
+            className="w-full rounded-xl px-4 py-3 outline-none resize-none bg-[var(--muted)] text-sm border-none h-[90px] font-[var(--font-family-body)] text-[var(--foreground)]"
           />
           <button
             type="submit"
-            className="w-full rounded-xl py-3 flex items-center justify-center gap-2"
-            style={{
-              background: "linear-gradient(135deg, #d4456a 0%, #f07398 100%)",
-              color: "#fff",
-              fontWeight: 600,
-              fontSize: 15,
-              fontFamily: "var(--font-family-body)",
-            }}
+            className="w-full rounded-xl py-3 flex items-center justify-center gap-2 bg-gradient-to-br from-[#d4456a] to-[#f07398] text-white font-semibold text-[15px] font-[var(--font-family-body)]"
           >
             <Send size={16} />
             Send Message
@@ -139,33 +95,16 @@ export function CommentModal({ isOpen, onClose }) {
   );
 
   const header = (
-    <div
-      className="flex items-center justify-between px-5 py-4 shrink-0"
-      style={{
-        background: "linear-gradient(135deg, #d4456a 0%, #f07398 100%)",
-      }}
-    >
+    <div className="flex items-center justify-between px-5 py-4 shrink-0 bg-gradient-to-br from-[#d4456a] to-[#f07398]">
       <div>
-        <div
-          style={{
-            color: "#fff",
-            fontFamily: "var(--font-family-display)",
-            fontSize: 18,
-          }}
-        >
+        <div className="text-white font-[var(--font-family-display)] text-lg">
           Let's Connect
         </div>
-        <div
-          style={{
-            color: "rgba(255,255,255,0.8)",
-            fontSize: 12,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
+        <div className="text-white/80 text-xs font-[var(--font-family-body)]">
           We'll respond within 2 hours
         </div>
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.8)" }}>
+      <button onClick={onClose} className="text-white/80">
         <X size={18} />
       </button>
     </div>
@@ -180,8 +119,7 @@ export function CommentModal({ isOpen, onClose }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[80]"
-            style={{ background: "rgba(0,0,0,0.5)" }}
+            className="fixed inset-0 z-[80] bg-black/50"
             onClick={onClose}
           />
 
@@ -192,8 +130,7 @@ export function CommentModal({ isOpen, onClose }) {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 350 }}
-              className="fixed top-0 left-0 bottom-0 z-[81] bg-white flex flex-col"
-              style={{ width: "100vw" }}
+              className="fixed top-0 left-0 bottom-0 z-[81] bg-white flex flex-col w-screen"
             >
               {header}
               <div className="flex-1 overflow-y-auto px-5 py-5">{formBody}</div>
@@ -207,15 +144,7 @@ export function CommentModal({ isOpen, onClose }) {
               transition={{ type: "spring", damping: 28, stiffness: 380 }}
               className="fixed inset-0 z-[81] flex items-center justify-center pointer-events-none"
             >
-              <div
-                className="bg-white rounded-3xl shadow-2xl overflow-hidden pointer-events-auto"
-                style={{
-                  width: 360,
-                  maxHeight: "90vh",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden pointer-events-auto w-[360px] max-h-[90vh] flex flex-col">
                 {header}
                 <div className="flex-1 overflow-y-auto px-5 py-5">
                   {formBody}

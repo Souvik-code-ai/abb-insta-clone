@@ -7,7 +7,7 @@ const FEED_PAGE_SIZE = 3;
 export default function FeedWithInfiniteScroll({ onNavigate, logo }) {
   const [visibleCount, setVisibleCount] = useState(FEED_PAGE_SIZE);
   const [isLoading, setIsLoading] = useState(false);
-  const sentinelRef = useRef < HTMLDivElement > null;
+  const sentinelRef = useRef(null);
 
   const visiblePosts = feedPosts.slice(0, visibleCount);
   const hasMore = visibleCount < feedPosts.length;

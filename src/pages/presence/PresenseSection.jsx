@@ -2,11 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import locationImage from "../../assets/images/location/bengaluru.jpg";
 import logo from "../../assets/images/download.jpg";
-import email from "../../assets/email.webp";
-import addressLogo from "../../assets/address_logo.jpg";
-import phone from "../../assets/phone.webp";
+import email from "../../assets/images/email.webp";
+import addressLogo from "../../assets/images/address_logo.jpg";
+import phone from "../../assets/images/phone.webp";
 import { Globe, Recycle } from "lucide-react";
-import { Panel, Location, LOCATIONS } from "../../../public/presence/presence";
+import { LOCATIONS } from "../../../public/presence/presence";
 import {
   MapPin,
   Building2,
@@ -64,16 +64,15 @@ function FullscreenModal({ loc, onClose }) {
 // ---------- SidePanel ----------
 
 function SidePanel({ setOpen, onNavigate }) {
-  const [selectedId, setSelectedId] = useState < number > 1;
+  const [selectedId, setSelectedId] = useState(1);
   // inside SidePanel, add this state
-  const [flipped, setFlipped] = useState < boolean > false;
-  const [fullscreenLoc, setFullscreenLoc] =
-    (useState < Location) | (null > null);
-  const [carouselOffset, setCarouselOffset] = useState < number > 0;
-  const [mapKey, setMapKey] = useState < number > 1;
+  const [flipped, setFlipped] = useState(false);
+  const [fullscreenLoc, setFullscreenLoc] = useState(null);
+  const [carouselOffset, setCarouselOffset] = useState(0);
+  const [mapKey, setMapKey] = useState(1);
 
-  const trackRef = useRef < HTMLDivElement > null;
-  const outerRef = useRef < HTMLDivElement > null;
+  const trackRef = useRef(null);
+  const outerRef = useRef(null);
 
   const selectedLoc = LOCATIONS.find((l) => l.id === selectedId);
 
@@ -137,7 +136,7 @@ function SidePanel({ setOpen, onNavigate }) {
 
   const atStart = carouselOffset <= 0;
   const atEnd = carouselOffset >= getMaxOffset();
-  const [active, setActive] = useState < Panel > null;
+  const [active, setActive] = useState(null);
 
   const toggle = (type) => setActive((prev) => (prev === type ? null : type));
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { MoreModal } from "./MoreModal";
+import { MoreModal } from "../../../pages/more/MoreModal";
 import { Info, BookOpen, Shield, FileText, Lock, Award } from "lucide-react";
 import {
   MessageCircle,

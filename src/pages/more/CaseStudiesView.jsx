@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Clock, MapPin, Users } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-import { CaseStudy, CASE_STUDIES } from "../../../public/caseStudy/casestudy";
+import { CASE_STUDIES } from "../../../public/caseStudy/casestudy";
 function SidebarCarousel({ studies, activeId, onSelect }) {
   const [paused, setPaused] = useState(false);
   const [offset, setOffset] = useState(0);
-  const rafRef = (useRef < number) | (null > null);
-  const lastTimeRef = (useRef < number) | (null > null);
+
+  const rafRef = useRef(null);
+  const lastTimeRef = useRef(null);
   const CARD_HEIGHT = 168; // image(101px) + content(~55px) + gap(12px)
   const SPEED = 50; // px per second
 

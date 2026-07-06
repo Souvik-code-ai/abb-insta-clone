@@ -24,7 +24,7 @@ export function PostViewer({ post, onClose }) {
   const [muted, setMuted] = useState(true);
   const [playing, setPlaying] = useState(true);
   const [captionExpanded, setCaptionExpanded] = useState(false);
-  const videoRef = useRef < HTMLVideoElement > null;
+  const videoRef = useRef(null);
 
   const isVideo = (src) => /\.(mp4|webm|ogg|mov)(\?|$)/i.test(src);
   console.log(post.media);
@@ -102,17 +102,7 @@ export function PostViewer({ post, onClose }) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
-        style={{
-          position: "fixed",
-          top: 20,
-          right: 20,
-          inset: 0,
-          zIndex: 9999,
-          background: "#000",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        className="fixed  inset-0 z-[9999] bg-black flex items-center justify-center "
         onClick={(e) => {
           if (e.target === e.currentTarget) onClose();
         }}
@@ -122,22 +112,7 @@ export function PostViewer({ post, onClose }) {
           whileTap={{ scale: 0.9 }}
           onClick={onClose}
           aria-label="Close"
-          style={{
-            position: "absolute",
-            top: 20,
-            right: 20,
-            zIndex: 10,
-            width: 40,
-            height: 40,
-            borderRadius: "50%",
-            background: "rgba(255,255,255,0.12)",
-            border: "1px solid rgba(255,255,255,0.2)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            color: "#fff",
-          }}
+          className="absolute top-5 right-5 z-10 w-10 h-10 rounded-full bg-white/12 border border-white/20 flex items-center justify-center cursor-pointer text-white"
         >
           <X size={20} strokeWidth={2} />
         </motion.button>
@@ -152,23 +127,7 @@ export function PostViewer({ post, onClose }) {
               whileTap={{ scale: 0.9 }}
               onClick={() => setImageIndex((i) => i - 1)}
               aria-label="Previous"
-              style={{
-                position: "absolute",
-                left: 20,
-                top: "50%",
-                transform: "translateY(-50%)",
-                zIndex: 10,
-                width: 44,
-                height: 44,
-                borderRadius: "50%",
-                background: "rgba(255,255,255,0.14)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                color: "#fff",
-              }}
+              className="absolute left-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/14 border border-white/20 flex items-center justify-center cursor-pointer text-white"
             >
               <ChevronLeft size={22} />
             </motion.button>
@@ -185,23 +144,7 @@ export function PostViewer({ post, onClose }) {
               whileTap={{ scale: 0.9 }}
               onClick={() => setImageIndex((i) => i + 1)}
               aria-label="Next"
-              style={{
-                position: "absolute",
-                right: 20,
-                top: "50%",
-                transform: "translateY(-50%)",
-                zIndex: 10,
-                width: 44,
-                height: 44,
-                borderRadius: "50%",
-                background: "rgba(255,255,255,0.14)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                color: "#fff",
-              }}
+              className="absolute right-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/14 border border-white/20 flex items-center justify-center cursor-pointer text-white"
             >
               <ChevronRight size={22} />
             </motion.button>
@@ -210,13 +153,7 @@ export function PostViewer({ post, onClose }) {
 
         {/* ── Media ── */}
         <div
-          style={{
-            position: "relative",
-            width: "min(90vw, 560px)",
-            aspectRatio: "1/1",
-            borderRadius: 12,
-            overflow: "hidden",
-          }}
+          className="relative w-[min(90vw,560px)] aspect-square rounded-[18px] overflow-hidden"
           onDoubleClick={handleDoubleClick}
         >
           <AnimatePresence mode="wait">
@@ -233,13 +170,7 @@ export function PostViewer({ post, onClose }) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
+                className="absolute inset-0 w-full h-full object-cover"
               />
             ) : (
               <motion.img
@@ -250,13 +181,7 @@ export function PostViewer({ post, onClose }) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
+                className="absolute inset-0 w-full h-full object-cover"
               />
             )}
           </AnimatePresence>
@@ -269,14 +194,7 @@ export function PostViewer({ post, onClose }) {
                 animate={{ scale: 1.4, opacity: 1 }}
                 exit={{ scale: 1.8, opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  pointerEvents: "none",
-                }}
+                className="absolute inset-0 flex items-center justify-center pointer-events-none"
               >
                 <Heart size={90} fill="#fff" stroke="none" />
               </motion.div>
@@ -285,79 +203,26 @@ export function PostViewer({ post, onClose }) {
 
           {/* Dot indicators */}
           {multipleMedia && (
-            <div
-              style={{
-                position: "absolute",
-                bottom: 80,
-                left: 0,
-                right: 0,
-                display: "flex",
-                justifyContent: "center",
-                gap: 6,
-                zIndex: 4,
-              }}
-            >
+            <div className="absolute bottom-[80px] left-0 right-0 flex justify-center gap-1.5 z-[4]">
               {post.media.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setImageIndex(i)}
-                  style={{
-                    width: i === imageIndex ? 20 : 6,
-                    height: 6,
-                    borderRadius: 3,
-                    background:
-                      i === imageIndex ? "#fff" : "rgba(255,255,255,0.45)",
-                    border: "none",
-                    cursor: "pointer",
-                    padding: 0,
-                    transition: "width 0.2s",
-                  }}
+                  className={`h-1.5 rounded-[3px] border-none cursor-pointer p-0 transition-[width] duration-200 ${i === imageIndex ? "w-5 bg-white" : "w-1.5 bg-white/45"}`}
                 />
               ))}
             </div>
           )}
 
           {/* Bottom gradient */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: "45%",
-              background:
-                "linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%)",
-              pointerEvents: "none",
-              zIndex: 3,
-            }}
-          />
+          <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-black/82 to-transparent pointer-events-none z-[3]" />
 
           {/* ── Bottom left: logo + name + type ── */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 16,
-              left: 16,
-              zIndex: 5,
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-            }}
-          >
+          <div className="absolute bottom-4 left-4 z-[5] flex items-center gap-2.5">
             {/* Avatar */}
             <div
-              style={{
-                width: 42,
-                height: 42,
-                borderRadius: "50%",
-                background: post.client.bgColor,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-                border: "2px solid rgba(255,255,255,0.3)",
-              }}
-              className="overflow-hidden"
+              className="overflow-hidden w-[42px] h-[42px] rounded-full flex items-center justify-center flex-shrink-0 border-2 border-white/30"
+              style={{ background: post.client.bgColor }}
             >
               <img
                 src={post.client.initials}
@@ -368,62 +233,24 @@ export function PostViewer({ post, onClose }) {
 
             {/* Name + type */}
             <div>
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: 14,
-                  fontWeight: 700,
-                  color: "#fff",
-                  lineHeight: 1.2,
-                  textShadow: "0 1px 4px rgba(0,0,0,0.5)",
-                }}
-              >
+              <p className="m-0 text-sm font-bold text-white leading-tight [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
                 {post.client.name}
               </p>
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: 12,
-                  color: "rgba(255,255,255,0.72)",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 3,
-                }}
-              >
-                <MapPin size={11} style={{ flexShrink: 0, color: "#f9a8c9" }} />
+              <p className="m-0 text-xs text-white/72 flex items-center gap-[3px]">
+                <MapPin size={11} className="flex-shrink-0 text-[#f9a8c9]" />
                 {post.location} · {post.client.category}
               </p>
             </div>
           </div>
 
           {/* ── Bottom right: media action buttons ── */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 16,
-              right: 16,
-              zIndex: 5,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 14,
-            }}
-          >
+          <div className="absolute bottom-4 right-4 z-[5] flex flex-col items-center gap-3.5">
             {/* Like */}
             <motion.button
               whileTap={{ scale: 0.82 }}
               onClick={handleLike}
               aria-label="Like"
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: 0,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 3,
-              }}
+              className="bg-none border-none cursor-pointer p-0 flex flex-col items-center gap-[3px]"
             >
               <motion.div
                 animate={{ scale: liked ? [1, 1.4, 1] : 1 }}
@@ -436,7 +263,7 @@ export function PostViewer({ post, onClose }) {
                   strokeWidth={liked ? 0 : 2}
                 />
               </motion.div>
-              <span style={{ fontSize: 11, color: "#fff", lineHeight: 1 }}>
+              <span className="text-[11px] text-white leading-none">
                 {likeCount}
               </span>
             </motion.button>
@@ -446,12 +273,7 @@ export function PostViewer({ post, onClose }) {
               whileTap={{ scale: 0.82 }}
               onClick={handleCopy}
               aria-label="Copy link"
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: 0,
-              }}
+              className="bg-none border-none cursor-pointer p-0"
             >
               <Link2 size={26} stroke="#fff" strokeWidth={2} />
             </motion.button>
@@ -463,12 +285,7 @@ export function PostViewer({ post, onClose }) {
                   whileTap={{ scale: 0.82 }}
                   onClick={togglePlay}
                   aria-label={playing ? "Pause" : "Play"}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    padding: 0,
-                  }}
+                  className="bg-none border-none cursor-pointer p-0"
                 >
                   {playing ? (
                     <Pause size={26} stroke="#fff" strokeWidth={2} />
@@ -481,12 +298,7 @@ export function PostViewer({ post, onClose }) {
                   whileTap={{ scale: 0.82 }}
                   onClick={toggleMute}
                   aria-label={muted ? "Unmute" : "Mute"}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    padding: 0,
-                  }}
+                  className="bg-none border-none cursor-pointer p-0"
                 >
                   {muted ? (
                     <VolumeX size={26} stroke="#fff" strokeWidth={2} />

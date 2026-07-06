@@ -10,8 +10,7 @@ function EventCard({ event, showType, onHover, onLeave }) {
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ type: "spring", stiffness: 300, damping: 24 }}
-      className="overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm"
-      style={{ border: "1px solid #f0f0f5" }}
+      className="overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm "
       onMouseEnter={() => onHover?.(event)}
       onMouseLeave={() => onLeave?.()}
     >
@@ -20,31 +19,17 @@ function EventCard({ event, showType, onHover, onLeave }) {
         <img
           src={event.image}
           alt={event.name}
-          className="w-full object-cover"
-          style={{ height: 200 }}
+          className="w-full object-cover h-[200px]"
         />
         {showType && (
-          <span
-            className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-r from-lime-800 to-lime-600 text-transparent"
-            style={{ color: "#fff", fontSize: 11 }}
-          >
+          <span className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-r from-lime-800 to-lime-600  text-[11px] text-white ">
             {event.type}
           </span>
         )}
         {/* Expired overlay */}
         {event.status === "expired" && (
-          <div
-            className="absolute inset-0 flex items-end p-3"
-            style={{ background: "rgba(0,0,0,0.18)" }}
-          >
-            <span
-              className="px-2 py-0.5 rounded-full text-xs font-medium"
-              style={{
-                background: "rgba(0,0,0,0.55)",
-                color: "#fff",
-                fontSize: 11,
-              }}
-            >
+          <div className="absolute inset-0 flex items-end p-3 bg-black/0.18">
+            <span className="px-2 py-0.5 rounded-full text-xs font-medium text-white bg-black/0.55 text-[11px]">
               Past event
             </span>
           </div>
@@ -53,45 +38,21 @@ function EventCard({ event, showType, onHover, onLeave }) {
 
       {/* Info */}
       <div className="p-4">
-        <h3
-          className="font-semibold text-gray-900 leading-snug line-clamp-1 font-sans"
-          style={{ fontSize: 15 }}
-        >
+        <h3 className="font-semibold text-gray-900 leading-snug line-clamp-1 font-sans text-[15px]">
           {event.name}
         </h3>
 
         <div className="mt-3 flex flex-col gap-1.5">
-          <div
-            className="flex items-center gap-2 text-gray-500"
-            style={{ fontSize: 13 }}
-          >
-            <Calendar
-              size={13}
-              style={{ flexShrink: 0 }}
-              className="text-lime-600"
-            />
+          <div className="flex items-center gap-2 text-gray-500 text-[13px]">
+            <Calendar size={13} className="text-lime-600 flex-0" />
             {event.date}
           </div>
-          <div
-            className="flex items-center gap-2 text-gray-500"
-            style={{ fontSize: 13 }}
-          >
-            <MapPin
-              size={13}
-              style={{ flexShrink: 0 }}
-              className="text-lime-600"
-            />
+          <div className="flex items-center gap-2 text-gray-500 text-[13px]">
+            <MapPin size={13} className="text-lime-600 flex-0" />
             {event.location}
           </div>
-          <div
-            className="flex items-center gap-2 text-gray-500"
-            style={{ fontSize: 13 }}
-          >
-            <Users
-              size={13}
-              style={{ flexShrink: 0 }}
-              className="text-lime-600"
-            />
+          <div className="flex items-center gap-2 text-gray-500 text-[13px]">
+            <Users size={13} className="text-lime-600 flex-0" />
             {event.attendees.toLocaleString()} Attendance
           </div>
         </div>
@@ -110,15 +71,13 @@ function EventHoverPanel({ hoveredEvent }) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}
             transition={{ duration: 0.2 }}
-            className="rounded-2xl bg-white border border-gray-100 p-5"
-            style={{ border: "1px solid #f0f0f5" }}
+            className="rounded-2xl bg-white  border-gray-100 p-5 border "
           >
             {/* Preview Image */}
             <img
               src={hoveredEvent.image}
               alt={hoveredEvent.name}
-              className="w-full rounded-xl object-cover mb-4"
-              style={{ height: 150 }}
+              className="w-full rounded-xl object-cover mb-4 h-[150px]"
             />
 
             {/* Name */}
@@ -170,22 +129,16 @@ function EventHoverPanel({ hoveredEvent }) {
 function ProgressItem({ title, value }) {
   return (
     <div>
-      <div className="flex justify-between mb-1.5" style={{ fontSize: 14 }}>
+      <div className="flex justify-between mb-1.5 text-[14px]">
         <span className="text-gray-700 font-medium">{title}</span>
-        <span style={{ fontWeight: 800 }} className="text-lime-600">
-          {value}%
-        </span>
+        <span className="text-lime-600 font-extrabold">{value}%</span>
       </div>
-      <div
-        className="rounded-full overflow-hidden"
-        style={{ height: 6, background: "#ffffff" }}
-      >
+      <div className="rounded-full overflow-hidden h-1.5 bg-white">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${value}%` }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="h-full rounded-full"
-          style={{ background: "linear-gradient(90deg, #65A30D, #ECFCCB)" }}
+          className="h-full rounded-full bg-gradient-to-r from-[#65A30D] to-[#ECFCCB]"
         />
       </div>
     </div>
@@ -201,13 +154,10 @@ function EventHighlights() {
       {/* Metrics */}
       <div className="space-y-6">
         <div>
-          <h2
-            className="font-semibold text-gray-900 font-sans"
-            style={{ fontSize: 18 }}
-          >
+          <h2 className="font-semibold text-gray-900 font-sans text-[18px]">
             Event performance
           </h2>
-          <p className="text-gray-500 mt-1 font-sans" style={{ fontSize: 13 }}>
+          <p className="text-gray-500 mt-1 font-sans text-[13px]">
             Aggregated across all managed events
           </p>
         </div>
@@ -221,16 +171,12 @@ function EventHighlights() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="rounded-xl p-3 text-center bg-lime-100"
-              style={{ border: "1px solid #f5e0e7" }}
+              className="rounded-xl p-3 text-center bg-lime-100 border border-[#f5e0e7]"
             >
-              <p className="font-bold text-lime-600" style={{ fontSize: 20 }}>
+              <p className="font-bold text-lime-600 text-[20px]">
                 {stat.value}
               </p>
-              <p
-                className="text-gray-500 leading-tight mt-0.5"
-                style={{ fontSize: 11 }}
-              >
+              <p className="text-gray-500 leading-tight mt-0.5 text-[11px]">
                 {stat.label}
               </p>
             </div>
@@ -247,13 +193,10 @@ function EventHighlights() {
       {/* Gallery */}
       <div>
         <div className="mb-4">
-          <h2
-            className="font-semibold text-gray-900 font-sans"
-            style={{ fontSize: 18 }}
-          >
+          <h2 className="font-semibold text-gray-900 font-sans text-[18px]">
             Gallery
           </h2>
-          <p className="text-gray-500 mt-1 font-sans" style={{ fontSize: 13 }}>
+          <p className="text-gray-500 mt-1 font-sans text-[13px]">
             Moments from our events
           </p>
         </div>
@@ -263,8 +206,7 @@ function EventHighlights() {
               key={event.id}
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 300, damping: 24 }}
-              className="relative overflow-hidden rounded-xl group"
-              style={{ aspectRatio: "4/3" }}
+              className="relative overflow-hidden rounded-xl group aspect-[4/3]"
             >
               <img
                 src={event.image}
@@ -272,10 +214,7 @@ function EventHighlights() {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
-              <p
-                className="absolute bottom-0 left-0 right-0 p-2.5 text-white font-medium leading-tight line-clamp-2"
-                style={{ fontSize: 12 }}
-              >
+              <p className="absolute bottom-0 left-0 right-0 p-2.5 text-white font-medium leading-tight line-clamp-2 text-[12px]">
                 {event.name}
               </p>
             </motion.div>
@@ -290,17 +229,10 @@ function EventHighlights() {
 function EmptyState({ label }) {
   return (
     <div className="flex flex-col items-center py-16 gap-3">
-      <div
-        className="rounded-full flex items-center justify-center"
-        style={{
-          width: 48,
-          height: 48,
-          background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
-        }}
-      >
+      <div className="rounded-full flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#d4456a] to-[#f9a8c9]">
         <Calendar size={22} color="#fff" />
       </div>
-      <p className="text-gray-500 text-center" style={{ fontSize: 14 }}>
+      <p className="text-gray-500 text-center text-[14px]">
         No {label} events at the moment.
       </p>
     </div>
@@ -311,15 +243,14 @@ const ITEMS_PER_PAGE = 2;
 export function EventsSection({ onNavigate }) {
   const [hoveredEvent, setHoveredEvent] = useState(null);
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE); // ✅ tracks how many to show
-  const loaderRef = useRef < HTMLDivElement > null;
+  const loaderRef = useRef(null);
   const TABS = [
     { key: "upcoming", label: "Upcoming" },
     { key: "expired", label: "Past events" },
     { key: "highlights", label: "Highlights" },
   ];
 
-  const [activeTab, setActiveTab] =
-    (useState < "upcoming") | "expired" | ("highlights" > "upcoming");
+  const [activeTab, setActiveTab] = useState("upcoming");
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
   }, [activeTab]);
@@ -350,17 +281,11 @@ export function EventsSection({ onNavigate }) {
   return (
     <div className="w-full min-h-screen bg-background min-[1160px]:mx-20 min-[770px]:mx-16 mx-0">
       {/* Page header — matches ProfileView / other section headings */}
-      <div
-        className="sticky top-0 z-10 px-4 pt-4 pb-3"
-        style={{ background: "var(--color-background, #fff)" }}
-      >
-        <h1
-          className="font-semibold text-gray-900 font-sans lg:text-3xl md:text-2xl text-xl var(--font-family-body) "
-          style={{ letterSpacing: "-0.01em" }}
-        >
+      <div className="sticky top-0 z-10 px-4 pt-4 pb-3 bg-[var(--color-background,#fff)]">
+        <h1 className="font-semibold text-gray-900 font-sans lg:text-3xl md:text-2xl text-xl var(--font-family-body) tracking-[-0.01em]">
           Events
         </h1>
-        <p className="text-gray-500 mt-0.5" style={{ fontSize: 13 }}>
+        <p className="text-gray-500 mt-0.5 text-[13px]">
           Explore our latest events and achievements
         </p>
 
@@ -370,16 +295,7 @@ export function EventsSection({ onNavigate }) {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className="px-4 py-1.5 rounded-full transition-all text-sm md:font-medium font-sm bg-[#2C7048]"
-              style={
-                activeTab === tab.key
-                  ? { color: "#fff", border: "none" }
-                  : {
-                      background: "transparent",
-                      color: "#8e8e93",
-                      border: "1px solid #e5e5ea",
-                    }
-              }
+              className={`px-4 py-1.5 rounded-full transition-all text-sm md:font-medium font-sm ${activeTab === tab.key ? "bg-[#2C7048] text-white border-none" : "bg-transparent text-[#8e8e93] border border-[#e5e5ea]"}`}
             >
               {tab.label}
             </button>
@@ -456,17 +372,10 @@ export function EventsSection({ onNavigate }) {
 
       {/* End-of-section footer — same as feed */}
       <div className="flex flex-col items-center py-8 gap-2">
-        <div
-          className="rounded-full flex items-center justify-center"
-          style={{
-            width: 48,
-            height: 48,
-            background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
-          }}
-        >
+        <div className="rounded-full flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#d4456a] to-[#f9a8c9]">
           <img src={logo} alt="" />
         </div>
-        <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
+        <p className="text-[13px] text-[#8e8e93] text-center">
           You've seen all recent events.
           <br />
           {/* <a href="#" style={{ color: "#d4456a", fontWeight: 600 }}>
@@ -475,8 +384,7 @@ export function EventsSection({ onNavigate }) {
         </p>
         <button
           onClick={() => onNavigate("digital")}
-          className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
-          style={{ color: "#579F63" }}
+          className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
         >
           Explore More
           <ArrowRight size={16} />

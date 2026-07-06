@@ -11,30 +11,14 @@ import {
 
 export function RightPanel({ events, caseStudies, awards, onNavigate }) {
   return (
-    <aside
-      className="overflow-y-auto"
-      style={{
-        width: 320,
-        padding: "28px 20px",
-        scrollbarWidth: "none",
-        background: "var(--background)",
-        fontFamily: "var(--font-family-body)",
-      }}
-    >
+    <aside className="overflow-y-auto w-[320px] px-5 pt-7 pb-7 [scrollbar-width:none] bg-[var(--background)] font-[var(--font-family-body)]">
       {/* Upcoming Events */}
       <section className="mb-8">
         <div className="flex items-center justify-between">
           <SectionHeader icon={Calendar} label="Upcoming Events" />
           <a
             href="#"
-            style={{
-              fontSize: 12,
-
-              fontWeight: 600,
-              fontFamily: "var(--font-family-body)",
-              textDecoration: "none",
-            }}
-            className="text-[#579F63]"
+            className="text-[#579F63] text-xs font-semibold  no-underline"
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             onClick={() => onNavigate("events")}
@@ -57,13 +41,7 @@ export function RightPanel({ events, caseStudies, awards, onNavigate }) {
           <SectionHeader icon={BookOpen} label="Case Studies" />
           <a
             href="#"
-            style={{
-              fontSize: 12,
-              color: "var(--accent)",
-              fontWeight: 600,
-              fontFamily: "var(--font-family-body)",
-              textDecoration: "none",
-            }}
+            className="text-xs text-[var(--accent)] font-semibold  no-underline"
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             onClick={() => onNavigate("casestudies")}
@@ -87,13 +65,7 @@ export function RightPanel({ events, caseStudies, awards, onNavigate }) {
           <SectionHeader icon={Trophy} label="Awards & Recognition" />
           <a
             href="#"
-            style={{
-              fontSize: 12,
-              color: "var(--accent)",
-              fontWeight: 600,
-              fontFamily: "var(--font-family-body)",
-              textDecoration: "none",
-            }}
+            className="text-xs text-[var(--accent)] font-semibold  no-underline"
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             onClick={() => onNavigate("awards")}
@@ -125,13 +97,7 @@ export function RightPanel({ events, caseStudies, awards, onNavigate }) {
             <a
               key={item.title}
               onClick={() => onNavigate(item.link)}
-              style={{
-                fontSize: 11,
-                color: "var(--muted-foreground)",
-                textDecoration: "none",
-                fontFamily: "var(--font-family-body)",
-                transition: "color 0.15s",
-              }}
+              className="text-[11px] text-[var(--muted-foreground)] no-underline font-[var(--font-family-body)] transition-colors duration-150"
               onMouseEnter={(e) =>
                 (e.currentTarget.style.color = "var(--foreground)")
               }
@@ -144,15 +110,7 @@ export function RightPanel({ events, caseStudies, awards, onNavigate }) {
             </a>
           ))}
         </div>
-        <p
-          style={{
-            fontSize: 11,
-            color: "var(--muted-foreground)",
-            opacity: 0.6,
-            marginTop: 12,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
+        <p className="text-[11px] text-[var(--muted-foreground)] opacity-60 mt-3 font-[var(--font-family-body)]">
           © 2026 ABY Baby Events. All rights reserved.
         </p>
       </footer>
@@ -163,17 +121,8 @@ export function RightPanel({ events, caseStudies, awards, onNavigate }) {
 function SectionHeader({ icon: Icon, label }) {
   return (
     <div className="flex items-center gap-2">
-      <Icon size={14} style={{ color: "var(--accent)" }} />
-      <span
-        style={{
-          fontSize: 12,
-          fontWeight: 700,
-          color: "var(--foreground)",
-          letterSpacing: "0.06em",
-          textTransform: "uppercase",
-          fontFamily: "var(--font-family-body)",
-        }}
-      >
+      <Icon size={14} className="text-[var(--accent)]" />
+      <span className="text-xs font-bold text-[var(--foreground)] tracking-[0.06em] uppercase ">
         {label}
       </span>
     </div>
@@ -192,11 +141,7 @@ function EventCard({ event }) {
       layout
       onHoverStart={() => setExpanded(true)}
       onHoverEnd={() => setExpanded(false)}
-      className="rounded-2xl overflow-hidden cursor-pointer"
-      style={{
-        background: "var(--background)",
-        borderRadius: "var(--radius)",
-      }}
+      className="rounded-2xl overflow-hidden cursor-pointer bg-[var(--background)] rounded-[var(--radius)]"
     >
       {/* Expanded image */}
       <AnimatePresence>
@@ -208,36 +153,14 @@ function EventCard({ event }) {
             transition={{ duration: 0.25 }}
             className="overflow-hidden"
           >
-            <div
-              style={{
-                position: "relative",
-                aspectRatio: "16/9",
-                background: "var(--muted)",
-              }}
-            >
+            <div className="relative aspect-video bg-[var(--muted)]">
               <img
                 src={event.eventImage}
                 alt={event.eventName}
                 className="w-full h-full object-cover"
               />
-              <div
-                className="absolute inset-0 flex items-end p-3"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%)",
-                }}
-              >
-                <span
-                  className="px-2 py-0.5 rounded-full"
-                  style={{
-                    background: "rgba(255,255,255,0.18)",
-                    color: "#fff",
-                    fontSize: 11,
-                    backdropFilter: "blur(4px)",
-                    fontFamily: "var(--font-family-body)",
-                    fontWeight: 500,
-                  }}
-                >
+              <div className="absolute inset-0 flex items-end p-3 bg-gradient-to-t from-black/55 via-transparent to-transparent [background-position:0_0] bg-[linear-gradient(to_top,rgba(0,0,0,0.55)_0%,transparent_60%)]">
+                <span className="px-2 py-0.5 rounded-full bg-white/18 text-white text-[11px] backdrop-blur-[4px]  font-medium">
                   {event.eventType}
                 </span>
               </div>
@@ -249,40 +172,14 @@ function EventCard({ event }) {
       {/* Card body */}
       <div className="pt-3 pb-4 px-0">
         <div className="flex items-center gap-3 mb-3">
-          <div
-            className="rounded-full flex items-center justify-center shrink-0 overflow-hidden"
-            style={{
-              width: 32,
-              height: 32,
-
-              fontSize: 10,
-              fontWeight: 700,
-
-              fontFamily: "var(--font-family-body)",
-            }}
-          >
+          <div className="rounded-full flex items-center justify-center shrink-0 overflow-hidden w-8 h-8 text-[10px] font-bold ">
             <img src={event.clientlogo} alt="" />
           </div>
           <div className="flex-1 min-w-0">
-            <div
-              style={{
-                fontSize: 13,
-                fontWeight: 600,
-                color: "var(--foreground)",
-                fontFamily: "var(--font-family-body)",
-              }}
-              className="truncate"
-            >
+            <div className="truncate text-[13px] font-semibold text-[var(--foreground)] ">
               {event.eventName}
             </div>
-            <div
-              className="flex items-center gap-1 mt-0.5"
-              style={{
-                fontSize: 11,
-                color: "var(--muted-foreground)",
-                fontFamily: "var(--font-family-body)",
-              }}
-            >
+            <div className="flex items-center gap-1 mt-0.5 text-[11px] text-[var(--muted-foreground)] font-[var(--font-family-body)]">
               <MapPin size={10} />
               <span className="truncate">{event.location}</span>
             </div>
@@ -300,38 +197,16 @@ function EventCard({ event }) {
               className="mb-3"
             >
               <div className="flex items-center gap-4 mb-2">
-                <div
-                  className="flex items-center gap-1"
-                  style={{
-                    fontSize: 11,
-                    color: "var(--accent)",
-                    fontWeight: 600,
-                    fontFamily: "var(--font-family-body)",
-                  }}
-                >
+                <div className="flex items-center gap-1 text-[11px] text-[var(--accent)] font-semibold ">
                   <Calendar size={11} />
                   <span>{event.daysRemaining} days left</span>
                 </div>
-                <div
-                  className="flex items-center gap-1"
-                  style={{
-                    fontSize: 11,
-                    color: "var(--muted-foreground)",
-                    fontFamily: "var(--font-family-body)",
-                  }}
-                >
+                <div className="flex items-center gap-1  text-[11px] text-[var(--muted-foreground)] font-[var(--font-family-body)]">
                   <Users size={11} />
                   <span>{event.attendance.toLocaleString()} attending</span>
                 </div>
               </div>
-              <p
-                style={{
-                  fontSize: 12,
-                  color: "var(--muted-foreground)",
-                  lineHeight: 1.55,
-                  fontFamily: "var(--font-family-body)",
-                }}
-              >
+              <p className="text-xs text-[var(--muted-foreground)] leading-[1.55] font-[var(--font-family-body)]">
                 {event.description}
               </p>
             </motion.div>
@@ -339,16 +214,7 @@ function EventCard({ event }) {
         </AnimatePresence>
 
         <button
-          className="w-full rounded-xl py-2 transition-all  "
-          style={{
-            background: expanded
-              ? "var(--accent)"
-              : "color-mix(in srgb, var(--accent) 10%, transparent)",
-            color: expanded ? "var(--accent-foreground)" : "var(--accent)",
-            fontSize: 12,
-            fontWeight: 600,
-            fontFamily: "var(--font-family-body)",
-          }}
+          className={`w-full rounded-xl py-2 transition-all text-xs font-semibold  ${expanded ? "bg-[var(--accent)] text-[var(--accent-foreground)]" : "bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] text-[var(--accent)]"}`}
         >
           {expanded ? "Register Now" : "Visit Event"}
         </button>
@@ -359,94 +225,31 @@ function EventCard({ event }) {
 
 function CaseStudyCard({ caseStudy }) {
   return (
-    <div
-      className="rounded-2xl overflow-hidden"
-      style={{
-        borderRadius: "var(--radius)",
-      }}
-    >
-      <div
-        style={{
-          aspectRatio: "16/9",
-          position: "relative",
-          background: "var(--muted)",
-        }}
-      >
+    <div className="rounded-2xl overflow-hidden ">
+      <div className="aspect-video relative bg-[var(--muted)]">
         <img
           src={caseStudy.thumbnail}
           alt={caseStudy.title}
           className="w-full h-full object-cover"
         />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%)",
-          }}
-        />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.35)_0%,transparent_50%)]" />
       </div>
       <div className="pt-3 pb-4 px-0">
         <div className="flex items-center gap-2 mb-3">
-          <div
-            className="rounded-full flex items-center justify-center shrink-0 overflow-hidden"
-            style={{
-              width: 24,
-              height: 24,
-
-              fontSize: 9,
-              fontWeight: 700,
-
-              fontFamily: "var(--font-family-body)",
-            }}
-          >
+          <div className="rounded-full flex items-center justify-center shrink-0 overflow-hidden w-6 h-6 text-[9px] font-bold ">
             <img src={caseStudy.clientlogo} alt="" />
           </div>
-          <span
-            style={{
-              fontSize: 11,
-              color: "var(--muted-foreground)",
-              fontFamily: "var(--font-family-body)",
-            }}
-          >
+          <span className="text-[11px] text-[var(--muted-foreground)] font-[var(--font-family-body)]">
             {caseStudy.clientName}
           </span>
         </div>
-        <h4
-          style={{
-            fontSize: 13,
-            fontWeight: 600,
-            color: "var(--foreground)",
-            lineHeight: 1.4,
-            marginBottom: 6,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
+        <h4 className="text-[13px] font-semibold text-[var(--foreground)] leading-[1.4] mb-1.5 ">
           {caseStudy.title}
         </h4>
-        <p
-          style={{
-            fontSize: 12,
-            color: "var(--muted-foreground)",
-            lineHeight: 1.5,
-            marginBottom: 12,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
+        <p className="text-xs text-[var(--muted-foreground)] leading-[1.5] mb-3 font-[var(--font-family-body)]">
           {caseStudy.summary}
         </p>
-        <button
-          className="flex items-center gap-1"
-          style={{
-            fontSize: 12,
-            color: "var(--accent)",
-            fontWeight: 600,
-            fontFamily: "var(--font-family-body)",
-            background: "none",
-            border: "none",
-            padding: 0,
-            cursor: "pointer",
-          }}
-        >
+        <button className="flex items-center gap-1 text-xs text-[var(--accent)] font-semibold bg-none border-none p-0 cursor-pointer">
           <span>Read More</span>
           <ExternalLink size={11} />
         </button>
@@ -457,69 +260,27 @@ function CaseStudyCard({ caseStudy }) {
 
 function AwardCard({ award }) {
   return (
-    <div
-      className="rounded-2xl overflow-hidden"
-      style={{
-        background: "color-mix(in srgb, var(--accent) 3%, var(--background))",
-        borderRadius: "var(--radius)",
-      }}
-    >
-      <div
-        style={{
-          aspectRatio: "2/1",
-          position: "relative",
-          background: "var(--muted)",
-        }}
-      >
+    <div className="rounded-2xl overflow-hidden bg-[color-mix(in_srgb,var(--accent)_3%,var(--background))] ">
+      <div className="aspect-[2/1] relative bg-[var(--muted)]">
         <img
           src={award.image}
           alt={award.title}
           className="w-full h-full object-cover"
         />
-        <div
-          className="absolute inset-0 flex items-center justify-center"
-          style={{
-            background: "color-mix(in srgb, var(--accent) 68%, transparent)",
-          }}
-        >
-          <Trophy size={32} style={{ color: "#fff" }} />
+        <div className="absolute inset-0 flex items-center justify-center bg-[color-mix(in_srgb,var(--accent)_68%,transparent)]">
+          <Trophy size={32} className="text-white" />
         </div>
       </div>
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
-          <span
-            style={{
-              fontSize: 10,
-              color: "var(--accent)",
-              fontWeight: 700,
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              fontFamily: "var(--font-family-body)",
-            }}
-          >
+          <span className="text-[10px] text-[var(--accent)] font-bold tracking-[0.06em] uppercase ">
             {award.year}
           </span>
         </div>
-        <h4
-          style={{
-            fontSize: 13,
-            fontWeight: 600,
-            color: "var(--foreground)",
-            lineHeight: 1.4,
-            marginBottom: 6,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
+        <h4 className="text-[13px] font-semibold text-[var(--foreground)] leading-[1.4] mb-1.5 ">
           {award.title}
         </h4>
-        <p
-          style={{
-            fontSize: 12,
-            color: "var(--muted-foreground)",
-            lineHeight: 1.5,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
+        <p className="text-xs text-[var(--muted-foreground)] leading-[1.5] font-[var(--font-family-body)]">
           {award.description}
         </p>
       </div>

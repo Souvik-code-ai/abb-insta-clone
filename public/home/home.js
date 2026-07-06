@@ -1,70 +1,8 @@
-export interface Client {
-  id: number;
-  name: string;
-  initials: string;
-  color: string;
-  bgColor: string;
-  seen: boolean;
-  category: string;
-  location: string;
-  stories: { type: "image" | "video"; url: string; caption?: string }[];
-}
-export interface MediaItem {
-  type: "image" | "video";
-  url: string;
-  poster?: string; // thumbnail for video, shown before playback / used in mini-profile grid
-}
-export interface FeedPost {
-  id: number;
-  client: Client;
-  location: string;
-  category: string;
-  media: MediaItem[]; // replaces `images: string[]`
-  likes: number;
-  caption: string;
-  comments: { id: number; author: string; text: string; time: string }[];
-  projectUrl: string;
-  date: string;
-}
-
-export interface UpcomingEvent {
-  id: number;
-  clientName: string;
-  clientInitials: string;
-  clientColor: string;
-  clientlogo: string;
-  eventName: string;
-  location: string;
-  eventImage: string;
-  eventType: string;
-  daysRemaining: number;
-  attendance: number;
-  description: string;
-}
-
-export interface CaseStudy {
-  id: number;
-  thumbnail: string;
-  clientInitials: string;
-  clientColor: string;
-  clientlogo: string;
-  clientName: string;
-  title: string;
-  summary: string;
-}
-
-export interface Award {
-  id: number;
-  image: string;
-  title: string;
-  year: number;
-  description: string;
-}
 import dtlogo from "../../src/assets/images/drumtao/DrumTao/dtlogo.png";
 import arunlogo from "../../src/assets/images/arun/arun_webp/arunlogo.png";
 import mialogo from "../../src/assets/images/mia/mialogo.jpg";
 import toyotalogo from "../../src/assets/images/zira/toyota_logo.webp";
-export const clients: Client[] = [
+export const clients = [
   {
     id: 1,
     name: "Drum Tao",
@@ -462,7 +400,7 @@ import arunvdo from "../../src/assets/images/drumtao/DrumTao/dtvdo.mp4";
 import miavdo from "../../src/assets/images/drumtao/DrumTao/dtvdo.mp4";
 import ziravdo from "../../src/assets/images/drumtao/DrumTao/dtvdo.mp4";
 
-export const feedPosts: FeedPost[] = [
+export const feedPosts = [
   {
     id: 1,
     client: clients[0],
@@ -602,7 +540,7 @@ export const feedPosts: FeedPost[] = [
     date: "May 15, 2026",
   },
 ];
-export const upcomingEvents: UpcomingEvent[] = [
+export const upcomingEvents = [
   {
     id: 1,
     clientName: "Toyota",
@@ -635,7 +573,7 @@ export const upcomingEvents: UpcomingEvent[] = [
   },
 ];
 
-export const caseStudies: CaseStudy[] = [
+export const caseStudies = [
   {
     id: 1,
     thumbnail: arun4,
@@ -660,7 +598,7 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
-export const awards: Award[] = [
+export const awards = [
   {
     id: 1,
     image:

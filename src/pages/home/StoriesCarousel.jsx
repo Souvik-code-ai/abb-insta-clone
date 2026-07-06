@@ -125,7 +125,7 @@ function StoryCircle({ client, onClick, onDismiss }) {
       className="flex flex-col items-center gap-1.5 shrink-0"
       style={{ width: ITEM_W, position: "relative" }}
     >
-      <motion.button
+      <motion.div
         whileHover={{ scale: 1.07 }}
         whileTap={{ scale: 0.93 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -201,7 +201,7 @@ function StoryCircle({ client, onClick, onDismiss }) {
         >
           {client.name}
         </span>
-      </motion.button>
+      </motion.div>
     </div>
   );
 }
@@ -407,7 +407,7 @@ export function StoriesCarousel({
   onStorySeen,
 }) {
   const [clients, setClients] = useState(initialClients);
-  const [activeClient, setActiveClient] = (useState < Client) | (null > null);
+  const [activeClient, setActiveClient] = useState(null);
   const isMobile = useIsMobile();
 
   const handleStoryClick = (client) => {

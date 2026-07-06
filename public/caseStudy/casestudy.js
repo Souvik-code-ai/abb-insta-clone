@@ -10,24 +10,8 @@ import mia1 from "../../src/assets/images/mia/mia 1.webp";
 import mia2 from "../../src/assets/images/mia/mia 2.webp";
 import mia3 from "../../src/assets/images/mia/mia2.webp";
 import mia4 from "../../src/assets/images/mia/mia3.webp";
-export type CaseStudy = {
-  id: number;
-  title: string;
-  category: string;
-  location: string;
-  year: string;
-  guests: string;
-  heroImage: string;
-  summary: string;
-  body: {
-    text: string;
-    image?: string;
-    imageCaption?: string;
-  }[];
-  inlineImages: { src: string; caption: string }[];
-};
 
-export const CASE_STUDIES: CaseStudy[] = [
+export const CASE_STUDIES = [
   {
     id: 1,
     title: "Drum Tao",

@@ -15,14 +15,11 @@ import {
   Maximize2,
 } from "lucide-react";
 import { toast } from "sonner";
-import type { FeedPost } from "../data/mockData";
 
-interface PostViewerProps {
-  post: FeedPost;
-  onClose: () => void;
-}
 
-export function PostViewer({ post, onClose }: PostViewerProps) {
+
+
+export function PostViewer({ post, onClose }) {
   const [imageIndex, setImageIndex] = useState(0);
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(post.likes);
@@ -32,14 +29,14 @@ export function PostViewer({ post, onClose }: PostViewerProps) {
   const [captionExpanded, setCaptionExpanded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const isVideo = (src: string) => /\.(mp4|webm|ogg|mov)(\?|$)/i.test(src);
+  const isVideo = (src) => /\.(mp4|webm|ogg|mov)(\?|$)/i.test(src);
 
   const currentSrc = post.images[imageIndex];
   const isCurrentVideo = isVideo(currentSrc);
   const multipleMedia = post.images.length > 1;
 
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
+    const handleKey = (e) => {
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowLeft" && imageIndex > 0) setImageIndex((i) => i - 1);
       if (e.key === "ArrowRight" && imageIndex < post.images.length - 1)

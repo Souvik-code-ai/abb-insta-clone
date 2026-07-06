@@ -1,21 +1,4 @@
-export type Award = {
-  id: number;
-  title: string;
-  year: number;
-  category: string;
-  issuedBy: string;
-  location: string;
-  heroImage: string;
-  summary: string;
-  body: {
-    text: string;
-    image?: string;
-    imageCaption?: string;
-  }[];
-  inlineImages: { src: string; caption: string }[];
-};
-
-export const AWARDS: Award[] = [
+export const AWARDS = [
   {
     id: 1,
     title: "Best Event Management Agency — UAE",

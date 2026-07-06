@@ -52,10 +52,7 @@ export function FeedCard({ post }) {
 
   return (
     <>
-      <article
-        className="bg-white rounded-2xl overflow-hidden"
-        style={{ maxWidth: 460, margin: "0 auto", width: "100%" }}
-      >
+      <article className="bg-white rounded-2xl overflow-hidden w-full max-w-[460px] mx-auto">
         {/* Header */}
         <div
           className="flex items-center justify-between px-0 py-3 relative"
@@ -63,20 +60,14 @@ export function FeedCard({ post }) {
           onMouseLeave={() => setShowMiniProfile(false)}
         >
           <div className="flex items-center gap-3 cursor-pointer">
-            <div
-              className="rounded-full flex items-center justify-center shrink-0 overflow-hidden"
-              style={{ width: 42, height: 42 }}
-            >
+            <div className="rounded-full flex items-center justify-center shrink-0 overflow-hidden w-[42px] h-[42px]">
               <img src={post.client.initials} alt="" className="rounded-full" />
             </div>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a" }}>
+              <div className="text-sm font-semibold text-[#1a1a1a]">
                 {post.client.name}
               </div>
-              <div
-                className="flex items-center gap-1"
-                style={{ color: "#8e8e93", fontSize: 12 }}
-              >
+              <div className="flex items-center gap-1 text-[#8e8e93] text-xs">
                 <MapPin size={11} />
                 <span>{post.location}</span>
               </div>
@@ -91,28 +82,11 @@ export function FeedCard({ post }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 8 }}
                 transition={{ duration: 0.18 }}
-                className="absolute top-full left-4 z-20 bg-white rounded-2xl p-4 shadow-xl"
-                style={{
-                  width: 280,
-                  border: "1px solid rgba(0,0,0,0.08)",
-                  marginTop: 4,
-                }}
+                className="absolute top-full left-1 z-20 bg-white rounded-2xl p-4 shadow-xl w-[280px] border border-[rgba(0,0,0,0.08)] mt-1"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div
-                    className="rounded-full flex items-center justify-center shrink-0 overflow-hidden"
-                    style={{
-                      width: 52,
-                      height: 52,
-                      background: post.client.bgColor,
-                    }}
-                  >
-                    <span
-                      style={{
-                        color: post.client.color,
-                        fontWeight: 700,
-                      }}
-                    >
+                  <div className="rounded-full flex items-center justify-center shrink-0 overflow-hidden h-[52px] w-[52px] bg-[post.client.bgColor]">
+                    <span>
                       <img
                         src={post.client.initials}
                         alt=""
@@ -121,24 +95,19 @@ export function FeedCard({ post }) {
                     </span>
                   </div>
                   <div>
-                    <div style={{ fontSize: 15, fontWeight: 600 }}>
+                    <div className="text-[15px] font-semibold">
                       {post.client.name}
                     </div>
-                    <div style={{ fontSize: 12, color: "#8e8e93" }}>
+                    <div className="text-[12px] text-[#8e8e93]">
                       {post.client.category}
                     </div>
                   </div>
                 </div>
-                <div
-                  className="flex items-center gap-1 mb-1"
-                  style={{ fontSize: 12, color: "#8e8e93" }}
-                >
+                <div className="flex items-center gap-1 mb-1 text-[12px] text-[#8e8e93]">
                   <MapPin size={11} />
                   <span>{post.location}</span>
                 </div>
-                <div style={{ fontSize: 12, color: "#8e8e93" }}>
-                  {post.date}
-                </div>
+                <div className="text-[12px] text-[#8e8e93]">{post.date}</div>
                 {/* Thumbnails — use poster for video items so we never show a raw <video> here */}
                 <div className="grid grid-cols-3 gap-1 mt-3 rounded-xl overflow-hidden">
                   {post.media.slice(0, 3).map((item, i) => {
@@ -161,12 +130,7 @@ export function FeedCard({ post }) {
 
         {/* Media — click opens fullscreen viewer */}
         <div
-          className="relative overflow-hidden rounded-md"
-          style={{
-            aspectRatio: "1/1",
-            background: "#f5f5f7",
-            cursor: "pointer",
-          }}
+          className="relative overflow-hidden rounded-md cursor-pointer bg-[#f5f5f7] aspect-square"
           onDoubleClick={handleDoubleClick}
           onClick={() => setViewerOpen(true)}
         >
@@ -201,29 +165,12 @@ export function FeedCard({ post }) {
           </AnimatePresence>
 
           {/* Category tag overlay */}
-          <div
-            className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-linear-to-r from-lime-800 to-lime-600 text-transparent"
-            style={{
-              backdropFilter: "blur(6px)",
-              fontSize: 11,
-              fontWeight: 600,
-              color: "#fff",
-              letterSpacing: "0.02em",
-            }}
-          >
+          <div className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-linear-to-r from-lime-800 to-lime-600 text-white  backdrop-blur-[6px] text-[11px] font-semibold  tracking-[0.02em]">
             {post.category}
           </div>
 
           {/* Tap-to-expand hint */}
-          <div
-            className="absolute bottom-3 left-3 z-10 px-2.5 py-1 rounded-full flex items-center gap-1.5 opacity-0 group-hover:opacity-100"
-            style={{
-              background: "rgba(0,0,0,0.45)",
-              backdropFilter: "blur(6px)",
-              fontSize: 11,
-              color: "#fff",
-            }}
-          />
+          <div className="absolute bottom-3 left-3 z-10 px-2.5 py-1 rounded-full flex items-center gap-1.5 opacity-0 group-hover:opacity-100 bg-[rgba(0,0,0,0.45)] backdrop-blur-[6px] text-[11px] text-white" />
 
           {/* Double-tap heart */}
           <AnimatePresence>
@@ -239,7 +186,7 @@ export function FeedCard({ post }) {
                   size={80}
                   fill="#fff"
                   stroke="none"
-                  style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.3))" }}
+                  className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
                 />
               </motion.div>
             )}
@@ -250,12 +197,7 @@ export function FeedCard({ post }) {
             <>
               {imageIndex > 0 && (
                 <button
-                  className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center"
-                  style={{
-                    width: 28,
-                    height: 28,
-                    background: "rgba(255,255,255,0.85)",
-                  }}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center w-7 h-7 bg-white/85"
                   onClick={(e) => {
                     e.stopPropagation();
                     setImageIndex((i) => i - 1);
@@ -266,12 +208,7 @@ export function FeedCard({ post }) {
               )}
               {imageIndex < post.media.length - 1 && (
                 <button
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center"
-                  style={{
-                    width: 28,
-                    height: 28,
-                    background: "rgba(255,255,255,0.85)",
-                  }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center w-7 h-7 bg-[rgba(255,255,255,0.85)]"
                   onClick={(e) => {
                     e.stopPropagation();
                     setImageIndex((i) => i + 1);
@@ -285,13 +222,11 @@ export function FeedCard({ post }) {
                 {post.media.map((_, i) => (
                   <div
                     key={i}
-                    className="rounded-full transition-all duration-200"
-                    style={{
-                      width: i === imageIndex ? 18 : 6,
-                      height: 6,
-                      background:
-                        i === imageIndex ? "#fff" : "rgba(255,255,255,0.5)",
-                    }}
+                    className={`rounded-full transition-all duration-200 h-[6px] ${
+                      i === imageIndex
+                        ? "w-[18px] bg-white"
+                        : "w-[6px] bg-[rgba(255,255,255,0.5)]"
+                    }`}
                   />
                 ))}
               </div>
@@ -304,8 +239,7 @@ export function FeedCard({ post }) {
           <motion.button
             whileTap={{ scale: 0.85 }}
             onClick={handleLike}
-            className="flex items-center gap-1.5"
-            style={{ color: liked ? "#d4456a" : "#1a1a1a" }}
+            className={`flex items-center gap-1.5 ${liked ? "text-[#d4456a]" : "text-[#1a1a1a]"}`}
           >
             <motion.div
               animate={{ scale: liked ? [1, 1.4, 1] : 1 }}
@@ -322,7 +256,7 @@ export function FeedCard({ post }) {
           <motion.button
             whileTap={{ scale: 0.85 }}
             onClick={handleCopy}
-            style={{ color: "#1a1a1a" }}
+            className="text-[#1a1a1a]"
           >
             <Link2 size={22} strokeWidth={1.8} />
           </motion.button>
@@ -330,39 +264,26 @@ export function FeedCard({ post }) {
 
         {/* Caption */}
         <div className="px-0 pb-4">
-          <span style={{ fontSize: 14, fontWeight: 600, marginRight: 6 }}>
+          <span className="text-sm font-semibold mr-1.5">
             {post.client.name}
           </span>
           <span
-            style={{
-              fontSize: 14,
-              color: "#1a1a1a",
-              display: "-webkit-box",
-              WebkitBoxOrient: "vertical",
-              WebkitLineClamp: captionExpanded ? undefined : 2,
-              overflow: captionExpanded ? "visible" : "hidden",
-            }}
+            className={`text-sm text-[#1a1a1a] ${captionExpanded ? "line-clamp-none overflow-visible" : "line-clamp-2 overflow-hidden"}`}
           >
             {post.caption}
           </span>
           {!captionExpanded && (
             <button
               onClick={() => setCaptionExpanded(true)}
-              style={{
-                fontSize: 13,
-                color: "var(--muted-foreground)",
-                fontFamily: "var(--font-family-body)",
-                background: "none",
-                border: "none",
-                padding: 0,
-                cursor: "pointer",
-                marginTop: 2,
-              }}
+              className="text-[13px] text-[var(--muted-foreground)] font-[var(--font-family-body)] bg-none border-none p-0 cursor-pointer mt-0.5"
             >
               read more
             </button>
           )}
-          <div style={{ fontSize: 11, color: "#b0b0b8", marginTop: 4 }}>
+          <div
+            // style={{ fontSize: 11, color: "#b0b0b8", marginTop: 4 }}
+            className="text-[11px] text-[#b0b0b8] mt-1"
+          >
             {post.date}
           </div>
         </div>
