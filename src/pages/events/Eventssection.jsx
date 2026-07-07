@@ -378,9 +378,6 @@ export function EventsSection({ onNavigate }) {
         <p className="text-[13px] text-[#8e8e93] text-center">
           You've seen all recent events.
           <br />
-          {/* <a href="#" style={{ color: "#d4456a", fontWeight: 600 }}>
-            View full event calendar →
-          </a> */}
         </p>
         <button
           onClick={() => onNavigate("digital")}
