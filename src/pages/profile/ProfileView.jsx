@@ -221,7 +221,7 @@ function MediaGrid() {
   // Infinite scroll state — only used for "images" tab
   const [visibleImageCount, setVisibleImageCount] = useState(6);
   const [isLoadingImages, setIsLoadingImages] = useState(false);
-  const sentinelRef = useRef < HTMLDivElement > null;
+  const sentinelRef = useRef(null);
 
   const hasMoreImages = visibleImageCount < IMAGES_DATA.length;
 

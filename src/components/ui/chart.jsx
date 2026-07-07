@@ -182,7 +182,7 @@ function ChartTooltipContent({
                     !hideIndicator && (
                       <div
                         className={cn(
-                          "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
+                          `shrink-0 rounded-[2px] bg-[${indicatorColor}] border-[${indicatorColor}]`,
                           {
                             "h-2.5 w-2.5": indicator === "dot",
                             "w-1": indicator === "line",
@@ -191,10 +191,6 @@ function ChartTooltipContent({
                             "my-0.5": nestLabel && indicator === "dashed",
                           },
                         )}
-                        style={{
-                          "--color-bg": indicatorColor,
-                          "--color-border": indicatorColor,
-                        }}
                       />
                     )
                   )}
@@ -264,10 +260,7 @@ function ChartLegendContent({
               <itemConfig.icon />
             ) : (
               <div
-                className="h-2 w-2 shrink-0 rounded-[2px]"
-                style={{
-                  backgroundColor: item.color,
-                }}
+                className={`h-2 w-2 shrink-0 rounded-[2px] bg-[${item.color}]`}
               />
             )}
             {itemConfig?.label}

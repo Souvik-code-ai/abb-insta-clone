@@ -44,7 +44,6 @@ function InfoCard({ label, children }) {
   return (
     <div className="rounded-xl p-3 mb-2 last:mb-0">
       <div className="flex items-center gap-2 mb-1 text-xs font-semibold text-[color:var(--foreground)]">
-        {/* <span style={{ color: "#579F63" }}>{icon}</span> */}
         {label}
       </div>
       <div className="text-xs text-[color:var(--muted-foreground)] leading-[1.65]">
@@ -282,20 +281,12 @@ export function DataPrivacyView({ onNavigate }) {
           </ClauseCard>
 
           {/* Contact card */}
-          <div
-            className="rounded-xl p-4 mt-2"
-            // style={{
-            //   background: "rgba(87,159,99,0.06)",
-            //   border: "0.5px solid rgba(87,159,99,0.3)",
-            // }}
-          >
+          <div className="rounded-xl p-4 mt-2">
             <div className="flex items-center gap-2 mb-3 text-[13px] font-semibold">
-              {/* <Mail size={14} style={{ color: "#579F63" }} /> */}
               Contact Us to Exercise Your Rights
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-xs text-[color:var(--muted-foreground)]">
-                {/* <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} /> */}
                 <a
                   href="mailto:sucheta@abybaby.co.in"
                   className="text-[#579F63] no-underline"
@@ -304,7 +295,6 @@ export function DataPrivacyView({ onNavigate }) {
                 </a>
               </div>
               <div className="flex items-center gap-2 text-xs text-[color:var(--muted-foreground)]">
-                {/* <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} /> */}
                 <a
                   href="mailto:shaw.vijay@abybaby.co.in"
                   className="text-[#579F63] no-underline"

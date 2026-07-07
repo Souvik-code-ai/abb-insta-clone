@@ -221,8 +221,7 @@ export function PostViewer({ post, onClose }) {
           <div className="absolute bottom-4 left-4 z-[5] flex items-center gap-2.5">
             {/* Avatar */}
             <div
-              className="overflow-hidden w-[42px] h-[42px] rounded-full flex items-center justify-center flex-shrink-0 border-2 border-white/30"
-              style={{ background: post.client.bgColor }}
+              className={`overflow-hidden w-[42px] h-[42px] rounded-full flex items-center justify-center flex-shrink-0 border-2 border-white/30 bg-[${post.client.bgColor}]`}
             >
               <img
                 src={post.client.initials}

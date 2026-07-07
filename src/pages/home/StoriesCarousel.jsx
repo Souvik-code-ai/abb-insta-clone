@@ -274,8 +274,8 @@ function DesktopCarousel({ clients, onStoryClick, onDismiss }) {
         {/* Track */}
         <div className="overflow-hidden w-full">
           <motion.div
-            className="flex"
-            style={{ x, gap: ITEM_GAP }}
+            className={`flex gap-[${ITEM_GAP}px]`}
+            // style={{ x }}
             drag="x"
             dragConstraints={{
               left: -(clients.length - VISIBLE_DESKTOP) * itemStride,

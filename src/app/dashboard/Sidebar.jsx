@@ -39,14 +39,12 @@ export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
       animate={{ width: expanded ? 260 : 72 }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
       className="fixed left-0 top-0 bottom-0 z-50 flex flex-col bg-white overflow-hidden"
-      style={{}}
     >
       <nav className="flex flex-col py-3 px-3 flex-1">
         {/* Logo row */}
         <button
           onClick={() => onNavigate("home")}
-          className="relative flex items-center rounded-xl transition-all duration-150 shrink-0"
-          style={{ height: 44, padding: "0 10px" }}
+          className="relative flex items-center rounded-xl transition-all duration-150 shrink-0 h-11 px-[10px] py-0"
           onMouseEnter={(e) =>
             (e.currentTarget.style.background = "rgba(0,0,0,0.04)")
           }
@@ -54,13 +52,7 @@ export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
             (e.currentTarget.style.background = "transparent")
           }
         >
-          <div
-            className="shrink-0 rounded-xl flex items-center justify-center cursor-pointer "
-            style={{
-              background:
-                "linear-gradient(135deg, var(--accent) 0%, #f9a8c9 100%)",
-            }}
-          >
+          <div className="shrink-0 rounded-xl flex items-center justify-center cursor-pointer bg-[linear-gradient(135deg,var(--accent)_0%,#f9a8c9_100%)]">
             <img
               src={logo}
               alt=""
@@ -81,43 +73,21 @@ export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className="relative flex items-center rounded-xl transition-all duration-150 shrink-0"
-                style={{
-                  height: 44,
-                  padding: "0 10px",
-                  background: isActive
-                    ? "color-mix(in srgb, var(--accent) 8%, transparent)"
-                    : "transparent",
-                  color: isActive ? "var(--accent)" : "var(--foreground)",
-                }}
-                onMouseEnter={(e) => {
-                  if (!isActive)
-                    e.currentTarget.style.background = "rgba(0,0,0,0.04)";
-                }}
-                onMouseLeave={(e) => {
-                  if (!isActive)
-                    e.currentTarget.style.background = "transparent";
-                }}
+                className={`relative flex items-center rounded-xl transition-all duration-150 shrink-0 h-11 px-[10px] py-0 ${
+                  isActive
+                    ? "bg-[color-mix(in_srgb,var(--accent)_8%,transparent)] text-[color:var(--accent)]"
+                    : "bg-transparent text-[color:var(--foreground)] hover:bg-black/[0.04]"
+                }`}
               >
-                <div
-                  className="shrink-0 flex items-center justify-center"
-                  style={{ width: 28, height: 28 }}
-                >
+                <div className="shrink-0 flex items-center justify-center w-7 h-7">
                   {isProfile ? (
                     /* Profile shows avatar circle instead of plain icon */
                     <div
-                      className="rounded-full flex items-center justify-center"
-                      style={{
-                        width: 26,
-                        height: 26,
-                        background: isActive
-                          ? "linear-gradient(135deg, var(--accent) 0%, #f9a8c9 100%)"
-                          : "var(--muted)",
-                        fontSize: 10,
-                        fontWeight: 700,
-                        color: isActive ? "#fff" : "var(--muted-foreground)",
-                        fontFamily: "var(--font-family-body)",
-                      }}
+                      className={`rounded-full flex items-center justify-center w-[26px] h-[26px] text-[10px] font-bold font-[family-name:var(--font-family-body)] ${
+                        isActive
+                          ? "bg-[linear-gradient(135deg,var(--accent)_0%,#f9a8c9_100%)] text-white"
+                          : "bg-[color:var(--muted)] text-[color:var(--muted-foreground)]"
+                      }`}
                     >
                       <img src={logo} alt="" />
                     </div>
@@ -132,12 +102,9 @@ export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -6 }}
                       transition={{ duration: 0.15 }}
-                      className="ml-3 whitespace-nowrap overflow-hidden"
-                      style={{
-                        fontSize: 15,
-                        fontWeight: isActive ? 600 : 400,
-                        fontFamily: "var(--font-family-body)",
-                      }}
+                      className={`ml-3 whitespace-nowrap overflow-hidden text-[15px] font-[family-name:var(--font-family-body)] ${
+                        isActive ? "font-semibold" : "font-normal"
+                      }`}
                     >
                       {item.label}
                     </motion.span>
@@ -152,8 +119,7 @@ export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
         {/* More — pinned to bottom */}
         <button
           onClick={onMoreClick}
-          className="relative flex items-center rounded-xl transition-all duration-150 shrink-0"
-          style={{ height: 44, padding: "0 10px", color: "var(--foreground)" }}
+          className="relative flex items-center rounded-xl transition-all duration-150 shrink-0 h-11 px-[10px] py-0 text-[color:var(--foreground)]"
           onMouseEnter={(e) =>
             (e.currentTarget.style.background = "rgba(0,0,0,0.04)")
           }
@@ -161,10 +127,7 @@ export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
             (e.currentTarget.style.background = "transparent")
           }
         >
-          <div
-            className="shrink-0 flex items-center justify-center"
-            style={{ width: 28, height: 28 }}
-          >
+          <div className="shrink-0 flex items-center justify-center w-7 h-7">
             <MoreHorizontal size={22} strokeWidth={1.8} />
           </div>
           <AnimatePresence>
@@ -174,8 +137,7 @@ export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -6 }}
                 transition={{ duration: 0.15 }}
-                className="ml-3 whitespace-nowrap overflow-hidden"
-                style={{ fontSize: 15, fontFamily: "var(--font-family-body)" }}
+                className="ml-3 whitespace-nowrap overflow-hidden text-[15px] font-[family-name:var(--font-family-body)]"
               >
                 More
               </motion.span>

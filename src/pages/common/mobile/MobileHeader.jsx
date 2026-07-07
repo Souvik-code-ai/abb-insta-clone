@@ -87,15 +87,6 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
               )}
             </AnimatePresence>
           </div>
-          {/* <button
-            onClick={() => setMoreOpen((o) => !o)}
-            className="rounded-full flex items-center justify-center"
-            style={{
-              width: 36,
-              height: 36,
-              background: "rgba(212,69,106,0.08)",
-            }}
-          ></button> */}
         </div>
       </header>
       <button
