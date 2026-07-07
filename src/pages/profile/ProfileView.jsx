@@ -48,58 +48,20 @@ function MediaLightbox({ items, startIndex, onClose }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.18 }}
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 9999,
-        background: "rgba(0,0,0,0.94)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      className="fixed inset-0 z-[9999] bg-black/[0.94] flex items-center justify-center"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       {/* Close */}
       <button
         onClick={onClose}
         aria-label="Close"
-        style={{
-          position: "absolute",
-          top: 18,
-          left: 18,
-          width: 40,
-          height: 40,
-          borderRadius: "50%",
-          background: "rgba(255,255,255,0.12)",
-          border: "1px solid rgba(255,255,255,0.2)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          color: "#fff",
-          zIndex: 10,
-        }}
+        className="absolute top-[18px] left-[18px] w-10 h-10 rounded-full bg-white/[0.12] border border-white/20 flex items-center justify-center cursor-pointer text-white z-10"
       >
         <X size={18} />
       </button>
 
       {/* Category badge */}
-      <div
-        style={{
-          position: "absolute",
-          top: 18,
-          right: 18,
-          zIndex: 10,
-
-          borderRadius: 20,
-          padding: "4px 14px",
-          fontSize: 11,
-          fontWeight: 700,
-
-          letterSpacing: "0.03em",
-        }}
-        className="bg-linear-to-r from-lime-800 via-lime-600 to-lime-400  text-white"
-      >
+      <div className="bg-linear-to-r from-lime-800 via-lime-600 to-lime-400 text-white absolute top-[18px] right-[18px] z-10 rounded-[20px] px-[14px] py-1 text-[11px] font-bold tracking-[0.03em]">
         {item.category}
       </div>
 
@@ -108,23 +70,7 @@ function MediaLightbox({ items, startIndex, onClose }) {
         <button
           onClick={prev}
           aria-label="Previous"
-          style={{
-            position: "absolute",
-            left: 18,
-            top: "50%",
-            transform: "translateY(-50%)",
-            zIndex: 10,
-            width: 42,
-            height: 42,
-            borderRadius: "50%",
-            background: "rgba(255,255,255,0.12)",
-            border: "1px solid rgba(255,255,255,0.2)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            color: "#fff",
-          }}
+          className="absolute left-[18px] top-1/2 -translate-y-1/2 z-10 w-[42px] h-[42px] rounded-full bg-white/[0.12] border border-white/20 flex items-center justify-center cursor-pointer text-white"
         >
           <ChevronLeft size={20} />
         </button>
@@ -135,23 +81,7 @@ function MediaLightbox({ items, startIndex, onClose }) {
         <button
           onClick={next}
           aria-label="Next"
-          style={{
-            position: "absolute",
-            right: 18,
-            top: "50%",
-            transform: "translateY(-50%)",
-            zIndex: 10,
-            width: 42,
-            height: 42,
-            borderRadius: "50%",
-            background: "rgba(255,255,255,0.12)",
-            border: "1px solid rgba(255,255,255,0.2)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            color: "#fff",
-          }}
+          className="absolute right-[18px] top-1/2 -translate-y-1/2 z-10 w-[42px] h-[42px] rounded-full bg-white/[0.12] border border-white/20 flex items-center justify-center cursor-pointer text-white"
         >
           <ChevronRight size={20} />
         </button>
@@ -159,14 +89,11 @@ function MediaLightbox({ items, startIndex, onClose }) {
 
       {/* Media */}
       <div
-        style={{
-          position: "relative",
-          width: item.type === "reel" ? "min(88vw, 360px)" : "min(88vw, 520px)",
-          aspectRatio: item.type === "reel" ? "9/16" : "1/1",
-          borderRadius: 12,
-          overflow: "hidden",
-          background: "#111",
-        }}
+        className={`relative rounded-xl overflow-hidden bg-[#111] ${
+          item.type === "reel"
+            ? "w-[min(88vw,360px)] aspect-[9/16]"
+            : "w-[min(88vw,520px)] aspect-square"
+        }`}
       >
         <AnimatePresence mode="wait">
           <motion.img
@@ -177,95 +104,33 @@ function MediaLightbox({ items, startIndex, onClose }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            className="w-full h-full object-cover"
           />
         </AnimatePresence>
 
         {/* Reel play icon */}
         {item.type === "reel" && (
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              pointerEvents: "none",
-            }}
-          >
-            <div
-              style={{
-                width: 56,
-                height: 56,
-                borderRadius: "50%",
-                background: "rgba(0,0,0,0.45)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-14 h-14 rounded-full bg-black/45 flex items-center justify-center">
               <Play size={24} fill="#fff" stroke="none" />
             </div>
           </div>
         )}
 
         {/* Bottom gradient */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "42%",
-            background:
-              "linear-gradient(to top, rgba(0,0,0,0.82), transparent)",
-            pointerEvents: "none",
-          }}
-        />
+        <div className="absolute bottom-0 left-0 right-0 h-[42%] bg-[linear-gradient(to_top,rgba(0,0,0,0.82),transparent)] pointer-events-none" />
 
         {/* Caption + stats */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 16,
-            left: 14,
-            right: 14,
-            zIndex: 5,
-          }}
-        >
-          <p
-            style={{
-              margin: 0,
-              fontSize: 13,
-              color: "#fff",
-              lineHeight: 1.5,
-              fontWeight: 400,
-            }}
-          >
+        <div className="absolute bottom-4 left-[14px] right-[14px] z-5">
+          <p className="m-0 text-[13px] text-white leading-[1.5] font-normal">
             {item.caption}
           </p>
-          <div style={{ display: "flex", gap: 14, marginTop: 8 }}>
-            <span
-              style={{
-                fontSize: 13,
-                color: "rgba(255,255,255,0.8)",
-                display: "flex",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
+          <div className="flex gap-[14px] mt-2">
+            <span className="text-[13px] text-white/80 flex items-center gap-1">
               <Heart size={13} fill="#d4456a" stroke="none" />
               {item.likes.toLocaleString()}
             </span>
-            <span
-              style={{
-                fontSize: 13,
-                color: "rgba(255,255,255,0.8)",
-                display: "flex",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
+            <span className="text-[13px] text-white/80 flex items-center gap-1">
               <MessageCircle size={13} stroke="rgba(255,255,255,0.8)" />
               {item.comments}
             </span>
@@ -273,32 +138,14 @@ function MediaLightbox({ items, startIndex, onClose }) {
         </div>
 
         {/* Dot counter */}
-        <div
-          style={{
-            position: "absolute",
-            top: 14,
-            left: 0,
-            right: 0,
-            display: "flex",
-            justifyContent: "center",
-            gap: 5,
-            zIndex: 5,
-          }}
-        >
+        <div className="absolute top-[14px] left-0 right-0 flex justify-center gap-[5px] z-[5]">
           {items.map((_, i) => (
             <button
               key={i}
               onClick={() => setIdx(i)}
-              style={{
-                width: i === idx ? 18 : 6,
-                height: 6,
-                borderRadius: 3,
-                background: i === idx ? "#fff" : "rgba(255,255,255,0.4)",
-                border: "none",
-                cursor: "pointer",
-                padding: 0,
-                transition: "width 0.2s",
-              }}
+              className={`h-1.5 rounded-[3px] border-none cursor-pointer p-0 transition-[width] duration-200 ${
+                i === idx ? "w-[18px] bg-white" : "w-1.5 bg-white/40"
+              }`}
             />
           ))}
         </div>
@@ -319,41 +166,19 @@ function GridCell({ item, onClick }) {
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       onClick={onClick}
-      style={{
-        position: "relative",
-        aspectRatio: item.type === "reel" ? "9/16" : "1/1",
-        borderRadius: 0,
-        overflow: "hidden",
-        cursor: "pointer",
-        background: "#f5f5f7",
-      }}
+      className={`relative rounded-none overflow-hidden cursor-pointer bg-[#f5f5f7] ${
+        item.type === "reel" ? "aspect-[9/16]" : "aspect-square"
+      }`}
     >
       <img
         src={item.src}
         alt={item.caption.slice(0, 40)}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          display: "block",
-        }}
+        className="w-full h-full object-cover block"
       />
 
       {/* Reel badge */}
       {item.type === "reel" && (
-        <div
-          style={{
-            position: "absolute",
-            top: 7,
-            right: 7,
-            background: "rgba(0,0,0,0.55)",
-            borderRadius: 6,
-            padding: "3px 6px",
-            display: "flex",
-            alignItems: "center",
-            gap: 3,
-          }}
-        >
+        <div className="absolute top-[7px] right-[7px] bg-black/55 rounded-md py-[3px] px-1.5 flex items-center gap-[3px]">
           <Play size={10} fill="#fff" stroke="none" />
         </div>
       )}
@@ -366,59 +191,19 @@ function GridCell({ item, onClick }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "rgba(0,0,0,0.48)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 8,
-            }}
+            className="absolute inset-0 bg-black/48 flex flex-col items-center justify-center gap-2"
           >
-            <div style={{ display: "flex", gap: 20 }}>
-              <span
-                style={{
-                  color: "#fff",
-                  fontSize: 14,
-                  fontWeight: 700,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 5,
-                }}
-              >
+            <div className="flex gap-5">
+              <span className="text-white text-sm font-bold flex items-center gap-[5px]">
                 <Heart size={16} fill="#fff" stroke="none" />
                 {item.likes.toLocaleString()}
               </span>
-              <span
-                style={{
-                  color: "#fff",
-                  fontSize: 14,
-                  fontWeight: 700,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 5,
-                }}
-              >
+              <span className="text-white text-sm font-bold flex items-center gap-[5px]">
                 <MessageCircle size={16} fill="#fff" stroke="none" />
                 {item.comments}
               </span>
             </div>
-            <p
-              style={{
-                fontSize: 11,
-                color: "rgba(255,255,255,0.8)",
-                textAlign: "center",
-                padding: "0 10px",
-                lineHeight: 1.4,
-                maxWidth: 120,
-                overflow: "hidden",
-                display: "-webkit-box",
-                WebkitBoxOrient: "vertical",
-                WebkitLineClamp: 2,
-              }}
-            >
+            <p className="text-[11px] text-white/80 text-center px-[10px] leading-[1.4] max-w-[120px] line-clamp-2">
               {item.caption}
             </p>
           </motion.div>
@@ -494,30 +279,16 @@ function MediaGrid() {
   return (
     <>
       {/* Tab row */}
-      <div style={{ display: "flex", marginBottom: 4 }}>
+      <div className="flex mb-1">
         {TABS.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            style={{
-              flex: 1,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 6,
-              padding: "11px 0",
-              background: "none",
-              border: "none",
-              borderBottom:
-                activeTab === tab.key
-                  ? "2px solid #579F63"
-                  : "2px solid transparent",
-              cursor: "pointer",
-              color: activeTab === tab.key ? "#579F63" : "#8e8e93",
-              fontSize: 13,
-              fontWeight: activeTab === tab.key ? 700 : 400,
-              transition: "all 0.15s",
-            }}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-[11px] bg-transparent border-none cursor-pointer text-[13px] transition-all duration-150 border-b-2 ${
+              activeTab === tab.key
+                ? "border-[#579F63] text-[#579F63] font-bold"
+                : "border-transparent text-[#8e8e93] font-normal"
+            }`}
           >
             {tab.icon}
           </button>
@@ -532,12 +303,7 @@ function MediaGrid() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.18 }}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 3,
-            padding: "0 0 8px",
-          }}
+          className="grid grid-cols-3 gap-[3px] px-0 pb-2"
         >
           {items.map((item, i) => (
             <motion.div
@@ -569,22 +335,13 @@ function MediaGrid() {
               animate={{ opacity: 1 }}
               className="flex flex-col items-center gap-2"
             >
-              <div
-                style={{
-                  width: 24,
-                  height: 24,
-                  borderRadius: "50%",
-                  border: "2px solid #e5e7eb",
-                  borderTopColor: "#579F63",
-                  animation: "spin 0.7s linear infinite",
-                }}
-              />
-              <p style={{ fontSize: 11, color: "#aaa" }}>Loading more…</p>
+              <div className="w-6 h-6 rounded-full border-2 border-gray-200 border-t-[#579F63] animate-spin [animation-duration:0.7s]" />
+              <p className="text-[11px] text-[#aaa]">Loading more…</p>
               <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
             </motion.div>
           )}
           {!hasMoreImages && !isLoadingImages && (
-            <p style={{ fontSize: 11, color: "#c0c0c0" }}></p>
+            <p className="text-[11px] text-[#c0c0c0]"></p>
           )}
         </div>
       )}
@@ -628,8 +385,7 @@ export function ProfileView({ onNavigate }) {
           console.log("onNavigate is:", onNavigate);
           onNavigate("home");
         }}
-        className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2"
-        style={{ color: "#579F63" }}
+        className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2 text-[#579F63]"
       >
         <ArrowLeft size={16} />
         Return back
@@ -640,33 +396,19 @@ export function ProfileView({ onNavigate }) {
             <img src={logo} alt="logo" />
           </div>
           <div className="flex flex-col justify-center items-start gap-0.5">
-            <h1
-              style={{
-                fontFamily: "var(--font-family-body)",
-                color: "var(--foreground)",
-              }}
-              className="lg:text-3xl md:text-2xl text-xl"
-            >
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-[family-name:var(--font-family-body)] text-[color:var(--foreground)]">
               Abybaby Events
             </h1>
-            <p style={{ fontSize: 13, color: "var(--muted-foreground)" }}>
+            <p className="text-[13px] text-[color:var(--muted-foreground)]">
               Award-winning event & brand experience agency
             </p>
             <div className="flex gap-8">
               {STATS.map(({ label, value }) => (
                 <div key={label} className="flex flex-col items-center">
-                  <span
-                    style={{
-                      fontWeight: 700,
-                      color: "var(--accent)",
-                      fontFamily: "var(--font-family-body)",
-                    }}
-                  >
+                  <span className="font-bold text-[color:var(--accent)] font-[family-name:var(--font-family-body)]">
                     {value}
                   </span>
-                  <span
-                    style={{ fontSize: 12, color: "var(--muted-foreground)" }}
-                  >
+                  <span className="text-xs text-[color:var(--muted-foreground)]">
                     {label}
                   </span>
                 </div>
@@ -681,12 +423,7 @@ export function ProfileView({ onNavigate }) {
             href={Portfolio}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-[45%] rounded-md py-3 flex items-center justify-center md:gap-2 transition-opacity gap-1 cursor-pointer bg-[linear-gradient(135deg,_#579F63_0%,_#7CFC58_100%)]"
-            style={{
-              color: "#fff",
-              fontSize: 13,
-              fontWeight: 600,
-            }}
+            className="w-[45%] rounded-md py-3 flex items-center justify-center md:gap-2 transition-opacity gap-1 cursor-pointer bg-[linear-gradient(135deg,_#579F63_0%,_#7CFC58_100%)] text-white text-[13px] font-semibold"
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             onClick={handlePdf}
@@ -697,13 +434,7 @@ export function ProfileView({ onNavigate }) {
           <a
             href={Portfolio}
             download="ABYBABY BROCHURE.pdf"
-            className="w-[45%] rounded-md py-3 flex items-center justify-center md:gap-2 transition-opacity cursor-pointer gap-1 "
-            style={{
-              background: "color-mix(in srgb, var(--accent) 10%, transparent)",
-              color: "var(--accent)",
-              fontSize: 13,
-              fontWeight: 600,
-            }}
+            className="w-[45%] rounded-md py-3 flex items-center justify-center md:gap-2 transition-opacity cursor-pointer gap-1 bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] text-[color:var(--accent)] text-[13px] font-semibold"
             onClick={handlePdfDownload}
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
@@ -717,27 +448,16 @@ export function ProfileView({ onNavigate }) {
       {/* ── Featured Work carousel ── */}
       <div className="px-4 py-6">
         <div className="flex items-center justify-between mb-4">
-          <h2
-            style={{
-              fontSize: 15,
-              fontWeight: 700,
-              color: "var(--foreground)",
-            }}
-            className="font-sans"
-          >
+          <h2 className="font-sans text-[15px] font-bold text-[color:var(--foreground)]">
             Featured Work
           </h2>
           <div className="flex gap-2">
             <button
               onClick={() => setOffset((o) => Math.max(0, o - 1))}
               disabled={!canPrev}
-              className="flex items-center justify-center rounded-full border border-border"
-              style={{
-                width: 30,
-                height: 30,
-                opacity: canPrev ? 1 : 0.3,
-                background: "var(--background)",
-              }}
+              className={`flex items-center justify-center rounded-full border border-border w-[30px] h-[30px] bg-[color:var(--background)] ${
+                canPrev ? "opacity-100" : "opacity-30"
+              }`}
             >
               <ChevronLeft size={14} />
             </button>
@@ -748,13 +468,9 @@ export function ProfileView({ onNavigate }) {
                 )
               }
               disabled={!canNext}
-              className="flex items-center justify-center rounded-full border border-border"
-              style={{
-                width: 30,
-                height: 30,
-                opacity: canNext ? 1 : 0.3,
-                background: "var(--background)",
-              }}
+              className={`flex items-center justify-center rounded-full border border-border w-[30px] h-[30px] bg-[color:var(--background)] ${
+                canNext ? "opacity-100" : "opacity-30"
+              }`}
             >
               <ChevronRight size={14} />
             </button>
@@ -771,25 +487,16 @@ export function ProfileView({ onNavigate }) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -30 }}
                 transition={{ duration: 0.25 }}
-                className="rounded-xl overflow-hidden shrink-0 flex-1"
-                style={{ minWidth: 0 }}
+                className="rounded-xl overflow-hidden shrink-0 flex-1 min-w-0"
               >
-                <div style={{ aspectRatio: "16/10", position: "relative" }}>
+                <div className="aspect-[16/10] relative">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover"
                   />
-                  <div
-                    className="absolute inset-0 flex flex-col justify-end p-3 items-center"
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%)",
-                    }}
-                  >
-                    <span
-                      style={{ color: "rgba(255,255,255,0.7)", fontSize: 10 }}
-                    >
+                  <div className="absolute inset-0 flex flex-col justify-end p-3 items-center bg-[linear-gradient(to_top,rgba(0,0,0,0.55)_0%,transparent_60%)]">
+                    <span className="text-white/70 text-[10px]">
                       {item.category}
                     </span>
                   </div>
@@ -802,48 +509,21 @@ export function ProfileView({ onNavigate }) {
 
       {/* ── Services + About ── */}
       <div className="flex gap-6 px-4 mb-8">
-        <div className="flex flex-col gap-3" style={{ flex: 1, minWidth: 0 }}>
-          <h2
-            style={{
-              fontSize: 15,
-              fontWeight: 700,
-              color: "var(--foreground)",
-              marginBottom: 4,
-            }}
-            className="font-sans"
-          >
+        <div className="flex flex-col gap-3 flex-1 min-w-0">
+          <h2 className="font-sans text-[15px] font-bold text-[color:var(--foreground)] mb-1">
             Our Services
           </h2>
           {SERVICES.map(({ emoji, title, desc }) => (
             <div
               key={title}
-              className="flex gap-3 items-start rounded-xl p-3"
-              style={{
-                background:
-                  "color-mix(in srgb, var(--accent) 4%, var(--background))",
-              }}
+              className="flex gap-3 items-start rounded-xl p-3 bg-[color-mix(in_srgb,var(--accent)_4%,var(--background))]"
             >
-              <span style={{ fontSize: 20, lineHeight: 1.4, flexShrink: 0 }}>
-                {emoji}
-              </span>
+              <span className="text-xl leading-[1.4] shrink-0">{emoji}</span>
               <div>
-                <div
-                  style={{
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: "var(--foreground)",
-                    marginBottom: 2,
-                  }}
-                >
+                <div className="text-[13px] font-semibold text-[color:var(--foreground)] mb-0.5">
                   {title}
                 </div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    color: "var(--muted-foreground)",
-                    lineHeight: 1.5,
-                  }}
-                >
+                <div className="text-[11px] text-[color:var(--muted-foreground)] leading-[1.5]">
                   {desc}
                 </div>
               </div>
@@ -856,30 +536,16 @@ export function ProfileView({ onNavigate }) {
       <MediaGrid />
       <footer className="pt-2 pb-6 flex flex-col justify-center items-center ">
         <div className="flex flex-col items-center py-8 gap-2">
-          <div
-            className="rounded-full flex items-center justify-center"
-            style={{
-              width: 48,
-              height: 48,
-              background: "linear-gradient(135deg, #65A30D 0%, #A3E635 100%)",
-            }}
-          >
+          <div className="rounded-full flex items-center justify-center w-12 h-12 bg-[linear-gradient(135deg,#65A30D_0%,#A3E635_100%)]">
             <img src={logo} alt="" />
           </div>
 
-          <p
-            style={{
-              fontSize: 13,
-              color: "#8e8e93",
-              textAlign: "center",
-            }}
-          >
+          <p className="text-[13px] text-[#8e8e93] text-center">
             You've explored all profile contents.
           </p>
           <button
             onClick={() => onNavigate("casestudies")}
-            className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
-            style={{ color: "#579F63" }}
+            className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
           >
             Explore More
             <ArrowRight size={16} />

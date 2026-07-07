@@ -156,10 +156,9 @@ function SidePanel({ setOpen, onNavigate }) {
         animate={{ x: 0 }}
         exit={{ x: "-100%" }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="fixed top-0 left-0 h-full z-50 flex flex-col bg-background border-r border-border "
-        style={{
-          width: window.innerWidth < 640 ? "100vw" : "400px",
-        }}
+        className={`fixed top-0 left-0 h-full z-50 flex flex-col bg-background border-r border-border ${
+          window.innerWidth < 640 ? "w-screen" : "w-[400px]"
+        }`}
       >
         <div className="flex flex-row justify-center items-center ">
           <div className=" perspective-[1000px] w-[370px] h-[290px] m-6">
@@ -417,8 +416,7 @@ function SidePanel({ setOpen, onNavigate }) {
             <div ref={outerRef} className="overflow-hidden">
               <div
                 ref={trackRef}
-                className="flex gap-2 px-4 transition-transform duration-300"
-                style={{ willChange: "transform" }}
+                className="flex gap-2 px-4 transition-transform duration-300 will-change-transform"
               >
                 {LOCATIONS.map((loc) => (
                   <button

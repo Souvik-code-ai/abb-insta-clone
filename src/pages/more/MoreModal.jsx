@@ -57,22 +57,10 @@ export function MoreModal({ isOpen, onClose, onNavigate }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ type: "spring", damping: 30, stiffness: 400 }}
-            className="fixed z-[61] bg-white rounded-2xl shadow-2xl overflow-hidden"
-            style={{
-              bottom: 80,
-              left: 16,
-              width: 260,
-              border: "1px solid rgba(0,0,0,0.08)",
-            }}
+            className="fixed z-[61] bg-white rounded-2xl shadow-2xl overflow-hidden bottom-20 left-4 w-[260px] border border-black/[0.08]"
           >
             <div className="flex items-center justify-between px-4 py-3">
-              <span
-                style={{
-                  fontSize: 14,
-                  fontWeight: 600,
-                  fontFamily: "var(--font-family-body)",
-                }}
-              >
+              <span className="text-sm font-semibold font-[family-name:var(--font-family-body)]">
                 More Options
               </span>
               <button onClick={onClose}>
@@ -82,8 +70,7 @@ export function MoreModal({ isOpen, onClose, onNavigate }) {
             {items.map(({ icon: Icon, label, desc, view }) => (
               <button
                 key={label}
-                className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors"
-                style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
+                className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors border-b border-black/[0.04]"
                 onClick={() => {
                   if (view) {
                     // ← navigate if this item has a route
@@ -98,23 +85,14 @@ export function MoreModal({ isOpen, onClose, onNavigate }) {
                   (e.currentTarget.style.background = "transparent")
                 }
               >
-                <div
-                  className="rounded-xl flex items-center justify-center shrink-0"
-                  style={{
-                    width: 36,
-                    height: 36,
-                    background: "rgba(212,69,106,0.08)",
-                  }}
-                >
-                  <Icon size={16} style={{ color: "#2C7048" }} />
+                <div className="rounded-xl flex items-center justify-center shrink-0 w-9 h-9 bg-[rgba(212,69,106,0.08)]">
+                  <Icon size={16} className="text-[#2C7048]" />
                 </div>
                 <div>
-                  <div
-                    style={{ fontSize: 14, fontWeight: 500, color: "#1a1a1a" }}
-                  >
+                  <div className="text-sm font-medium text-[#1a1a1a]">
                     {label}
                   </div>
-                  <div style={{ fontSize: 12, color: "#8e8e93" }}>{desc}</div>
+                  <div className="text-xs text-[#8e8e93]">{desc}</div>
                 </div>
               </button>
             ))}

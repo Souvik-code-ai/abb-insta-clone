@@ -49,124 +49,43 @@ function SidebarCarousel({ studies, activeId, onSelect }) {
 
   return (
     <div
-      style={{
-        position: "fixed",
-        top: 20,
-        width: 280,
-        alignSelf: "flex-start",
-      }}
-      onMouseEnter={() => setPaused(true)}
+      className="fixed top-5 w-[280px] self-start"
       onMouseLeave={() => setPaused(false)}
     >
-      <div
-        style={{
-          overflow: "hidden",
-          height: " 100vh",
-          position: "relative",
-        }}
-      >
+      <div className="overflow-hidden h-screen relative">
         {/* Fade masks top & bottom */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 36,
-            background:
-              "linear-gradient(to bottom, var(--background), transparent)",
-            zIndex: 2,
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 36,
-            background:
-              "linear-gradient(to top, var(--background), transparent)",
-            zIndex: 2,
-            pointerEvents: "none",
-          }}
-        />
+        <div className="absolute top-0 left-0 right-0 h-9 bg-[linear-gradient(to_bottom,var(--background),transparent)] z-[2] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-9 bg-[linear-gradient(to_top,var(--background),transparent)] z-[2] pointer-events-none" />
 
         {/* Scrolling strip */}
         <div
-          style={{
-            transform: `translateY(-${offset}px)`,
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-            willChange: "transform",
-          }}
+          className={`flex flex-col gap-3 will-change-transform -translate-y-[${offset}px]`}
         >
           {items.map((study, i) => (
             <button
               key={`${study.id}-${i}`}
               onClick={() => onSelect(study.id)}
-              className="text-left rounded-xl overflow-hidden w-full"
-              style={{
-                border:
-                  study.id === activeId
-                    ? "0.5px solid rgba(87,159,99,0.55)"
-                    : "0.5px solid rgba(87,159,99,0.2)",
-                background: "var(--background)",
-                flexShrink: 0,
-                cursor: "pointer",
-              }}
+              className={`text-left rounded-xl overflow-hidden w-full bg-[color:var(--background)] shrink-0 cursor-pointer border-[0.5px] ${
+                study.id === activeId
+                  ? "border-[rgba(87,159,99,0.55)]"
+                  : "border-[rgba(87,159,99,0.2)]"
+              }`}
             >
-              <div style={{ aspectRatio: "16/9", overflow: "hidden" }}>
+              <div className="aspect-video overflow-hidden">
                 <img
                   src={study.heroImage}
                   alt={study.title}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
+                  className="w-full h-full object-cover block"
                 />
               </div>
-              <div style={{ padding: "8px 10px" }}>
-                <div
-                  style={{
-                    fontSize: 10,
-                    fontWeight: 600,
-                    color: "#579F63",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    marginBottom: 3,
-                  }}
-                >
+              <div className="px-[10px] py-2">
+                <div className="text-[10px] font-semibold text-[#579F63] uppercase tracking-[0.05em] mb-[3px]">
                   {study.category}
                 </div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: "var(--foreground)",
-                    lineHeight: 1.4,
-                    display: "-webkit-box",
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                  }}
-                >
+                <div className="text-[11px] font-semibold text-[color:var(--foreground)] leading-[1.4] line-clamp-2">
                   {study.title}
                 </div>
-                <div
-                  style={{
-                    fontSize: 10,
-                    color: "var(--muted-foreground)",
-                    marginTop: 4,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 4,
-                  }}
-                >
+                <div className="text-[10px] text-[color:var(--muted-foreground)] mt-1 flex items-center gap-1">
                   <MapPin size={9} />
                   {study.location} · {study.year}
                 </div>
@@ -192,8 +111,7 @@ export function CaseStudiesView({ onNavigate }) {
       {/* Back button */}
       <button
         onClick={() => onNavigate("home")}
-        className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2 mb-4"
-        style={{ color: "#579F63" }}
+        className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2 mb-4 text-[#579F63]"
       >
         <ArrowLeft size={16} />
         Return back
@@ -201,16 +119,7 @@ export function CaseStudiesView({ onNavigate }) {
 
       {/* Page label */}
       <div className="px-4 mb-2">
-        <div
-          className="inline-block rounded-full"
-          style={{
-            background: "rgba(87,159,99,0.12)",
-            color: "#3d7a4a",
-            fontSize: 11,
-            fontWeight: 600,
-            padding: "3px 12px",
-          }}
-        >
+        <div className="inline-block rounded-full bg-[rgba(87,159,99,0.12)] text-[#3d7a4a] text-[11px] font-semibold px-3 py-[3px]">
           Case Studies
         </div>
       </div>
@@ -218,7 +127,7 @@ export function CaseStudiesView({ onNavigate }) {
       {/* Two-column layout */}
       <div className="flex gap-5 ">
         {/* ── LEFT: Main content ── */}
-        <div className="flex flex-col px-4" style={{ flex: 1, minWidth: 0 }}>
+        <div className="flex flex-col px-4 flex-1 min-w-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeId}
@@ -230,28 +139,10 @@ export function CaseStudiesView({ onNavigate }) {
             >
               {/* Category + Title */}
               <div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: "#579F63",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                    marginBottom: 6,
-                  }}
-                >
+                <div className="text-[11px] font-semibold text-[#579F63] uppercase tracking-[0.06em] mb-1.5">
                   {study.category}
                 </div>
-                <h1
-                  style={{
-                    fontFamily: "var(--font-family-body)",
-                    color: "var(--foreground)",
-                    fontSize: 18,
-                    fontWeight: 700,
-                    lineHeight: 1.3,
-                    margin: "0 0 10px",
-                  }}
-                >
+                <h1 className="font-[family-name:var(--font-family-body)] text-[color:var(--foreground)] text-[18px] font-bold leading-[1.3] m-0 mb-[10px]">
                   {study.title}
                 </h1>
 
@@ -264,10 +155,9 @@ export function CaseStudiesView({ onNavigate }) {
                   ].map(({ icon, label }) => (
                     <div
                       key={label}
-                      className="flex items-center gap-1"
-                      style={{ fontSize: 11, color: "var(--muted-foreground)" }}
+                      className="flex items-center gap-1 text-[11px] text-[color:var(--muted-foreground)]"
                     >
-                      <span style={{ color: "#579F63" }}>{icon}</span>
+                      <span className="text-[#579F63]">{icon}</span>
                       {label}
                     </div>
                   ))}
@@ -275,39 +165,17 @@ export function CaseStudiesView({ onNavigate }) {
               </div>
 
               {/* Hero image */}
-              <div
-                className="rounded-xl overflow-hidden w-full"
-                style={{ aspectRatio: "16/7" }}
-              >
+              <div className="rounded-xl overflow-hidden w-full aspect-[16/7]">
                 <img
                   src={study.heroImage}
                   alt={study.title}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
+                  className="h-full w-full object-cover block"
                 />
               </div>
 
               {/* Summary */}
-              <div
-                className="rounded-xl p-4"
-                style={{
-                  background: "rgba(87,159,99,0.05)",
-                  border: "0.5px solid rgba(87,159,99,0.25)",
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: 13,
-                    fontWeight: 500,
-                    color: "var(--foreground)",
-                    lineHeight: 1.65,
-                    margin: 0,
-                  }}
-                >
+              <div className="rounded-xl p-4 bg-[rgba(87,159,99,0.05)] border-[0.5px] border-[rgba(87,159,99,0.25)]">
+                <p className="text-[13px] font-medium text-[color:var(--foreground)] leading-[1.65] m-0">
                   {study.summary}
                 </p>
               </div>
@@ -316,14 +184,7 @@ export function CaseStudiesView({ onNavigate }) {
               <div className="flex flex-col gap-4">
                 {study.body.map((block, i) => (
                   <div key={i}>
-                    <p
-                      style={{
-                        fontSize: 13,
-                        color: "var(--muted-foreground)",
-                        lineHeight: 1.8,
-                        margin: "0 0 10px",
-                      }}
-                    >
+                    <p className="text-[13px] text-[color:var(--muted-foreground)] leading-[1.8] m-0 mb-[10px]">
                       {block.text}
                     </p>
                     {block.image && (
@@ -331,22 +192,10 @@ export function CaseStudiesView({ onNavigate }) {
                         <img
                           src={block.image}
                           alt={block.imageCaption ?? ""}
-                          style={{
-                            width: "100%",
-                            aspectRatio: "16/9",
-                            objectFit: "cover",
-                            display: "block",
-                          }}
+                          className="w-full aspect-video object-cover block"
                         />
                         {block.imageCaption && (
-                          <div
-                            style={{
-                              fontSize: 11,
-                              color: "var(--muted-foreground)",
-                              padding: "6px 4px 0",
-                              fontStyle: "italic",
-                            }}
-                          >
+                          <div className="text-[11px] text-[color:var(--muted-foreground)] pt-1.5 px-1 pb-0 italic">
                             {block.imageCaption}
                           </div>
                         )}
@@ -358,45 +207,18 @@ export function CaseStudiesView({ onNavigate }) {
 
               {/* Inline photo grid */}
               <div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: "#579F63",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                    marginBottom: 8,
-                  }}
-                >
+                <div className="text-[11px] font-semibold text-[#579F63] uppercase tracking-[0.06em] mb-2">
                   Gallery
                 </div>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    gap: 6,
-                  }}
-                >
+                <div className="grid grid-cols-3 gap-1.5">
                   {study.inlineImages.map((img, i) => (
                     <div key={i} className="rounded-xl overflow-hidden">
                       <img
                         src={img.src}
                         alt={img.caption}
-                        style={{
-                          width: "100%",
-                          aspectRatio: "4/3",
-                          objectFit: "cover",
-                          display: "block",
-                        }}
+                        className="w-full aspect-[4/3] object-cover block"
                       />
-                      <div
-                        style={{
-                          fontSize: 10,
-                          color: "var(--muted-foreground)",
-                          padding: "4px 2px 0",
-                          textAlign: "center",
-                        }}
-                      >
+                      <div className="text-[10px] text-[color:var(--muted-foreground)] pt-1 px-0.5 pb-0 text-center">
                         {img.caption}
                       </div>
                     </div>
@@ -408,7 +230,7 @@ export function CaseStudiesView({ onNavigate }) {
         </div>
 
         {/* ── RIGHT: Sidebar carousel ── */}
-        <div className="shrink-0" style={{ width: 180 }}>
+        <div className="shrink-0" className="w-[180px]">
           <SidebarCarousel
             studies={CASE_STUDIES}
             activeId={activeId}
@@ -431,13 +253,7 @@ export function CaseStudiesView({ onNavigate }) {
             <a
               key={link.link}
               onClick={() => onNavigate(link.link)}
-              style={{
-                fontSize: 11,
-                color: "var(--muted-foreground)",
-                textDecoration: "none",
-                fontFamily: "var(--font-family-body)",
-                transition: "color 0.15s",
-              }}
+              className="text-[11px] text-[color:var(--muted-foreground)] no-underline font-[family-name:var(--font-family-body)] transition-colors duration-150"
               onMouseEnter={(e) =>
                 (e.currentTarget.style.color = "var(--foreground)")
               }
@@ -449,15 +265,7 @@ export function CaseStudiesView({ onNavigate }) {
             </a>
           ))}
         </div>
-        <p
-          style={{
-            fontSize: 11,
-            color: "var(--muted-foreground)",
-            opacity: 0.6,
-            marginTop: 12,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
+        <p className="text-[11px] text-[color:var(--muted-foreground)] opacity-60 mt-3 font-[family-name:var(--font-family-body)]">
           © 2026 ABY Baby Events. All rights reserved.
         </p>
       </footer>

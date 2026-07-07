@@ -184,14 +184,13 @@ export function AboutView({ onNavigate }) {
             <a
               key={item.title}
               onClick={() => onNavigate(item.link)}
-              className="text-[11px] text-[color:var(--muted-foreground)] no-underline font-[family-name:var(--font-family-body)] transition-colors duration-150"
+              className="text-[11px] text-[color:var(--muted-foreground)] no-underline font-[family-name:var(--font-family-body)] transition-colors duration-150 cursor-pointer"
               onMouseEnter={(e) =>
                 (e.currentTarget.style.color = "var(--foreground)")
               }
               onMouseLeave={(e) =>
                 (e.currentTarget.style.color = "var(--muted-foreground)")
               }
-              className="cursor-pointer"
             >
               {item.title}
             </a>

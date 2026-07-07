@@ -32,74 +32,35 @@ const TOC_ITEMS = [
 
 function SectionHeader({ title }) {
   return (
-    <div className="flex items-center gap-2 mb-3 pb-2">
-      <span
-        style={{
-          fontSize: 14,
-          fontWeight: 600,
-          // color: "var(--foreground)",
-        }}
-      >
-        {title}
-      </span>
+    <div className="flex items-center gap-2 mb-3 pb-2 ">
+      <span className="font-semibold text-[14px]">{title}</span>
     </div>
   );
 }
 
-function ClauseCard({
-  label,
-  children,
-}) {
+function ClauseCard({ label, children }) {
   return (
     <div className="rounded-xl p-3 mb-2 last:mb-0">
       {label && (
-        <div
-          style={{
-            fontSize: 11,
-            fontWeight: 600,
-            color: "#579F63",
-            marginBottom: 4,
-            textTransform: "uppercase",
-            letterSpacing: "0.04em",
-          }}
-        >
+        <div className="text-[11px] font-semibold text-[#579F63] mb-1 uppercase tracking-[0.04em]">
           {label}
         </div>
       )}
-      <div
-        style={{
-          fontSize: 12,
-          color: "var(--muted-foreground)",
-          lineHeight: 1.65,
-        }}
-      >
+      <div className="text-xs text-[color:var(--muted-foreground)] leading-[1.65]">
         {children}
       </div>
     </div>
   );
 }
 
-function InfoCard({
-  icon,
-  label,
-  children,
-}) {
+function InfoCard({ icon, label, children }) {
   return (
     <div className="rounded-xl p-3 mb-2 last:mb-0">
-      <div
-        className="flex items-center gap-2 mb-1"
-        style={{ fontSize: 12, fontWeight: 600, color: "var(--foreground)" }}
-      >
-        <span style={{ color: "#579F63" }}>{icon}</span>
+      <div className="flex items-center gap-2 mb-1 text-xs font-semibold text-[color:var(--foreground)]">
+        <span className="text-[#579F63]">{icon}</span>
         {label}
       </div>
-      <div
-        style={{
-          fontSize: 12,
-          color: "var(--muted-foreground)",
-          lineHeight: 1.65,
-        }}
-      >
+      <div className="text-xs text-[color:var(--muted-foreground)] leading-[1.65]">
         {children}
       </div>
     </div>
@@ -108,15 +69,7 @@ function InfoCard({
 
 function RegPill({ label }) {
   return (
-    <span
-      style={{
-        fontSize: 11,
-        fontWeight: 600,
-        padding: "3px 10px",
-        color: "var(--muted-foreground)",
-      }}
-      className="text-"
-    >
+    <span className="text-[11px] font-semibold px-[10px] py-[3px] text-[color:var(--muted-foreground)]">
       {label}
     </span>
   );
@@ -134,14 +87,7 @@ function BulletList({ items }) {
 
 function BodyText({ children }) {
   return (
-    <p
-      style={{
-        fontSize: 12,
-        color: "var(--muted-foreground)",
-        lineHeight: 1.7,
-        margin: "0 0 8px",
-      }}
-    >
+    <p className="text-xs text-[color:var(--muted-foreground)] leading-[1.7] m-0 mb-2">
       {children}
     </p>
   );
@@ -149,9 +95,7 @@ function BodyText({ children }) {
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export function TermsView({
-  onNavigate,
-}) {
+export function TermsView({ onNavigate }) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -161,64 +105,31 @@ export function TermsView({
       {/* Back button */}
       <button
         onClick={() => onNavigate("home")}
-        className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2"
-        style={{ color: "#579F63" }}
+        className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2 text-[#579F63]"
       >
         <ArrowLeft size={16} />
         Return back
       </button>
 
       {/* Hero */}
-      <div
-        className="py-6 px-4"
-        style={{
-          borderBottom: "1px solid var(--border)",
-          marginBottom: "1.5rem",
-        }}
-      >
-        <div
-          className="inline-block rounded-full mb-2"
-          style={{
-            background: "rgba(87,159,99,0.12)",
-            color: "#3d7a4a",
-            fontSize: 11,
-            fontWeight: 600,
-            padding: "3px 12px",
-          }}
-        >
+      <div className="py-6 px-4 border-b border-[color:var(--border)] mb-6">
+        <div className="inline-block rounded-full mb-2 bg-[rgba(87,159,99,0.12)] text-[#3d7a4a] text-[11px] font-semibold px-3 py-[3px]">
           Legal Document
         </div>
-        <h1
-          style={{
-            fontFamily: "var(--font-family-body)",
-            color: "var(--foreground)",
-            fontSize: 22,
-            fontWeight: 600,
-            margin: "0 0 4px",
-          }}
-        >
+        <h1 className="font-[family-name:var(--font-family-body)] text-[color:var(--foreground)] text-[22px] font-semibold m-0 mb-1">
           Terms of Use
         </h1>
-        <p
-          style={{ fontSize: 12, color: "var(--muted-foreground)", margin: 0 }}
-        >
+        <p className="text-xs text-[color:var(--muted-foreground)] m-0">
           Abybaby E-Com Private Limited · Kolkata, West Bengal – 700026
         </p>
       </div>
 
       {/* Preamble */}
       <div className="rounded-xl p-4 mb-6 mx-4">
-        <p
-          style={{
-            fontSize: 12,
-            color: "var(--muted-foreground)",
-            lineHeight: 1.7,
-            margin: "0 0 8px",
-          }}
-        >
+        <p className="text-xs text-[color:var(--muted-foreground)] leading-[1.7] m-0 mb-2">
           This legal agreement is an electronic record under the Information
           Technology Act, 2000. This website is created and operated by{" "}
-          <strong style={{ color: "var(--foreground)" }}>
+          <strong className="text-[color:var(--foreground)]">
             M/s Abybaby E-Com Private Limited
           </strong>
           , a private limited company incorporated under the Companies Act,
@@ -226,23 +137,16 @@ export function TermsView({
           Road, Kolkata, West Bengal – 700026, operating under the brand name
           "Abybaby".
         </p>
-        <p
-          style={{
-            fontSize: 12,
-            color: "var(--muted-foreground)",
-            lineHeight: 1.7,
-            margin: 0,
-          }}
-        >
-          <strong style={{ color: "var(--foreground)" }}>
+        <p className="text-xs text-[color:var(--muted-foreground)] leading-[1.7] m-0">
+          <strong className="text-[color:var(--foreground)]">
             "We", "Our", "Us"
           </strong>{" "}
           = the website.{" "}
-          <strong style={{ color: "var(--foreground)" }}>
+          <strong className="text-[color:var(--foreground)]">
             "You", "User", "Customer"
           </strong>{" "}
           = persons using this website.{" "}
-          <strong style={{ color: "var(--foreground)" }}>
+          <strong className="text-[color:var(--foreground)]">
             "Third Parties"
           </strong>{" "}
           = any website or individual apart from Users and the website creator.
@@ -524,7 +428,7 @@ export function TermsView({
             Centre for Online Resolution of Disputes (CORD) at{" "}
             <a
               href="http://www.resolveoncord.com"
-              style={{ color: "#579F63" }}
+              className="text-[#579F63]"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -565,47 +469,31 @@ export function TermsView({
 
         {/* Contact */}
         <div className="rounded-xl p-4">
-          <div
-            className="flex items-center gap-2 mb-3"
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: "var(--foreground)",
-            }}
-          >
-            <Mail size={14} style={{ color: "#579F63" }} />
+          <div className="flex items-center gap-2 mb-3 text-[13px] font-semibold text-[color:var(--foreground)]">
+            <Mail size={14} className="text-[#579F63]" />
             Contact Us
           </div>
           <div className="flex flex-col gap-2">
-            <div
-              className="flex items-start gap-2"
-              style={{ fontSize: 12, color: "var(--muted-foreground)" }}
-            >
-              <Building2
-                size={13}
-                style={{ color: "#579F63", flexShrink: 0, marginTop: 1 }}
-              />
+            <div className="flex items-start gap-2 text-xs text-[color:var(--muted-foreground)]">
+              <Building2 size={13} className="text-[#579F63] shrink-0 mt-px" />
               <span>
                 M/s Abybaby E-Com Private Limited, Ground Floor, 4B, Rani
                 Bhabani Road, Kolkata, West Bengal – 700026
               </span>
             </div>
-            <div
-              className="flex items-center gap-2"
-              style={{ fontSize: 12, color: "var(--muted-foreground)" }}
-            >
-              <Mail size={13} style={{ color: "#579F63", flexShrink: 0 }} />
+            <div className="flex items-center gap-2 text-xs text-[color:var(--muted-foreground)]">
+              <Mail size={13} className="text-[#579F63] shrink-0" />
               <span>
                 <a
                   href="mailto:sucheta@abybaby.co.in"
-                  style={{ color: "#579F63", textDecoration: "none" }}
+                  className="text-[#579F63] no-underline"
                 >
                   sucheta@abybaby.co.in
                 </a>{" "}
                 ·{" "}
                 <a
                   href="mailto:shaw.vijay@abybaby.co.in"
-                  style={{ color: "#579F63", textDecoration: "none" }}
+                  className="text-[#579F63] no-underline"
                 >
                   shaw.vijay@abybaby.co.in
                 </a>
@@ -630,36 +518,19 @@ export function TermsView({
               onClick={() => onNavigate(item.link)}
               key={item.link}
               // href="#"
-              style={{
-                fontSize: 11,
-                color: "var(--muted-foreground)",
-                textDecoration: "none",
-                fontFamily: "var(--font-family-body)",
-                transition: "color 0.15s",
-              }}
+              className="text-[11px] text-[color:var(--muted-foreground)] no-underline font-[family-name:var(--font-family-body)] transition-colors duration-150 cursor-pointer"
               onMouseEnter={(e) =>
-                ((e.currentTarget).style.color =
-                  "var(--foreground)")
+                (e.currentTarget.style.color = "var(--foreground)")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget ).style.color =
-                  "var(--muted-foreground)")
+                (e.currentTarget.style.color = "var(--muted-foreground)")
               }
-              className="cursor-pointer"
             >
               {item.title}
             </a>
           ))}
         </div>
-        <p
-          style={{
-            fontSize: 11,
-            color: "var(--muted-foreground)",
-
-            marginTop: 12,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
+        <p className="text-[11px] text-[color:var(--muted-foreground)] mt-3 font-[family-name:var(--font-family-body)]">
           © 2026 ABY Baby Events. All rights reserved.
         </p>
       </footer>
