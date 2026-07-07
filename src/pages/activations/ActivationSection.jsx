@@ -71,17 +71,11 @@ export function ActivationSection({ onNavigate }) {
     <>
       <div className="w-full min-h-screen bg-background min-[1160px]:mx-20 min-[770px]:mx-16 mx-0">
         {/* Heading */}
-        <div
-          className="sticky top-0 z-10 px-4 pt-4 pb-3"
-          style={{ background: "var(--color-background, #fff)" }}
-        >
-          <h1
-            className="font-semibold text-gray-900 font-sans lg:text-3xl md:text-2xl text-xl"
-            style={{ letterSpacing: "-0.01em" }}
-          >
+        <div className="sticky top-0 z-10 px-4 pt-4 pb-3 bg-[color:var(--color-background,_#fff)]">
+          <h1 className="font-semibold text-gray-900 font-sans lg:text-3xl md:text-2xl text-xl tracking-[-0.01em]">
             Activations
           </h1>
-          <p className="text-gray-500 mt-0.5" style={{ fontSize: 13 }}>
+          <p className="text-gray-500 mt-0.5 text-[13px]">
             Creating immersive brand experiences and audience engagement
             campaigns
           </p>
@@ -106,20 +100,15 @@ export function ActivationSection({ onNavigate }) {
                 }}
                 onMouseEnter={() => setHoveredProject(item)}
                 onMouseLeave={() => setHoveredProject(null)}
-                className="overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm cursor-pointer"
-                style={{ border: "1px solid #f0f0f5" }}
+                className="overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm cursor-pointer "
               >
                 <div className="relative">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full object-cover transition-transform duration-500 hover:scale-105"
-                    style={{ height: 240 }}
+                    className="w-full object-cover transition-transform duration-500 hover:scale-105 h-[240px]"
                   />
-                  <span
-                    className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-r from-lime-800 via-lime-600 to-lime-500 text-transparent"
-                    style={{ color: "#fff" }}
-                  >
+                  <span className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-r from-lime-800 via-lime-600 to-lime-500  text-white">
                     {item.type}
                   </span>
                 </div>
@@ -128,13 +117,10 @@ export function ActivationSection({ onNavigate }) {
                     {item.title}
                   </h3>
                   <div className="mt-3 flex items-center justify-between">
-                    <span className="text-gray-500" style={{ fontSize: 13 }}>
+                    <span className="text-gray-500 text-[13px]">
                       Audience Reach
                     </span>
-                    <span
-                      className="text-lime-500 text-sm md:text-xl"
-                      style={{ fontWeight: 600 }}
-                    >
+                    <span className="text-lime-500 text-sm md:text-xl font-semibold">
                       {item.audience}
                     </span>
                   </div>
@@ -153,14 +139,12 @@ export function ActivationSection({ onNavigate }) {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="rounded-2xl bg-white border border-gray-100 p-5"
-                  style={{ border: "1px solid #f0f0f5" }}
+                  className="rounded-2xl bg-white border border-gray-100 p-5 border-"
                 >
                   <img
                     src={hoveredProject.image}
                     alt={hoveredProject.title}
-                    className="w-full rounded-xl object-cover mb-4"
-                    style={{ height: 150 }}
+                    className="w-full rounded-xl object-cover mb-4 h-[150px]"
                   />
                   <h3 className="font-semibold text-gray-900 font-sans text-sm mb-3">
                     {hoveredProject.title}
@@ -207,17 +191,8 @@ export function ActivationSection({ onNavigate }) {
                 animate={{ opacity: 1 }}
                 className="flex flex-col items-center gap-2"
               >
-                <div
-                  style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: "50%",
-                    border: "2px solid #e5e7eb",
-                    borderTopColor: "#84cc16",
-                    animation: "spin 0.7s linear infinite",
-                  }}
-                />
-                <p style={{ fontSize: 12, color: "#aaa" }}>Loading more…</p>
+                <div className="w-7 h-7 rounded-full border-2 border-gray-200 border-t-lime-500 animate-spin [animation-duration:0.7s]" />
+                <p className="text-xs text-[#aaa]">Loading more…</p>
                 <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
               </motion.div>
             )}
@@ -227,23 +202,15 @@ export function ActivationSection({ onNavigate }) {
         {/* Footer — only shown once all cards are loaded */}
         {!hasMore && (
           <div className="flex flex-col items-center py-8 gap-2">
-            <div
-              className="rounded-full flex items-center justify-center"
-              style={{
-                width: 48,
-                height: 48,
-                background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
-              }}
-            >
+            <div className="rounded-full flex items-center justify-center w-12 h-12 bg-[linear-gradient(135deg,#d4456a_0%,#f9a8c9_100%)]">
               <img src={logo} alt="" />
             </div>
-            <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
+            <p className="text-[13px] text-[#8e8e93] text-center">
               You've seen all activations.
             </p>
             <button
               onClick={() => onNavigate("profile")}
-              className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
-              style={{ color: "#579F63" }}
+              className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
             >
               Explore More
               <ArrowRight size={16} />

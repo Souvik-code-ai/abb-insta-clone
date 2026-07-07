@@ -21,35 +21,15 @@ export function MobileMessagesView({ onBack }) {
   };
 
   return (
-    <div className="flex flex-col" style={{ minHeight: "calc(100vh - 136px)" }}>
+    <div className="flex flex-col min-h-[calc(100vh-136px)]">
       {/* Gradient header */}
-      <div
-        className="flex items-center justify-between px-5 py-4"
-        style={{
-          background: "linear-gradient(135deg, #579F63 0%, #7CFC58 100%)",
-        }}
-      >
-        <button onClick={onBack} style={{ color: "rgba(255,255,255,0.85)" }}>
+      <div className="flex items-center justify-between px-5 py-4 bg-[linear-gradient(135deg,#579F63_0%,#7CFC58_100%)]">
+        <button onClick={onBack} className="text-white/0.85">
           <ChevronLeft size={22} />
         </button>
         <div className="flex-1 ml-2">
-          <div
-            style={{
-              color: "#fff",
-
-              fontSize: 18,
-            }}
-            className="fort-sans"
-          >
-            Let's Connect
-          </div>
-          <div
-            style={{
-              color: "rgba(255,255,255,0.8)",
-              fontSize: 12,
-              fontFamily: "var(--font-family-body)",
-            }}
-          >
+          <div className="fort-sans text-[18px] text-white">Let's Connect</div>
+          <div className="text-white/80 text-xs font-[family-name:var(--font-family-body)]">
             We'll respond within 2 hours
           </div>
         </div>
@@ -66,34 +46,13 @@ export function MobileMessagesView({ onBack }) {
               exit={{ opacity: 0 }}
               className="flex flex-col items-center justify-center gap-3 py-10"
             >
-              <div
-                className="rounded-full flex items-center justify-center"
-                style={{
-                  width: 64,
-                  height: 64,
-                  background: "rgba(212,69,106,0.1)",
-                }}
-              >
-                <Send size={26} style={{ color: "#d4456a" }} />
+              <div className="rounded-full flex items-center justify-center w-16 h-16 bg-[rgba(212,69,106,0.1)]">
+                <Send size={26} className="text-[#d4456a]" />
               </div>
-              <div
-                style={{
-                  fontSize: 18,
-                  fontWeight: 600,
-                  color: "var(--foreground)",
-                  fontFamily: "var(--font-family-body)",
-                }}
-              >
+              <div className="text-[18px] font-semibold text-[color:var(--foreground)] font-[family-name:var(--font-family-body)]">
                 Message Sent!
               </div>
-              <div
-                style={{
-                  fontSize: 13,
-                  color: "var(--muted-foreground)",
-                  textAlign: "center",
-                  fontFamily: "var(--font-family-body)",
-                }}
-              >
+              <div className="text-[13px] text-[color:var(--muted-foreground)] text-center font-[family-name:var(--font-family-body)]">
                 Our team will get back to you soon.
               </div>
             </motion.div>
@@ -122,15 +81,7 @@ export function MobileMessagesView({ onBack }) {
                     setForm((f) => ({ ...f, [field]: e.target.value }))
                   }
                   required={field !== "phone"}
-                  className="w-full rounded-xl px-4 outline-none"
-                  style={{
-                    height: 48,
-                    background: "var(--muted)",
-                    fontSize: 14,
-                    border: "none",
-                    fontFamily: "var(--font-family-body)",
-                    color: "var(--foreground)",
-                  }}
+                  className="w-full rounded-xl px-4 outline-none h-12 bg-[color:var(--muted)] text-sm border-none font-[family-name:var(--font-family-body)] text-[color:var(--foreground)]"
                 />
               ))}
               <textarea
@@ -140,27 +91,11 @@ export function MobileMessagesView({ onBack }) {
                   setForm((f) => ({ ...f, message: e.target.value }))
                 }
                 required
-                className="w-full rounded-xl px-4 py-3 outline-none resize-none"
-                style={{
-                  background: "var(--muted)",
-                  fontSize: 14,
-                  border: "none",
-                  height: 110,
-                  fontFamily: "var(--font-family-body)",
-                  color: "var(--foreground)",
-                }}
+                className="w-full rounded-xl px-4 py-3 outline-none resize-none bg-[color:var(--muted)] text-sm border-none h-[110px] font-[family-name:var(--font-family-body)] text-[color:var(--foreground)]"
               />
               <button
                 type="submit"
-                className="w-full rounded-xl py-3 flex items-center justify-center gap-2 transition-opacity"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #579F63 0%, #7CFC58 100%)",
-                  color: "#fff",
-                  fontWeight: 600,
-                  fontSize: 15,
-                  fontFamily: "var(--font-family-body)",
-                }}
+                className="w-full rounded-xl py-3 flex items-center justify-center gap-2 transition-opacity bg-[linear-gradient(135deg,#579F63_0%,#7CFC58_100%)] text-white font-semibold text-[15px] font-[family-name:var(--font-family-body)]"
               >
                 <Send size={16} />
                 Send Message

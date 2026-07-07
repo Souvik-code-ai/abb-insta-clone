@@ -21,34 +21,13 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
 
   return (
     <>
-      <header
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 bg-white"
-        style={{
-          height: 56,
-
-          backdropFilter: "blur(12px)",
-          borderBottom: "1px solid rgba(0,0,0,0.08)",
-        }}
-      >
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 bg-white h-14 backdrop-blur-md border-b border-black/[0.08]">
         {/* Logo */}
         <button
           onClick={() => setDrawerOpen(true)}
-          style={{
-            background: "none",
-            border: "none",
-            padding: 0,
-            cursor: "pointer",
-          }}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 bg-transparent border-none p-0 cursor-pointer"
         >
-          <div
-            className="rounded-sm flex items-center justify-center overflow-hidden"
-            style={{
-              width: 40,
-              height: 40,
-              background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
-            }}
-          >
+          <div className="rounded-sm flex items-center justify-center overflow-hidden w-10 h-10 bg-[linear-gradient(135deg,#d4456a_0%,#f9a8c9_100%)]">
             <img
               src={logo}
               alt="Logo"
@@ -62,21 +41,12 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
           <div className="relative">
             <button
               onClick={() => setSocialOpen((o) => !o)}
-              className="rounded-full flex items-center gap-1 px-3"
-              style={{
-                height: 36,
-                background: "rgba(0,0,0,0.05)",
-                fontSize: 13,
-                fontWeight: 500,
-              }}
+              className="rounded-full flex items-center gap-1 px-3 h-9 bg-black/5 text-[13px] font-medium"
             >
               Social
               <ChevronDown
                 size={14}
-                style={{
-                  transform: socialOpen ? "rotate(180deg)" : "none",
-                  transition: "transform 0.2s",
-                }}
+                className={`transition-transform duration-200 ${socialOpen ? "rotate-180" : "rotate-0"}`}
               />
             </button>
 
@@ -87,8 +57,7 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.95 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-full mt-2 bg-white rounded-2xl shadow-xl overflow-hidden"
-                  style={{ width: 180, border: "1px solid rgba(0,0,0,0.08)" }}
+                  className="absolute right-0 top-full mt-2 bg-white rounded-2xl shadow-xl overflow-hidden w-[180px] border border-black/[0.08]"
                 >
                   {socials.map(({ icon: Icon, label, color, url }) => (
                     <a
@@ -96,8 +65,7 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 px-4 py-3 transition-colors"
-                      style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
+                      className="flex items-center gap-3 px-4 py-3 transition-colors border-b border-black/[0.04]"
                       onMouseEnter={(e) =>
                         (e.currentTarget.style.background = "#fafafa")
                       }
@@ -106,18 +74,11 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
                       }
                     >
                       <div
-                        className="rounded-lg flex items-center justify-center"
-                        style={{ width: 28, height: 28, background: color }}
+                        className={`rounded-lg flex items-center justify-center w-7 h-7 bg-${color}`}
                       >
-                        <Icon size={14} style={{ color: "#fff" }} />
+                        <Icon size={14} className="text-white" />
                       </div>
-                      <span
-                        style={{
-                          fontSize: 14,
-                          fontWeight: 500,
-                          color: "#1a1a1a",
-                        }}
-                      >
+                      <span className="text-sm font-medium text-[#1a1a1a]">
                         {label}
                       </span>
                     </a>
@@ -139,18 +100,9 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
       </header>
       <button
         onClick={onMessageClick}
-        className="fixed flex items-center justify-center rounded-xl bottom-18 right-3"
-        style={{
-          width: 36,
-          height: 36,
-          background: "linear-gradient(135deg, #579F63 0%, #7CFC58 100%)",
-          boxShadow: "0 4px 16px rgba(44,112,72,0.35)",
-          zIndex: 60,
-          border: "none",
-          cursor: "pointer",
-        }}
+        className="fixed flex items-center justify-center rounded-xl bottom-18 right-3 w-9 h-9 bg-[linear-gradient(135deg,#579F63_0%,#7CFC58_100%)] shadow-[0_4px_16px_rgba(44,112,72,0.35)] z-[60] border-none cursor-pointer"
       >
-        <MessageCircle size={18} style={{ color: "#fff" }} />
+        <MessageCircle size={18} className="text-white" />
       </button>
       <AnimatePresence>
         {drawerOpen && (
@@ -161,8 +113,7 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[70]"
-              style={{ background: "rgba(0,0,0,0.35)" }}
+              className="fixed inset-0 z-[70] bg-black/35"
               onClick={() => setDrawerOpen(false)}
             />
 
@@ -172,49 +123,27 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 32, stiffness: 380 }}
-              className="fixed top-0 left-0 bottom-0 z-[71] bg-white flex flex-col"
-              style={{ width: 280, boxShadow: "4px 0 24px rgba(0,0,0,0.12)" }}
+              className="fixed top-0 left-0 bottom-0 z-[71] bg-white flex flex-col w-[280px] shadow-[4px_0_24px_rgba(0,0,0,0.12)]"
             >
               {/* Drawer header */}
-              <div
-                className="flex items-center justify-between px-4"
-                style={{
-                  height: 64,
-                  borderBottom: "1px solid rgba(0,0,0,0.07)",
-                }}
-              >
+              <div className="flex items-center justify-between px-4 h-16 border-b border-black/[0.07]">
                 <div className="flex items-center gap-3">
-                  <div
-                    className="rounded-sm flex items-center justify-center overflow-hidden"
-                    style={{
-                      width: 36,
-                      height: 36,
-                      background:
-                        "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
-                    }}
-                  >
+                  <div className="rounded-sm flex items-center justify-center overflow-hidden w-9 h-9 bg-[linear-gradient(135deg,#d4456a_0%,#f9a8c9_100%)]">
                     <img
                       src={logo}
                       alt=""
                       className="rounded-lg h-10 w-10 overflow-hidden"
                     />
                   </div>
-                  <span
-                    style={{ fontSize: 15, fontWeight: 600, color: "#1a1a1a" }}
-                  >
+                  <span className="text-[15px] font-semibold text-[#1a1a1a]">
                     Menu
                   </span>
                 </div>
                 <button
                   onClick={() => setDrawerOpen(false)}
-                  className="rounded-full flex items-center justify-center"
-                  style={{
-                    width: 32,
-                    height: 32,
-                    background: "rgba(0,0,0,0.05)",
-                  }}
+                  className="rounded-full flex items-center justify-center w-8 h-8 bg-black/5"
                 >
-                  <X size={16} style={{ color: "#444" }} />
+                  <X size={16} className="text-[#444]" />
                 </button>
               </div>
 
@@ -223,8 +152,7 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
                 {sidebarItems.map(({ icon: Icon, label, desc, view }) => (
                   <button
                     key={view}
-                    className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors"
-                    style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors border-b border-black/[0.04]"
                     onClick={() => {
                       setDrawerOpen(false);
                       onNavigate(view);
@@ -236,29 +164,14 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
                       (e.currentTarget.style.background = "transparent")
                     }
                   >
-                    <div
-                      className="rounded-xl flex items-center justify-center shrink-0"
-                      style={{
-                        width: 40,
-                        height: 40,
-                        background: "rgba(212,69,106,0.08)",
-                      }}
-                    >
-                      <Icon size={18} style={{ color: "#2C7048" }} />
+                    <div className="rounded-xl flex items-center justify-center shrink-0 w-10 h-10 bg-[rgba(212,69,106,0.08)]">
+                      <Icon size={18} className="text-[#2C7048]" />
                     </div>
                     <div>
-                      <div
-                        style={{
-                          fontSize: 14,
-                          fontWeight: 500,
-                          color: "#1a1a1a",
-                        }}
-                      >
+                      <div className="text-sm font-medium text-[#1a1a1a]">
                         {label}
                       </div>
-                      <div style={{ fontSize: 12, color: "#8e8e93" }}>
-                        {desc}
-                      </div>
+                      <div className="text-xs text-[#8e8e93]">{desc}</div>
                     </div>
                   </button>
                 ))}

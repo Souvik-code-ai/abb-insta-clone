@@ -21,16 +21,7 @@ const navItems = [
 
 export function MobileBottomNav({ activeSection, onNavigate }) {
   return (
-    <nav
-      className="fixed bottom-0 left-0 right-0 z-50 flex items-center"
-      style={{
-        height: 64,
-        background: "rgba(255,255,255,0.97)",
-        backdropFilter: "blur(12px)",
-        borderTop: "1px solid rgba(0,0,0,0.08)",
-        paddingBottom: "env(safe-area-inset-bottom, 0px)",
-      }}
-    >
+    <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center h-16 bg-white/97 backdrop-blur-md border-t border-black/[0.08] pb-[env(safe-area-inset-bottom,0px)]">
       {navItems.map((item) => {
         const Icon = item.icon;
         const isActive = activeSection === item.id;
@@ -38,18 +29,20 @@ export function MobileBottomNav({ activeSection, onNavigate }) {
           <button
             key={item.id}
             onClick={() => onNavigate(item.id)}
-            className="flex-1 flex flex-col items-center justify-center gap-0.5 relative"
-            style={{ height: "100%", color: isActive ? "#2C7048" : "#8e8e93" }}
+            className={`flex-1 flex flex-col items-center justify-center gap-0.5 relative h-full ${
+              isActive ? "text-[#2C7048]" : "text-[#8e8e93]"
+            }`}
           >
             {isActive && (
               <motion.div
                 layoutId="mobile-nav-indicator"
-                className="absolute top-0 left-1/2 -translate-x-1/2 rounded-full"
-                style={{ width: 20, height: 2 }}
+                className="absolute top-0 left-1/2 -translate-x-1/2 rounded-full w-5 h-0.5"
               />
             )}
             <Icon size={22} strokeWidth={isActive ? 2.2 : 1.8} />
-            <span style={{ fontSize: 10, fontWeight: isActive ? 600 : 400 }}>
+            <span
+              className={`text-[10px] ${isActive ? "font-semibold" : "font-normal"}`}
+            >
               {item.label}
             </span>
           </button>

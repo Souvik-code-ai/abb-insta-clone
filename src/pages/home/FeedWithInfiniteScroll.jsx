@@ -53,69 +53,22 @@ export default function FeedWithInfiniteScroll({ onNavigate, logo }) {
               {Array.from({ length: FEED_PAGE_SIZE }).map((_, i) => (
                 <div
                   key={i}
-                  className="w-full rounded-2xl overflow-hidden bg-white"
-                  style={{ border: "1px solid #f0f0f5" }}
+                  className="max-w-[460px] rounded-2xl overflow-hidden bg-white border border-[#f0f0f5]"
                 >
                   {/* Header skeleton */}
                   <div className="flex items-center gap-3 p-3">
-                    <div
-                      className="rounded-full shrink-0"
-                      style={{
-                        width: 42,
-                        height: 42,
-                        background: "#f0f0f5",
-                        animation: "pulse 1.4s ease-in-out infinite",
-                      }}
-                    />
+                    <div className="rounded-full shrink-0 w-[42px] h-[42px] bg-[#f0f0f5] animate-pulse" />
                     <div className="flex flex-col gap-2 flex-1">
-                      <div
-                        style={{
-                          height: 12,
-                          width: "40%",
-                          borderRadius: 6,
-                          background: "#f0f0f5",
-                          animation: "pulse 1.4s ease-in-out infinite",
-                        }}
-                      />
-                      <div
-                        style={{
-                          height: 10,
-                          width: "25%",
-                          borderRadius: 6,
-                          background: "#f5f5f7",
-                          animation: "pulse 1.4s ease-in-out infinite 0.2s",
-                        }}
-                      />
+                      <div className="h-3 w-2/5 rounded-md bg-[#f0f0f5] animate-pulse" />
+                      <div className="h-2.5 w-1/4 rounded-md bg-[#f5f5f7] animate-pulse [animation-delay:0.2s]" />
                     </div>
                   </div>
                   {/* Image skeleton */}
-                  <div
-                    style={{
-                      aspectRatio: "1/1",
-                      background: "#f5f5f7",
-                      animation: "pulse 1.4s ease-in-out infinite 0.1s",
-                    }}
-                  />
+                  <div className="aspect-square bg-[#f5f5f7] animate-pulse [animation-delay:0.1s]" />
                   {/* Caption skeleton */}
                   <div className="p-3 flex flex-col gap-2">
-                    <div
-                      style={{
-                        height: 11,
-                        width: "80%",
-                        borderRadius: 6,
-                        background: "#f0f0f5",
-                        animation: "pulse 1.4s ease-in-out infinite",
-                      }}
-                    />
-                    <div
-                      style={{
-                        height: 11,
-                        width: "55%",
-                        borderRadius: 6,
-                        background: "#f5f5f7",
-                        animation: "pulse 1.4s ease-in-out infinite 0.15s",
-                      }}
-                    />
+                    <div className="h-[11px] w-4/5 rounded-md bg-[#f0f0f5] animate-pulse" />
+                    <div className="h-[11px] w-[55%] rounded-md bg-[#f5f5f7] animate-pulse [animation-delay:0.15s]" />
                   </div>
                 </div>
               ))}
@@ -132,23 +85,15 @@ export default function FeedWithInfiniteScroll({ onNavigate, logo }) {
       {/* ── End-of-feed footer ── */}
       {!hasMore && (
         <div className="flex flex-col items-center py-8 gap-2">
-          <div
-            className="rounded-full flex items-center justify-center"
-            style={{
-              width: 48,
-              height: 48,
-              background: "linear-gradient(135deg, #d4456a 0%, #f9a8c9 100%)",
-            }}
-          >
+          <div className="rounded-full flex items-center justify-center w-12 h-12 bg-[linear-gradient(135deg,#d4456a_0%,#f9a8c9_100%)]">
             <img src={logo} alt="" />
           </div>
-          <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
+          <p className="text-[13px] text-[#8e8e93] text-center">
             You've seen all feeds.
           </p>
           <button
             onClick={() => onNavigate("events")}
-            className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
-            style={{ color: "#579F63" }}
+            className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
           >
             Explore More
             <ArrowRight size={16} />

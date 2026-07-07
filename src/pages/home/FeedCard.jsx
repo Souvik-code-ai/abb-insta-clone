@@ -280,12 +280,7 @@ export function FeedCard({ post }) {
               read more
             </button>
           )}
-          <div
-            // style={{ fontSize: 11, color: "#b0b0b8", marginTop: 4 }}
-            className="text-[11px] text-[#b0b0b8] mt-1"
-          >
-            {post.date}
-          </div>
+          <div className="text-[11px] text-[#b0b0b8] mt-1">{post.date}</div>
         </div>
       </article>
 

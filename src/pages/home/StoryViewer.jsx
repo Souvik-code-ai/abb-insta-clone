@@ -87,8 +87,7 @@ export function StoryViewer({ clients, activeClientId, onClose }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100]"
-        style={{ background: "rgba(0,0,0,0.9)" }}
+        className="fixed inset-0 z-[100] bg-black"
         onClick={onClose}
       >
         <div className="absolute inset-0" onClick={(e) => e.stopPropagation()}>
@@ -99,12 +98,7 @@ export function StoryViewer({ clients, activeClientId, onClose }) {
             return (
               <div
                 key={client.id}
-                style={{
-                  position: "absolute",
-                  left: `calc(50% - ${offset}px)`,
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
+                className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 left-[calc(50%_-_${offset}px)]`}
               >
                 <AdjacentCard
                   client={client}
@@ -121,44 +115,26 @@ export function StoryViewer({ clients, activeClientId, onClose }) {
           })}
 
           {/* Main story card — always exactly centered */}
-          <div
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              transform: "translate(-50%, -50%)",
-            }}
-          >
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <motion.div
               layoutId={`story-${currentClient.id}`}
-              className="relative rounded-2xl overflow-hidden flex flex-col"
-              style={{
-                width: MAIN_WIDTH,
-                height: MAIN_HEIGHT,
-                background: "#000",
-                flexShrink: 0,
-              }}
+              className={`relative rounded-2xl overflow-hidden flex flex-col bg-black shrink-0 w-[${MAIN_WIDTH}px] h-[${MAIN_HEIGHT}px]`}
             >
               {/* Progress bars */}
               <div className="absolute top-3 left-3 right-3 flex gap-1 z-10">
                 {currentClient.stories.map((_, i) => (
                   <div
                     key={i}
-                    className="flex-1 rounded-full overflow-hidden"
-                    style={{ height: 2, background: "rgba(255,255,255,0.35)" }}
+                    className="flex-1 rounded-full overflow-hidden h-0.5 bg-white/35"
                   >
                     <div
-                      className="h-full rounded-full"
-                      style={{
-                        background: "#fff",
-                        width:
-                          i < storyIndex
-                            ? "100%"
-                            : i === storyIndex
-                              ? `${progress}%`
-                              : "0%",
-                        transition: i === storyIndex ? "none" : "none",
-                      }}
+                      className={`h-full rounded-full bg-white transition-none ${
+                        i < storyIndex
+                          ? "w-full"
+                          : i === storyIndex
+                            ? `w-[${progress}%]`
+                            : "w-0"
+                      }`}
                     />
                   </div>
                 ))}
@@ -168,30 +144,20 @@ export function StoryViewer({ clients, activeClientId, onClose }) {
               <div className="absolute top-8 left-3 right-3 flex items-center justify-between z-10">
                 <div className="flex items-center gap-2">
                   <div
-                    className="rounded-full flex items-center justify-center overflow-hidden"
-                    style={{
-                      width: 34,
-                      height: 34,
-                      background: currentClient.bgColor,
-                      border: "2px solid #fff",
-                    }}
+                    className={`rounded-full flex items-center justify-center overflow-hidden bg-${currentClient.bgColor} border-white border-2 h-[34px] w-[34px]`}
                   >
                     <img src={currentClient.initials} alt="" />
                   </div>
                   <div>
-                    <div
-                      style={{ color: "#fff", fontSize: 13, fontWeight: 600 }}
-                    >
+                    <div className="text-white text-[13px] font-semibold">
                       {currentClient.name}
                     </div>
-                    <div
-                      style={{ color: "rgba(255,255,255,0.7)", fontSize: 11 }}
-                    >
+                    <div className="text-white/70 text-[11px]">
                       {currentClient.category}
                     </div>
                   </div>
                 </div>
-                <button onClick={onClose} style={{ color: "#fff" }}>
+                <button onClick={onClose} className="text-black">
                   <X size={20} />
                 </button>
               </div>
@@ -204,29 +170,18 @@ export function StoryViewer({ clients, activeClientId, onClose }) {
               />
 
               {/* Gradient overlay */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 30%, rgba(0,0,0,0.3) 100%)",
-                }}
-              />
+              <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.4)_0%,transparent_30%,rgba(0,0,0,0.3)_100%)]" />
 
               {/* Location caption */}
               {story.caption && (
                 <div className="absolute bottom-4 left-4 right-4 z-10">
-                  <p
-                    style={{ color: "#fff", fontSize: 14, textAlign: "center" }}
-                  >
+                  <p className="text-white text-sm text-center">
                     {story.caption}
                   </p>
                 </div>
               )}
               <div className="absolute bottom-4 left-4 z-10 ">
-                <span
-                  style={{ fontSize: 12 }}
-                  className="bg-gradient-to-r from-lime-800 to-lime-600 text-white rounded-2xl px-2 py-1"
-                >
+                <span className="bg-gradient-to-r from-lime-800 to-lime-600 text-white rounded-2xl px-2 py-1 text-xs">
                   {currentClient.location}
                 </span>
               </div>
@@ -245,12 +200,7 @@ export function StoryViewer({ clients, activeClientId, onClose }) {
             return (
               <div
                 key={client.id}
-                style={{
-                  position: "absolute",
-                  left: `calc(50% + ${offset}px)`,
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
+                className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 left-[calc(50%_+_${offset}px)]`}
               >
                 <AdjacentCard
                   client={client}
@@ -270,13 +220,7 @@ export function StoryViewer({ clients, activeClientId, onClose }) {
         {/* Side navigation */}
         {currentIndex > 0 && (
           <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full"
-            style={{
-              width: 40,
-              height: 40,
-              background: "rgba(255,255,255,0.15)",
-              color: "#fff",
-            }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full w-10 h-10 bg-white/15 text-white"
             onClick={(e) => {
               e.stopPropagation();
               goPrev();
@@ -287,13 +231,7 @@ export function StoryViewer({ clients, activeClientId, onClose }) {
         )}
         {currentIndex < clients.length - 1 && (
           <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full"
-            style={{
-              width: 40,
-              height: 40,
-              background: "rgba(255,255,255,0.15)",
-              color: "#fff",
-            }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full w-10 h-10 bg-white/15 text-white"
             onClick={(e) => {
               e.stopPropagation();
               goNext();
@@ -312,32 +250,16 @@ function AdjacentCard({ client, scale, opacity, onClick }) {
     <motion.button
       whileHover={{ scale: scale + 0.03, opacity: opacity + 0.1 }}
       onClick={onClick}
-      className="relative rounded-2xl overflow-hidden cursor-pointer shrink-0"
-      style={{
-        width: 340 * scale,
-        height: 600 * scale,
-        opacity,
-        background: client.bgColor,
-      }}
+      className={`relative rounded-2xl overflow-hidden cursor-pointer shrink-0 w-[${340 * scale}px] h-[${600 * scale}px] opacity-[${opacity}] bg-[${client.bgColor}]`}
     >
       <img
         src={client.stories[0]?.url}
         alt={client.name}
         className="w-full h-full object-cover"
       />
-      <div
-        className="absolute inset-0 flex flex-col justify-end p-3"
-        style={{
-          background:
-            "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)",
-        }}
-      >
-        <div style={{ color: "#fff", fontSize: 12, fontWeight: 600 }}>
-          {client.name}
-        </div>
-        <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 10 }}>
-          {client.category}
-        </div>
+      <div className="absolute inset-0 flex flex-col justify-end p-3 bg-[linear-gradient(to_top,rgba(0,0,0,0.6)_0%,transparent_50%)]">
+        <div className="text-white text-xs font-semibold">{client.name}</div>
+        <div className="text-white/70 text-[10px]">{client.category}</div>
       </div>
     </motion.button>
   );

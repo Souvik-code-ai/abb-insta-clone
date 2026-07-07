@@ -13,14 +13,7 @@ import {
 
 function BodyText({ children }) {
   return (
-    <p
-      style={{
-        fontSize: 13,
-        color: "var(--muted-foreground)",
-        lineHeight: 1.75,
-        margin: "0 0 8px",
-      }}
-    >
+    <p className="text-[13px] text-[color:var(--muted-foreground)] leading-[1.75] m-0 mb-2">
       {children}
     </p>
   );
@@ -28,51 +21,22 @@ function BodyText({ children }) {
 
 function StepCard({ num, icon, title, desc }) {
   return (
-    <div
-      className="rounded-xl p-4 flex flex-col gap-2"
-      style={{
-        background: "color-mix(in srgb, var(--accent) 4%, var(--background))",
-        border: "0.5px solid rgba(87,159,99,0.18)",
-      }}
-    >
+    <div className="rounded-xl p-4 flex flex-col gap-2 bg-[color-mix(in_srgb,var(--accent)_4%,var(--background))] border-[0.5px] border-[rgba(87,159,99,0.18)]">
       {/* Step number + icon row */}
       <div className="flex items-center justify-between">
-        <span
-          style={{
-            fontSize: 28,
-            fontWeight: 700,
-            color: "rgba(87,159,99,0.18)",
-            lineHeight: 1,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
+        <span className="text-[28px] font-bold text-[rgba(87,159,99,0.18)] leading-none font-[family-name:var(--font-family-body)]">
           {num}
         </span>
-        <div
-          className="flex items-center justify-center rounded-xl"
-          style={{
-            width: 36,
-            height: 36,
-            background: "rgba(87,159,99,0.12)",
-          }}
-        >
-          <span style={{ color: "#579F63" }}>{icon}</span>
+        <div className="flex items-center justify-center rounded-xl w-9 h-9 bg-[rgba(87,159,99,0.12)]">
+          <span className="text-[#579F63]">{icon}</span>
         </div>
       </div>
       {/* Title */}
-      <div
-        style={{ fontSize: 14, fontWeight: 600, color: "var(--foreground)" }}
-      >
+      <div className="text-sm font-semibold text-[color:var(--foreground)]">
         {title}
       </div>
       {/* Description */}
-      <div
-        style={{
-          fontSize: 12,
-          color: "var(--muted-foreground)",
-          lineHeight: 1.65,
-        }}
-      >
+      <div className="text-xs text-[color:var(--muted-foreground)] leading-[1.65]">
         {desc}
       </div>
     </div>
@@ -91,8 +55,7 @@ export function AboutView({ onNavigate }) {
       {/* Back button */}
       <button
         onClick={() => onNavigate("home")}
-        className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2"
-        style={{ color: "#579F63" }}
+        className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2 text-[#579F63]"
       >
         <ArrowLeft size={16} />
         Return back
@@ -100,41 +63,17 @@ export function AboutView({ onNavigate }) {
 
       {/* Hero */}
       <div className="flex flex-col items-start px-4 pt-8 pb-6">
-        <div
-          className="inline-block rounded-full mb-3"
-          style={{
-            background: "rgba(87,159,99,0.12)",
-            color: "#3d7a4a",
-            fontSize: 11,
-            fontWeight: 600,
-            padding: "3px 12px",
-          }}
-        >
+        <div className="inline-block rounded-full mb-3 bg-[rgba(87,159,99,0.12)] text-[#3d7a4a] text-[11px] font-semibold px-3 py-[3px]">
           About Us
         </div>
-        <h1
-          style={{
-            fontFamily: "var(--font-family-body)",
-            color: "var(--foreground)",
-            fontSize: 22,
-            fontWeight: 700,
-            margin: "0 0 12px",
-            lineHeight: 1.3,
-          }}
-        >
+        <h1 className="font-[family-name:var(--font-family-body)] text-[color:var(--foreground)] text-[22px] font-bold m-0 mb-3 leading-[1.3]">
           We turn Ideas into{" "}
-          <span style={{ color: "#579F63" }}>Business Brilliance</span>, where
+          <span className="text-[#579F63]">Business Brilliance</span>, where
           ideas meet impact!
         </h1>
 
         {/* Main description */}
-        <div
-          className="rounded-xl p-4 mb-4 w-full"
-          style={{
-            background: "rgba(87,159,99,0.04)",
-            border: "0.5px solid rgba(87,159,99,0.2)",
-          }}
-        >
+        <div className="rounded-xl p-4 mb-4 w-full bg-[rgba(87,159,99,0.04)] border-[0.5px] border-[rgba(87,159,99,0.2)]">
           <BodyText>
             We blend business potential with human insight to craft
             transformative experiences that inspire your audience. Through
@@ -152,27 +91,15 @@ export function AboutView({ onNavigate }) {
 
         {/* Feature pills */}
         <div className="flex flex-row gap-3 flex-wrap">
-          <div
-            className="flex items-center gap-2 rounded-xl px-4 py-2"
-            style={{
-              background: "rgba(87,159,99,0.1)",
-              border: "0.5px solid rgba(87,159,99,0.25)",
-            }}
-          >
-            <CheckCircle size={14} style={{ color: "#579F63" }} />
-            <span style={{ fontSize: 12, fontWeight: 600, color: "#3d7a4a" }}>
+          <div className="flex items-center gap-2 rounded-xl px-4 py-2 bg-[rgba(87,159,99,0.1)] border-[0.5px] border-[rgba(87,159,99,0.25)]">
+            <CheckCircle size={14} className="text-[#579F63]" />
+            <span className="text-xs font-semibold text-[#3d7a4a]">
               First Working Process
             </span>
           </div>
-          <div
-            className="flex items-center gap-2 rounded-xl px-4 py-2"
-            style={{
-              background: "rgba(87,159,99,0.1)",
-              border: "0.5px solid rgba(87,159,99,0.25)",
-            }}
-          >
-            <Headphones size={14} style={{ color: "#579F63" }} />
-            <span style={{ fontSize: 12, fontWeight: 600, color: "#3d7a4a" }}>
+          <div className="flex items-center gap-2 rounded-xl px-4 py-2 bg-[rgba(87,159,99,0.1)] border-[0.5px] border-[rgba(87,159,99,0.25)]">
+            <Headphones size={14} className="text-[#579F63]" />
+            <span className="text-xs font-semibold text-[#3d7a4a]">
               24/7 Live Support
             </span>
           </div>
@@ -180,37 +107,15 @@ export function AboutView({ onNavigate }) {
       </div>
 
       {/* Divider */}
-      <div
-        style={{
-          height: "0.5px",
-          background: "var(--border)",
-          margin: "0 16px 24px",
-        }}
-      />
+      <div className="h-[0.5px] bg-[color:var(--border)] mx-4 mb-6 mt-0" />
 
       {/* How it works */}
       <div className="flex flex-col gap-4 px-4">
         <div className="flex flex-col gap-1 mb-2">
-          <span
-            style={{
-              fontSize: 11,
-              fontWeight: 600,
-              color: "#579F63",
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-            }}
-          >
+          <span className="text-[11px] font-semibold text-[#579F63] uppercase tracking-[0.06em]">
             See How It Works!
           </span>
-          <h2
-            style={{
-              fontSize: 17,
-              fontWeight: 700,
-              color: "var(--foreground)",
-              margin: 0,
-              fontFamily: "var(--font-family-body)",
-            }}
-          >
+          <h2 className="text-[17px] font-bold text-[color:var(--foreground)] m-0 font-[family-name:var(--font-family-body)]">
             Easy steps for business growth
           </h2>
         </div>
@@ -225,18 +130,8 @@ export function AboutView({ onNavigate }) {
 
         {/* Connector arrow */}
         <div className="flex justify-center">
-          <div
-            className="flex items-center justify-center rounded-full"
-            style={{
-              width: 28,
-              height: 28,
-              background: "rgba(87,159,99,0.12)",
-            }}
-          >
-            <ArrowRight
-              size={14}
-              style={{ color: "#579F63", transform: "rotate(90deg)" }}
-            />
+          <div className="flex items-center justify-center rounded-full w-7 h-7 bg-[rgba(87,159,99,0.12)]">
+            <ArrowRight size={14} className="text-[#579F63] rotate-90" />
           </div>
         </div>
 
@@ -249,18 +144,8 @@ export function AboutView({ onNavigate }) {
 
         {/* Connector arrow */}
         <div className="flex justify-center">
-          <div
-            className="flex items-center justify-center rounded-full"
-            style={{
-              width: 28,
-              height: 28,
-              background: "rgba(87,159,99,0.12)",
-            }}
-          >
-            <ArrowRight
-              size={14}
-              style={{ color: "#579F63", transform: "rotate(90deg)" }}
-            />
+          <div className="flex items-center justify-center rounded-full w-7 h-7 bg-[rgba(87,159,99,0.12)]">
+            <ArrowRight size={14} className="text-[#579F63] rotate-90" />
           </div>
         </div>
 
@@ -276,13 +161,7 @@ export function AboutView({ onNavigate }) {
       <div className="px-4 pt-8">
         <button
           onClick={() => onNavigate("profile")}
-          className="w-full rounded-xl py-3 flex items-center justify-center gap-2 transition-opacity cursor-pointer"
-          style={{
-            background: "linear-gradient(135deg, #579F63 0%, #7CFC58 100%)",
-            color: "#fff",
-            fontSize: 13,
-            fontWeight: 600,
-          }}
+          className="w-full rounded-xl py-3 flex items-center justify-center gap-2 transition-opacity cursor-pointer bg-[linear-gradient(135deg,#579F63_0%,#7CFC58_100%)] text-white text-[13px] font-semibold"
           onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
         >
@@ -305,13 +184,7 @@ export function AboutView({ onNavigate }) {
             <a
               key={item.title}
               onClick={() => onNavigate(item.link)}
-              style={{
-                fontSize: 11,
-                color: "var(--muted-foreground)",
-                textDecoration: "none",
-                fontFamily: "var(--font-family-body)",
-                transition: "color 0.15s",
-              }}
+              className="text-[11px] text-[color:var(--muted-foreground)] no-underline font-[family-name:var(--font-family-body)] transition-colors duration-150"
               onMouseEnter={(e) =>
                 (e.currentTarget.style.color = "var(--foreground)")
               }
@@ -324,15 +197,7 @@ export function AboutView({ onNavigate }) {
             </a>
           ))}
         </div>
-        <p
-          style={{
-            fontSize: 11,
-            color: "var(--muted-foreground)",
-            opacity: 0.6,
-            marginTop: 12,
-            fontFamily: "var(--font-family-body)",
-          }}
-        >
+        <p className="text-[11px] text-[color:var(--muted-foreground)] opacity-60 mt-3 font-[family-name:var(--font-family-body)]">
           © 2026 ABY Baby Events. All rights reserved.
         </p>
       </footer>

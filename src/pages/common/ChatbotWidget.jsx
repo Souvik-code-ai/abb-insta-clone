@@ -177,8 +177,7 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
                   {label}
                 </span>
                 <div
-                  className="rounded-full flex items-center justify-center shrink-0 w-10 h-10 shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
-                  style={{ background: color }}
+                  className={`rounded-full flex items-center justify-center shrink-0 w-10 h-10 shadow-[0_4px_12px_rgba(0,0,0,0.15)] bg-${color}`}
                 >
                   <Icon size={18} className="text-white" />
                 </div>
@@ -219,7 +218,7 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
                 exit={{ rotate: 90 }}
                 transition={{ duration: 0.15 }}
               >
-                <X size={22} style={{ color: "#fff" }} />
+                <X size={22} className="text-white" />
               </motion.div>
             ) : (
               <motion.div

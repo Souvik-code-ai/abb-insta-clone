@@ -42,7 +42,7 @@ function SegmentedRing({
     <svg
       width={size}
       height={size}
-      style={{ position: "absolute", top: 0, left: 0 }}
+      className="absoute top-0 left-0"
       viewBox={`0 0 ${size} ${size}`}
     >
       {Array.from({ length: total }).map((_, i) => {
@@ -122,8 +122,7 @@ function StoryCircle({ client, onClick, onDismiss }) {
 
   return (
     <div
-      className="flex flex-col items-center gap-1.5 shrink-0"
-      style={{ width: ITEM_W, position: "relative" }}
+      className={`flex flex-col items-center gap-1.5 shrink-0 relative w-[${ITEM_W}px]`}
     >
       <motion.div
         whileHover={{ scale: 1.07 }}
@@ -133,22 +132,13 @@ function StoryCircle({ client, onClick, onDismiss }) {
         className="flex flex-col items-center gap-1.5 bg-transparent border-0 cursor-pointer p-0 w-full"
         aria-label={`View ${client.name}'s stories`}
       >
-        <div className="relative" style={{ width: 64, height: 64 }}>
+        <div className="relative w-16 h-16">
           <SegmentedRing total={total} seen={client.seen} size={64} />
           {/* White gap */}
-          <div
-            className="absolute rounded-full"
-            style={{ inset: 3, border: "2.5px solid white" }}
-          />
+          <div className="absolute rounded-full inset-[3px] border-[2.5px] border-white" />
           {/* Avatar */}
           <div
-            className="absolute rounded-full flex items-center justify-center overflow-hidden"
-            style={{
-              inset: 7,
-              background: client.bgColor,
-              filter: client.seen ? "grayscale(0.3) opacity(0.7)" : "none",
-              transition: "filter 0.2s",
-            }}
+            className={`absolute rounded-full flex items-center justify-center overflow-hidden inset-[7px] transition-[filter] duration-200 bg-[${client.bgColor}] ${client.seen ? "filter grayscale-[0.3] opacity-70" : ""}`}
           >
             <img src={client.initials} alt="" />
           </div>
@@ -166,22 +156,7 @@ function StoryCircle({ client, onClick, onDismiss }) {
                   onDismiss(client.id);
                 }}
                 aria-label={`Dismiss ${client.name}'s story`}
-                style={{
-                  position: "absolute",
-                  top: -2,
-                  right: -2,
-                  width: 16,
-                  height: 16,
-                  borderRadius: "50%",
-                  background: "#8e8e93",
-                  border: "2px solid white",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  padding: 0,
-                  zIndex: 10,
-                }}
+                className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#8e8e93] border-2 border-white flex items-center justify-center cursor-pointer p-0 z-10"
               >
                 <X size={8} color="white" strokeWidth={3} />
               </motion.button>
@@ -190,14 +165,11 @@ function StoryCircle({ client, onClick, onDismiss }) {
         </div>
 
         <span
-          className="truncate w-full text-center"
-          style={{
-            fontSize: 11,
-            fontWeight: client.seen ? 400 : 500,
-            color: client.seen ? "#8e8e93" : "#1a1a1a",
-            lineHeight: 1.3,
-            transition: "color 0.2s, font-weight 0.2s",
-          }}
+          className={`truncate w-full text-center text-[11px] leading-[1.3] transition-[color,font-weight] duration-200 ${
+            client.seen
+              ? "font-normal text-[#8e8e93]"
+              : "font-medium text-[#1a1a1a]"
+          }`}
         >
           {client.name}
         </span>
@@ -279,8 +251,7 @@ function DesktopCarousel({ clients, onStoryClick, onDismiss }) {
   return (
     <div className="flex items-center justify-center py-4">
       <div
-        className="relative flex items-center"
-        style={{ width: VISIBLE_DESKTOP * itemStride - ITEM_GAP }}
+        className={`relative flex items-center w-[${VISIBLE_DESKTOP * itemStride - ITEM_GAP}px]`}
       >
         {/* Prev */}
         <AnimatePresence>
@@ -292,16 +263,7 @@ function DesktopCarousel({ clients, onStoryClick, onDismiss }) {
               exit={{ opacity: 0, scale: 0.7 }}
               transition={{ type: "spring", stiffness: 300, damping: 22 }}
               onClick={() => slideTo(Math.max(0, offset - 1))}
-              className="absolute z-10 flex items-center justify-center rounded-full bg-white cursor-pointer border-0"
-              style={{
-                width: 28,
-                height: 28,
-                left: -14,
-                top: "calc(50% - 16px)",
-                transform: "translateY(-50%)",
-                boxShadow: "0 1px 6px rgba(0,0,0,0.15)",
-                border: "0.5px solid #e0e0e0",
-              }}
+              className="absolute z-10 flex items-center justify-center rounded-full bg-white cursor-pointer w-7 h-7 -left-[14px] top-[calc(50%-16px)] -translate-y-1/2 shadow-[0_1px_6px_rgba(0,0,0,0.15)] border-[0.5px] border-[#e0e0e0]"
               aria-label="Previous"
             >
               <ChevronLeft size={14} />
@@ -353,16 +315,7 @@ function DesktopCarousel({ clients, onStoryClick, onDismiss }) {
               onClick={() =>
                 slideTo(Math.min(clients.length - VISIBLE_DESKTOP, offset + 1))
               }
-              className="absolute z-10 flex items-center justify-center rounded-full bg-white cursor-pointer border-0"
-              style={{
-                width: 28,
-                height: 28,
-                right: -14,
-                top: "calc(50% - 16px)",
-                transform: "translateY(-50%)",
-                boxShadow: "0 1px 6px rgba(0,0,0,0.15)",
-                border: "0.5px solid #e0e0e0",
-              }}
+              className="absolute z-10 flex items-center justify-center rounded-full bg-white cursor-pointer w-7 h-7 -right-[14px] top-[calc(50%-16px)] -translate-y-1/2 shadow-[0_1px_6px_rgba(0,0,0,0.15)] border-[0.5px] border-[#e0e0e0]"
               aria-label="Next"
             >
               <ChevronRight size={14} />
@@ -378,15 +331,7 @@ function DesktopCarousel({ clients, onStoryClick, onDismiss }) {
 
 function MobileCarousel({ clients, onStoryClick, onDismiss }) {
   return (
-    <div
-      className="flex gap-4 py-4 overflow-x-auto"
-      style={{
-        scrollbarWidth: "none",
-        WebkitOverflowScrolling: "touch",
-        paddingLeft: 16,
-        paddingRight: 16,
-      }}
-    >
+    <div className="flex gap-4 py-4 overflow-x-auto px-4 [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden">
       {clients.map((client) => (
         <StoryCircle
           key={client.id}
