@@ -48,17 +48,11 @@ export function DigitalSection({ onNavigate }) {
     <>
       <div className="w-full min-h-screen bg-background min-[1160px]:mx-20 min-[770px]:mx-16 mx-0">
         {/* Header */}
-        <div
-          className="sticky top-0 z-10 px-4 pt-4 pb-4"
-          style={{ background: "var(--color-background, #fff)" }}
-        >
-          <h1
-            className="font-semibold text-gray-900 font-sans lg:text-3xl md:text-2xl text-xl"
-            style={{ letterSpacing: "-0.01em" }}
-          >
+        <div className="sticky top-0 z-10 px-4 pt-4 pb-4 bg-[color:var(--color-background,_#fff)]">
+          <h1 className="font-semibold text-gray-900 font-sans lg:text-3xl md:text-2xl text-xl tracking-[-0.01em]">
             Digital Solutions
           </h1>
-          <p className="text-gray-500 mt-1" style={{ fontSize: 13 }}>
+          <p className="text-gray-500 mt-1 text-[13px]">
             Showcasing digital campaigns, websites, analytics and engagement
             solutions.
           </p>
@@ -80,44 +74,30 @@ export function DigitalSection({ onNavigate }) {
                 onClick={() => setSelectedProject(project)}
                 onMouseEnter={() => setHoveredProject(project)}
                 onMouseLeave={() => setHoveredProject(null)}
-                className="overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm cursor-pointer"
-                style={{ border: "1px solid #f0f0f5" }}
+                className="overflow-hidden rounded-2xl bg-white shadow-sm cursor-pointer border border-[#f0f0f5]"
               >
                 <div className="relative">
                   <img
                     src={project.image}
                     alt={project.name}
-                    className="w-full object-cover transition-transform duration-500 hover:scale-105"
-                    style={{ height: 220 }}
+                    className="w-full object-cover transition-transform duration-500 hover:scale-105  h-[220px]"
                   />
-                  <span
-                    className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-r from-lime-800 to-lime-600 text-transparent"
-                    style={{ color: "#fff", fontSize: 11 }}
-                  >
+                  <span className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-r from-lime-800 to-lime-600 text-white text-[11px] ">
                     Reach {project.reach}
                   </span>
                 </div>
                 <div className="p-4">
-                  <h3
-                    className="font-semibold text-gray-900 leading-snug line-clamp-1 font-sans"
-                    style={{ fontSize: 15 }}
-                  >
+                  <h3 className="font-semibold text-gray-900 leading-snug line-clamp-1 font-sans text-[15px]">
                     {project.name}
                   </h3>
                   <div className="mt-3 flex flex-col gap-2">
-                    <div
-                      className="flex items-center justify-between text-gray-500"
-                      style={{ fontSize: 13 }}
-                    >
+                    <div className="flex items-center justify-between text-gray-500 text-[13px]">
                       <span>Engagement</span>
                       <span className="font-medium text-lime-500">
                         {project.engagement}
                       </span>
                     </div>
-                    <div
-                      className="flex items-center justify-between text-gray-500"
-                      style={{ fontSize: 13 }}
-                    >
+                    <div className="flex items-center justify-between text-gray-500 text-[13px]">
                       <span>Services</span>
                       <span className="text-lime-500">
                         {project.services.length}
@@ -139,14 +119,12 @@ export function DigitalSection({ onNavigate }) {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="rounded-2xl bg-white border border-gray-100 p-5"
-                  style={{ border: "1px solid #f0f0f5" }}
+                  className="rounded-2xl bg-white p-5 border border-[#f0f0f5]"
                 >
                   <img
                     src={hoveredProject.modalImage}
                     alt={hoveredProject.name}
-                    className="w-full rounded-xl object-cover mb-4"
-                    style={{ height: 150 }}
+                    className="w-full rounded-xl object-cover mb-4 h-[150px]"
                   />
                   <h3 className="font-semibold text-gray-900 font-sans text-sm mb-3">
                     {hoveredProject.name}
@@ -197,17 +175,8 @@ export function DigitalSection({ onNavigate }) {
                 animate={{ opacity: 1 }}
                 className="flex flex-col items-center gap-2"
               >
-                <div
-                  style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: "50%",
-                    border: "2px solid #e5e7eb",
-                    borderTopColor: "#84cc16",
-                    animation: "spin 0.7s linear infinite",
-                  }}
-                />
-                <p style={{ fontSize: 12, color: "#aaa" }}>Loading more…</p>
+                <div className="w-7 h-7 rounded-full border-2 border-gray-200 border-t-lime-500 animate-spin [animation-duration:0.7s]" />
+                <p className="text-xs text-[#aaa]">Loading more…</p>
                 <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
               </motion.div>
             )}
@@ -217,23 +186,15 @@ export function DigitalSection({ onNavigate }) {
         {/* Footer — only shown once all cards are loaded */}
         {!hasMore && (
           <div className="flex flex-col items-center py-8 gap-2">
-            <div
-              className="rounded-full flex items-center justify-center"
-              style={{
-                width: 48,
-                height: 48,
-                background: "linear-gradient(135deg, #65A30D 0%, #A3E635 100%)",
-              }}
-            >
+            <div className="rounded-full flex items-center justify-center w-12 h-12 bg-[linear-gradient(135deg,#65A30D_0%,#A3E635_100%)]">
               <img src={logo} alt="" />
             </div>
-            <p style={{ fontSize: 13, color: "#8e8e93", textAlign: "center" }}>
+            <p className="text-[13px] text-[#8e8e93] text-center">
               You've explored all digital projects.
             </p>
             <button
               onClick={() => onNavigate("exhibition")}
-              className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer"
-              style={{ color: "#579F63" }}
+              className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
             >
               Explore More
               <ArrowRight size={16} />
