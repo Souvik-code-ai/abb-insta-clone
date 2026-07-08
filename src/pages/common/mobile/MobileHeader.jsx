@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { MoreModal } from "../../../pages/more/MoreModal";
+import { CommonSectionModal } from "../../commonSection/CommonSectionModal";
 import { Info, BookOpen, Shield, FileText, Lock, Award } from "lucide-react";
 import {
   MessageCircle,
@@ -74,9 +74,9 @@ export function MobileHeader({ onMessageClick, onLogoClick, onNavigate }) {
                       }
                     >
                       <div
-                        className={`rounded-lg flex items-center justify-center w-7 h-7 bg-${color}`}
+                        className={`rounded-lg flex items-center justify-center w-7 h-7 bg-${color} shadow-black shadow-2xs`}
                       >
-                        <Icon size={14} className="text-white" />
+                        <Icon size={14} className="" />
                       </div>
                       <span className="text-sm font-medium text-[#1a1a1a]">
                         {label}

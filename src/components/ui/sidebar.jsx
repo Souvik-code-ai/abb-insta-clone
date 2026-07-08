@@ -126,11 +126,6 @@ function SidebarProvider({
       <TooltipProvider delayDuration={0}>
         <div
           data-slot="sidebar-wrapper"
-          style={{
-            // "--sidebar-width": SIDEBAR_WIDTH,
-            // "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
-            ...style,
-          }}
           className={cn(
             `group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full [--sidebar-width:${SIDEBAR_WIDTH}] [--sidebar-width-icon:${SIDEBAR_WIDTH_ICON}]`,
             className,
@@ -554,10 +549,23 @@ function SidebarMenuBadge({ className, ...props }) {
 
 function SidebarMenuSkeleton({ className, showIcon = false, ...props }) {
   // Random width between 50 to 90%.
-  const width = React.useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`;
-  }, []);
+  // const width = React.useMemo(() => {
+  //   return `${Math.floor(Math.random() * 40) + 50}%`;
+  // }, []);
+  const SKELETON_WIDTHS = [
+    "max-w-[50%]",
+    "max-w-[55%]",
+    "max-w-[60%]",
+    "max-w-[65%]",
+    "max-w-[70%]",
+    "max-w-[75%]",
+    "max-w-[80%]",
+    "max-w-[85%]",
+  ];
 
+  const widthClass = React.useMemo(() => {
+    return SKELETON_WIDTHS[Math.floor(Math.random() * SKELETON_WIDTHS.length)];
+  }, []);
   return (
     <div
       data-slot="sidebar-menu-skeleton"
@@ -572,11 +580,8 @@ function SidebarMenuSkeleton({ className, showIcon = false, ...props }) {
         />
       )}
       <Skeleton
-        className="h-4 max-w-(--skeleton-width) flex-1"
+        className={cn("h-4 flex-1", widthClass)}
         data-sidebar="menu-skeleton-text"
-        style={{
-          "--skeleton-width": width,
-        }}
       />
     </div>
   );

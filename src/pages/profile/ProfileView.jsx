@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Link } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -379,7 +380,8 @@ export function ProfileView({ onNavigate }) {
   return (
     <div className="flex flex-col pb-12 px-4 pt-4 w-[100%] min-[1160px]:mx-50 min-[770px]:mx-16 mx-0">
       {/* ── Hero ── */}
-      <button
+      <Link
+        to={"/"}
         onClick={() => {
           console.log("Return back clicked");
           console.log("onNavigate is:", onNavigate);
@@ -389,7 +391,7 @@ export function ProfileView({ onNavigate }) {
       >
         <ArrowLeft size={16} />
         Return back
-      </button>
+      </Link>
       <div className="flex flex-col center items-start">
         <div className="flex flex-row items-center py-10 px-4 gap-5 justify-center">
           <div className="rounded-full flex items-center justify-center mb-4 md:h-24 md:w-24 h-12 w-16 bg-lime-600">
@@ -543,13 +545,14 @@ export function ProfileView({ onNavigate }) {
           <p className="text-[13px] text-[#8e8e93] text-center">
             You've explored all profile contents.
           </p>
-          <button
+          <Link
+            to={"/"}
             onClick={() => onNavigate("casestudies")}
             className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
           >
             Explore More
             <ArrowRight size={16} />
-          </button>
+          </Link>
         </div>
       </footer>
     </div>

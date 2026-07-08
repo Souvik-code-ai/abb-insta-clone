@@ -1,46 +1,52 @@
 import { motion, AnimatePresence } from "motion/react";
 import { Info, BookOpen, Shield, FileText, Lock, X, Award } from "lucide-react";
-
+import { Link } from "react-router-dom";
 const items = [
   {
     icon: Info,
     label: "About Us",
     desc: "Our story and mission",
     view: "about",
+    path: "/about",
   },
   {
     icon: BookOpen,
     label: "Case Studies",
     desc: "Premium event portfolios",
     view: "casestudies",
+    path: "/casestudies",
   },
   {
     icon: Award,
     label: "Awards and Recognitions",
     desc: "Our achievements",
     view: "awards",
+    path: "/awards",
   },
   {
     icon: Shield,
     label: "Privacy Policy",
     desc: "How we protect your data",
     view: "privacypolicy",
+    path: "/privacypolicy",
   },
   {
     icon: FileText,
     label: "Terms & Conditions",
     desc: "Usage guidelines",
     view: "terms",
+    path: "/terms",
   },
   {
     icon: Lock,
     label: "Data Privacy",
     desc: "GDPR & data rights",
     view: "dataprivacy",
+    path: "/dataprivacy",
   },
 ];
 
-export function MoreModal({ isOpen, onClose, onNavigate }) {
+export function CommonSectionModal({ isOpen, onClose, onNavigate }) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -67,9 +73,10 @@ export function MoreModal({ isOpen, onClose, onNavigate }) {
                 <X size={16} />
               </button>
             </div>
-            {items.map(({ icon: Icon, label, desc, view }) => (
-              <button
+            {items.map(({ icon: Icon, label, desc, view, path }) => (
+              <Link
                 key={label}
+                to={path}
                 className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors border-b border-black/[0.04]"
                 onClick={() => {
                   if (view) {
@@ -94,7 +101,7 @@ export function MoreModal({ isOpen, onClose, onNavigate }) {
                   </div>
                   <div className="text-xs text-[#8e8e93]">{desc}</div>
                 </div>
-              </button>
+              </Link>
             ))}
           </motion.div>
         </>

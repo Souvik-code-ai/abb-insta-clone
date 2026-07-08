@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import {
   Home,
   Calendar,
@@ -19,18 +21,25 @@ import logo from "../../assets/images/logo.jpg";
 // }
 
 const allNavItems = [
-  { id: "home", icon: Home, label: "Home" },
-  { id: "events", icon: Calendar, label: "Events" },
-  { id: "digital", icon: Monitor, label: "Digital" },
-  { id: "exhibition", icon: LayoutGrid, label: "Exhibition" },
-  { id: "activation", icon: Zap, label: "Activation" },
-  { id: "presence", icon: Globe, label: "Presence" },
-  { id: "messages", icon: MessageSquare, label: "Messages" },
-  { id: "profile", icon: User, label: "Profile" },
+  { id: "home", icon: Home, label: "Home", path: "/" },
+  { id: "events", icon: Calendar, label: "Events", path: "/events" },
+  { id: "digital", icon: Monitor, label: "Digital", path: "/digital" },
+  {
+    id: "exhibition",
+    icon: LayoutGrid,
+    label: "Exhibition",
+    path: "/exhibition",
+  },
+  { id: "activation", icon: Zap, label: "Activation", path: "/activation" },
+  { id: "presence", icon: Globe, label: "Presence", path: "" },
+  { id: "messages", icon: MessageSquare, label: "Messages", path: "/messages" },
+  { id: "profile", icon: User, label: "Profile", path: "/profile" },
 ];
 
 export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
   const [expanded, setExpanded] = useState(false);
+  const location = useLocation();
+  const isPathActive = (path) => location.pathname === path;
 
   return (
     <motion.aside
@@ -42,8 +51,9 @@ export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
     >
       <nav className="flex flex-col py-3 px-3 flex-1">
         {/* Logo row */}
-        <button
-          onClick={() => onNavigate("home")}
+        <Link
+          to={"/"}
+          onClick={() => onNavigate("/")}
           className="relative flex items-center rounded-xl transition-all duration-150 shrink-0 h-11 px-[10px] py-0"
           onMouseEnter={(e) =>
             (e.currentTarget.style.background = "rgba(0,0,0,0.04)")
@@ -59,20 +69,29 @@ export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
               className="overflow-hidden rounded-lg h-12 w-12 border-r border-b border-black"
             />
           </div>
-        </button>
+        </Link>
 
         {/* 8 nav items — centered vertically with flex-1 above and below */}
         <div className="flex-1" />
         <div className="flex flex-col gap-1">
           {allNavItems.map((item) => {
             const Icon = item.icon;
-            const isActive = activeSection === item.id;
+            const isActive = isPathActive(item.path);
             const isProfile = item.id === "profile";
 
             return (
-              <button
+              <Link
                 key={item.id}
-                onClick={() => onNavigate(item.id)}
+                to={item.id === "presence" ? "#" : item.path}
+                onClick={(e) => {
+                  if (item.id === "presence") {
+                    e.preventDefault();
+                    onNavigate("presence");
+                    return;
+                  }
+
+                  onNavigate(item.id);
+                }}
                 className={`relative flex items-center rounded-xl transition-all duration-150 shrink-0 h-11 px-[10px] py-0 ${
                   isActive
                     ? "bg-[color-mix(in_srgb,var(--accent)_8%,transparent)] text-[color:var(--accent)]"
@@ -110,7 +129,7 @@ export function Sidebar({ activeSection, onNavigate, onMoreClick }) {
                     </motion.span>
                   )}
                 </AnimatePresence>
-              </button>
+              </Link>
             );
           })}
         </div>

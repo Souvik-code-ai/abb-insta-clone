@@ -1,7 +1,7 @@
 import miaCover from "../../src/assets/images/mia/mia3.webp";
 import mallCover from "../../src/assets/images/zira/zira1.webp";
-import rallyCover from "../../src/assets/images/drumtao/DrumTao/dt6.webp";
-import tataCover from "../../src/assets/images/arun/arun_webp/aarun1.webp";
+import rallyCover from "../../src/assets/images/drumtao/dt6.webp";
+import tataCover from "../../src/assets/images/arun/aarun1.webp";
 import mia1 from "../../src/assets/images/mia/mia 1.webp";
 import mia2 from "../../src/assets/images/mia/mia2.webp";
 import mia3 from "../../src/assets/images/mia/mia3.webp";
@@ -10,18 +10,18 @@ import mall1 from "../../src/assets/images/zira/zira2.webp";
 import mall2 from "../../src/assets/images/zira/zira3.webp";
 import mall3 from "../../src/assets/images/zira/zira4.webp";
 import mall4 from "../../src/assets/images/zira/zira1.webp";
-import rally1 from "../../src/assets/images/drumtao/DrumTao/dt2.webp";
-import rally2 from "../../src/assets/images/drumtao/DrumTao/dt3.webp";
-import rally3 from "../../src/assets/images/drumtao/DrumTao/dt4.webp";
-import rally4 from "../../src/assets/images/drumtao/DrumTao/dt5.webp";
-import rally5 from "../../src/assets/images/drumtao/DrumTao/dt6.webp";
-import rally6 from "../../src/assets/images/drumtao/DrumTao/dt7.webp";
-import tata1 from "../../src/assets/images/arun/arun_webp/arun2.webp";
-import tata2 from "../../src/assets/images/arun/arun_webp/arun3.webp";
-import tata3 from "../../src/assets/images/arun/arun_webp/arun4.webp";
-import tata4 from "../../src/assets/images/arun/arun_webp/arun5.webp";
-import tata5 from "../../src/assets/images/arun/arun_webp/arun6.webp";
-import tata6 from "../../src/assets/images/arun/arun_webp/arun7.webp";
+import rally1 from "../../src/assets/images/drumtao/dt2.webp";
+import rally2 from "../../src/assets/images/drumtao/dt3.webp";
+import rally3 from "../../src/assets/images/drumtao/dt4.webp";
+import rally4 from "../../src/assets/images/drumtao/dt5.webp";
+import rally5 from "../../src/assets/images/drumtao/dt6.webp";
+import rally6 from "../../src/assets/images/drumtao/dt7.webp";
+import tata1 from "../../src/assets/images/arun/arun2.webp";
+import tata2 from "../../src/assets/images/arun/arun3.webp";
+import tata3 from "../../src/assets/images/arun/arun4.webp";
+import tata4 from "../../src/assets/images/arun/arun5.webp";
+import tata5 from "../../src/assets/images/arun/arun6.webp";
+import tata6 from "../../src/assets/images/arun/arun7.webp";
 
 export const ACTIVATIONS_ALL = [
   {

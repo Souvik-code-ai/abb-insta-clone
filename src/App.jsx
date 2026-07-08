@@ -1,13 +1,14 @@
 // Add these imports at the top alongside existing ones
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Toaster } from "sonner";
-
+import { useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { StoriesCarousel } from "./pages/home/StoriesCarousel";
 import { StoryViewer } from "./pages/home/StoryViewer";
 import { FeedCard } from "./pages/home/FeedCard";
 import { RightPanel } from "./pages/home/RightPanel";
 import { ChatbotWidget } from "./pages/common/ChatbotWidget";
-import { MoreModal } from "./pages/more/MoreModal";
+import { CommonSectionModal } from "./pages/commonSection/CommonSectionModal";
 import { MobileHeader } from "./pages/common/mobile/MobileHeader";
 import { MobileBottomNav } from "./pages/common/mobile/MobileBottomNav";
 import { MobileMessagesView } from "./pages/common/mobile/MobileMessagesView";
@@ -15,8 +16,8 @@ import { ProfileView } from "./pages/profile/ProfileView";
 import { EventsSection } from "./pages/events/Eventssection";
 import { Sidebar } from "./app/dashboard/Sidebar";
 import logo from "./assets/images/logo.jpg";
-import { DataPrivacyView } from "./pages/more/DataPrivacyView";
-import { CaseStudiesView } from "./pages/more/CaseStudiesView";
+import { DataPrivacyView } from "./pages/commonSection/DataPrivacyView";
+import { CaseStudiesView } from "./pages/commonSection/CaseStudiesView";
 import {
   clients,
   feedPosts,
@@ -24,16 +25,16 @@ import {
   caseStudies,
   awards,
 } from "../public/home/home";
-import { AwardsView } from "./pages/more/AwardsView";
-import { PrivacyPolicyView } from "./pages/more/PrivacyPolicyView";
-import { TermsView } from "./pages/more/TermsPAGE";
+import { AwardsView } from "./pages/commonSection/AwardsView";
+import { PrivacyPolicyView } from "./pages/commonSection/PrivacyPolicyView";
+import { TermsView } from "./pages/commonSection/TermsPage";
 import { DigitalSection } from "./pages/digital/DigitalSection";
 import { ExhibitionSection } from "./pages/exhibitions/ExhibitonSection";
 import { ActivationSection } from "./pages/activations/ActivationSection";
 import PageLoader from "./components/ui/Pageloader";
 import { ArrowRight } from "lucide-react";
 import { PresenceSection } from "./pages/presence/PresenseSection";
-import { AboutView } from "./pages/more/AboutView";
+import { AboutView } from "./pages/commonSection/AboutView";
 // ── Feed with infinite scroll ─────────────────────────────────────────────────
 // how many posts to load per batch
 
@@ -41,13 +42,14 @@ import FeedWithInfiniteScroll from "./pages/home/FeedWithInfiniteScroll";
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [moreModalOpen, setMoreModalOpen] = useState(false);
-  const [activeStory, setActiveStory] = useState(null > null);
+  const [activeStory, setActiveStory] = useState(null);
   const [currentView, setCurrentView] = useState("home");
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
   useEffect(() => {
     const checkSize = () => {
       setIsMobile(window.innerWidth < 770);
@@ -70,19 +72,18 @@ export default function App() {
     if (section === activeSection) return;
 
     setLoading(true);
-    console.log("loading started");
+
     window.scrollTo({ top: 0, behavior: "auto" });
 
     setTimeout(() => {
       setActiveSection(section);
       setLoading(false);
-      console.log("loading ended");
     }, 500);
   };
   const SIDEBAR_W = 72;
 
   // Sections that should hide the right panel
-  const hideRightPanel = activeSection !== "home";
+  const hideRightPanel = location.pathname !== "/";
 
   return (
     <div className="bg-background min-h-screen">
@@ -126,46 +127,82 @@ export default function App() {
           } ${isMobile ? "pt-14 pb-20" : "pt-0 pb-0"}`}
         >
           <div className="pb-8">
-            {/* ── Profile ── */}
-            {activeSection === "profile" ? (
-              <ProfileView onNavigate={handleNavigate} />
-            ) : /* ── Events ── */
-            activeSection === "events" ? (
-              <EventsSection onNavigate={setActiveSection} />
-            ) : activeSection === "digital" ? (
-              <DigitalSection onNavigate={setActiveSection} />
-            ) : activeSection === "exhibition" ? (
-              <ExhibitionSection onNavigate={setActiveSection} />
-            ) : activeSection === "activation" ? (
-              <ActivationSection onNavigate={setActiveSection} />
-            ) : activeSection === "terms" ? ( // ← add this block
-              <TermsView onNavigate={setActiveSection} />
-            ) : activeSection === "dataprivacy" ? ( // ← add this
-              <DataPrivacyView onNavigate={setActiveSection} />
-            ) : activeSection === "privacypolicy" ? ( // ← add this
-              <PrivacyPolicyView onNavigate={setActiveSection} />
-            ) : activeSection === "about" ? ( // ← add this
-              <AboutView onNavigate={setActiveSection} />
-            ) : activeSection === "casestudies" ? ( // ← add this
-              <CaseStudiesView onNavigate={setActiveSection} />
-            ) : activeSection === "awards" ? (
-              <AwardsView onNavigate={setActiveSection} />
-            ) : isMobile && activeSection === "messages" ? (
-              <MobileMessagesView onBack={() => setActiveSection("home")} />
-            ) : (
-              /* ── Home feed ── */
-              <>
-                <StoriesCarousel
-                  clients={clients}
-                  onStoryClick={(id) => setActiveStory(id)}
-                />
+            <Routes>
+              <Route
+                path="/profile"
+                element={<ProfileView onNavigate={handleNavigate} />}
+              />
+              <Route
+                path="/events"
+                element={<EventsSection onNavigate={setActiveSection} />}
+              />
+              <Route
+                path="/digital"
+                element={<DigitalSection onNavigate={setActiveSection} />}
+              />
+              <Route
+                path="/exhibition"
+                element={<ExhibitionSection onNavigate={setActiveSection} />}
+              />
+              <Route
+                path="/activation"
+                element={<ActivationSection onNavigate={setActiveSection} />}
+              />
+              <Route
+                path="/terms"
+                element={<TermsView onNavigate={setActiveSection} />}
+              />
+              <Route
+                path="/dataprivacy"
+                element={<DataPrivacyView onNavigate={setActiveSection} />}
+              />
+              <Route
+                path="/privacypolicy"
+                element={<PrivacyPolicyView onNavigate={setActiveSection} />}
+              />
+              <Route
+                path="/about"
+                element={<AboutView onNavigate={setActiveSection} />}
+              />
+              <Route
+                path="/casestudies"
+                element={<CaseStudiesView onNavigate={setActiveSection} />}
+              />
+              <Route
+                path="/awards"
+                element={<AwardsView onNavigate={setActiveSection} />}
+              />
 
-                <FeedWithInfiniteScroll
-                  onNavigate={setActiveSection}
-                  logo={logo}
+              {isMobile && (
+                <Route
+                  path="/messages"
+                  element={
+                    <MobileMessagesView
+                      onBack={() => setActiveSection("home")}
+                    />
+                  }
                 />
-              </>
-            )}
+              )}
+
+              <Route
+                path="/"
+                element={
+                  <>
+                    <StoriesCarousel
+                      clients={clients}
+                      onStoryClick={(id) => setActiveStory(id)}
+                    />
+                    <FeedWithInfiniteScroll
+                      onNavigate={setActiveSection}
+                      logo={logo}
+                    />
+                  </>
+                }
+              />
+
+              {/* fallback: redirect unknown paths back home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
           </div>
         </main>
         <PresenceSection
@@ -205,7 +242,7 @@ export default function App() {
       )}
 
       {/* More Modal */}
-      <MoreModal
+      <CommonSectionModal
         isOpen={moreModalOpen}
         onClose={() => setMoreModalOpen(false)}
         onNavigate={handleNavigate}

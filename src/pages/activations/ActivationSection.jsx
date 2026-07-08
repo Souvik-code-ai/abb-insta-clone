@@ -4,8 +4,8 @@ import { ArrowRight } from "lucide-react";
 import logo from "../../assets/images/logo.jpg";
 import miaCover from "../../assets/images/mia/mia3.webp";
 import mallCover from "../../assets/images/zira/zira1.webp";
-import rallyCover from "../../assets/images/drumtao/DrumTao/dt6.webp";
-import tataCover from "../../assets/images/arun/arun_webp/aarun1.webp";
+import rallyCover from "../../assets/images/drumtao/dt6.webp";
+import tataCover from "../../assets/images/arun/aarun1.webp";
 import mia1 from "../../assets/images/mia/mia 1.webp";
 import mia2 from "../../assets/images/mia/mia2.webp";
 import mia3 from "../../assets/images/mia/mia3.webp";
@@ -14,19 +14,20 @@ import mall1 from "../../assets/images/zira/zira2.webp";
 import mall2 from "../../assets/images/zira/zira3.webp";
 import mall3 from "../../assets/images/zira/zira4.webp";
 import mall4 from "../../assets/images/zira/zira1.webp";
-import rally1 from "../../assets/images/drumtao/DrumTao/dt2.webp";
-import rally2 from "../../assets/images/drumtao/DrumTao/dt3.webp";
-import rally3 from "../../assets/images/drumtao/DrumTao/dt4.webp";
-import rally4 from "../../assets/images/drumtao/DrumTao/dt5.webp";
-import rally5 from "../../assets/images/drumtao/DrumTao/dt6.webp";
-import rally6 from "../../assets/images/drumtao/DrumTao/dt7.webp";
-import tata1 from "../../assets/images/arun/arun_webp/arun2.webp";
-import tata2 from "../../assets/images/arun/arun_webp/arun3.webp";
-import tata3 from "../../assets/images/arun/arun_webp/arun4.webp";
-import tata4 from "../../assets/images/arun/arun_webp/arun5.webp";
-import tata5 from "../../assets/images/arun/arun_webp/arun6.webp";
-import tata6 from "../../assets/images/arun/arun_webp/arun7.webp";
+import rally1 from "../../assets/images/drumtao/dt2.webp";
+import rally2 from "../../assets/images/drumtao/dt3.webp";
+import rally3 from "../../assets/images/drumtao/dt4.webp";
+import rally4 from "../../assets/images/drumtao/dt5.webp";
+import rally5 from "../../assets/images/drumtao/dt6.webp";
+import rally6 from "../../assets/images/drumtao/dt7.webp";
+import tata1 from "../../assets/images/arun/arun2.webp";
+import tata2 from "../../assets/images/arun/arun3.webp";
+import tata3 from "../../assets/images/arun/arun4.webp";
+import tata4 from "../../assets/images/arun/arun5.webp";
+import tata5 from "../../assets/images/arun/arun6.webp";
+import tata6 from "../../assets/images/arun/arun7.webp";
 import { ACTIVATIONS_ALL } from "../../../public/activations/activations";
+import { Link } from "react-router-dom";
 export function ActivationSection({ onNavigate }) {
   const [selectedActivation, setSelectedActivation] = useState(null);
   const [hoveredProject, setHoveredProject] = useState(null);
@@ -118,9 +119,9 @@ export function ActivationSection({ onNavigate }) {
                   </h3>
                   <div className="mt-3 flex items-center justify-between">
                     <span className="text-gray-500 text-[13px]">
-                      Audience Reach
+                      Audiance Reach
                     </span>
-                    <span className="text-lime-500 text-sm md:text-xl font-semibold">
+                    <span className="text-lime-500 text-sm  font-semibold">
                       {item.audience}
                     </span>
                   </div>
@@ -152,7 +153,7 @@ export function ActivationSection({ onNavigate }) {
                   <div className="flex gap-2 mb-4">
                     <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
                       <p className="text-xs text-gray-400 mb-1">
-                        Audience Reach
+                        Audiance Reach
                       </p>
                       <p className="text-xs font-semibold text-gray-800">
                         {hoveredProject.audience}
@@ -208,13 +209,14 @@ export function ActivationSection({ onNavigate }) {
             <p className="text-[13px] text-[#8e8e93] text-center">
               You've seen all activations.
             </p>
-            <button
+            <Link
+              to={"/profile"}
               onClick={() => onNavigate("profile")}
               className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
             >
               Explore More
               <ArrowRight size={16} />
-            </button>
+            </Link>
           </div>
         )}
       </div>
@@ -283,7 +285,7 @@ export function ActivationSection({ onNavigate }) {
                 </h2>
               </div>
               <div className="absolute md:top-8 md:right-8 top-45 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl px-6 py-4 flex justify-center items-center flex-col right-20">
-                <p className="text-white/70 text-sm">Audience Reach</p>
+                <p className="text-white/70 text-sm">Audiance Reach</p>
                 <h3 className="text-white md:text-3xl font-bold font-sans text-xl">
                   {selectedActivation.audience}
                 </h3>

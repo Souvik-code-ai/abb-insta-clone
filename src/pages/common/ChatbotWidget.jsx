@@ -112,7 +112,7 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
                 onSubmit={handleSubmit}
                 className="px-5 py-4 flex flex-col gap-3"
               >
-                {["name", "email", "phone"].map((field) => (
+                {/* {["name", "email", "phone"].map((field) => (
                   <input
                     key={field}
                     type={
@@ -130,7 +130,38 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
                     required={field !== "phone"}
                     className="w-full rounded-xl px-4 outline-none h-[42px] bg-[#f5f5f7] text-sm border-none"
                   />
-                ))}
+                ))} */}
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={form.name}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, name: e.target.value }))
+                  }
+                  required
+                  className="w-full rounded-xl px-4 outline-none h-[42px] bg-[#f5f5f7] text-sm border-none"
+                />
+
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={form.email}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, email: e.target.value }))
+                  }
+                  required
+                  className="w-full rounded-xl px-4 outline-none h-[42px] bg-[#f5f5f7] text-sm border-none"
+                />
+
+                <input
+                  type="tel"
+                  placeholder="Phone"
+                  value={form.phone}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, phone: e.target.value }))
+                  }
+                  className="w-full rounded-xl px-4 outline-none h-[42px] bg-[#f5f5f7] text-sm border-none"
+                />
                 <textarea
                   placeholder="Your message..."
                   value={form.message}
@@ -179,7 +210,7 @@ export function ChatbotWidget({ isOpen = false, onClose }) {
                 <div
                   className={`rounded-full flex items-center justify-center shrink-0 w-10 h-10 shadow-[0_4px_12px_rgba(0,0,0,0.15)] bg-${color}`}
                 >
-                  <Icon size={18} className="text-white" />
+                  <Icon size={18} className="" />
                 </div>
               </motion.a>
             ))}

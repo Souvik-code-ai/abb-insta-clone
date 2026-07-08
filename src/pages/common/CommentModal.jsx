@@ -58,7 +58,7 @@ export function CommentModal({ isOpen, onClose }) {
           onSubmit={handleSubmit}
           className="flex flex-col gap-3"
         >
-          {["name", "email", "phone"].map((field) => (
+          {/* {["name", "email", "phone"].map((field) => (
             <input
               key={field}
               type={
@@ -72,7 +72,32 @@ export function CommentModal({ isOpen, onClose }) {
               required={field !== "phone"}
               className="w-full rounded-xl px-4 outline-none h-[42px] bg-[var(--muted)] text-sm border-none font-[var(--font-family-body)] text-[var(--foreground)]"
             />
-          ))}
+          ))} */}
+          <input
+            type="text"
+            placeholder="Name"
+            value={form.name}
+            onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+            required
+            className="w-full rounded-xl px-4 outline-none h-[42px] bg-[#f5f5f7] text-sm border-none"
+          />
+
+          <input
+            type="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+            required
+            className="w-full rounded-xl px-4 outline-none h-[42px] bg-[#f5f5f7] text-sm border-none"
+          />
+
+          <input
+            type="tel"
+            placeholder="Phone"
+            value={form.phone}
+            onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+            className="w-full rounded-xl px-4 outline-none h-[42px] bg-[#f5f5f7] text-sm border-none"
+          />
           <textarea
             placeholder="Your message..."
             value={form.message}
@@ -84,7 +109,7 @@ export function CommentModal({ isOpen, onClose }) {
           />
           <button
             type="submit"
-            className="w-full rounded-xl py-3 flex items-center justify-center gap-2 bg-gradient-to-br from-[#d4456a] to-[#f07398] text-white font-semibold text-[15px] font-[var(--font-family-body)]"
+            className="w-full rounded-xl py-3 flex items-center justify-center gap-2 bg-gradient-to-br from-[#d4456a] to-[#f07398] text-white font-semibold text-[15px] "
           >
             <Send size={16} />
             Send Message

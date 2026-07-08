@@ -1,13 +1,14 @@
 import { motion, AnimatePresence } from "motion/react";
-import image1 from "../../assets/images/drumtao/DrumTao/dt3.webp";
+import image1 from "../../assets/images/drumtao/dt3.webp";
 import image5 from "../../assets/images/mia/mia 2.webp";
-import image7 from "../../assets/images/drumtao/DrumTao/dt7.webp";
-import image6 from "../../assets/images/arun/arun_webp/arun8.webp";
-import image9 from "../../assets/images/arun/arun_webp/arun4.webp";
+import image7 from "../../assets/images/drumtao/dt7.webp";
+import image6 from "../../assets/images/arun/arun8.webp";
+import image9 from "../../assets/images/arun/arun4.webp";
 import image2 from "../../assets/images/mia/mia2.webp";
 import logo from "../../assets/images/logo.jpg";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { EXHIBITIONS_ALL } from "../../../public/exhibition/exhibition";
 export function ExhibitionSection({ onNavigate }) {
   const [selectedExhibition, setSelectedExhibition] = useState(null);
@@ -263,13 +264,14 @@ export function ExhibitionSection({ onNavigate }) {
           <p className="text-[13px] text-[#8e8e93] text-center">
             You've seen all exhibitions.
           </p>
-          <button
+          <Link
+            to={"/activation"}
             onClick={() => onNavigate("activation")}
             className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
           >
             Explore More
             <ArrowRight size={16} />
-          </button>
+          </Link>
         </div>
       )}
     </div>

@@ -8,7 +8,7 @@ import {
   MapPin,
   List,
 } from "lucide-react";
-
+import { Link } from "react-router-dom";
 // ── Static data ───────────────────────────────────────────────────────────────
 
 const TOC_ITEMS = [
@@ -103,13 +103,14 @@ export function TermsView({ onNavigate }) {
   return (
     <div className="flex flex-col pb-12 px-4 pt-4 w-[100%] min-[1160px]:mx-50 min-[770px]:mx-16 mx-0">
       {/* Back button */}
-      <button
+      <Link
+        to={"/"}
         onClick={() => onNavigate("home")}
         className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2 text-[#579F63]"
       >
         <ArrowLeft size={16} />
         Return back
-      </button>
+      </Link>
 
       {/* Hero */}
       <div className="py-6 px-4 border-b border-[color:var(--border)] mb-6">
@@ -507,17 +508,25 @@ export function TermsView({ onNavigate }) {
       <footer className="pt-6 pb-2 flex flex-col justify-center items-center">
         <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center">
           {[
-            { title: "Home", link: "home" },
-            { title: "About", link: "about" },
-            { title: "Profile", link: "profile" },
-            { title: "Privacy Policy", link: "privacypolicy" },
-            { title: "Data Privacy ", link: "dataprivacy" },
-            { title: "Terms & Conditions ", link: "terms" },
+            { title: "Home", link: "home", path: "/" },
+            { title: "About", link: "about", path: "/about" },
+            { title: "Profile", link: "profile", path: "/profile" },
+            {
+              title: "Privacy Policy",
+              link: "privacypolicy",
+              path: "/privacypolicy",
+            },
+            {
+              title: "Data Privacy ",
+              link: "dataprivacy",
+              path: "/dataprivacy",
+            },
+            { title: "Terms & Conditions ", link: "terms", path: "/terms" },
           ].map((item) => (
-            <a
+            <Link
+              to={item.path}
+              key={item.title}
               onClick={() => onNavigate(item.link)}
-              key={item.link}
-              // href="#"
               className="text-[11px] text-[color:var(--muted-foreground)] no-underline font-[family-name:var(--font-family-body)] transition-colors duration-150 cursor-pointer"
               onMouseEnter={(e) =>
                 (e.currentTarget.style.color = "var(--foreground)")
@@ -527,7 +536,7 @@ export function TermsView({ onNavigate }) {
               }
             >
               {item.title}
-            </a>
+            </Link>
           ))}
         </div>
         <p className="text-[11px] text-[color:var(--muted-foreground)] mt-3 font-[family-name:var(--font-family-body)]">

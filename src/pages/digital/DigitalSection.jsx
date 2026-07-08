@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.jpg";
 import { DIGITAL_PROJECTS_ALL } from "../../../public/digital/digital";
 export function DigitalSection({ onNavigate }) {
@@ -192,13 +193,14 @@ export function DigitalSection({ onNavigate }) {
             <p className="text-[13px] text-[#8e8e93] text-center">
               You've explored all digital projects.
             </p>
-            <button
+            <Link
+              to="/exhibition"
               onClick={() => onNavigate("exhibition")}
               className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
             >
               Explore More
               <ArrowRight size={16} />
-            </button>
+            </Link>
           </div>
         )}
       </div>

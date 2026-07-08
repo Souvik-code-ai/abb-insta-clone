@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import logo from "../../assets/images/logo.jpg";
 import { EVENTS } from "../../../public/events/events";
-
+import { Link } from "react-router-dom";
 function EventCard({ event, showType, onHover, onLeave }) {
   const [hoveredProject, setHoveredProject] = useState(null);
   return (
@@ -379,13 +379,13 @@ export function EventsSection({ onNavigate }) {
           You've seen all recent events.
           <br />
         </p>
-        <button
-          onClick={() => onNavigate("digital")}
+        <Link
+          to={"/digital"}
           className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
         >
           Explore More
           <ArrowRight size={16} />
-        </button>
+        </Link>
       </div>
     </div>
   );

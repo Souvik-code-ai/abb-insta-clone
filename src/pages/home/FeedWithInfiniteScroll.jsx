@@ -3,6 +3,7 @@ import { feedPosts } from "../../../public/home/home";
 import { useCallback, useEffect } from "react";
 import { FeedCard } from "./FeedCard";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 const FEED_PAGE_SIZE = 3;
 export default function FeedWithInfiniteScroll({ onNavigate, logo }) {
   const [visibleCount, setVisibleCount] = useState(FEED_PAGE_SIZE);
@@ -91,13 +92,14 @@ export default function FeedWithInfiniteScroll({ onNavigate, logo }) {
           <p className="text-[13px] text-[#8e8e93] text-center">
             You've seen all feeds.
           </p>
-          <button
+          <Link
+            to={"/events"}
             onClick={() => onNavigate("events")}
             className="mt-0 flex items-center gap-2 font-base flex-row justify-center cursor-pointer text-[#579F63]"
           >
             Explore More
             <ArrowRight size={16} />
-          </button>
+          </Link>
         </div>
       )}
     </div>

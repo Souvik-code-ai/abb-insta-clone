@@ -1,8 +1,8 @@
-import dt2 from "../../src/assets/images/drumtao/DrumTao/dt2.webp";
+import dt2 from "../../src/assets/images/drumtao/dt2.webp";
 import { useRef } from "react";
 import mia1 from "../../src/assets/images/mia/mia 1.webp";
 import zira1 from "../../src/assets/images/zira/zira1.webp";
-import arun from "../../src/assets/images/arun/arun_webp/arun.webp";
+import arun from "../../src/assets/images/arun/arun.webp";
 export const EVENTS = [
   {
     id: 1,

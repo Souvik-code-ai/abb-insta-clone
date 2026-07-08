@@ -1,8 +1,8 @@
-import image1 from "../../src/assets/images/drumtao/DrumTao/dt3.webp";
+import image1 from "../../src/assets/images/drumtao/dt3.webp";
 import image5 from "../../src/assets/images/mia/mia 2.webp";
-import image7 from "../../src/assets/images/drumtao/DrumTao/dt7.webp";
-import image6 from "../../src/assets/images/arun/arun_webp/arun8.webp";
-import image9 from "../../src/assets/images/arun/arun_webp/arun4.webp";
+import image7 from "../../src/assets/images/drumtao/dt7.webp";
+import image6 from "../../src/assets/images/arun/arun8.webp";
+import image9 from "../../src/assets/images/arun/arun4.webp";
 import image2 from "../../src/assets/images/mia/mia2.webp";
 import logo from "../../src/assets/images/logo.jpg";
 export const EXHIBITIONS_ALL = [

@@ -8,15 +8,20 @@ import {
   User,
   Globe,
 } from "lucide-react";
-
+import { Link } from "react-router-dom";
 const navItems = [
-  { id: "home", icon: Home, label: "Home" },
-  { id: "events", icon: Calendar, label: "Events" },
-  { id: "digital", icon: Monitor, label: "Digital" },
-  { id: "exhibition", icon: LayoutGrid, label: "Exhibition" },
-  { id: "activation", icon: Zap, label: "Activate" },
-  { id: "presence", icon: Globe, label: "Presence" },
-  { id: "profile", icon: User, label: "Profile" },
+  { id: "home", icon: Home, label: "Home", path: "/" },
+  { id: "events", icon: Calendar, label: "Events", path: "/events" },
+  { id: "digital", icon: Monitor, label: "Digital", path: "/digital" },
+  {
+    id: "exhibition",
+    icon: LayoutGrid,
+    label: "Exhibition",
+    path: "/exhibition",
+  },
+  { id: "activation", icon: Zap, label: "Activate", path: "/activation" },
+  { id: "presence", icon: Globe, label: "Presence", path: "#" },
+  { id: "profile", icon: User, label: "Profile", path: "/profile" },
 ];
 
 export function MobileBottomNav({ activeSection, onNavigate }) {
@@ -26,7 +31,8 @@ export function MobileBottomNav({ activeSection, onNavigate }) {
         const Icon = item.icon;
         const isActive = activeSection === item.id;
         return (
-          <button
+          <Link
+            to={item.path}
             key={item.id}
             onClick={() => onNavigate(item.id)}
             className={`flex-1 flex flex-col items-center justify-center gap-0.5 relative h-full ${
@@ -45,7 +51,7 @@ export function MobileBottomNav({ activeSection, onNavigate }) {
             >
               {item.label}
             </span>
-          </button>
+          </Link>
         );
       })}
     </nav>

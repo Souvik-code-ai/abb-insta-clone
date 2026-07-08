@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, MapPin, Calendar, Trophy } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-
+import { Link } from "react-router-dom";
 import { AWARDS } from "../../../public/awards/awards";
 // ── Sidebar Carousel (identical mechanics to CaseStudiesView) ─────────────────
 
@@ -108,13 +108,14 @@ export function AwardsView({ onNavigate }) {
       {" "}
       <div className="flex flex-col pb-12 px-4 pt-4 w-[100%] min-[1160px]:mx-50 min-[770px]:mx-16 mx-0">
         {/* Back button */}
-        <button
+        <Link
+          to={"/"}
           onClick={() => onNavigate("home")}
           className="mt-0 flex items-center gap-2 font-base flex-row justify-start cursor-pointer px-2 mb-4 text-[#579F63]"
         >
           <ArrowLeft size={16} />
           Return back
-        </button>
+        </Link>
 
         {/* Page label */}
         <div className="px-4 mb-2">
@@ -243,19 +244,28 @@ export function AwardsView({ onNavigate }) {
 
         {/* Footer */}
         <footer className="pt-2 pb-2 flex flex-col justify-center items-start px-4 flex-wrap">
-          <div className="flex gap-x-1 gap-y-2 justify-start items-start flex-row flex-wrap">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center">
             {[
-              { title: "Home", link: "home" },
-              { title: "About", link: "about" },
-              { title: "Profile", link: "profile" },
-              { title: "Privacy Policy", link: "privacypolicy" },
-              { title: "Data Privacy ", link: "dataprivacy" },
-              { title: "Terms & Conditions ", link: "terms" },
+              { title: "Home", link: "home", path: "/" },
+              { title: "About", link: "about", path: "/about" },
+              { title: "Profile", link: "profile", path: "/profile" },
+              {
+                title: "Privacy Policy",
+                link: "privacypolicy",
+                path: "/privacypolicy",
+              },
+              {
+                title: "Data Privacy ",
+                link: "dataprivacy",
+                path: "/dataprivacy",
+              },
+              { title: "Terms & Conditions ", link: "terms", path: "/terms" },
             ].map((item) => (
-              <a
-                key={item.link}
+              <Link
+                to={item.path}
+                key={item.title}
                 onClick={() => onNavigate(item.link)}
-                className="text-[11px] text-[color:var(--muted-foreground)] no-underline font-[family-name:var(--font-family-body)] transition-colors duration-150"
+                className="text-[11px] text-[color:var(--muted-foreground)] no-underline font-[family-name:var(--font-family-body)] transition-colors duration-150 cursor-pointer"
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.color = "var(--foreground)")
                 }
@@ -264,7 +274,7 @@ export function AwardsView({ onNavigate }) {
                 }
               >
                 {item.title}
-              </a>
+              </Link>
             ))}
           </div>
           <p className="text-[11px] text-[color:var(--muted-foreground)] opacity-60 mt-3 font-[family-name:var(--font-family-body)]">

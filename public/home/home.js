@@ -1,5 +1,5 @@
-import dtlogo from "../../src/assets/images/drumtao/DrumTao/dtlogo.png";
-import arunlogo from "../../src/assets/images/arun/arun_webp/arunlogo.png";
+import dtlogo from "../../src/assets/images/drumtao/dtlogo.png";
+import arunlogo from "../../src/assets/images/arun/arunlogo.png";
 import mialogo from "../../src/assets/images/mia/mialogo.jpg";
 import toyotalogo from "../../src/assets/images/zira/toyota_logo.webp";
 export const clients = [
@@ -376,17 +376,17 @@ export const clients = [
     ],
   },
 ];
-import dt2 from "../../src/assets/images/drumtao/DrumTao/dt2.webp";
-import arun2 from "../../src/assets/images/arun/arun_webp/arun2.webp";
-import dt3 from "../../src/assets/images/drumtao/DrumTao/dt3.webp";
-import dt4 from "../../src/assets/images/drumtao/DrumTao/dt4.webp";
-import dt5 from "../../src/assets/images/drumtao/DrumTao/dt5.webp";
-import arun from "../../src/assets/images/arun/arun_webp/arun.webp";
+import dt2 from "../../src/assets/images/drumtao/dt2.webp";
+import arun2 from "../../src/assets/images/arun/arun2.webp";
+import dt3 from "../../src/assets/images/drumtao/dt3.webp";
+import dt4 from "../../src/assets/images/drumtao/dt4.webp";
+import dt5 from "../../src/assets/images/drumtao/dt5.webp";
+import arun from "../../src/assets/images/arun/arun.webp";
 
-import arun3 from "../../src/assets/images/arun/arun_webp/arun3.webp";
-import arun4 from "../../src/assets/images/arun/arun_webp/arun4.webp";
-import arun5 from "../../src/assets/images/arun/arun_webp/arun5.webp";
-import arun6 from "../../src/assets/images/arun/arun_webp/arun6.webp";
+import arun3 from "../../src/assets/images/arun/arun3.webp";
+import arun4 from "../../src/assets/images/arun/arun4.webp";
+import arun5 from "../../src/assets/images/arun/arun5.webp";
+import arun6 from "../../src/assets/images/arun/arun6.webp";
 import mia1 from "../../src/assets/images/mia/mia 1.webp";
 import mia2 from "../../src/assets/images/mia/mia 2.webp";
 import mia3 from "../../src/assets/images/mia/mia2.webp";
@@ -395,10 +395,10 @@ import zira1 from "../../src/assets/images/zira/zira1.webp";
 import zira2 from "../../src/assets/images/zira/zira2.webp";
 import zira3 from "../../src/assets/images/zira/zira3.webp";
 import zira4 from "../../src/assets/images/zira/zira4.webp";
-import dtvdo from "../../src/assets/images/drumtao/DrumTao/dtvdo.mp4";
-import arunvdo from "../../src/assets/images/drumtao/DrumTao/dtvdo.mp4";
-import miavdo from "../../src/assets/images/drumtao/DrumTao/dtvdo.mp4";
-import ziravdo from "../../src/assets/images/drumtao/DrumTao/dtvdo.mp4";
+import dtvdo from "../../src/assets/images/drumtao/dtvdo.mp4";
+import arunvdo from "../../src/assets/images/drumtao/dtvdo.mp4";
+import miavdo from "../../src/assets/images/drumtao/dtvdo.mp4";
+import ziravdo from "../../src/assets/images/drumtao/dtvdo.mp4";
 
 export const feedPosts = [
   {
