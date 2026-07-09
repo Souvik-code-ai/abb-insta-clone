@@ -4,6 +4,9 @@ import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import logo from "../../assets/images/logo.jpg";
 import { EVENTS } from "../../../public/events/events";
 import { Link } from "react-router-dom";
+import EventHoverPanel from "../../components/ui/EventHoverPanel";
+import ProgressItem from "../../components/ui/ProgressItem";
+import EventHighlights from "../../components/ui/EventHighlights";
 function EventCard({ event, showType, onHover, onLeave }) {
   const [hoveredProject, setHoveredProject] = useState(null);
   return (
@@ -60,170 +63,10 @@ function EventCard({ event, showType, onHover, onLeave }) {
     </motion.div>
   );
 }
-function EventHoverPanel({ hoveredEvent }) {
-  return (
-    <div className="hidden xl:block w-64 2xl:w-100 fixed flex-shrink-0 right-[10vw] top-[15vh]">
-      <AnimatePresence mode="wait">
-        {hoveredEvent ? (
-          <motion.div
-            key={hoveredEvent.id}
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 10 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-2xl bg-white  border-gray-100 p-5 border "
-          >
-            {/* Preview Image */}
-            <img
-              src={hoveredEvent.image}
-              alt={hoveredEvent.name}
-              className="w-full rounded-xl object-cover mb-4 h-[150px]"
-            />
 
-            {/* Name */}
-            <h3 className="font-semibold text-gray-900 font-sans text-sm mb-3">
-              {hoveredEvent.name}
-            </h3>
-
-            {/* Stats */}
-            <div className="flex gap-2 mb-4">
-              <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
-                <p className="text-xs text-gray-400 mb-1">Date</p>
-                <p className="text-xs font-semibold text-gray-800">
-                  {hoveredEvent.date}
-                </p>
-              </div>
-              <div className="flex-1 bg-gray-50 rounded-xl p-3 text-center">
-                <p className="text-xs text-gray-400 mb-1">Attendance</p>
-                <p className="text-xs font-semibold text-gray-800">
-                  {hoveredEvent.attendees.toLocaleString()}
-                </p>
-              </div>
-            </div>
-
-            {/* Details */}
-            <p className="text-xs text-gray-400 uppercase tracking-wider mb-2 font-medium">
-              Details
-            </p>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm text-gray-700">
-                <span className="w-1.5 h-1.5 rounded-full bg-lime-400 flex-shrink-0" />
-                {hoveredEvent.location}
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-700">
-                <span className="w-1.5 h-1.5 rounded-full bg-lime-400 flex-shrink-0" />
-                {hoveredEvent.type}
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-700">
-                <span className="w-1.5 h-1.5 rounded-full bg-lime-400 flex-shrink-0" />
-                {hoveredEvent.status === "upcoming" ? "Upcoming" : "Past event"}
-              </div>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </div>
-  );
-}
 // ── Progress bar item ─────────────────────────────────────────────────────────
-function ProgressItem({ title, value }) {
-  return (
-    <div>
-      <div className="flex justify-between mb-1.5 text-[14px]">
-        <span className="text-gray-700 font-medium">{title}</span>
-        <span className="text-lime-600 font-extrabold">{value}%</span>
-      </div>
-      <div className="rounded-full overflow-hidden h-1.5 bg-white">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${value}%` }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="h-full rounded-full bg-gradient-to-r from-[#65A30D] to-[#ECFCCB]"
-        />
-      </div>
-    </div>
-  );
-}
 
 // ── Highlights tab ────────────────────────────────────────────────────────────
-function EventHighlights() {
-  const featured = EVENTS.slice(0, 4);
-
-  return (
-    <div className="grid lg:grid-cols-2 gap-10 items-start">
-      {/* Metrics */}
-      <div className="space-y-6">
-        <div>
-          <h2 className="font-semibold text-gray-900 font-sans text-[18px]">
-            Event performance
-          </h2>
-          <p className="text-gray-500 mt-1 font-sans text-[13px]">
-            Aggregated across all managed events
-          </p>
-        </div>
-
-        {/* Stat pills */}
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { label: "Events managed", value: "120+" },
-            { label: "Total attendees", value: "48K" },
-            { label: "Cities covered", value: "22" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-xl p-3 text-center bg-lime-100 border border-[#f5e0e7]"
-            >
-              <p className="font-bold text-lime-600 text-[20px]">
-                {stat.value}
-              </p>
-              <p className="text-gray-500 leading-tight mt-0.5 text-[11px]">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="space-y-5">
-          <ProgressItem title="Client satisfaction" value={95} />
-          <ProgressItem title="On-time delivery" value={92} />
-          <ProgressItem title="Repeat clients" value={88} />
-        </div>
-      </div>
-
-      {/* Gallery */}
-      <div>
-        <div className="mb-4">
-          <h2 className="font-semibold text-gray-900 font-sans text-[18px]">
-            Gallery
-          </h2>
-          <p className="text-gray-500 mt-1 font-sans text-[13px]">
-            Moments from our events
-          </p>
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          {featured.map((event) => (
-            <motion.div
-              key={event.id}
-              whileHover={{ scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 300, damping: 24 }}
-              className="relative overflow-hidden rounded-xl group aspect-[4/3]"
-            >
-              <img
-                src={event.image}
-                alt={event.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
-              <p className="absolute bottom-0 left-0 right-0 p-2.5 text-white font-medium leading-tight line-clamp-2 text-[12px]">
-                {event.name}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // ── Empty state ───────────────────────────────────────────────────────────────
 function EmptyState({ label }) {

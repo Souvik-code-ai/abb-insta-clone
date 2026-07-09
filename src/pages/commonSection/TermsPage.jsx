@@ -1,4 +1,7 @@
 import { useEffect } from "react";
+import ClauseCard from "../../components/ui/CluaseCard";
+import InfoCard from "../../components/ui/InfoCard";
+import BulletList from "../../components/ui/BulletList";
 import {
   ArrowLeft,
   Mail,
@@ -9,6 +12,8 @@ import {
   List,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import RegPill from "../../components/ui/RegPill";
+import BodyText from "../../components/ui/BodyText";
 // ── Static data ───────────────────────────────────────────────────────────────
 
 const TOC_ITEMS = [
@@ -35,61 +40,6 @@ function SectionHeader({ title }) {
     <div className="flex items-center gap-2 mb-3 pb-2 ">
       <span className="font-semibold text-[14px]">{title}</span>
     </div>
-  );
-}
-
-function ClauseCard({ label, children }) {
-  return (
-    <div className="rounded-xl p-3 mb-2 last:mb-0">
-      {label && (
-        <div className="text-[11px] font-semibold text-[#579F63] mb-1 uppercase tracking-[0.04em]">
-          {label}
-        </div>
-      )}
-      <div className="text-xs text-[color:var(--muted-foreground)] leading-[1.65]">
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function InfoCard({ icon, label, children }) {
-  return (
-    <div className="rounded-xl p-3 mb-2 last:mb-0">
-      <div className="flex items-center gap-2 mb-1 text-xs font-semibold text-[color:var(--foreground)]">
-        <span className="text-[#579F63]">{icon}</span>
-        {label}
-      </div>
-      <div className="text-xs text-[color:var(--muted-foreground)] leading-[1.65]">
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function RegPill({ label }) {
-  return (
-    <span className="text-[11px] font-semibold px-[10px] py-[3px] text-[color:var(--muted-foreground)]">
-      {label}
-    </span>
-  );
-}
-
-function BulletList({ items }) {
-  return (
-    <div className="flex flex-col gap-1">
-      {items.map((item) => (
-        <span key={item}>• {item}</span>
-      ))}
-    </div>
-  );
-}
-
-function BodyText({ children }) {
-  return (
-    <p className="text-xs text-[color:var(--muted-foreground)] leading-[1.7] m-0 mb-2">
-      {children}
-    </p>
   );
 }
 
